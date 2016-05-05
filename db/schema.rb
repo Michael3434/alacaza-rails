@@ -27,14 +27,11 @@ ActiveRecord::Schema.define(version: 20160506183544) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
-    t.integer  "user_id"
     t.integer  "building_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "messages", ["building_id"], name: "index_messages_on_building_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -59,6 +56,4 @@ ActiveRecord::Schema.define(version: 20160506183544) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "messages", "buildings"
-  add_foreign_key "messages", "users"
 end
