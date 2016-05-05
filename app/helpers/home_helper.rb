@@ -1,6 +1,6 @@
 module HomeHelper
-  def cities
-    ["Bordeaux", "Grenoble", "Lille", "Lyon", "Marseille", "Montpellier", "Nantes", "Paris", "Rennes", "Strasbourg", "Toulouse"]
+  def buildings
+    ["12-rue-jean-richepin", "Paris", "Lyon"]
   end
 
   def facebook_url(city)
@@ -28,6 +28,10 @@ module HomeHelper
     when "Toulouse"
       "https://www.facebook.com/groups/978940688825892/"
     end
+  end
+
+  def buildings_collection
+    [["12 Rue Jean Richepin", 1], ["12 Rue Jean Richepin", "12-rue-jean-richepin"], ["12 Rue Jean Richepin", "12-rue-jean-richepin"]]
   end
 
   def url_for_city(city)

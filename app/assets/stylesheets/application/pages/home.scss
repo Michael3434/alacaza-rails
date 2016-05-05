@@ -36,7 +36,7 @@
         border-radius: 4px;
         font-size: 18px;
         padding: 13px 24px 15px;
-        background-color: #1ca298;
+        background-color: $brand-primary;
         font-weight: 400;
         color: white;
         &:active {
@@ -44,11 +44,11 @@
         }
       }
       h1 {
-        font-size: 50px;
+        font-size: 60px;
         margin-top: 0;
         margin-bottom: 10px;
         color: white;
-        font-weight: 300;
+        font-weight: 500;
         letter-spacing: 2px;
         @include bp-medium {
           font-size: 40px;
@@ -237,24 +237,24 @@
       }
     }
     .icon-wrapper {
-      height: 90px;
       margin-left: auto;
       margin-right: auto;
       background-size: 100%;
-      width: 220px;
-      height: 220px;
-      border-radius: 100%;
+      width: 86px;
+      height: 130px;
     }
     #glass-icon {
-      background-image: asset-url('users/camille.jpg');
+      background-image: asset-url('icons/clock.png');
       background-repeat: no-repeat;
     }
     #label-icon {
-      background-image: asset-url('users/vincent.jpg');
+      background-image: asset-url('icons/finger.png');
       background-repeat: no-repeat;
+      top: 20px;
+      position: relative;
     }
     #discount-icon {
-      background-image: asset-url('users/marie.jpg');
+      background-image: asset-url('icons/lock.png');
       background-repeat: no-repeat;
     }
     @include bp-small {

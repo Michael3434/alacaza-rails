@@ -3,7 +3,17 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: 'passwords' }
   get "sign_up", to: redirect("/")
-   get "users/sign_up", to: redirect("/")
+  get "users/sign_up", to: redirect("/")
+
+  resources :buildings
+  get "/:slug", to: "buildings#show", as: :post
+
+  Rails.application.routes.url_helpers.module_eval do
+    def building_path(building)
+      building_path + "/#{building.slug}"
+    end
+
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

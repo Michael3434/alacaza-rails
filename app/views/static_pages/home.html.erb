@@ -9,9 +9,10 @@
 <%= content_tag :section, class: "hero" do %>
   <div class="hero-info">
     <h1>
-      Travailler les uns chez les autres <br>
-    <h3>Pour booster votre journée de travail avec d'autres professionnels indépendants</h3>
-      <span class="btn btn-cta">Rejoindre la communauté</span>
+      Une messagerie dédiée<br>
+      à votre immeuble
+    <h3>Communication rapide, interne et sécuriser</h3>
+      <span class="btn btn-cta">Rejoindre mon immeuble</span>
     </div>
   </div>
 
@@ -22,99 +23,50 @@
 <% end %>
 
 <section class="cities" id="cities">
-  <h2 class="text-center">Partout en France</h2>
-  <p class="text-center hint">Sélectionnez une ville pour rejoindre votre communauté</p>
+  <h2 class="text-center">Il's s'envoient des messages</h2>
+  <p class="text-center hint">Les 3 immeubles dans la ville de Paris</p>
   <div class="container content-wrapper">
     <div class="row">
-      <% cities.each do |city| %>
+      <% buildings.each do |building| %>
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
           <div class="picture-wrapper" >
-            <div class="city-picture" data-city=<%= city %>>
-              <a class="hidden facebook-link <%= city %>" href=<%= facebook_url(city) %>></a>
-              <%= link_to current_user ? facebook_url(city) : "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
-                <div class="city-title"><%= city %></div>
-                <%= image_tag "cities/#{city}.jpg", class: "" %>
+            <div class="city-picture" data-city=<%= building %>>
+              <%= link_to "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
+                <div class="city-title"><%= building %></div>
+                <%= image_tag "cities/#{building}.jpg", class: "" %>
               <% end %>
             </div>
           </div>
         </div>
       <% end %>
-      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
-        <div class="picture-wrapper" >
-          <div class="city-picture ">
-            <%= link_to "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link new-city" do %>
-              <div class="city-title">Je propose ma ville </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <section class="testimonial" id="testimonial">
-  <h2 class="text-center">Ils ont testé Cohome&nbsp;</h2>
+  <h2 class="text-center">Nos valeurs&nbsp;</h2>
   <div class="container content-wrapper">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div id="glass-icon" class="icon-wrapper profile"></div>
-        <h3>Camille</h3>
-        <p class="job">UX Designer</p>
+        <h3>Utile</h3>
         <p>"Service de coworking convivial, simple, accessible, fiable, à dimension humaine, où il est facile d'échanger avec les participants."</p>
       </div>
 
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div class="icon-wrapper" id="label-icon"></div>
-        <h3>Vincent</h3>
-        <p class="job">PR and community manager</p>
+        <h3>Facile</h3>
         <p>"Je trouve que c'est agréable de travailler avec des personnes qu'on ne connait pas dans un cadre confortable et serein qui ne soit pas celui de l'entreprise."</p>
       </div>
 
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div class="icon-wrapper" id="discount-icon"></div>
-         <h3>Marie</h3>
-         <p class="job">Project manager</p>
+         <h3>Sécurisé</h3>
         <p>"J'ai pu me concentrer et travailler efficacement, dans un endroit confortable et accessible. C'est une solution parfaite pour travailler efficacement, tout en rencontrant des gens dans un contexte professionnel."</p>
       </div>
     </div>
   </div>
 </section>
-
-<hr>
-
-<section class="press" id="press">
-  <div class="container content-wrapper">
-    <div class="row">
-     <div class="icon-elle icon clearfix col-md-2">
-      <a href="http://www.elle.fr/Societe/Le-travail/Forum-ELLE-Active/Paris-27-et-28-mars/Programme-vendredi/En-seance-pleniere-l-union-fera-notre-force-2894372" target="_blank">
-        <%= image_tag "media/elle.png", class: "" %>
-      </a>
-     </div>
-     <div class="icon-le-par icon clearfix col-md-2">
-      <a href="http://www.leparisien.fr/espace-premium/hauts-de-seine-92/elle-propose-d-installer-son-bureau-dans-votre-salon-02-03-2016-5590443.php" target="_blank">
-        <%= image_tag "media/le_parisien.png", class: "" %>
-     </div>
-      <div class="icon-20-min icon clearfix col-md-2">
-        <a href="http://www.20minutes.fr/paris/1789091-20160217-paris-viens-travailler-chez-grand-salon" target="_blank">
-        <%= image_tag "media/20_minutes.png", class: "" %>
-     </div>
-     <div class="icon-les-inr icon clearfix col-md-2">
-      <a href="http://www.lesinrocks.com/2015/12/22/actualite/viens-chez-moi-je-bosse-a-la-maison-le-coworking-a-domicile-se-developpe-11794662/" target="_blank">
-        <%= image_tag "media/les_inrocks.png", class: "" %>
-      </a>
-     </div>
-     <div class="icon-wedemain icon col-md-2">
-      <a href="http://www.wedemain.fr/Cohome-la-plateforme-qui-permet-aux-freelances-de-co-worker-a-la-maison_a1671.html" target="_blank">
-       <%= image_tag "media/wedemain.png", class: "" %>
-      </a>
-     </div>
-     <div class="icon-tf1 icon clearfix col-md-2">
-        <%= image_tag "media/tf1.png", class: "" %>
-    </div>
-  </div>
-</section>
-
-<hr>
 
 <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

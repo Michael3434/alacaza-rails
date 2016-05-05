@@ -1,4 +1,4 @@
-<%= render layout: "layouts/modal", locals: { modal_name: "signup", modal_size: "", modal_title: "S'inscire sur Cohome" } do %>
+<%= render layout: "layouts/modal", locals: { modal_name: "signup", modal_size: "", modal_title: "Rejoindre mon immeuble" } do %>
   <div class="step-1">
     <table class="modal-layout">
       <tbody>
@@ -14,12 +14,11 @@
                                            html: { class: "form form-horizontal text-center", id: "new_user" } do |f| %>
                 <%= f.input :first_name, placeholder: "Prénom" %>
                 <%= f.input :last_name, placeholder: "Nom" %>
-                <%= f.input :city, placeholder: "Ville" %>
+                <%= f.input :building_id, label: false, collection: buildings_collection, as: :select, placeholder: "-- Choisissez votre immeuble --", input_html: { class: "js-example-basic-single" } %>
+                <%= f.input :building_access, placeholder: "Mot de passe de votre immeuble" %>
                 <%= f.input :email, placeholder: "Email" %>
                 <%= f.input :password, placeholder: "Mot de passe", required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-                <%= f.check_box :want_host %> <span class="want-host">J'aimerais proposer mon appartment</span>
-
-                <%= button_tag "Rejoindre la communauté Cohome", type: "submit", class: "btn btn-lg btn-action space-1" %>
+                <%= button_tag "Rejoindre mon immeuble", type: "submit", class: "btn btn-lg btn-action space-1 space-top-1" %>
                 <p class="want-to-signin">Déjà inscrit ? <%= link_to "Se connecter", "#", class: "" %></p>
               <% end %>
             </div>
@@ -29,8 +28,8 @@
     </table>
   </div>
   <div class="step-2 text-center"  style="display:none;">
-    <p class="modal-info text-center">Félicitation ! Vous allez être redirigé vers la communauté de <span class="city"></span> dans quelques secondes..</p>
-     <p class="signature">L'Équipe Cohome whith love <i class="fa fa-heart"></i></p>
+    <p class="modal-info text-center">Félicitation ! Vous allez être redirigé vers la messagerie de votre immeuble<span class="immeuble"></span> dans quelques secondes..</p>
+     <p class="signature">L'Équipe Alacaza with <i class="fa fa-heart"></i></p>
     <i class="fa fa-spinner fa-spin"></i>
   </div>
 

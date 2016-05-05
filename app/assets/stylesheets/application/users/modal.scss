@@ -1,9 +1,11 @@
 #signup_modal {
-  #user_want_host {
-    margin-bottom: 10px;
-  }
-  .want-host {
-    font-size: 15px;
+  .user_building_id {
+    .select2-container {
+      width: 100% !important;
+      .select2-selection__placeholder {
+        float: left;
+      }
+    }
   }
   .help-block {
     margin-bottom: 0;
