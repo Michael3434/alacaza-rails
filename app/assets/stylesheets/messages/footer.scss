@@ -1,0 +1,33 @@
+.messages-input-container {
+  .form-group {
+    margin-top: 20px;
+  }
+  .icon-send {
+    border: none;
+    font-size: 30px;
+    background-color: transparent;
+    position: relative;
+    top: 30px;
+    border: none;
+    font-size: 30px;
+    background-color: transparent;
+    @include bp-min(991px) {
+      display: none;
+    }
+  }
+  button {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 15px 48px;
+    @include bp-medium {
+      display: none;
+    }
+  }
+  textarea {
+    border: 2px solid #E0E0E0;
+    &:focus {
+      border-color: rgba(244, 81, 30, 0.45);
+    }
+  }
+}
+

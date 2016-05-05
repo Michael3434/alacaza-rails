@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :buildings
   get "/:slug", to: "buildings#show", as: :post
+  resources :messages
 
   Rails.application.routes.url_helpers.module_eval do
     def building_path(building)

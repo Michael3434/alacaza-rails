@@ -1,0 +1,53 @@
+.messages-container {
+  .msg-container {
+    position: relative;
+  }
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  .message-gutter {
+    width: 72px;
+    padding-right: 10px;
+    text-align: right;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .message-icon {
+      margin-top: 4px;
+      display: block;
+      .member-image {
+        background-image: image-url("users/camille.jpg");
+        width: 36px;
+        height: 36px;
+        border-radius: .2rem;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: inline-block;
+        position: relative;
+      }
+    }
+  }
+  .message-content {
+    margin-left: 70px;
+    .message-sender {
+      font-weight: 900;
+      color: #2c2d30!important;
+      line-height: 1.125rem;
+    }
+    .message-time {
+      color: #9e9ea6;
+      font-size: 13px;
+      line-height: 1.125rem;
+      margin-right: .25rem;
+      opacity: 1;
+      display: inline;
+    }
+    .message-body {
+      color: #2c2d30;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+

@@ -41,7 +41,6 @@ app.auth =
         city = $(this).data("city")
         $('#user_city').val(city)
     signupError: (e, xhr, status, error) ->
-      debugger
       $(this).render_form_errors('user', xhr.responseJSON.errors)
     signupSuccess: (e, data, status, xhr) ->
       $('.signout').removeClass('hidden')

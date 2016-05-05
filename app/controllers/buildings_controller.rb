@@ -9,7 +9,6 @@ class BuildingsController < ApplicationController
       render status: :not_found, text: "Not Found."
       return
     end
-    @messages = current_user.messages
-    raise
+    @messages = @buidling.messages
   end
 end

@@ -10,3 +10,5 @@ message = Message.new(body: "Bonjour à tous ! Je vous propose la création d'un
 message.save
 message = Message.new(body: "Bonjour ! Je viens d'emménager dans l'immeuble, et en tant que nouveau résident je souhaite organiser une fête dans mon nouvel appartement. Passez quand vous voulez demain soir !   Martin PS: Quelqu'un pourrait-il m'aider à régler les formalités administratives d'arrivée dans l'immeuble ? ", building_id: 1, user_id: 1)
 message.save
+building = Building.new(name: "12 Rue Jean Richepin", slug: "12-rue-jean-richepin", address: "12 rue Jean Richepin, 75116 Paris", password: "alacaza12")
+building.save
