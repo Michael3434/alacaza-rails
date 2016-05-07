@@ -17,6 +17,10 @@
   <![endif]-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <% if content_for?(:og_url) %>
+  <%= render "layouts/facebook_og" %>
+  <% end %>
 </head>
 <body class="admin <%= controller_name %> <%= action_name %>">
   <%= render 'layouts/navbar' %>
