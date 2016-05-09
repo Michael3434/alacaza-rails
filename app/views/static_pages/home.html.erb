@@ -1,9 +1,9 @@
 <% content_for :title, "accueil" %>
 <% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
 <% content_for :og_url, "http://www.alacaza.fr" %>
-<% content_for :og_title, "Une messagerie dédiée à votre immeuble" %>
+<% content_for :og_title, "« Alacaza.fr : Le 1er réseau social privé entièrement dédié à la vie de votre immeuble »" %>
 <% content_for :og_type, "article" %>
-<% content_for :og_description, "Alacaza est la première messagerie privée entièrement dédiée à la vie de votre immeuble. Proprétaire, locataire, gardien(ne) ou property manager: Alacaza vous permet de communiquer facilement avec l'ensemble des parties prenantes, d'échanger des services ponctuels, de régler rapidement les imprévus ou problèmes récurrents dans les parties communes et de participer aux rendez-vous qui animent la vie de votre immeuble" %>
+<% content_for :og_description, "Alacaza est le premier réseau social privé entièrement dédié à la vie de votre immeuble. Propriétaire, locataire, gardien(ne) ou property manager: Alacaza vous permet de communiquer facilement avec l'ensemble des parties prenantes, d'échanger des services ponctuels, de régler rapidement les imprévus ou problèmes récurrents dans les parties communes et de participer aux rendez-vous qui animent la vie de votre immeuble. Utilisez Alacaza à votre rythme, et prenez part à cette dynamique collaborative au sein de votre immeuble !"%>
 
 
 <%= content_tag :section, class: "hero" do %>
@@ -23,7 +23,7 @@
 <% end %>
 
 <section class="cities" id="cities">
-  <h2 class="text-center">Il's s'envoient des messages</h2>
+  <h2 class="text-center">Trois immeubles sélectionnés pour l’expérimentation du service</h2>
   <p class="text-center hint">Les 3 immeubles dans la ville de Paris</p>
   <div class="container content-wrapper">
     <div class="row">
@@ -32,8 +32,8 @@
           <div class="picture-wrapper" >
             <div class="city-picture" data-city=<%= building %>>
               <%= link_to "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
-                <div class="city-title"><%= building %></div>
-                <%= image_tag "cities/#{building}.jpg", class: "" %>
+                <div class="city-title"><%= buildings_name(building) %></div>
+                <%= image_tag "buildings/#{building}.jpg", class: "" %>
               <% end %>
             </div>
           </div>
@@ -44,25 +44,25 @@
 </section>
 
 <section class="testimonial" id="testimonial">
-  <h2 class="text-center">Nos valeurs&nbsp;</h2>
+  <h2 class="text-center">Les avantages&nbsp;</h2>
   <div class="container content-wrapper">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div id="glass-icon" class="icon-wrapper profile"></div>
         <h3>Utile</h3>
-        <p>"Service de coworking convivial, simple, accessible, fiable, à dimension humaine, où il est facile d'échanger avec les participants."</p>
+        <p>Des gains d’efficacité dans les interactions entre les parties prenantes de votre immeuble </p>
       </div>
 
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div class="icon-wrapper" id="label-icon"></div>
-        <h3>Facile</h3>
-        <p>"Je trouve que c'est agréable de travailler avec des personnes qu'on ne connait pas dans un cadre confortable et serein qui ne soit pas celui de l'entreprise."</p>
+        <h3>Privé</h3>
+        <p>Un environnement exclusivement dédié à la communauté de votre immeuble</p>
       </div>
 
       <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 text-center">
         <div class="icon-wrapper" id="discount-icon"></div>
          <h3>Sécurisé</h3>
-        <p>"J'ai pu me concentrer et travailler efficacement, dans un endroit confortable et accessible. C'est une solution parfaite pour travailler efficacement, tout en rencontrant des gens dans un contexte professionnel."</p>
+        <p>Un accès contrôlé avec des mots de passe personnel et collectif </p>
       </div>
     </div>
   </div>

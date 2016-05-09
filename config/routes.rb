@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "users/sign_up", to: redirect("/")
 
   resources :buildings
-  get "/:slug", to: "buildings#show", as: :post
+  get "/:slug", to: "buildings#show", as: :appartment
   resources :messages
 
   Rails.application.routes.url_helpers.module_eval do

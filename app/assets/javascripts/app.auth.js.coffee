@@ -47,7 +47,8 @@ app.auth =
       $('.signin').addClass('hidden')
       $('.step-1').hide()
       $('.step-2').show()
-        # setTimeout ( -> window.location.replace(url) ), 5000
+      url = window.location.pathname + app.auth.buildingUrl(data.building_acces)
+      setTimeout ( -> window.location.replace(url) ), 5000
     resetModal: ->
       $("form#new_user").clear_form_errors()
       $("form.new_session").clear_form_errors()
@@ -59,4 +60,11 @@ app.auth =
     e.preventDefault()
     $("#signup_modal").modal('hide')
     $("#signin_modal").modal()
-
+  buildingUrl: (name) ->
+      switch name
+        when /bateliers/
+          "10-rue-des-bateliers"
+        when /richepin/
+          "12-rue-jean-richepin"
+        when /elzevir/
+          "3-rue-elzevir"

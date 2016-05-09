@@ -3,6 +3,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   respond_to :json, :js
 
+  def after_sign_up_path_for(resource)
+    if @user
+      appartment_path(Building.find(@user.building_id).slug)
+    end
+  end
+
   private
 
   def notify_new_user

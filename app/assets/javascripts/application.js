@@ -20,6 +20,8 @@
 //= require app
 //= require app.pages
 //= require app.auth
+//= require app.building.show
+
 
 
 

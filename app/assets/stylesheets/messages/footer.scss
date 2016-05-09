@@ -1,4 +1,9 @@
-.messages-input-container {
+.footer_msgs {
+  bottom: 0;
+  position: fixed;
+  background: #fff;
+  z-index: 52;
+  width: 100%;
   .form-group {
     margin-top: 20px;
   }
@@ -18,13 +23,15 @@
   button {
     margin-top: 20px;
     margin-left: 20px;
-    padding: 15px 48px;
+    padding: 9px 48px;
     @include bp-medium {
       display: none;
     }
   }
   textarea {
     border: 2px solid #E0E0E0;
+    overflow-y: hidden;
+    height: 42px;
     &:focus {
       border-color: rgba(244, 81, 30, 0.45);
     }

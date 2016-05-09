@@ -1,10 +1,10 @@
 class UserMailer < ActionMailer::Base
 
-  default from: "Cohome <hey@cohome.in>"
+  default from: "Cohome <hello@alacaza.fr>"
 
   def welcome(user)
     @user = user
-    mail from: "Michael <hey@cohome.in>", to: @user.email, subject: "Bienvenue sur Cohome!"
+    mail from: "Michael <hello@alacaza.fr>", to: @user.email, subject: "Bienvenue sur Cohome!"
   end
 
 end
