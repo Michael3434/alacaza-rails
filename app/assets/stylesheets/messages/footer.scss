@@ -5,26 +5,25 @@
   z-index: 52;
   width: 100%;
   .form-group {
-    margin-top: 20px;
   }
   .icon-send {
     border: none;
     font-size: 30px;
     background-color: transparent;
     position: relative;
-    top: 30px;
+    top: 4px;
+    right: 10px;
     border: none;
     font-size: 30px;
     background-color: transparent;
-    @include bp-min(991px) {
+    margin-left: 25%;
+    @include bp-min(768px) {
       display: none;
     }
   }
   button {
-    margin-top: 20px;
-    margin-left: 20px;
-    padding: 9px 48px;
-    @include bp-medium {
+    padding: 9px 30px;
+    @include bp-small {
       display: none;
     }
   }

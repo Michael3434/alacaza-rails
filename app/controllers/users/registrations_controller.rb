@@ -1,19 +1,20 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   after_action :notify_new_user, on: :create
+  after_action :add_building_slug_to_JSON, on: :create
 
   respond_to :json, :js
 
-  def after_sign_up_path_for(resource)
-    if @user
-      appartment_path(Building.find(@user.building_id).slug)
-    end
-  end
-
   private
+
+  def add_building_slug_to_JSON
+    body = JSON.parse(response.body)
+    body[:building_slug] = Building.find(@user.building_id).slug
+    response.body = body.to_json
+  end
 
   def notify_new_user
     if current_user
-      # Notifier.new_user(current_user)
+      Notifier.new_user(current_user)
       UserMailer.welcome(current_user).deliver_now!
     end
   end

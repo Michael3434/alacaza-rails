@@ -6,7 +6,8 @@ module Notifier
     end
 
     def new_user(user)
-      message = "Sign Up -> Prénom: #{user.first_name} | Nom: #{user.last_name} | Email: #{user.email} | Ville: #{user.city} "
+      building_name = user.building.name
+      message = "Sign Up -> Prénom: #{user.first_name} | Nom: #{user.last_name} | Email: #{user.email} | Building: #{building_name}"
       notify(message)
     end
 
@@ -17,7 +18,7 @@ module Notifier
     end
 
     def notify(message, options = {})
-      if Rails.env.in?(["development", "staging"])
+      if Rails.env.in?(["development", "staging", "production"])
         options[:channel] = "#website"
       end
 

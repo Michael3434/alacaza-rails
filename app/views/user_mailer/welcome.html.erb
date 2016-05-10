@@ -1,16 +1,16 @@
 <p>Bonjour <%= @user.first_name %>,</p>
 
-<p>Nous sommes très heureux de vous accueillir sur Alacaza !</p>
+<p>Nous sommes très heureux de t’accueillir dans la communauté alacaza de ton immeuble du <%= @user.building.address %>.</p>
 
-<p>Sur Alacaza vous ....</p>
+<p>Tu peux désormais participer autrement à la vie de ton bâtiment en te connectant sur le site <%= link_to "Alacaza.fr", root_url %></p>
 
 <table cellspacing="0" cellpadding="0" style="margin-top:30px;">
   <tr>
-    <td style="width:60px;height:60px;padding-right:10px;border-right:2px solid #ccc;"><%= image_tag("/profiles/michael.jpg", alt: "Michael", style: "width:100%;height:100%;border-radius:50%;") %></td>
+    <td style="width:60px;height:60px;padding-right:10px;border-right:2px solid #ccc;"><%= image_tag("michael.jpg", alt: "Michael", style: "width:100%;height:100%;border-radius:50%;") %></td>
     <td style="padding-left:10px;text-align:initial;">
       <b><span class="color:#333;">Michael</span></b><br>
       <span style="color:#333;">Co-fondateur | Alacaza</span><br>
-      <%= link_to "http://www.event-corner.com", root_url %>
+      <%= link_to "http://www.alacaza.fr", root_url %>
     </td>
   </tr>
 </table>

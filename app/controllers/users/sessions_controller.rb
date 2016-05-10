@@ -1,9 +1,19 @@
 class Users::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token, only: [:destroy]
+  after_action :add_building_slug_to_JSON, on: :create
+
   respond_to :json, :html
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
+  end
+
+  def add_building_slug_to_JSON
+    unless action_name == "destroy"
+      body = JSON.parse(response.body)
+      body[:building_slug] = Building.find(@user.building_id).slug
+      response.body = body.to_json
+    end
   end
 # before_filter :configure_sign_in_params, only: [:create]
 

@@ -68,7 +68,8 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-  config.action_mailer.default_url_options = { host: "cohome-staging.herokuapp.com/" }
+   config.action_mailer.default_url_options = { host: "http://www.alacaza.fr" }
+   config.action_mailer.asset_host = 'http://www.alacaza.fr'
 
   ActionMailer::Base.smtp_settings = {
     :authentication => :plain,
@@ -79,6 +80,8 @@ Rails.application.configure do
     :password => ENV['MAILGUN_PASSWORD'],
     :enable_starttls_auto => true
   }
+
+  config.action_controller.asset_host = 'http://www.alacaza.fr'
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify

@@ -25,7 +25,6 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.asset_host ="http://localhost:3000"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.active_record.migration_error = :page_load
@@ -41,7 +40,9 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  config.action_controller.asset_host = ENV['ASSETS_HOST']
+  config.action_mailer.asset_host = "http://localhost:3000"
+  config.action_controller.asset_host = "http://localhost:3000"
+
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

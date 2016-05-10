@@ -29,8 +29,8 @@ app.auth =
       $(this).closest(".modal").modal("hide")
       $('.signout').removeClass('hidden')
       $('.signin').addClass('hidden')
-      $('.facebook-link').each (element, i) ->
-        $(i).removeClass('hidden')
+      url = window.location.pathname + "immeubles/" + data.building_slug
+      window.location.replace(url)
   signup:
     init: ->
       $(".city-picture").click @addCityToSignupForm
@@ -47,7 +47,7 @@ app.auth =
       $('.signin').addClass('hidden')
       $('.step-1').hide()
       $('.step-2').show()
-      url = window.location.pathname + app.auth.buildingUrl(data.building_acces)
+      url = window.location.pathname + "immeubles/" + data.building_slug
       setTimeout ( -> window.location.replace(url) ), 5000
     resetModal: ->
       $("form#new_user").clear_form_errors()

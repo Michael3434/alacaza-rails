@@ -8,12 +8,11 @@ class UserMailer < ActionMailer::Base
     mail from: "Michael <hello@alacaza.fr>", to: @user.email, subject: "Bienvenue sur Alacaza!"
   end
 
-  def new_message(message)
-    @user = message.user
+  def new_message(message, user)
+    @user = user
     @message = message
-    users_email = User.where(building_id: Message.first.building_id).pluck(:email)
 
-     mail from: "Michael <hello@alacaza.fr>", to: users_email, subject: "Nouveau message sur la messagerie de votre immeuble !"
+     mail from: "Michael <hello@alacaza.fr>", to: @user.email, subject: "Nouveau message sur la messagerie de votre immeuble !"
   end
 
 end
