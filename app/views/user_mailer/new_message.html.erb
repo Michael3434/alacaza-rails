@@ -1,0 +1,27 @@
+<p>Bonjour <%= @user.first_name %>,</p>
+<p>Un nouveau message est arrivé sur Alacaza.fr .</p>
+
+<div style="background-color: #DCEFFF; padding: 15px; margin: 16px;">
+<span style="line-height: 1.5; font-style: italic;">
+      <%= extracted_body_for_email(@message.body) %> <%= link_to "lire plus", appartment_url(@message.building.slug) %></span>
+
+</div>
+
+  <table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
+    <td>
+      <a href= <%= appartment_path(@message.building.slug) %> style="text-decoration: none;">
+        <span style="text-align: center;
+          width: 140px;
+          background-color: #FF6E41;
+          padding: 8px;
+          color: white;
+          margin-left: 16px;
+          font-size: 14px;
+          display: block;">Lire le message
+        </span>
+      </a>
+    </td>
+  </table>
+
+<p>Bonne journée,<br>
+L'équipe Event Corner</p>

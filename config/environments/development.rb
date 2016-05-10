@@ -29,7 +29,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.active_record.migration_error = :page_load
-  # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+  config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
   # config.roadie.url_options = {host: "localhost:3000", scheme: "http"}
 
   # Debug mode disables concatenation and preprocessing of assets.
@@ -52,12 +52,12 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
     :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandboxc01585ce429a4cae8375eb161b9359ca.mailgun.org",
-    :user_name => ENV['MAILGUN_USERNAME'],
-    :password => ENV['MAILGUN_PASSWORD'],
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
 end
