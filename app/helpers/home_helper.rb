@@ -1,15 +1,15 @@
 module HomeHelper
   def buildings
-    ["jean-richepin", "bateliers", "elzevir"]
+    Building.all.pluck(:slug)
   end
 
   def buildings_name(name)
     case name
-    when "elzevir"
+    when "3-rue-elzevir"
       "Rue Elzevir"
-    when "jean-richepin"
+    when "12-rue-jean-richepin"
       "Rue Jean-Richepin"
-    when "bateliers"
+    when "10-rue-des-bateliers"
       "Rue des Bateliers"
     end
 

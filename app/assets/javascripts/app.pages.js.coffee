@@ -1,23 +1,23 @@
 app.pages =
   home:
     init: ->
+      @mixpanelTracking()
       $("#scroll-down").click this.scrollHeroClicked
       $(".btn-cta").click this.scrollHeroClicked
-      $('.nav-testimonials').click this.scrollToTesimonial
-      $('.nav-cities').click this.scrollHeroClicked
-      $("#video-modal").on "hidden.bs.modal", => @stopVideo()
-    stopVideo: ->
-      youtubeSrc = $('#ytplayer').attr("src");
-      $('#ytplayer').attr("src", "");
-      $('#ytplayer').attr("src", youtubeSrc);
     scrollHeroClicked: ->
       $("html, body").animate {
         scrollTop: $(".cities").offset().top
       }, 750
-    scrollToTesimonial: ->
-      $("html, body").animate {
-        scrollTop: $(".testimonial").offset().top
-      }, 750
+    mixpanelTracking: ->
+      $("#signin_modal").on "shown.bs.modal", ->
+        mixpanel.track 'Affichage de l\'écran login'
+      $("#signup_modal").on "shown.bs.modal", ->
+        mixpanel.track 'Affichage de l\'écran signup'
+      $("form.new_session").on "ajax:success", ->
+        mixpanel.track 'Connexion'
+      $("form#new_user").on "ajax:success", (e, data, status, xhr) ->
+        mixpanel.track 'Inscription'
+      mixpanel.track 'Page vue', 'Page': 'Home'
 
 $(document).on "ready page:load", ->
   app.pages.home.init() if $(".static_pages.home").length > 0

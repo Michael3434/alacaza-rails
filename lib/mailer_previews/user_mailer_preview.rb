@@ -6,6 +6,6 @@ class UserMailerPreview < ActionMailer::Preview
 
   def new_message
     m = Message.first
-    UserMailer.new_message(m)
+    UserMailer.new_message(m, User.first)
   end
 end

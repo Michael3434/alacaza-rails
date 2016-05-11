@@ -72,12 +72,12 @@ Rails.application.configure do
    config.action_mailer.asset_host = 'http://www.alacaza.fr'
 
   ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
     :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandboxc01585ce429a4cae8375eb161b9359ca.mailgun.org",
-    :user_name => ENV['MAILGUN_USERNAME'],
-    :password => ENV['MAILGUN_PASSWORD'],
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
 

@@ -3,14 +3,14 @@ window.app ||= {}
 app.init = ->
   console.log "Init app.js"
 
-  jQuery.each jQuery('.js-auto-size'), ->
+  $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
 
     resizeTextarea = (el) ->
-      jQuery(el).css('height', 'auto').css 'height', Math.min(100, el.scrollHeight + offset)
+      $(el).css('height', 'auto').css 'height', Math.min(100, el.scrollHeight + offset)
       return
 
-    jQuery(this).on('keyup input', ->
+    $(this).on('keyup input', ->
       resizeTextarea this
       return
     ).removeAttr 'data-autoresize'

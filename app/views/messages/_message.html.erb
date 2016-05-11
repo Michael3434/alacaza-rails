@@ -1,14 +1,14 @@
 <div class="msg-container space-top-2 space-2">
   <div class="message-gutter">
     <div class="message-icon">
-      <i class="member-image"></i>
+      <%= image_tag ("icons/icon" + message.user.image_id.to_s), class: "member-image" %>
     </div>
   </div>
   <div class="message-content">
     <span class="message-sender"><%= message.user.name %></span>
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
-      <%= message.body %>
+      <%= simple_format(message.body) %>
     </div>
   </div>
 </div>

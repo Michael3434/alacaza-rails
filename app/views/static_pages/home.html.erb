@@ -9,9 +9,7 @@
 <%= content_tag :section, class: "hero" do %>
   <div class="hero-info">
     <h1>
-      Une messagerie dédiée<br>
-      à votre immeuble
-    <h3></h3>
+      <span>Une messagerie dédiée à votre immeuble</span> <br>
       <span class="btn btn-cta">Rejoindre mon immeuble</span>
     </div>
   </div>
@@ -31,7 +29,7 @@
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
           <div class="picture-wrapper" >
             <div class="city-picture" data-city=<%= building %>>
-              <%= link_to "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
+              <%= link_to current_user ? "/immeubles/#{building}" : "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
                 <div class="city-title"><%= buildings_name(building) %></div>
                 <%= image_tag "buildings/#{building}.jpg", class: "" %>
               <% end %>

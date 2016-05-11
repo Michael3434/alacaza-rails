@@ -32,5 +32,11 @@
       <%= render "users/signin_modal" %>
     <% end %>
   </div>
+
+  <% if Rails.env == "development" %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_DEV"] } %>
+  <% else %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_PROD"] } %>
+  <% end %>
 </body>
 </html>

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true
   validate :verify_building_password
 
+  after_create :set_image_id
+
   belongs_to :building
   has_many :messages
   # validations
@@ -26,5 +28,8 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def set_image_id
+    self.update(image_id: (2..10).to_a.sample)
+  end
 
 end
