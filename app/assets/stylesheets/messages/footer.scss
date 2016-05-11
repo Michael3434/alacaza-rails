@@ -31,6 +31,23 @@
     border: 2px solid #E0E0E0;
     overflow-y: hidden;
     height: 42px;
+    background: #fff;
+    width: 100%;
+    line-height: 1.2rem;
+    background-clip: padding-box;
+    color: #3d3c40;
+    -webkit-appearance: none;
+    box-shadow: none;
+    outline: 0;
+    height: 100%;
+    min-height: 42px!important;
+    padding: 9px 40px 9px 8px;
+    max-height: 160px!important;
+    resize: none!important;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+    border-radius: 6px;
     &:focus {
       border-color: rgba(244, 81, 30, 0.45);
     }
