@@ -18,6 +18,7 @@ building.save
 
 user = User.new(first_name: "Alacaza", last_name: "Team", building_id: 3, password: "qwertyuiop", image_id: 1, admin: true, email: "hello@alacaza.fr", building_access: "bateliers678")
 user.save!
+user.update(image_id: 1)
 
 
 message = Message.new(body: "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
