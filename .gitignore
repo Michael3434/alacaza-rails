@@ -67,3 +67,6 @@ bin/sidekiq
 
 # Salesforce
 db/salesforce/
+
+# Ignore application configuration
+/config/application.yml
