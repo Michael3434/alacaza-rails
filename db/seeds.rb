@@ -16,6 +16,9 @@ building.save
 building = Building.new(name: "10 rue des Bateliers", slug: "10-rue-des-bateliers", address: "10 rue des Bateliers, 93400 Saint-Ouen", password: "bateliers678")
 building.save
 
+user = User.new(first_name: "Alacaza", last_name: "Team", building_id: 3, password: "qwertyuiop", image_id: 1, admin: true, email: "hello@alacaza.fr", building_access: "bateliers678")
+user.save!
+
 
 message = Message.new(body: "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
   Si nous avez la moindre question, n'hésitez pas à nous contacter: 07 68 45 33 00.
