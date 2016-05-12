@@ -5,6 +5,8 @@ $(document).on "ready page:load", ->
 # Handler user sign in/up through modal view
 app.auth =
   init: ->
+    $("form.new_session").submit -> $(this).find("button[type='submit']").css("opacity", 0.4)
+    $("form#new_user").submit -> $(this).find("button[type='submit']").css("opacity", 0.4)
     @signup.init()
     @signin.init()
     $('.want-to-signin').click @showsSignIn
