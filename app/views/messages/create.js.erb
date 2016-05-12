@@ -12,5 +12,8 @@ $('textarea').css('height', "40px")
 publisher = client.publish('/messages', {
   message: '<%= j render @message %>'
 });
+publisher.callback(function() {
+  $('#new_message').find("button[type='submit']").prop('disabled', false)
+});
 messageTop = $('.msg-container').last().offset().top
 $('html, body').animate({scrollTop:messageTop}, 'slow');

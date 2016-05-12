@@ -5,14 +5,14 @@ class UserMailer < ActionMailer::Base
 
   def welcome(user)
     @user = user
-    mail from: "Michael <hello@alacaza.fr>", to: @user.email, subject: "Bienvenue sur Alacaza!"
+    mail from: "Michael de Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Bienvenue sur Alacaza!"
   end
 
   def new_message(message, user)
     @user = user
     @message = message
 
-     mail from: "Michael <hello@alacaza.fr>", to: @user.email, subject: "Nouveau message sur la messagerie de votre immeuble !"
+     mail from: "Michael de Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Nouveau message sur la messagerie de votre immeuble !"
   end
 
 end

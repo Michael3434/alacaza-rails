@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def notify_new_user
     if current_user
-      Notifier.new_user(current_user)
+      Notifier.new_user(current_user) unless Rails.env.in?(["development"])
       UserMailer.welcome(current_user).deliver_now!
     end
   end

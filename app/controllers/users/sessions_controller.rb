@@ -13,7 +13,7 @@ class Users::SessionsController < Devise::SessionsController
       if request.format.symbol == :html
         root_path
       else
-        body = JSON.parse(response.body.to_json).first
+        body = JSON.parse(response.body)
         body[:building_slug] = Building.find(@user.building_id).slug
         response.body = body.to_json
       end
