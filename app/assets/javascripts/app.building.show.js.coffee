@@ -17,6 +17,7 @@ app.buildings.show =
       jQuery ->
           return false if $('#message_body').val() != ""
         client.subscribe '/messages', (payload) ->
+            $('textarea').focus();
             $(".messages-container").append(payload.message) if payload.message
             messageTop = $('.msg-container').last().offset().top
             $('html, body').animate({scrollTop:messageTop}, 'slow');
