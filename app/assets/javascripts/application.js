@@ -22,6 +22,8 @@
 //= require app.auth
 //= require app.building.show
 
+//= require faye
+
 
 
 

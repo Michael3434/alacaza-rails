@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def set_image_id
-    self.update(image_id: (2..10).to_a.sample)
+    self.update(image_id: (2..36).to_a.sample)
   end
 
 end
