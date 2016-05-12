@@ -23,6 +23,14 @@ user.update(image_id: 1)
 
 message = Message.new(body: "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
   Si nous avez la moindre question, n'hésitez pas à nous contacter: 07 68 45 33 00.
+L’équipe d’Alacaza – Alexis, Michael et Rémy", building_id: 1, user_id: 1)
+message.save
+message = Message.new(body: "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
+  Si nous avez la moindre question, n'hésitez pas à nous contacter: 07 68 45 33 00.
+L’équipe d’Alacaza – Alexis, Michael et Rémy", building_id: 2, user_id: 1)
+message.save
+message = Message.new(body: "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
+  Si nous avez la moindre question, n'hésitez pas à nous contacter: 07 68 45 33 00.
 L’équipe d’Alacaza – Alexis, Michael et Rémy", building_id: 3, user_id: 1)
 message.save
 
