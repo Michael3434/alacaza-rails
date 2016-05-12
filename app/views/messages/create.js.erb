@@ -1,3 +1,4 @@
+$('textarea').focus();
 mixpanel.track("Nouveau message", {
     "user_id": <%= @message.user.id %>,
     "Immeuble": <%= @message.user.building_id %>
