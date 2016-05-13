@@ -1,7 +1,7 @@
 $.fn.addSpinner = (position) ->
   # Build spinner span
   span = $('<span></span>', class: "spinner #{position}")
-  i = $('<i></i>', class: 'fa fa-spinner fa-spin')
+  i = $('<i></i>', class: 'ion-loading-c')
   if $(this).hasClass('btn-lg') then i.addClass('fa-lg') else ''
   # Attach to target
   i.appendTo span
