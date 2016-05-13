@@ -8,7 +8,7 @@ module HomeHelper
     when "3-rue-elzevir"
       "Rue Elzevir"
     when "12-rue-jean-richepin"
-      "Rue Jean-Richepin"
+      "Rue Jean Richepin"
     when "10-rue-des-bateliers"
       "Rue des Bateliers"
     end

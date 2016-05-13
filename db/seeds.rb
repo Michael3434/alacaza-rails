@@ -20,8 +20,8 @@ user = User.new(first_name: "Alacaza", last_name: "Team", building_id: Building.
 user.save!
 user.update(image_id: 1)
 
-body = "Bienvenue dans la communauté Alacaza !. Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
-  Si vous avez la moindre question, n'hésitez pas à nous contacter au 07 68 45 33 00
+body = "Bienvenue dans la communauté Alacaza ! Vous pouvez communiquer à l’ensemble des membres de l’immeuble dans ce fil de messages.
+  Si vous avez la moindre question, n'hésitez pas à nous contacter au 07 68 45 33 00.
 L’équipe d’Alacaza – Alexis, Michael et Rémy"
 
 message = Message.new(body: body, building_id: Building.where(name: "12 Rue Jean Richepin").last.id, user_id: User.where(first_name: "Alacaza").last.id)
