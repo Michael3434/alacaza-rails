@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require select2
+//= require class/spinnable
 
 //= require_tree ./plugins
 //= require app

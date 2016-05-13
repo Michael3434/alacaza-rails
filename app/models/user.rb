@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_secure_token
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -6,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, presence: true
+  validates :token, uniqueness: true, allow_blank: true
   validate :verify_building_password
 
   after_create :set_image_id

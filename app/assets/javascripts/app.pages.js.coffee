@@ -2,8 +2,18 @@ app.pages =
   home:
     init: ->
       @mixpanelTracking()
-      $("#scroll-down").click this.scrollHeroClicked
+      $("body #scroll-down").click this.scrollHeroClicked
       $(".btn-cta").click this.scrollHeroClicked
+      $('.p2').typed
+        strings: [
+          'Entièrement sécurisée et privée'
+        ]
+        typeSpeed: 50
+        backSpeed: 10
+        backDelay: 2000
+        showCursor: false
+        loop: false
+
     scrollHeroClicked: ->
       $("html, body").animate {
         scrollTop: $(".cities").offset().top

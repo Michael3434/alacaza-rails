@@ -8,10 +8,10 @@ class MessagesController < ApplicationController
   end
 
   def email_processor
-    unless Rails.env == "development"
+    # unless Rails.env == "development"
       User.where(building_id: @message.building_id).where.not(id: @message.user.id).each do |user|
         UserMailer.new_message(@message, user).deliver_now!
       end
-    end
+    # end
   end
 end
