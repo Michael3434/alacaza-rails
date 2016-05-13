@@ -6,7 +6,7 @@ app.pages =
       $(".btn-cta").click this.scrollHeroClicked
       $('.p2').typed
         strings: [
-          'Entièrement sécurisée et privée'
+          'entièrement sécurisée et privée'
         ]
         typeSpeed: 50
         backSpeed: 10
