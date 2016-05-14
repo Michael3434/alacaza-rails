@@ -13,7 +13,9 @@ class BuildingsController < ApplicationController
       return
     elsif @buidling.id != current_user.building_id
       redirect_to root_path
+      return
     end
+    Notifier.new_message_page_view(current_user) unless Rails.env.in?(["development"])
     @messages = @buidling.messages
   end
 

@@ -4,6 +4,9 @@ app.buildings.show =
       @disableSubmitButton()
       @liveChat()
       @scrollOnloadPage()
+      @logOnMixpanel()
+    logOnMixpanel: ->
+      mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
       messageTop = $('.msg-container').last().offset().top
       $('html, .scroll-container').animate({scrollTop:messageTop}, 'slow');

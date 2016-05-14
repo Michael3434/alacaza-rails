@@ -11,6 +11,12 @@ module Notifier
       notify(message)
     end
 
+    def new_message_page_view(user)
+      building_name = user.building.name
+      message = "User -> #{user.email} de l'immeuble #{building_name} est sur la messagerie"
+      notify(message)
+    end
+
     private
 
     def slack
