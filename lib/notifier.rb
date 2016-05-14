@@ -17,6 +17,12 @@ module Notifier
       notify(message)
     end
 
+    def new_message_sent(new_message)
+      user = new_message.user
+      message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"
+      notify(message, { channel: "#messages" })
+    end
+
     private
 
     def slack
@@ -24,8 +30,8 @@ module Notifier
     end
 
     def notify(message, options = {})
-      if Rails.env.in?(["development", "staging", "production"])
-        options[:channel] = "#website"
+      if Rails.env.in?(["development", "staging"])
+        options[:channel] = "@mike0mike"
       end
 
       begin

@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if current_user
       Notifier.new_user(current_user) unless Rails.env.in?(["development"])
       UserMailer.welcome(current_user).deliver_now!
+      Message.new(building: current_user.building, user: current_user, body: "#{current_user.first_name} a rejoint la messagerie de l'immeuble !" ).save
     end
   end
 end

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   def verify_building_password
     building = Building.find(building_id)
     if building
-      if building.password == building_access
+      if building.password == building_access.downcase
       else
         errors.add(:building_access)
       end
