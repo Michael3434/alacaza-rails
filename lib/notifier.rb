@@ -17,6 +17,12 @@ module Notifier
       notify(message)
     end
 
+    def new_message_sent(new_message)
+      user = new_message.user
+      message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"
+      notify(message)
+    end
+
     private
 
     def slack
