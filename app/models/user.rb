@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   belongs_to :building
   has_many :messages
+  has_many :comments
   # validations
 
   def verify_building_password
