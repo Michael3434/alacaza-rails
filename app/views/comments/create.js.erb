@@ -1,0 +1,17 @@
+comment = ('<%= j render(partial: "comments/comment", locals: { comment: @comment } ).html_safe %>')
+commentContainer = $("[data-message-id=<%= @message.id %>]")
+
+commentForm = commentContainer.find(".comment-form")
+// Append the comment to the comments list
+commentContainer.append(comment)
+// Put the form at the end of the last comment
+commentForm.detach().appendTo(commentContainer)
+// hide the input form
+commentForm.addClass('hidden')
+// SEt the value textarea value to empty of
+commentForm.find("textarea").val("")
+// Init le showHideComment
+app.buildings.show.showHideCommentForm()
+
+commentContainer.siblings('.msg-container').find('.show-comment-form').removeClass('hidden')
+commentContainer.siblings('.msg-container').find('.hide-comment-form').addClass('hidden')

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "users/sign_up", to: redirect("/")
 
   resources :buildings
+  resources :comments
   scope "immeubles" do
     get "/:slug", to: "buildings#show", as: :appartment
   end

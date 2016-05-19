@@ -1,0 +1,8 @@
+<div class="comment-form space-2 hidden">
+  <%= simple_form_for Comment.new, remote: true, data: { spinnable: true }, html: { class: " form-inline" } do |f| %>
+    <%= f.input :body, label: false, input_html: { class: "js-auto-size" }, wrapper_html: { class: "inline-wrapper" } %>
+    <%= f.hidden_field :message_id, value: message.id %>
+    <%= button_tag "Envoyer", class: "btn btn-primary-inverse btn-submit" %>
+    <%= button_tag "", class: "fa ion-paper-airplane icon-send" %>
+  <% end %>
+</div>

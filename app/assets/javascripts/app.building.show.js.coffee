@@ -5,6 +5,7 @@ app.buildings.show =
       @liveChat()
       @scrollOnloadPage()
       @logOnMixpanel()
+      @showHideCommentForm()
     logOnMixpanel: ->
       mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
@@ -23,6 +24,18 @@ app.buildings.show =
           return false
         else
           $(this).find("button[type='submit']").prop('disabled', true)
+    showHideCommentForm: ->
+      $('.action-wrapper > .show-comment-form').on "click", ->
+        commentForm = $(this).closest('.message-wrapper').find('.comment-form')
+        commentForm.removeClass('hidden')
+        commentForm.find('textarea').focus()
+        $(this).addClass('hidden')
+        $(this).closest('.action-wrapper').find('.hide-comment-form').removeClass('hidden')
+
+      $('.action-wrapper > .hide-comment-form').on "click", ->
+        $(this).closest('.message-wrapper').find('.comment-form').addClass('hidden')
+        $(this).addClass('hidden')
+        $(this).closest('.action-wrapper').find('.show-comment-form').removeClass('hidden')
 
 $(document).on "ready page:load", ->
   app.buildings.show.init() if $(".admin.buildings.show").length > 0

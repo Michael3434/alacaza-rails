@@ -1,4 +1,4 @@
-<div class="msg-container space-top-2 space-2">
+<div class="msg-container space-top-2">
   <div class="message-gutter">
     <div class="message-icon">
       <%= image_tag ("icons/icon" + message.user.image_id.to_s + ".png"), class: "member-image" %>
@@ -9,6 +9,10 @@
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>
+      <div class="action-wrapper">
+        <span class="show-comment-form"><%= link_to "Répondre", "#" %></span>
+        <span class="hide-comment-form hidden"><%= link_to "Fermer", "#"  %></span>
+      </div>
     </div>
   </div>
 </div>
