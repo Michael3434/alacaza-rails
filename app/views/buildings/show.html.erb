@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="messages-container">
-          <% @messages.each do |message| %>
+          <% @messages.order(created_at: :asc).each do |message| %>
             <%= render "messages/message", message: message %>
           <% end %>
       </div>
