@@ -7,7 +7,7 @@
               <%= render "messages/message", message: message %>
               <div class="cmt-container" data-message-id=<%= message.id %>>
               <% message.comments.each do |comment| %>
-                <%= render "comments/comment", comment: comment %>
+                  <%= render "comments/comment", comment: comment %>
               <% end %>
               <%= render "comments/new_comment", message: message %>
               </div>
