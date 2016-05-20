@@ -12,8 +12,15 @@
     <% @messages.each do |message| %>
     <%= content_tag :tr  do %>
       <td><%= message.id %></td>
-      <td><%= message.user.name %></td>
-      <td><%= message.body %></td>
+      <td><%= message.user.name %> id: <%= message.user.id %></td>
+      <td>
+        <%= message.body %>
+        <ul>
+          <% message.comments.each do |comment| %>
+          <li><%= comment.body %></li>
+          <% end %>
+        </ul>
+      </td>
       <td><%= message.building.name %></td>
     <% end %>
     <% end %>

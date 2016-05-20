@@ -15,4 +15,12 @@ class UserMailer < ActionMailer::Base
      mail from: "Michael de Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Nouveau message sur la messagerie de votre immeuble !"
   end
 
+  def new_comment(comment, user)
+    @user = user
+    @comment = comment
+    @message = @comment.message
+
+     mail from: "Michael de Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Nouveau commentaire sur la messagerie de votre immeuble !"
+  end
+
 end

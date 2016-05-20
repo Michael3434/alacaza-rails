@@ -1,9 +1,9 @@
 <p>Bonjour <%= @user.first_name %>,</p>
-<p>Un nouveau message est arrivé sur Alacaza de <%= @message.user.name %></p>
+<p>Un nouveau commentaire est arrivé sur Alacaza de <%= @comment.user.name %></p>
 
 <div style="background-color: #DCEFFF; padding: 15px; margin: 16px;">
 <span style="line-height: 1.5; font-style: italic;">
-      <%= extracted_body_for_email(@message.body) %> <%= link_to "lire plus", appartment_url(@message.building.slug, token: @user.token) %></span>
+      <%= extracted_body_for_email(@comment.body) %> <%= link_to "lire plus", appartment_url(@message.building.slug, token: @user.token) %></span>
 
 </div>
 

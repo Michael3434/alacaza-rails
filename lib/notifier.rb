@@ -23,6 +23,12 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def new_comment_sent(new_comment)
+      user = new_comment.user
+      message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un commentaire : #{new_comment.body}"
+      notify(message, { channel: "#messages" })
+    end
+
     private
 
     def slack

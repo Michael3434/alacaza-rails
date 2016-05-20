@@ -9,9 +9,4 @@ namespace :data do
     end
     User.first.update(image_id: 1)
   end
-
-  desc "Create comment"
-  task comment: :environment do
-    Comment.create(body: "Ok pour le chauffage arrête .", user: User.find(23))
-  end
 end
