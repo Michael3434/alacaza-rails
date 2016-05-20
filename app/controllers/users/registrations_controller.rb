@@ -7,6 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def add_building_slug_to_JSON
+    return if @user.building_id.nil?
     body = JSON.parse(response.body)
     body[:building_slug] = Building.find(@user.building_id).slug
     response.body = body.to_json
