@@ -1,73 +1,19 @@
 <% content_for :title, "Users" %>
-
 <div class="container">
-  <h3 class="text-left page-header">Utilisateurs <small>(<%= @users.total_count %>)</small></h3>
-  <div class="space-2">
-    <div class="row">
-      <%= form_for [:admin, @search_form], as: :search_form, url: admin_users_path, method: :get, class: "form-horizontal", data: { autosubmit: true } do |f| %>
-        <div class="col-sm-3">
-          <div class="search_form_month">
-            <%= f.label :requests, "Nombre de demandes" %>
-            <%= f.select :requests, user_search_requests_options, { include_hidden: false, include_blank: true }, name: "requests" %>
-          </div>
-          <div class="search_form_visited">
-            <%= f.check_box :visited, include_hidden: false, name: "visited" %>
-            <%= f.label :visited, "A fait 1+ visite" %>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="search_form_month">
-            <%= f.label :month, "Activé en" %>
-            <%= f.select :month, user_search_months_options, { include_hidden: false, include_blank: true }, name: "month" %>
-          </div>
-          <div class="search_form_status">
-            <%= f.label :status, "Statut" %>
-            <%= f.select :status, user_collection(:status), { include_hidden: false, include_blank: true }, name: "status" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="space-2 space-top-2">
-    <span class="text-large medium text-gray"><%= @users.total_count %> résultats</span>
-    <% search_params.each do |param,_| %>
-    <%= link_to "&times; #{parameter_name(param)}".html_safe, { search_form: search_params.reject { |k,_| k == param }.merge(clear_filter: 1) }, class: "btn-remove-filter" %>
-    <% end %>
-  </div>
-
-  <%= paginate @users, views_prefix: 'admin', window: 30 %>
-  <table class="table table-hover" data-sortable="<%= params[:region].present? %>" data-behavior="autoclick">
+  <h3 class="text-left">Utilisateurs <small>(<%= @users.count %>)</small></h3>
+  <table class="table table-hover" data-behavior="autoclick">
     <tr>
       <th>Id</th>
-      <th><%= sortable "created_at", "Inscrit le" %></th>
-      <th><%= sortable "first_name", "Nom" %></th>
-      <th>Téléphone</th>
-      <th>Activité</th>
-      <th class="text-center">Rappel</th>
+      <th>Inscrit le</th>
+      <th>Nom</th>
     </tr>
 
     <% @users.each do |user| %>
-    <%= content_tag :tr, id: "users_#{user.id}", class: user.status, data: { user_id: user.id, path: admin_user_path(user) } do %>
+    <%= content_tag :tr, id: "users_#{user.id}", class: "user", data: { user_id: user.id } do %>
       <td><%= user.id %></td>
       <td><%= I18n.l user.created_at.to_date, format: :short %></td>
       <td><%= user.name %></td>
-      <td><%= format_phone(user.phone) %></td>
-      <td>
-        <% activity = user.activities.last %>
-        <% if activity %>
-        <em><%= l(activity.created_at, format: :short) + ' : ' + (activity.body.length > 50 ? activity.body[0..49] + '...' : activity.body) %></em>
-        <% end %>
-      </td>
-      <td>
-        <% reminder = user.reminders.last %>
-        <% if reminder %>
-        <%= reminder_time(reminder) %>
-        <% end %>
-      </td>
     <% end %>
     <% end %>
   </table>
-  <%= paginate @users, views_prefix: 'admin', window: 30 %>
-
 </div>
