@@ -1,0 +1,19 @@
+<% content_for :title, "Users" %>
+<div class="container">
+  <h3 class="text-left">Utilisateurs <small>(<%= @users.count %>)</small></h3>
+  <table class="table table-hover" data-behavior="autoclick">
+    <tr>
+      <th>Id</th>
+      <th>Inscrit le</th>
+      <th>Nom</th>
+    </tr>
+
+    <% @users.each do |user| %>
+    <%= content_tag :tr, id: "users_#{user.id}", class: "user", data: { user_id: user.id } do %>
+      <td><%= user.id %></td>
+      <td><%= I18n.l user.created_at.to_date, format: :short %></td>
+      <td><%= user.name %></td>
+    <% end %>
+    <% end %>
+  </table>
+</div>

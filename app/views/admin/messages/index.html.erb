@@ -1,0 +1,21 @@
+<% content_for :title, "Messages" %>
+<div class="container">
+  <h3 class="text-left">Messages <small>(<%= @messages.count %>)</small></h3>
+  <table class="table table-hover" data-behavior="autoclick">
+    <tr>
+      <th>Id</th>
+      <th>Envoyé par</th>
+      <th>Contenu</th>
+      <th>Building</th>
+    </tr>
+
+    <% @messages.each do |message| %>
+    <%= content_tag :tr  do %>
+      <td><%= message.id %></td>
+      <td><%= message.user.name %></td>
+      <td><%= message.body %></td>
+      <td><%= message.building.name %></td>
+    <% end %>
+    <% end %>
+  </table>
+</div>

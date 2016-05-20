@@ -1,0 +1,14 @@
+<div class="cmt-wrapper">
+  <div class="comment-gutter">
+    <div class="comment-icon">
+      <%= image_tag ("icons/icon" + comment.user.image_id.to_s + ".png"), class: "member-image" %>
+    </div>
+  </div>
+  <div class="comment-content">
+    <span class="comment-sender"><%= comment.user.name %></span>
+    <span class="comment-time"><%= l comment.created_at, format: :short %></span>
+    <div class="comment-body">
+      <%= simple_format(comment.body) %>
+    </div>
+  </div>
+</div>

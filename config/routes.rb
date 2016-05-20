@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   get "sign_up", to: redirect("/")
   get "users/sign_up", to: redirect("/")
 
+  namespace :admin do
+    resources :users
+    resources :messages
+  end
+
   resources :buildings
+  resources :comments
   scope "immeubles" do
     get "/:slug", to: "buildings#show", as: :appartment
   end

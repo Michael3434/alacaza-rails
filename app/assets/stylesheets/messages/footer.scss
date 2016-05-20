@@ -1,3 +1,8 @@
+#new_comment {
+  @include bp-small {
+    display: flex;
+  }
+}
 .footer_msgs {
   bottom: 0;
   position: fixed;
@@ -12,7 +17,7 @@
     background-color: transparent;
     position: relative;
     top: -4px;
-    left: -45px;
+    left: -35px;
     border: none;
     font-size: 30px;
     background-color: transparent;
@@ -30,7 +35,6 @@
   }
   textarea {
     border: 2px solid #E0E0E0;
-    overflow-y: hidden;
     height: 42px;
     background: #fff;
     width: 100%;
