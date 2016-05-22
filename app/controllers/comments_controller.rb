@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:create]
   def create
     @comment = Comment.new(comment_params)
     if @comment.save!

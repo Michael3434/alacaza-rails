@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:create]
   def create
     @message = current_user.messages.build(body: params["message"]["body"], building_id: current_user.building_id)
     @building_name = @message.user.building.name
