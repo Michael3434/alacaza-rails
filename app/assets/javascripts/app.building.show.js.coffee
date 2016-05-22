@@ -2,7 +2,7 @@ app.buildings ||= {}
 app.buildings.show =
     init: ->
       @disableSubmitButton()
-      @liveChat()
+      # @liveChat()
       @scrollOnloadPage()
       @logOnMixpanel()
       @showHideCommentForm()
@@ -12,12 +12,12 @@ app.buildings.show =
       messageTop = $('.msg-container').last().offset().top
       $('html, .scroll-container').animate({scrollTop:messageTop}, 'slow');
     liveChat: ->
-      window.client = new Faye.Client('/faye')
-      client.subscribe '/messages', (payload) ->
-          $('textarea').focus();
-          $(".messages-container").append(payload.message) if payload.message
-          messageTop = $('.msg-container').last().offset().top
-          $('html, .scroll-container').animate({scrollTop:100000}, 'slow');
+      # window.client = new Faye.Client('/faye')
+      # client.subscribe '/messages', (payload) ->
+      #     $('textarea').focus();
+      #     $(".messages-container").append(payload.message) if payload.message
+      #     messageTop = $('.msg-container').last().offset().top
+      #     $('html, .scroll-container').animate({scrollTop:100000}, 'slow');
     disableSubmitButton: ->
       $('#new_message').submit ->
         if $('#message_body').val() == ""
