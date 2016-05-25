@@ -6,6 +6,7 @@ app.buildings.show =
       @scrollOnloadPage()
       @logOnMixpanel()
       @showHideCommentForm()
+      @initMessageGenerator()
     logOnMixpanel: ->
       mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
@@ -36,6 +37,12 @@ app.buildings.show =
         $(this).closest('.message-wrapper').find('.comment-form').addClass('hidden')
         $(this).addClass('hidden')
         $(this).closest('.action-wrapper').find('.show-comment-form').removeClass('hidden')
+    initMessageGenerator: ->
+      $('.btn-generator').on "click", ->
+        obj = new MessageGenerator
+        id = $(this).data('generatorId')
+        message = obj.generate(id)
+        $('#message_body').val(message)
 
 $(document).on "ready page:load", ->
   app.buildings.show.init() if $(".admin.buildings.show").length > 0

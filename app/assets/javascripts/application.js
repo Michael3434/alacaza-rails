@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require class/spinnable
+//= require class/message_generator
 
 //= require_tree ./plugins
 //= require app
