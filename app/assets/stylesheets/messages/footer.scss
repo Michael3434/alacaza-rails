@@ -9,7 +9,45 @@
   background: #fff;
   z-index: 52;
   width: 100%;
-  .form-group {
+  .messages-input-container {
+    .col-md-11 {
+      float: right;
+    }
+    .col-md-1 {
+      float: right !important;
+    }
+    .options-messages {
+      border: 2px solid #E0E0E0;
+      border-radius: 6px;
+      width: 54px;
+      height: 46px;
+      float: right;
+      position: absolute;
+      right: -30px;
+      border-right: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      &:hover {
+        background-color: $brand-primary;
+        border-color: $brand-primary;
+        cursor: pointer;
+         .icon-plus {
+          color: white;
+        }
+      }
+      .icon-plus {
+        position: absolute;
+        top: 4px;
+        right: 16px;
+        font-size: 25px;
+        color: rgba(0,0,0,.35);
+        &:hover {
+
+        }
+      }
+    }
+  }
+  .message_body {
   }
   .icon-send {
     border: none;
@@ -38,6 +76,8 @@
     height: 42px;
     background: #fff;
     width: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     line-height: 1.2rem;
     background-clip: padding-box;
     color: #3d3c40;
@@ -52,7 +92,6 @@
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
-    border-radius: 6px;
     &:focus {
       border-color: rgba(244, 81, 30, 0.45);
     }

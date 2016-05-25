@@ -1,8 +1,7 @@
 message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
 $(".messages-container").append(message)
 
-$('#message_body').val("")
-$('textarea').css('height', "40px")
+$('textarea').css('height', "46px")
 
 
 $('#new_message').find("button[type='submit']").prop('disabled', false)
@@ -12,6 +11,7 @@ $('#new_message').find("button[type='submit']").prop('disabled', false)
 
 messageTop = $('.msg-container').last().offset().top
 $('html, .scroll-container').animate({scrollTop:4000}, 'slow');
+$('#message_body').val("")
 
 // publisher = client.publish('/messages', {
 //   message: '<%= j render @message %>'

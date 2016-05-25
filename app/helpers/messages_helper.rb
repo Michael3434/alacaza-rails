@@ -4,6 +4,13 @@ module MessagesHelper
   end
 
   def generate_button
-    ["Plombier", "Electricien", "Coupure d'eau", "Coupure d'électricité"]
+    [
+      ["Coupure d'eau", "coupure-d-eau"],
+      ["Coupure d'électricité", "coupure-d-electricite"],
+      ["Poubelle", "poubelle"],
+      ["Chauffage", "chauffage"],
+      ["Panne d’ascenseur", "panne-ascenseur"],
+      ["Événement", "evenement"]
+    ]
   end
 end

@@ -1,8 +1,8 @@
 <%= simple_form_for Message.new, remote: true, data: { spinnable: true } do |f| %>
-  <div class="col-md-7 col-md-offset-2 col-sm-10 col-xs-10">
+  <div class="col-md-8 col-sm-10 col-xs-10">
     <%= f.input :body, label: false, input_html: { class: "js-auto-size" } %>
   </div>
-  <div class="col-md-2 col-sm-2 col-xs-2">
+  <div class="col-md-4 col-sm-2 col-xs-2">
     <%= button_tag "Envoyer", class: "btn btn-lg btn-secondary btn-submit" %>
     <%= button_tag "", class: "fa ion-paper-airplane icon-send" %>
   </div>
