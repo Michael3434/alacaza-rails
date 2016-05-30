@@ -1,1 +1,2 @@
-REDISTOGO_URL: redis://localhost:6379/0
+staging:
+  REDISTOGO_URL: redis://redistogo:306c33fa3424958319dbb235082c9f98@porgy.redistogo.com:9521/
