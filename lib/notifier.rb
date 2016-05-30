@@ -17,13 +17,13 @@ module Notifier
       notify(message)
     end
 
-    def new_message_sent(new_message)
+    def new_message(new_message)
       user = new_message.user
       message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"
       notify(message, { channel: "#messages" })
     end
 
-    def new_comment_sent(new_comment)
+    def new_comment(new_comment)
       user = new_comment.user
       message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un commentaire : #{new_comment.body}"
       notify(message, { channel: "#messages" })

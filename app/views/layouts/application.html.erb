@@ -19,6 +19,12 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <% if Rails.env == "development" %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_DEV"] } %>
+  <% else %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_PROD"] } %>
+  <% end %>
+
   <% if content_for?(:og_url) %>
   <%= render "layouts/facebook_og" %>
   <% end %>
@@ -33,11 +39,5 @@
       <%= render "users/signin_modal" %>
     <% end %>
   </div>
-
-  <% if Rails.env == "development" %>
-    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_DEV"] } %>
-  <% else %>
-    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_PROD"] } %>
-  <% end %>
 </body>
 </html>

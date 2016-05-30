@@ -11,9 +11,10 @@ class MessagesController < ApplicationController
   def message_notifier
     # unless Rails.env == "development"
       User.where(building_id: @message.building_id).where.not(id: @message.user.id).each do |user|
-        UserMailer.new_message(@message, user).deliver_now!
+        Mailer::UserMailerWorker.perform_async(:new_message, message_id: @message.id, user_id: user.id)
       end
-      Notifier.new_message_sent(@message)
+      # Notifier.new_message_sent(@message)
+      SlackNotifierWorker.perform_async(:new_message, message_id: @message.id)
     # end
   end
 end
