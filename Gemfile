@@ -79,9 +79,8 @@ group :development do
   gem 'spring-commands-sidekiq', git: 'git@github.com:johnvoloski/spring-commands-sidekiq.git', branch: 'master'
 end
 
-group :production do
-  gem 'rails_12factor' #heroku needs it
-
+group :production, :staging do
+  gem 'rails_12factor'
 end
 
 # Config file
