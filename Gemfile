@@ -12,6 +12,7 @@ gem 'has_secure_token'
 
 ## Backround job
 gem "sidekiq"
+gem 'redis'
 
 ## BACK END ##
 gem 'pg'
