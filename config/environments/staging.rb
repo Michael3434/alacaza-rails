@@ -68,8 +68,8 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-   config.action_mailer.default_url_options = { host: "http://alacaza-staging.herokuapp.com" }
-   config.action_mailer.asset_host = 'http://alacaza-staging.herokuapp.com'
+   config.action_mailer.default_url_options = { host: "https://alacaza-staging.herokuapp.com" }
+   config.action_mailer.asset_host = 'https://alacaza-staging.herokuapp.com'
 
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
@@ -81,7 +81,7 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-  config.action_controller.asset_host = 'http://alacaza-staging.herokuapp.com'
+  config.action_controller.asset_host = 'https://alacaza-staging.herokuapp.com'
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
