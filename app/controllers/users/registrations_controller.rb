@@ -15,8 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def notify_new_user
     if current_user
-      Notifier.new_user(current_user) unless Rails.env.in?(["development"])
-      UserMailer.welcome(current_user).deliver_now!
+      # Notifier.new_user(current_user) unless Rails.env.in?(["development"])
+      # UserMailer.welcome(current_user).deliver_now!
+      SlackNotifierWorker.perform_async(:new_user, user_id: current_user.id)
+      Mailer::UserMailerWorker.perform_async(:welcome, user_id: current_user.id)
       Message.new(building: current_user.building, user: current_user, body: "#{current_user.first_name} a rejoint la messagerie de l'immeuble !" ).save
     end
   end

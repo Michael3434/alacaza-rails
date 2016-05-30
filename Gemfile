@@ -10,6 +10,9 @@ gem 'thin'
 
 gem 'has_secure_token'
 
+## Backround job
+gem "sidekiq"
+
 ## BACK END ##
 gem 'pg'
 gem 'slack-notifier'

@@ -10,9 +10,11 @@ class CommentsController < ApplicationController
   end
 
   def notifier
-    Notifier.new_comment_sent(@comment)
+    SlackNotifierWorker.perform_async(:new_comment, comment_id: @comment.id)
+    # Notifier.new_comment_sent(@comment)
     User.where(building_id: @message.building_id).where.not(id: @comment.user.id).each do |user|
-      UserMailer.new_comment(@comment, user).deliver_now!
+      # UserMailer.new_comment(@comment, user).deliver_now!
+      Mailer::UserMailerWorker.perform_async(:new_comment, comment_id: @comment.id, user_id: user.id)
     end
   end
 

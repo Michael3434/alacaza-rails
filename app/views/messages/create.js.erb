@@ -5,9 +5,10 @@ $('textarea').css('height', "46px")
 
 
 $('#new_message').find("button[type='submit']").prop('disabled', false)
-// mixpanel.track("Nouveau message", {
-//     "user_id": <%= @message.user.id %>,
-//     "Immeuble": <%= @message.user.building_id %>
+mixpanel.track("Nouveau message", {
+    "user_id": <%= @message.user.id %>,
+    "Immeuble": <%= @message.user.building_id %>
+})
 
 messageTop = $('.msg-container').last().offset().top
 $('html, .scroll-container').animate({scrollTop:4000}, 'slow');
