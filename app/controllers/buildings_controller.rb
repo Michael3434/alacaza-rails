@@ -15,7 +15,9 @@ class BuildingsController < ApplicationController
       redirect_to root_path
       return
     end
-    Notifier.new_message_page_view(current_user) unless Rails.env.in?(["development"])
+    SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
+
+
     @messages = @buidling.messages
   end
 

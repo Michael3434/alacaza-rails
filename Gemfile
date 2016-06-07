@@ -10,6 +10,13 @@ gem 'thin'
 
 gem 'has_secure_token'
 
+## Backround job
+gem "sidekiq"
+gem 'redis'
+
+# Needed to build the Sidekiq web interface
+gem 'sinatra', :require => nil
+
 ## BACK END ##
 gem 'pg'
 gem 'slack-notifier'
