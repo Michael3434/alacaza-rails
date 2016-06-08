@@ -1,12 +1,7 @@
-<div class="footer_msgs">
+<footer id="footer">
   <div class="messages-input-container">
-    <div class="col-md-11 col-sm-11 col-xs-10">
-      <%= render "messages/new_message" %>
-    </div>
-
-    <div class="col-md-1 col-sm-1 col-xs-1">
+    <div class="new-message-container">
       <div class="options-messages">
-
         <div class="dropup">
             <i class="ion-plus-round icon-plus dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -23,7 +18,8 @@
             <% end %>
           </ul>
         </div>
-
       </div>
-  </div>
-</div>
+      <%= render "messages/new_message" %>
+    </div>
+
+</footer>

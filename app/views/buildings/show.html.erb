@@ -1,19 +1,17 @@
 <div class="scroll-container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="messages-container">
-        <% @messages.order(created_at: :asc).each do |message| %>
-          <div class="message-wrapper">
-            <%= render "messages/message", message: message %>
-            <div class="cmt-container" data-message-id=<%= message.id %>>
-            <% message.comments.each do |comment| %>
-              <%= render "comments/comment", comment: comment %>
-            <% end %>
-            <%= render "comments/new_comment", message: message %>
-            </div>
+    <div class="messages-container">
+      <% @messages.order(created_at: :asc).each do |message| %>
+        <div class="message-wrapper">
+          <%= render "messages/message", message: message %>
+          <div class="cmt-container" data-message-id=<%= message.id %>>
+          <% message.comments.each do |comment| %>
+            <%= render "comments/comment", comment: comment %>
+          <% end %>
+          <%= render "comments/new_comment", message: message %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <%= render "messages/footer" %>

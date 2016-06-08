@@ -3,12 +3,14 @@
     display: flex;
   }
 }
-.footer_msgs {
+#footer {
   bottom: 0;
   position: fixed;
   background: #fff;
   z-index: 52;
   width: 100%;
+  left: 190px;
+  height: 35px;
   .messages-input-container {
     .col-md-11 {
       float: right;

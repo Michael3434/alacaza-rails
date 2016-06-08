@@ -7,10 +7,10 @@
   right: 0;
   overflow-y: scroll;
   .message-wrapper {
-    border-bottom: 1px solid #ECECEC;
     padding: 5px 0 0px 0;
   }
   .messages-container {
+    margin-left: 190px;
     overflow-wrap: break-word;
     .msg-container,
     .cmt-container {

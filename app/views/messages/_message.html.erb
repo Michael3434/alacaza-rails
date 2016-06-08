@@ -9,10 +9,6 @@
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>
-      <div class="action-wrapper">
-        <span class="show-comment-form"><%= link_to "Répondre", "#" %></span>
-        <span class="hide-comment-form hidden"><%= link_to "Fermer", "#"  %></span>
-      </div>
     </div>
   </div>
 </div>
