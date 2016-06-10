@@ -32,3 +32,13 @@ message = Message.new(body: body, building_id: Building.where(name: "10 rue des 
 message.save
 
 
+
+b=Building.create(name: "Madison, 2 Rue Maurice Audin", slug: "2-rue-maurine-audin", address: "2 rue maurice Audin", password: "mauriceaudin16")
+message = Message.new(body: body, building_id: Building.where(name: b.name).last.id, user_id: User.where(first_name: "Alacaza").last.id)
+
+b=Building.create(name: "Greenwich, 7 Allée de Paris", slug: "7-allee-de-paris", address: "7, allée de Paris", password: "greenwich1515")
+b=Building.create(name: "Columbus, 5 Allée de Paris", slug: "5-allee-de-paris", address: "5, allée de Paris", password: "columbus1492")
+b=Building.create(name: "Chelsea, 4 Allée de Paris", slug: "4-allee-de-paris", address: "4, allée de Paris", password: "chelsea1905")
+b=Building.create(name: "Lexington, 5 Rue Gisèle Halimi", slug: "5-rue-gisele-halimi", address: "5, rue Gisèle Halimi", password: "lexington1927")
+b=Building.create(name: "Soho, 6 Allée de Paris", slug: "6-allee-de-paris", address: "6, allée de Paris", password: "soho1969")
+b=Building.create(name: "Noho, 8, Allée de Paris", slug: "8-allee-de-paris", address: "8, allée de Paris", password: "noho1930")

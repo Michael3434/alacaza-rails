@@ -12,7 +12,7 @@
       Une messagerie pour votre immeuble<br>
       <span class="p2"></span>
       <h1>
-      <span class="btn btn-cta">Rejoindre mon immeuble</span>
+      <span class="btn btn-cta" data-toggle="modal" data-target="#signup_modal">Rejoindre mon immeuble</span>
     </div>
   </div>
 
@@ -23,17 +23,17 @@
 <% end %>
 
 <section class="cities" id="cities">
-  <h2 class="text-center">Trois immeubles sélectionnés pour l’expérimentation du service</h2>
-  <p class="text-center hint">Les 3 immeubles dans la ville de Paris</p>
+  <h2 class="text-center">Les immeubles sélectionnés pour l’expérimentation du service</h2>
+  <p class="text-center hint">Les immeubles dans la ville de Paris</p>
   <div class="container content-wrapper">
     <div class="row">
-      <% buildings.each do |building| %>
+      <% Building.all.each do |building| %>
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
           <div class="picture-wrapper" >
-            <div class="city-picture" data-city=<%= building %>>
-              <%= link_to current_user ? "/immeubles/#{building}" : "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
-                <div class="city-title"><%= buildings_name(building) %></div>
-                <%= image_tag "buildings/#{building}.jpg", class: "" %>
+            <div class="city-picture" data-city=<%= building.slug %>>
+              <%= link_to current_user ? "/immeubles/#{building.slug}" : "", data: {toggle: ( !current_user ? "modal" : "" ), target: "#signup_modal"}, class: "city-image-link" do %>
+                <div class="city-title"><%= building.name %></div>
+                <%= image_tag "buildings/#{building.slug}.jpg", class: "" %>
               <% end %>
             </div>
           </div>
