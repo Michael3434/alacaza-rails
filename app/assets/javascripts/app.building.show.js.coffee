@@ -5,8 +5,17 @@ app.buildings.show =
       # @liveChat()
       @scrollOnloadPage()
       @logOnMixpanel()
-      @showHideCommentForm()
+      # @showHideCommentForm()
       @initMessageGenerator()
+      @initSideBar()
+    initSideBar: ->
+      $('.info-icon').on "click", (e) ->
+        e.preventDefault()
+        $('.col-channels').show("slide", { direction: "left" }, 200);
+        $('.modal-bg').hide().removeClass('hidden').fadeIn().show()
+      $('.modal-bg').on "click", (e) ->
+        $('.col-channels').hide("slide", { direction: "left" }, 200);
+        $('.modal-bg').addClass('hidden')
     logOnMixpanel: ->
       mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
@@ -25,18 +34,18 @@ app.buildings.show =
           return false
         else
           $(this).find("button[type='submit']").prop('disabled', true)
-    showHideCommentForm: ->
-      $('.action-wrapper > .show-comment-form').on "click", ->
-        commentForm = $(this).closest('.message-wrapper').find('.comment-form')
-        commentForm.removeClass('hidden')
-        commentForm.find('textarea').focus()
-        $(this).addClass('hidden')
-        $(this).closest('.action-wrapper').find('.hide-comment-form').removeClass('hidden')
+    # showHideCommentForm: ->
+    #   $('.action-wrapper > .show-comment-form').on "click", ->
+    #     commentForm = $(this).closest('.message-wrapper').find('.comment-form')
+    #     commentForm.removeClass('hidden')
+    #     commentForm.find('textarea').focus()
+    #     $(this).addClass('hidden')
+    #     $(this).closest('.action-wrapper').find('.hide-comment-form').removeClass('hidden')
 
-      $('.action-wrapper > .hide-comment-form').on "click", ->
-        $(this).closest('.message-wrapper').find('.comment-form').addClass('hidden')
-        $(this).addClass('hidden')
-        $(this).closest('.action-wrapper').find('.show-comment-form').removeClass('hidden')
+    #   $('.action-wrapper > .hide-comment-form').on "click", ->
+    #     $(this).closest('.message-wrapper').find('.comment-form').addClass('hidden')
+    #     $(this).addClass('hidden')
+    #     $(this).closest('.action-wrapper').find('.show-comment-form').removeClass('hidden')
     initMessageGenerator: ->
       $('.btn-generator').on "click", ->
         obj = new MessageGenerator

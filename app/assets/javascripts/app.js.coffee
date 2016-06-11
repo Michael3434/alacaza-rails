@@ -7,13 +7,18 @@ app.init = ->
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->
+      console.log "hihi"
+      if el.scrollHeight == 38 
+        return
+      else if $(el).val().length == 0
+        $(el).css('height', '42px')
+        $('.scroll-container').css 'bottom', '48px'
+        return
       $(el).css('height', 'auto').css 'height', Math.min(100, el.scrollHeight + offset)
-      return
+      $('.scroll-container').css 'bottom', Math.min(100, el.scrollHeight + offset)
     $(this).on('keyup input', ->
       resizeTextarea this
-      return
     ).removeAttr 'data-autoresize'
-    return
   $("[data-spinnable=true]").each (i, el) ->
     spinnable = new Spinnable($(el))
     spinnable.init()

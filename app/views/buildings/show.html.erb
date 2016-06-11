@@ -1,6 +1,6 @@
-<div class="scroll-container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+<div class="client-ui">
+  <div class="scroll-container">
+    <div class="row">
       <div class="messages-container">
         <% @messages.order(created_at: :asc).each do |message| %>
           <div class="message-wrapper">
@@ -16,5 +16,24 @@
       </div>
     </div>
   </div>
+  <div class="col-channels">
+    <div class="building-information">
+      <div class="name"><%= @building.name %></div>
+    </div>
+    <div class="channels">
+      <div class="title">Vos conversations <span class="conversation-count">(1)</span> </div>
+      <div class="list">
+        <ul class="list-unstyled">
+          <li class="mine">
+            # Mon immeuble
+          </li>
+          <li class="other">
+            # Autres (à venir)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-bg hidden"></div>
   <%= render "messages/footer" %>
 </div>
