@@ -32,3 +32,7 @@ message = Message.new(body: body, building_id: Building.where(name: "10 rue des 
 message.save
 
 
+
+Building.first.update(name: "Richepin, 12 Rue Jean Richepin")
+Building.second.update(name: "Elzevir, 3 rue Elzevir")
+Building.find(3).update(name: "Gramercy, 10 rue des Bateliers")

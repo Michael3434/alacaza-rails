@@ -1,7 +1,7 @@
 message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
 $(".messages-container").append(message)
 
-$('textarea').css('height', "52px")
+$('textarea').css('height', "42px")
 
 
 $('#new_message').find("button[type='submit']").prop('disabled', false)
@@ -11,7 +11,7 @@ mixpanel.track("Nouveau message", {
 })
 
 messageTop = $('.msg-container').last().offset().top
-$('html, .scroll-container').animate({scrollTop:4000}, 'slow');
+$('html, .scroll-container').animate({scrollTop:99999999}, 'slow');
 $('#message_body').val("")
 
 // publisher = client.publish('/messages', {
