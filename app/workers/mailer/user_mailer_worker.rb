@@ -11,7 +11,7 @@ class Mailer::UserMailerWorker
       arguments = [message, user]
     when "new_comment"
       arguments = [comment, user]
-    when "welcom"
+    when "welcome"
       arguments = [user]
     end
 

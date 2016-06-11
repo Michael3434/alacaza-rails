@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   add_template_helper MailersHelper
 
-  default from: "Cohome <hello@alacaza.fr>"
+  default from: "Alacaza <hello@alacaza.fr>"
 
   def welcome(user)
     @user = user
