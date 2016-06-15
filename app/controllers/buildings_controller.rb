@@ -8,6 +8,7 @@ class BuildingsController < ApplicationController
 
   def show
     @building = Building.where(slug: params[:slug]).last
+    @channel = Channel.new(building_id: @building.id)
     if @building.nil?
       render status: :not_found, text: "Not Found."
       return
@@ -15,8 +16,9 @@ class BuildingsController < ApplicationController
       redirect_to root_path
       return
     end
-    SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
-
+    unless Rails.env == "development"
+      SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
+    end
 
     @messages = @building.messages
   end

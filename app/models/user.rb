@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   belongs_to :building
   has_many :messages
   has_many :comments
+  has_many :user_channels
+  has_many :channels, through: :user_channels
   # validations
 
   def verify_building_password

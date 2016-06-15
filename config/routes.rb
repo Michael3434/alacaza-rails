@@ -11,11 +11,13 @@ mount Sidekiq::Web => '/sidekiq'
     resources :users
     resources :messages
   end
-
-  resources :buildings
+  resources :buildings do
+    resources :channels
+  end
   resources :comments
+
   scope "immeubles" do
-    get "/:slug", to: "buildings#show", as: :appartment
+    get "/:slug(/:channel)", to: "buildings#show", as: :appartments
   end
 
   resources :messages
