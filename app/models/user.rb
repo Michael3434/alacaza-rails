@@ -11,12 +11,13 @@ class User < ActiveRecord::Base
   validate :verify_building_password
 
   after_create :set_image_id
+  after_create :set_channel
 
   belongs_to :building
   has_many :messages
   has_many :comments
-  has_many :user_channels
-  has_many :channels, through: :user_channels
+  has_many :user_channels, dependent: :destroy
+  has_many :channels, through: :user_channels, dependent: :destroy
   # validations
 
   def verify_building_password
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def name
-    [first_name, last_name].join(' ')
+    [first_name.capitalize, last_name.capitalize].join(' ')
   end
 
   def set_image_id
@@ -39,6 +40,30 @@ class User < ActiveRecord::Base
     image_id = user.image_id + 1
     image_id = image_id > 33 ? 2 : image_id
     self.update(image_id: image_id)
+  end
+
+  def set_channel
+    channel = Channel.where(building_id: building_id, channel_type: "main_group").last
+    UserChannel.create(user: self, channel: channel)
+  end
+
+  def private_channel_with(other_user)
+    user_channels = self.user_channels.joins(:channel).where(channels: { channel_type: "private" }).pluck(:channel_id)
+    other_user_channels = other_user.user_channels.joins(:channel).where(channels: { channel_type: "private" }).pluck(:channel_id)
+    channel = (user_channels & other_user_channels)
+    if channel.any?
+      channel
+    else
+      false
+    end
+  end
+
+  def private_channels
+    channels.where(channel_type: "private")
+  end
+
+  def group_channels
+    channels.where(channel_type: ["group", "main_group"])
   end
 
 end

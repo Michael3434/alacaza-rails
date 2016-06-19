@@ -13,4 +13,8 @@ module MessagesHelper
       ["Événement", "evenement"]
     ]
   end
+
+  def user_img(img_id)
+    "icons/icon" + img_id.to_s + ".png"
+  end
 end
