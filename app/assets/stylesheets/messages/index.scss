@@ -109,6 +109,9 @@
         .infos-channel {
           padding: 20px 20px 0px 20px;
           text-align: center;
+          .member-image {
+            width: 45px;
+          }
           .user-name {
             color: #555459;
             font-weight: 700;

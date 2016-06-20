@@ -18,8 +18,9 @@ app.buildings.show =
     logOnMixpanel: ->
       mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
-      messageTop = $('.msg-container').last().offset().top
-      $('html, .scroll-container').animate({scrollTop:messageTop}, 'slow');
+      messageTop = $('.msg-container').last().offset()
+      if messageTop != undefined
+        $('html, .scroll-container').animate({scrollTop:messageTop.top}, 'slow');
     disableSubmitButton: ->
       $('#new_message').submit ->
         if $('#message_body').val() == ""

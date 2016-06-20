@@ -2,6 +2,9 @@
 	#new-message_modal {
 		.modal-dialog  {
 			width: 300px;
+			img {
+				width: 45px;
+			}
 		}
 		form {
 			.btn-secondary {
