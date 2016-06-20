@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
   end
 
   def private_channel_with(other_user)
-    user_channels = self.user_channels.joins(:channel).where(channels: { channel_type: "private" }).pluck(:channel_id)
-    other_user_channels = other_user.user_channels.joins(:channel).where(channels: { channel_type: "private" }).pluck(:channel_id)
+    user_channels = self.private_channels.pluck(:channel_id)
+    other_user_channels = other_user.private_channels.pluck(:channel_id)
     channel = (user_channels & other_user_channels)
     if channel.any?
       channel
