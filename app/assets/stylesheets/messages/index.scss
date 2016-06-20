@@ -1,6 +1,6 @@
 .buildings.show {
   .navbar {
-    margin-left: 190px;
+    margin-left: 220px;
     @include bp-small {
       margin-left: 0px;
     }
@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    left: 190px;
+    left: 220px;
     bottom: 0;
     z-index: 100;
     background-color: black;
@@ -26,10 +26,11 @@
     @include bp-small {
       display: none;
     }
+    overflow-y: auto;
     z-index: 99;
     background: #FF845E;
     color: white;
-    width: 190px;
+    width: 220px;
     position: absolute;
     top: 0px;
     height: 100%;
@@ -44,29 +45,46 @@
         padding: 10px;
       }
     }
-    .channels {
+    .group-channels,
+    .private-channels {
       padding-top: 10px;
       margin: 10px;
       .title {
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: 13px;
         color: rgba(255, 255, 255, 0.61);
-        margin-bottom: 10px;
-        text-align: center;
+        margin-bottom: 1px;
       }
       .list {
         padding-left: 5px;
-        li.mine {
-          font-weight: 500;
-          background-color: #476963;
-          padding: 4px;
-          margin-left: -15px;
-          margin-right: -10px;
-        }
-        .other {
-          color: rgba(255, 255, 255, 0.61);
-          margin-left: -15px;
-          padding: 4px;
+        a {
+          text-decoration: none;
+          .current {
+            background-color: #476963;
+            font-weight: 500;
+            padding: 4px;
+            margin-left: -15px;
+            margin-right: -10px;
+            color: white;
+            .channel-name {
+              margin-left: 10px;
+            }
+            &:hover {
+              text-decoration: none;
+            }
+          }
+          .others {
+            padding: 4px;
+            margin-right: -10px;
+            color: rgba(255, 255, 255, 0.61);
+            margin-left: -15px;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.09);
+            }
+            .channel-name {
+              margin-left: 10px;
+            }
+          }
         }
       }
     }
@@ -87,8 +105,25 @@
         @include bp-small {
           margin-left: 0px
         }
-        margin-left: 190px;
+        margin-left: 220px;
         overflow-wrap: break-word;
+        .infos-channel {
+          padding: 20px 20px 0px 20px;
+          text-align: center;
+          .member-image {
+            width: 45px;
+          }
+          .user-name {
+            color: #555459;
+            font-weight: 700;
+            font-size: 17px;
+            line-height: 1rem;
+          }
+          .infos {
+            color: #555459;
+            font-size: 15px;
+          }
+        }
         .msg-container,
         .cmt-container {
           position: relative;

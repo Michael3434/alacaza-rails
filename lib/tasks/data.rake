@@ -1,12 +1,12 @@
 
 namespace :data do
-  desc "Change image_id"
-  task image_id: :environment do
-    image_id = 2
-    User.all.each do |user|
-      user.update(image_id: image_id)
-      image_id += 1
-    end
-    User.first.update(image_id: 1)
-  end
+  task update_channels: :environment do
+  	Building.all.each do |building|
+  		channel = Channel.create(building: building, name: "Tout l'immeuble", channel_type: "main_group")
+  		User.where(building: building).each do |user|
+  			UserChannel.create!(channel: channel, user: user)
+  		end
+  		Message.where(building: building).update_all(channel_id: channel.id)
+  	end
+   end
 end
