@@ -8,17 +8,19 @@ class BuildingsController < ApplicationController
 
   def show
     @building = Building.where(slug: params[:slug]).last
-    if @building.nil?
+    @channel = Channel.find_by_id(params[:channel])
+    if @building.nil? && @channel.nil?
       render status: :not_found, text: "Not Found."
-      return
-    elsif @building.id != current_user.building_id
+    elsif @building && user_belongs_to_building?(@building) && @channel.nil?
+      @channel = Channel.where(building_id: @building.id, channel_type: "main_group").last
+      redirect_to appartments_path(@building.slug, @channel)
+    elsif !user_belongs_to_building?(@building) || !UserChannel.where(user: current_user, channel: @channel).first
       redirect_to root_path
-      return
     end
-    SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
-
-
-    @messages = @building.messages
+    unless Rails.env == "development"
+      SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
+    end
+    @messages = @channel.messages.includes(:user) if @channel
   end
 
   private
@@ -39,5 +41,9 @@ class BuildingsController < ApplicationController
       sign_in(user)
     else
     end
+  end
+
+  def user_belongs_to_building?(building)
+    building.id == current_user.building_id
   end
 end

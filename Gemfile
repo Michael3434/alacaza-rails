@@ -5,8 +5,8 @@ ruby '2.2.3'
 gem 'rails', '4.2.4'
 
 # Live message system
-gem 'faye-rails', '~> 2.0'
-gem 'thin'
+# gem 'faye-rails', '~> 2.0'
+# gem 'thin'
 
 gem 'has_secure_token'
 

@@ -1,11 +1,30 @@
 <div class="msg-container space-top-2">
   <div class="message-gutter">
-    <div class="message-icon">
-      <%= image_tag ("icons/icon" + message.user.image_id.to_s + ".png"), class: "member-image" %>
+    <div class="message-icon icon-user-<%= message.user.id %>">
+      <%= image_tag (user_img(message.user.image_id)), class: "member-image" %>
     </div>
   </div>
   <div class="message-content">
-    <span class="message-sender"><%= message.user.name %></span>
+  <% if current_user == message.user %>
+    <div class="message-sender">
+      <%= message.user.name %>
+    </div>
+    <% elsif channel = current_user.private_channel_with(message.user) %>
+      <%= link_to appartments_path(@building.slug, channel) do %>
+      <div class="message-sender">
+        <%= message.user.name %>
+      </div>
+      <% end %>
+    <% else %>
+      <a href="#" data-toggle="modal" 
+                  data-target="#new-message_modal" 
+                  class="message-sender" 
+                  data-user-id="<%= message.user.id %>" 
+                  data-building-id="<%= @building.id %>"
+                  data-user-name="<%= message.user.name %>">
+                  <%= message.user.name %>
+       </a>
+    <% end %>
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>

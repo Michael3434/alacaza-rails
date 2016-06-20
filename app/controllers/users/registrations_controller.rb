@@ -17,7 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if current_user
       SlackNotifierWorker.perform_async(:new_user, user_id: current_user.id)
       Mailer::UserMailerWorker.perform_async(:welcome, user_id: current_user.id)
-      Message.new(building: current_user.building, user: current_user, body: "#{current_user.first_name} a rejoint la messagerie de l'immeuble !" ).save
+      channel = Channel.where(building_id: current_user.building.id, channel_type: "main_group").last
+      Message.new(building: current_user.building, user: current_user, body: "#{current_user.first_name} a rejoint la messagerie de l'immeuble !", channel_id: channel.id).save
     end
   end
 end

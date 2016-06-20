@@ -31,5 +31,12 @@ message.save
 message = Message.new(body: body, building_id: Building.where(name: "10 rue des Bateliers").last.id, user_id: User.where(first_name: "Alacaza").last.id)
 message.save
 
+Building.each do |building|
+	channel = Channel.create(building: building, name: "Tout l'immeuble", channel_type: "main_group")
+	user = User.where(building: building).each do |user|
+		UserChannel.create(channel: channel, user: user)
+	end
+end
+
 
 
