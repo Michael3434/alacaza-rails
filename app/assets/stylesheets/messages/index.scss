@@ -1,4 +1,5 @@
 .buildings.show {
+  @import "messages/upload_dialog";
   .navbar {
     margin-left: 220px;
     @include bp-small {

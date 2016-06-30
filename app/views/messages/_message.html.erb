@@ -16,10 +16,10 @@
       </div>
       <% end %>
     <% else %>
-      <a href="#" data-toggle="modal" 
-                  data-target="#new-message_modal" 
-                  class="message-sender" 
-                  data-user-id="<%= message.user.id %>" 
+      <a href="#" data-toggle="modal"
+                  data-target="#new-message_modal"
+                  class="message-sender"
+                  data-user-id="<%= message.user.id %>"
                   data-building-id="<%= @building.id %>"
                   data-user-name="<%= message.user.name %>">
                   <%= message.user.name %>
@@ -28,6 +28,7 @@
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>
+      <%= cl_image_tag message.photo, height: 300, width: 400, crop: :fill %>
     </div>
   </div>
 </div>

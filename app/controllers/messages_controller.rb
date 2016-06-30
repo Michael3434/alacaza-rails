@@ -1,12 +1,13 @@
 class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
   def create
-    @message = current_user.messages.build(message_params)
-    @building_name = @message.user.building.name
-    @building = @message.user.building
-    if @message.save!
-      message_notifier
-    end
+    @message = Message.new(message_params)
+    # @message = current_user.messages.build(message_params)
+    # @building_name = @message.user.building.name
+    # @building = @message.user.building
+    # if @message.save!
+    #   message_notifier
+    # end
   end
 
   def message_notifier
@@ -18,9 +19,12 @@ class MessagesController < ApplicationController
     # end
   end
 
+  def new_photo
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:body, :channel_id, :building_id)
+    params.require(:message).permit(:body, :channel_id, :building_id, :photo)
   end
 end

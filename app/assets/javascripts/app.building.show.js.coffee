@@ -7,6 +7,40 @@ app.buildings.show =
       @initMessageGenerator()
       @initSideBar()
       @initNewMessageModal()
+      @file()
+    file: ->
+      $('#message_photo').on "change", ->
+        if this.files and this.files[0]
+          reader = new FileReader
+          reader.onload = (e) ->
+            img = new Image
+            img.onload = ->
+              if img.width > img.height
+                height = 150
+                width = height * img.width / img.height
+              else if img.width < img.height
+                height = 150
+                width = height * img.width / img.height
+              else
+                width = 150
+                height = 150
+              Math.max(img.width)
+              $('#upload_image_preview img').attr('src', e.target.result).width(width).height(height)
+            img.src = reader.result
+          reader.readAsDataURL this.files[0]
+          $("#new-photo_modal").modal()
+
+       # $('#message_photo').on "change", ->
+       #  formData = new FormData
+       #  $input = $('#message_photo')
+       #  formData.append 'message[photo]', $input[0].files[0]
+       #  $.ajax
+       #    url: "/messages/new_photo"
+       #    data: formData
+       #    cache: false
+       #    contentType: false
+       #    processData: false
+       #    type: 'POST'
     initSideBar: ->
       $('.info-icon').on "click", (e) ->
         e.preventDefault()

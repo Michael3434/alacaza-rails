@@ -3,6 +3,7 @@
 	<%= f.hidden_field :building_id, value: @building.id %>
   <div class="input-body">
     <%= f.input :body, label: false, input_html: { class: "js-auto-size" } %>
+    <%= f.input :photo %>
   </div>
     <%= button_tag "", class: "fa ion-paper-airplane icon-send" %>
 <% end %>
