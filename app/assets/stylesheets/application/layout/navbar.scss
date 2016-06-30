@@ -1,4 +1,42 @@
 .navbar {
+  .navbar-progress {
+    width: 90%;
+    height: 25px;
+    position: absolute;
+    background-color: #2ab27b;
+    bottom: -26px;
+    left: 0;
+    margin-left: auto;
+    right: 0;
+    margin-right: auto;
+    border-radius: 6px;
+    .progress_bar_progress_thin {
+      width: 25%;
+      background-color: #b2d5c9;
+      background-position: center center;
+      background-repeat: repeat-x;
+      background-size: 36px 36px;
+      background-image: image-url("progress_bar_pattern.png");
+      border-radius: .25rem;
+      height: 100%;
+      -webkit-transition: width .15s ease-out 0s;
+      -moz-transition: width .15s ease-out 0s;
+      transition: width .15s ease-out 0s;
+      display: inline-block;
+    }
+    .progress-text {
+      position: absolute;
+      top: .2rem;
+      left: .4rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      color: white;
+      font-weight: 500;
+    }
+  }
+
   padding: 10px;
   background-color: white;
   z-index: 3;

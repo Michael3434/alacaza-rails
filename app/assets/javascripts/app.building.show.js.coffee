@@ -30,17 +30,24 @@ app.buildings.show =
           reader.readAsDataURL this.files[0]
           $("#new-photo_modal").modal()
 
-       # $('#message_photo').on "change", ->
-       #  formData = new FormData
-       #  $input = $('#message_photo')
-       #  formData.append 'message[photo]', $input[0].files[0]
-       #  $.ajax
-       #    url: "/messages/new_photo"
-       #    data: formData
-       #    cache: false
-       #    contentType: false
-       #    processData: false
-       #    type: 'POST'
+       $('.new-photo').on "click", ->
+        formData = new FormData
+        $input = $('#message_photo')
+        $('#message_body').val($("#body-from-file").val())
+        formData.append 'message[photo]', $input[0].files[0]
+        $('form#new_message').serializeArray().forEach (field) ->
+          formData.append field.name, field.value
+        $('#message_body').val("")
+        $.ajax
+          url: "/messages"
+          data: formData
+          cache: false
+          contentType: false
+          processData: false
+          type: 'POST'
+          beforeSend: (xhr) ->
+            $("#new-photo_modal").modal('hide')
+
     initSideBar: ->
       $('.info-icon').on "click", (e) ->
         e.preventDefault()
