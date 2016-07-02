@@ -3,7 +3,7 @@
     <div class="new-message-container">
       <div class="options-messages">
         <div class="dropup">
-            <i class="ion-plus-round icon-plus dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <i class="ion-camera icon-plus dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <% if current_user.gardien %>
               <% generate_button.each do |name, slug| %>
@@ -12,8 +12,10 @@
                 </li>
               <% end %>
             <% else %>
-            <li class="btn-generator" data-generator-id="magic-action">
-              <a href="#">Une action magique !</a>
+            <li>
+              <%= simple_form_for Message.new, remote: true, data: { spinnable: true } do |f| %>
+                <%= f.input :photo, label: "Télécharger un fichier" %>
+              <% end %>
             </li>
             <% end %>
           </ul>

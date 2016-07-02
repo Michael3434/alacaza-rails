@@ -47,6 +47,13 @@ app.buildings.show =
           type: 'POST'
           beforeSend: (xhr) ->
             $("#new-photo_modal").modal('hide')
+            $('.navbar-progress').show()
+            elem = $('.progress_bar_progress_thin')[0]
+            width = 1
+            frame = ->
+              width++
+              elem.style.width = width + '%'
+            id = setInterval(frame, 100)
 
     initSideBar: ->
       $('.info-icon').on "click", (e) ->

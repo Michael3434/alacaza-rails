@@ -1,17 +1,17 @@
 .navbar {
   .navbar-progress {
-    width: 90%;
+    width: 100%;
     height: 25px;
     position: absolute;
     background-color: #2ab27b;
-    bottom: -26px;
+    bottom: -25px;
     left: 0;
     margin-left: auto;
     right: 0;
     margin-right: auto;
-    border-radius: 6px;
+    overflow: hidden;
     .progress_bar_progress_thin {
-      width: 25%;
+      width: 0%;
       background-color: #b2d5c9;
       background-position: center center;
       background-repeat: repeat-x;

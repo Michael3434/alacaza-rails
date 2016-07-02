@@ -21,6 +21,12 @@
     padding-right: 1rem;
     box-shadow: none;
     bottom: -8px;
+    @include bp-extra-small {
+      right: -12px;
+      left: 43px;
+      padding: 0;
+      bottom: -16px;
+    }
     .options-messages {
       background-color: white;
       border: 2px solid #E0E0E0;
@@ -32,6 +38,12 @@
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       left: -54px;
+      @include bp-extra-small {
+        border-top: 2px solid #f5f5f5;
+        border-bottom: none;
+        border-radius: 0;
+        border-left: none;
+      }
       &:hover {
         background-color: $brand-primary;
         border-color: $brand-primary;
@@ -47,7 +59,40 @@
         font-size: 25px;
         color: rgba(0,0,0,.35);
         &:hover {
+        }
+      }
+      .form-group {
+        margin: 0px;
+        label.file {
+          background-color: white;
+          width: 200px;
+          display: block;
+          margin: 3px 20px;
+          padding: 2px 20px;
+          border-radius: 6px;
+          clear: both;
+          font-weight: normal;
+          line-height: 1.42857143;
+          color: #333333;
+          &:hover {
+            background-color: #476963;
+          }
 
+        }
+        #message_photo {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          opacity: 0;
+          outline: none;
+          background: white;
+          cursor: inherit;
+          display: block;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -63,7 +108,7 @@
     display: block;
     position: absolute;
     right: 0;
-    color: #476963;
+    color: #999;
   }
   button {
     padding: 9px 30px;
@@ -81,8 +126,8 @@
     width: 100%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    line-height: 1.5rem;
     background-clip: padding-box;
+    line-height: 1.5em;
     color: #3d3c40;
     -webkit-appearance: none;
     box-shadow: none;
@@ -94,8 +139,18 @@
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
+    @include bp-extra-small {
+      border-top: 2px solid #f5f5f5;
+      border-bottom: none;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
     &:focus {
       border-color: rgb(255, 159, 129);
+      @include bp-extra-small {
+        border-color: #f5f5f5;
+      }
     }
   }
 }
