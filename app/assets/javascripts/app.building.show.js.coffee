@@ -10,6 +10,7 @@ app.buildings.show =
       @initFile()
       @hideShowFileButton()
     hideShowFileButton: ->
+
       $('textarea#message_body').on "input", (e) ->
         $('.options-messages').css("overflow", "hidden")
         camera = $('.icon-camera')[0]
@@ -19,14 +20,14 @@ app.buildings.show =
           if $('.icon-camera')[0].style.top == "-25px"
             $('.options-messages').css("overflow", "initial")
             return
-          $('.icon-plus').removeClass("hidden")
+          $('.icon-plus').show()
           cameraTop = 3
           plusTop = 31
           frame = ->
             if cameraTop <= -25
               $('.icon-camera').addClass("hidden")
               $('.options-messages').css("overflow", "initial")
-              clearInterval(id);
+              return clearInterval(id);
             else
               plusTop--
               cameraTop--
@@ -40,9 +41,9 @@ app.buildings.show =
           plusTop = 3
           frame = ->
             if cameraTop >= 3
-              $('.icon-plus').addClass("hidden")
+              $('.icon-plus').hide()
               $('.options-messages').css("overflow", "initial")
-              clearInterval(id);
+              return clearInterval(id);
             else
               plusTop++
               cameraTop++

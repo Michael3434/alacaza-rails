@@ -13,9 +13,32 @@ $('textarea').css('height', "42px")
   setTimeout(function(){
     $('.navbar-progress').hide()
     $('.progress_bar_progress_thin').css("width", "0%")
+    $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
   }, 2000);
-
 <% end %>
+
+// Show back the camera icon
+var cameraTop, frame, plusTop;
+$('.options-messages').css("overflow", "hidden");
+$('.icon-camera').removeClass("hidden");
+camera = $('.icon-camera')[0]
+plus = $('.icon-plus')[0]
+cameraTop = -25;
+plusTop = 3;
+frame = function() {
+  var id;
+  if (cameraTop >= 3) {
+    $('.options-messages').css("overflow", "initial");
+    return clearInterval(id);
+  } else {
+    plusTop++;
+    cameraTop++;
+    camera.style.top = cameraTop + 'px';
+    plus.style.top = plusTop + 'px';
+  }
+};
+id = setInterval(frame, 1);
+$('.icon-plus').hide();
 
 
 $('#new_message').find("button[type='submit']").prop('disabled', false)
@@ -25,7 +48,7 @@ mixpanel.track("Nouveau message", {
 })
 
 messageTop = $('.msg-container').last().offset().top
-$('html, .scroll-container').animate({scrollTop:99999999}, 'slow');
+$('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
 $('#message_body').val("")
 
 // publisher = client.publish('/messages', {
