@@ -7,8 +7,49 @@ app.buildings.show =
       @initMessageGenerator()
       @initSideBar()
       @initNewMessageModal()
-      @file()
-    file: ->
+      @initFile()
+      @hideShowFileButton()
+    hideShowFileButton: ->
+      $('textarea#message_body').on "input", (e) ->
+        $('.options-messages').css("overflow", "hidden")
+        camera = $('.icon-camera')[0]
+        plus = $('.icon-plus')[0]
+        # Hide the camera if user type some text
+        if $(this).val().length > 0
+          if $('.icon-camera')[0].style.top == "-25px"
+            $('.options-messages').css("overflow", "initial")
+            return
+          $('.icon-plus').removeClass("hidden")
+          cameraTop = 3
+          plusTop = 31
+          frame = ->
+            if cameraTop <= -25
+              $('.icon-camera').addClass("hidden")
+              $('.options-messages').css("overflow", "initial")
+              clearInterval(id);
+            else
+              plusTop--
+              cameraTop--
+              camera.style.top = cameraTop + 'px'
+              plus.style.top = plusTop + 'px'
+          id = setInterval(frame, 1)
+        # Show the camera icon if user as no text typed
+        else if $(this).val().length == 0
+          $('.icon-camera').removeClass("hidden")
+          cameraTop = -25
+          plusTop = 3
+          frame = ->
+            if cameraTop >= 3
+              $('.icon-plus').addClass("hidden")
+              $('.options-messages').css("overflow", "initial")
+              clearInterval(id);
+            else
+              plusTop++
+              cameraTop++
+              camera.style.top = cameraTop + 'px'
+              plus.style.top = plusTop + 'px'
+          id = setInterval(frame, 1)
+    initFile: ->
       $('#message_photo').on "change", ->
         if this.files and this.files[0]
           reader = new FileReader
@@ -68,9 +109,9 @@ app.buildings.show =
     scrollOnloadPage: ->
       messageTop = $('.msg-container').last().offset()
       if messageTop != undefined
-        $('html, .scroll-container').animate({scrollTop:messageTop.top}, 'slow');
+        $('html, .scroll-container').animate({scrollTop:99999999}, 'slow');
     disableSubmitButton: ->
-      $('#new_message').submit ->
+      $('form#new_message').on "submit", ->
         if $('#message_body').val() == ""
           return false
         else

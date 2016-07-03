@@ -28,7 +28,11 @@
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>
-      <%= cl_image_tag message.photo, height: 300, width: 400, crop: :fill %>
+      <% if message.photo.present? %>
+        <div class="picture-wrapper">
+          <%= cl_image_tag message.photo, crop: :fill %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

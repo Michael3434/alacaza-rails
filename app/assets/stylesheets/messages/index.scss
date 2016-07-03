@@ -239,6 +239,21 @@
           }
           .message-body {
             padding-right: 40px;
+            .picture-wrapper {
+              img {
+                height: auto;
+                max-height: 300px;
+                width: auto;
+                max-width: 400px;
+                @include bp-extra-small {
+                  height: auto;
+                  max-height: 165px;
+                  width: auto;
+                  max-width: 220px;
+                }
+              }
+
+            }
             > p {
             margin: 0px;
             }

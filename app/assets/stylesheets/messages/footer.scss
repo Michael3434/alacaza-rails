@@ -48,18 +48,25 @@
         background-color: $brand-primary;
         border-color: $brand-primary;
         cursor: pointer;
-         .icon-plus {
+         .icon {
           color: white;
         }
       }
-      .icon-plus {
+      .icon {
         position: absolute;
-        top: 3px;
-        right: 16px;
         font-size: 25px;
         color: rgba(0,0,0,.35);
         &:hover {
         }
+
+      }
+      .icon-camera {
+        top: 3px;
+        right: 16px;
+      }
+      .icon-plus {
+        top: 31px;
+        right: 16px;
       }
       .form-group {
         margin: 0px;

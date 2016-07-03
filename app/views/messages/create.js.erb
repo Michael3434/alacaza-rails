@@ -5,12 +5,17 @@ $(".messages-container").append(message)
 // Resize the input text area to default
 $('textarea').css('height', "42px")
 
-$('.progress_bar_progress_thin').remove()
-$('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
-$('.progress_bar_progress_thin').css("width", "100%")
-$('.navbar-progress').hide()
-$('.progress_bar_progress_thin').css("width", "0%")
+<% if @message.photo.present? %>
+  $('.progress_bar_progress_thin').remove()
+  $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
+  $('.progress_bar_progress_thin').css("width", "100%")
+  $('.progress-text').text("Téléchargement terminé!")
+  setTimeout(function(){
+    $('.navbar-progress').hide()
+    $('.progress_bar_progress_thin').css("width", "0%")
+  }, 2000);
 
+<% end %>
 
 
 $('#new_message').find("button[type='submit']").prop('disabled', false)
