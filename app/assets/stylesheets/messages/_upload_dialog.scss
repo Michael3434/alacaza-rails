@@ -1,0 +1,44 @@
+.upload-dialog {
+  .modal-body {
+    padding: 0 15px 1px 0;
+    margin: 1rem 0 1rem 15px;
+    #upload_image_preview {
+      text-align: center;
+      height: 150px;
+    }
+    label {
+      color: #555459;
+      .hint {
+        font-style: italic;
+        font-size: 14px;
+        color: #9e9ea6;
+      }
+    }
+    #message_body {
+      height: 60px;
+    }
+  }
+  .modal-header {
+    position: relative;
+    padding: 16px 16px;
+    background: #f2f2f5;
+    color: #555459;
+    font-weight: 900;
+    border-bottom: none;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: .25rem;
+    button.close {
+      top: 0;
+      bottom: 0;
+    }
+    .modal-title {
+      text-align: left;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.5rem;
+      margin: .3rem 0;
+    }
+  }
+}

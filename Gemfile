@@ -10,6 +10,9 @@ gem 'thin'
 
 gem 'has_secure_token'
 
+gem 'carrierwave'
+gem 'cloudinary'
+
 ## Backround job
 gem "sidekiq"
 gem 'redis'

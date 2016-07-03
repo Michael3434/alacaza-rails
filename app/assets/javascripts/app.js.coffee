@@ -7,8 +7,7 @@ app.init = ->
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->
-      console.log "hihi"
-      if el.scrollHeight == 38 
+      if el.scrollHeight == 40
         return
       else if $(el).val().length == 0
         $(el).css('height', '42px')

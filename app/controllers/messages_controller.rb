@@ -18,9 +18,12 @@ class MessagesController < ApplicationController
     # end
   end
 
+  def new_photo
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:body, :channel_id, :building_id)
+    params.require(:message).permit(:body, :channel_id, :building_id, :photo)
   end
 end
