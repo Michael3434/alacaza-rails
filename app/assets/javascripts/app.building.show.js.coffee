@@ -8,48 +8,6 @@ app.buildings.show =
       @initSideBar()
       @initNewMessageModal()
       @initFile()
-      @hideShowFileButton()
-    hideShowFileButton: ->
-
-      $('textarea#message_body').on "input", (e) ->
-        $('.options-messages').css("overflow", "hidden")
-        camera = $('.icon-camera')[0]
-        plus = $('.icon-plus')[0]
-        # Hide the camera if user type some text
-        if $(this).val().length > 0
-          if $('.icon-camera')[0].style.top == "-25px"
-            $('.options-messages').css("overflow", "initial")
-            return
-          $('.icon-plus').show()
-          cameraTop = 3
-          plusTop = 31
-          frame = ->
-            if cameraTop <= -25
-              $('.icon-camera').addClass("hidden")
-              $('.options-messages').css("overflow", "initial")
-              return clearInterval(id);
-            else
-              plusTop--
-              cameraTop--
-              camera.style.top = cameraTop + 'px'
-              plus.style.top = plusTop + 'px'
-          id = setInterval(frame, 1)
-        # Show the camera icon if user as no text typed
-        else if $(this).val().length == 0
-          $('.icon-camera').removeClass("hidden")
-          cameraTop = -25
-          plusTop = 3
-          frame = ->
-            if cameraTop >= 3
-              $('.icon-plus').hide()
-              $('.options-messages').css("overflow", "initial")
-              return clearInterval(id);
-            else
-              plusTop++
-              cameraTop++
-              camera.style.top = cameraTop + 'px'
-              plus.style.top = plusTop + 'px'
-          id = setInterval(frame, 1)
     initFile: ->
       $('#message_photo').on "change", ->
         if this.files and this.files[0]
@@ -71,8 +29,10 @@ app.buildings.show =
             img.src = reader.result
           reader.readAsDataURL this.files[0]
           $("#new-photo_modal").modal()
+          $("#body-from-file").val($('#message_body').val())
+          $('#message_body').val("")
 
-       $('.new-photo').on "click", ->
+      $('.new-photo').on "click", ->
         formData = new FormData
         $input = $('#message_photo')
         $('#message_body').val($("#body-from-file").val())

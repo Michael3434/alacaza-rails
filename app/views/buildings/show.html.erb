@@ -58,6 +58,21 @@
   <%= render "messages/footer" %>
 </div>
 
+<%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
+  <div class="user-infos text-center">
+    <div class="user-icon">
+      <%= image_tag (""), class: "member-image" %>
+    </div>
+    <span class="user-name">Michael</span>
+    <%= simple_form_for [@building, Channel.new] do |f| %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :channel_type, value: "private" %>
+      <%= f.hidden_field :building_id, value: @building.id %>
+      <%= button_tag "Envoyer un message privé", class: "btn btn-secondary space-top-2" %>
+    <% end %>
+  </div>
+<% end %>
+
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">
@@ -81,21 +96,4 @@
     </div>
   </div>
 </div>
-
-
-
-<%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
-  <div class="user-infos text-center">
-    <div class="user-icon">
-      <%= image_tag (""), class: "member-image" %>
-    </div>
-    <span class="user-name">Michael</span>
-    <%= simple_form_for [@building, Channel.new] do |f| %>
-      <%= f.hidden_field :recipient_id %>
-      <%= f.hidden_field :channel_type, value: "private" %>
-      <%= f.hidden_field :building_id, value: @building.id %>
-      <%= button_tag "Envoyer un message privé", class: "btn btn-secondary space-top-2" %>
-    <% end %>
-  </div>
-<% end %>
 

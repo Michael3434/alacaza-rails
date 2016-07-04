@@ -99,6 +99,7 @@
       left: 0;
       right: 0;
       overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
       .message-wrapper {
         padding: 5px 0 0px 0;
       }
