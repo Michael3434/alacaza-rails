@@ -8,8 +8,18 @@ mount Sidekiq::Web => '/sidekiq'
   get "users/sign_up", to: redirect("/")
 
   namespace :admin do
+    resources :buildings do
+      resources :channels
+    end
+    scope "immeubles" do
+      get "/:slug(/:channel)", to: "buildings#show", as: :appartments
+    end
+    # resources :buildings
     resources :users
-    resources :messages
+    get "/notifier", to: "messages#notifier"
+    post "/notify_buildings", to: "messages#notify_buildings"
+    resources :messages do
+    end
   end
   resources :buildings do
     resources :channels

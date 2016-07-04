@@ -1,0 +1,14 @@
+<%= content_tag :nav, class: "navbar navbar-default" do %>
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Envoi de messages", admin_notifier_path %></li>
+      <li><%= link_to "Messages", admin_messages_path %></li>
+      </li>
+      <li ><%= link_to "Users", admin_users_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><span>Logged in as <%= current_user.first_name %></span></li>
+      <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
+<% end %>

@@ -46,4 +46,4 @@ app.buildings.show =
 
 
 $(document).on "ready page:load", ->
-  app.buildings.show.init() if $(".admin.buildings.show").length > 0
+  app.buildings.show.init() if $(".buildings.show").length > 0

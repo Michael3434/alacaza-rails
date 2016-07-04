@@ -3,13 +3,13 @@
     <div class="row">
       <div class="messages-container">
 
-      <div class="infos-channel">
-        <% if @channel.private? %>
-          <%= render "buildings/private_channel_info" %>
-        <% elsif @channel.group? %>
-          <%= render "buildings/group_channel_info" %>
-        <% end %>
-      </div>
+        <div class="infos-channel">
+          <% if @channel.private? %>
+            <%= render "buildings/private_channel_info" %>
+          <% elsif @channel.group? %>
+            <%= render "buildings/group_channel_info" %>
+          <% end %>
+        </div>
 
         <% @messages.order(created_at: :asc).each do |message| %>
           <div class="message-wrapper">
@@ -28,10 +28,10 @@
         <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
         <div class="list">
           <ul class="list-unstyled">
-            <% current_user.group_channels.each do |channel| %>
-             <%= link_to appartments_path(@building.slug, channel) do %>
+            <% Channel.main_groups.each do |channel| %>
+             <%= link_to admin_appartments_path(@building.slug, channel) do %>
                 <li class="<%= get_current_channel(channel) %>">
-                    <span class="channel-name">#&nbsp;<%=channel.name %></span>
+                    <span class="channel-name">#&nbsp;<%= channel.building.name %></span>
                 </li>
               <% end %>
             <% end %>
@@ -43,7 +43,7 @@
         <div class="list">
           <ul class="list-unstyled">
             <% current_user.private_channels.each do |channel| %>
-              <%= link_to appartments_path(@building.slug, channel) do %>
+              <%= link_to admin_appartments_path(@building.slug, channel) do %>
                 <li class="<%= get_current_channel(channel) %>">
                     <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
                 </li>
@@ -55,7 +55,7 @@
     </div>
   </div>
   <div class="modal-bg hidden"></div>
-  <%= render "messages/footer" %>
+  <%= render "admin/messages/footer" %>
 </div>
 
 <%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
@@ -64,7 +64,7 @@
       <%= image_tag (""), class: "member-image" %>
     </div>
     <span class="user-name">Michael</span>
-    <%= simple_form_for [@building, Channel.new] do |f| %>
+    <%= simple_form_for [:admin, @building, Channel.new] do |f| %>
       <%= f.hidden_field :recipient_id %>
       <%= f.hidden_field :channel_type, value: "private" %>
       <%= f.hidden_field :building_id, value: @building.id %>

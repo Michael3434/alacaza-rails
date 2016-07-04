@@ -1,0 +1,25 @@
+<footer id="footer">
+  <div class="messages-input-container">
+    <div class="new-message-container">
+      <div class="options-messages">
+        <div class="dropup">
+            <i class="ion-plus-round icon-plus dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <% if current_user.gardien %>
+              <% generate_button.each do |name, slug| %>
+                <li class="btn-generator" data-generator-id=<%= slug %>>
+                  <a href="#"><%= name %></a>
+                </li>
+              <% end %>
+            <% else %>
+            <li class="btn-generator" data-generator-id="magic-action">
+              <a href="#">Une action magique !</a>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <%= render "admin/messages/new_message" %>
+    </div>
+
+</footer>

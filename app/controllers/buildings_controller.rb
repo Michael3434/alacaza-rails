@@ -1,9 +1,7 @@
 class BuildingsController < ApplicationController
   before_action :sign_in_user_from_token, only: [:show]
   before_action :authenticate_user!
-
   def index
-
   end
 
   def show
