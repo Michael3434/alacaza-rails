@@ -83,9 +83,10 @@
       </div>
       <div class="modal-body">
       <div id="upload_image_preview" class="space-2">
+        <div class="title"></div>
         <%= image_tag ("") %>
       </div>
-      <label>Votre message <span class="hint">(Optionnel)</span> </label>
+      <label class="space-top-2">Votre message <span class="hint">(Optionnel)</span> </label>
       <div class="body-form form-group">
         <%= text_area :message, :body, class: "form-control", id: "body-from-file" %>
       </div>

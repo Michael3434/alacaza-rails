@@ -1,41 +1,47 @@
-// Append new message
-message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
-$(".messages-container").append(message)
-
-// Resize the input text area to default
-$('textarea').css('height', "42px")
-
-<% if @message.photo.present? %>
+<% if @message.errors.any? %>
+  alert("<%= js_error_message(@message) %>");
   $('.progress_bar_progress_thin').remove()
   $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
-  $('.progress_bar_progress_thin').css("width", "100%")
-  $('.progress-text').text("Téléchargement terminé!")
-  setTimeout(function(){
-    $('.navbar-progress').hide()
-    $('.progress_bar_progress_thin').css("width", "0%")
-    $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
-    $('.progress-text').text("Fichier en cours de téléchargement...")
-  }, 2000);
+  $('.navbar-progress').hide()
+<% else %>
+  // Append new message
+  message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
+  $(".messages-container").append(message)
+
+  // Resize the input text area to default
+  $('textarea').css('height', "42px")
+
+  <% if @message.photo.present? %>
+    $('.progress_bar_progress_thin').remove()
+    $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
+    $('.progress_bar_progress_thin').css("width", "100%")
+    $('.progress-text').text("Téléchargement terminé !")
+    setTimeout(function(){
+      $('.navbar-progress').hide()
+      $('.progress_bar_progress_thin').css("width", "0%")
+      $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
+      $('.progress-text').text("Fichier en cours de téléchargement...")
+    }, 2000);
+  <% end %>
+
+  mixpanel.track("Nouveau message", {
+      "user_id": <%= @message.user.id %>,
+      "Immeuble": <%= @message.user.building_id %>
+  })
+
+  messageTop = $('.msg-container').last().offset().top
+  $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
+  $('#message_body').val("")
+
+  // publisher = client.publish('/messages', {
+  //   message: '<%= j render @message %>'
+  // });
+
+  // publisher.callback(function() {
+  //   $('#new_message').find("button[type='submit']").prop('disabled', false)
+  //   mixpanel.track("Nouveau message", {
+  //       "user_id": <%= @message.user.id %>,
+  //       "Immeuble": <%= @message.user.building_id %>
+  //   });
+
 <% end %>
-
-mixpanel.track("Nouveau message", {
-    "user_id": <%= @message.user.id %>,
-    "Immeuble": <%= @message.user.building_id %>
-})
-
-messageTop = $('.msg-container').last().offset().top
-$('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
-$('#message_body').val("")
-
-// publisher = client.publish('/messages', {
-//   message: '<%= j render @message %>'
-// });
-
-// publisher.callback(function() {
-//   $('#new_message').find("button[type='submit']").prop('disabled', false)
-//   mixpanel.track("Nouveau message", {
-//       "user_id": <%= @message.user.id %>,
-//       "Immeuble": <%= @message.user.building_id %>
-//   });
-
-

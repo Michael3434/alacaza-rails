@@ -8,26 +8,36 @@ app.buildings.show =
       @initSideBar()
       @initNewMessageModal()
       @initFile()
+      @removeImgOnHideModal()
+    removeImgOnHideModal: ->
+      $("#new-photo_modal").on "hide.bs.modal", ->
+        $('#upload_image_preview img').attr('src', "").attr("style", "")
     initFile: ->
       $('#message_photo').on "change", ->
+        fileTypes = ['pdf']
         if this.files and this.files[0]
           reader = new FileReader
-          reader.onload = (e) ->
-            img = new Image
-            img.onload = ->
-              if img.width > img.height
-                height = 150
-                width = height * img.width / img.height
-              else if img.width < img.height
-                height = 150
-                width = height * img.width / img.height
-              else
-                width = 150
-                height = 150
-              Math.max(img.width)
-              $('#upload_image_preview img').attr('src', e.target.result).width(width).height(height)
-            img.src = reader.result
-          reader.readAsDataURL this.files[0]
+          name = this.files[0].name
+          extension = name.split('.').pop().toLowerCase()
+          $('#upload_image_preview .title').html(name)
+          if fileTypes.indexOf(extension) > -1
+          else
+            reader.onload = (e) ->
+              img = new Image
+              img.onload = ->
+                if img.width > img.height
+                  height = 150
+                  width = height * img.width / img.height
+                else if img.width < img.height
+                  height = 150
+                  width = height * img.width / img.height
+                else
+                  width = 150
+                  height = 150
+                Math.max(img.width)
+                $('#upload_image_preview img').attr('src', e.target.result).width(width).height(height)
+              img.src = reader.result
+            reader.readAsDataURL this.files[0]
           $("#new-photo_modal").modal()
           $("#body-from-file").val($('#message_body').val())
           $('#message_body').val("")
