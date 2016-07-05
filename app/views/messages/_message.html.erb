@@ -28,6 +28,15 @@
     <span class="message-time"><%= l message.created_at, format: :short %></span>
     <div class="message-body">
       <%= simple_format(message.body) %>
+      <% if message.photo.present? %>
+        <% if message.photo.format == "pdf" %>
+          <%= link_to icon("paperclip", message.original_filename), message.photo.url, target: "_blank" %></li>
+        <% else %>
+          <div class="picture-wrapper">
+            <%= cl_image_tag message.photo, crop: :fill %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

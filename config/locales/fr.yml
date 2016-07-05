@@ -112,6 +112,7 @@ fr:
   errors:
     format: "%{attribute} %{message}"
     messages: &errors_messages
+      extension_white_list_error: "Le format de votre fichier %{extension} n'est pas autorisé, seulement: %{allowed_types}"
       accepted: "doit être accepté(e)"
       blank: "Ce champ est obligatoire"
       present: "Ce champ doit être rempli"

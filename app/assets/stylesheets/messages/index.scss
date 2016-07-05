@@ -1,4 +1,5 @@
 .buildings.show {
+  @import "messages/upload_dialog";
   .navbar {
     margin-left: 220px;
     @include bp-small {
@@ -107,6 +108,7 @@
       left: 0;
       right: 0;
       overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
       .message-wrapper {
         padding: 5px 0 0px 0;
       }
@@ -247,6 +249,21 @@
           }
           .message-body {
             padding-right: 40px;
+            .picture-wrapper {
+              img {
+                height: auto;
+                max-height: 300px;
+                width: auto;
+                max-width: 400px;
+                @include bp-extra-small {
+                  height: auto;
+                  max-height: 165px;
+                  width: auto;
+                  max-width: 220px;
+                }
+              }
+
+            }
             > p {
             margin: 0px;
             }
