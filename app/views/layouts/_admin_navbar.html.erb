@@ -1,4 +1,8 @@
 <%= content_tag :nav, class: "admin navbar navbar-default" do %>
+  <div class="navbar-progress" style="display: none;">
+    <span class="progress_bar_progress_thin"></span>
+    <div class="progress-text">Fichier en cours de téléchargement...</div>
+  </div>
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Envoi de messages", admin_notifier_path %></li>
