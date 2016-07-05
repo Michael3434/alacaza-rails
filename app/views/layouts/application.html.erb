@@ -7,9 +7,9 @@
   <!-- Dont index these pages on search engines -->
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'screen', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css' %>
   <%= favicon_link_tag 'favicon.ico' %>
   <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
@@ -17,7 +17,7 @@
     <%= stylesheet_link_tag 'ie9' %>
   <![endif]-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
 
   <% if Rails.env == "development" %>
@@ -30,8 +30,12 @@
   <%= render "layouts/facebook_og" %>
   <% end %>
 </head>
-<body class="admin <%= controller_name %> <%= action_name %>">
-  <%= render 'layouts/navbar' %>
+<body class="<%= controller_name %> <%= action_name %>">
+  <% if current_user.admin %>
+    <%= render 'layouts/admin_navbar' %>
+  <% else %>
+    <%= render 'layouts/navbar' %>
+  <% end %>
   <%= yield %>
 
   <div id="users_modal_container">

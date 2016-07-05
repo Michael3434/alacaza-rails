@@ -29,4 +29,14 @@ module ApplicationHelper
     devise_mapping.to
   end
 
+  def js_error_message(model)
+    message = "Veuillez corriger les erreurs suivantes :\n"
+    model.errors.messages.each do |field, errors|
+      errors.each do |error|
+        message += "- #{error}\n"
+      end
+    end
+    escape_javascript message
+  end
+
 end
