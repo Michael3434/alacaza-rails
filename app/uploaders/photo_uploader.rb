@@ -5,5 +5,4 @@ class PhotoUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png pdg pdf)
   end
 
-  process :convert => 'jpg'
 end
