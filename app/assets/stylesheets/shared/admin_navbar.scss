@@ -1,27 +1,22 @@
-.admin.messages.index,
-.admin.users.index,
-.admin.messages.notifier,
-.admin.buildings.show {
-  .navbar {
-    background-color: $brand-primary;
-    .navbar-left {
-      li a {
-        color: white;
-      }
+.admin.navbar {
+  background-color: $brand-primary;
+  .navbar-left {
+    li a {
+      color: white;
     }
-    .navbar-right {
-      span,
-      a {
-        font-size: 14px;
-        font-weight: 500;
-        margin-right: 10px;
-        color: white;
-        padding-top: 15px;
-      }
-      span {
-        position: relative;
-        top: 15px;
-      }
+  }
+  .navbar-right {
+    span,
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 10px;
+      color: white;
+      padding-top: 15px;
+    }
+    span {
+      position: relative;
+      top: 15px;
     }
   }
 }

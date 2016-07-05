@@ -1,0 +1,46 @@
+<div class="building-information">
+  <div class="name"><%= @building.name %></div>
+</div>
+<div class="scroll-channels">
+  <div class="group-channels">
+    <% if current_user.admin %>
+      <div class="dropdown space-2">
+        <button class="btn btn-default dropdown-toggle btn-dropdown-buildings" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= @building.name %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu building-dropdown" aria-labelledby="dropdownMenu1">
+          <% Building.all.each do |building| %>
+            <li><%= link_to building.name, appartments_path(building.slug)  %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
+    <div class="list">
+      <ul class="list-unstyled">
+        <% current_user.group_channels.each do |channel| %>
+         <%= link_to appartments_path(@building.slug, channel) do %>
+            <li class="<%= get_current_channel(channel) %>">
+                <span class="channel-name">#&nbsp;<%=channel.name %></span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="private-channels">
+    <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
+    <div class="list">
+      <ul class="list-unstyled">
+        <% current_user.private_channels.each do |channel| %>
+          <%= link_to appartments_path(@building.slug, channel) do %>
+            <li class="<%= get_current_channel(channel) %>">
+                <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

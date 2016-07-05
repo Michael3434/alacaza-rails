@@ -31,7 +31,11 @@
   <% end %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-  <%= render 'layouts/navbar' %>
+  <% if current_user.admin %>
+    <%= render 'layouts/admin_navbar' %>
+  <% else %>
+    <%= render 'layouts/navbar' %>
+  <% end %>
   <%= yield %>
 
   <div id="users_modal_container">
