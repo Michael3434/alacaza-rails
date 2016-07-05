@@ -14,7 +14,7 @@
             <% else %>
             <li class="upload-file">
               <%= simple_form_for Message.new, remote: true, data: { spinnable: true } do |f| %>
-                <%= f.input :photo, label: "Télécharger un fichier" %>
+                <%= f.input :photo, label: "Télécharger un fichier", cloudinary: {use_filename: true} %>
               <% end %>
             </li>
             <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628221712) do
+ActiveRecord::Schema.define(version: 20160705191846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,11 @@ ActiveRecord::Schema.define(version: 20160628221712) do
     t.text     "body"
     t.integer  "building_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "channel_id"
     t.string   "photo"
+    t.string   "original_filename"
   end
 
   create_table "user_channels", force: :cascade do |t|
