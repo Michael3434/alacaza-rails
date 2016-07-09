@@ -34,13 +34,18 @@ app.buildings.show =
                 else
                   width = 150
                   height = 150
-                Math.max(img.width)
                 $('#upload_image_preview img').attr('src', e.target.result).width(width).height(height)
               img.src = reader.result
             reader.readAsDataURL this.files[0]
           $("#new-photo_modal").modal()
           $("#body-from-file").val($('#message_body').val())
           $('#message_body').val("")
+          $('#upload_image_preview img').css('transform', 'rotate(0deg)')
+          $('#upload_image_preview .rotate').on 'click', ->
+            numberPattern = /\d+/g
+            rotateNumber = parseInt($('#upload_image_preview img')[0].style.transform.match( numberPattern )[0])
+            $('#upload_image_preview img').css('transform', 'rotate(' + (rotateNumber+90) + 'deg)')
+
 
       $('.new-photo').on "click", ->
         formData = new FormData
