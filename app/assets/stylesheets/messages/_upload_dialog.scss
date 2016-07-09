@@ -4,13 +4,16 @@
     margin: 1rem 0 1rem 15px;
     #upload_image_preview {
       text-align: center;
-      height: 190px;
-      .rotate {
-        position: relative;
-        top: 25px;
-        cursor: pointer;
-        font-size: 20px;
+      height: auto;
+      max-height: 200px;
+      img {
+        margin-top: calc(50% - 250px);
       }
+    }
+    .rotate {
+      position: relative;
+      cursor: pointer;
+      font-size: 20px;
     }
     label {
       color: #555459;

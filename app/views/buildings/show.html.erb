@@ -51,10 +51,10 @@
       </div>
       <div class="modal-body">
       <div id="upload_image_preview" class="space-2">
-        <div class="title"></div>
         <%= image_tag ("") %> <br>
-        <i class="ion-refresh rotate"></i>
+        <!-- <div class="title"></div> -->
       </div>
+      <div class="text-center"><i class="ion-refresh rotate"></i></div>
       <label class="space-top-2">Votre message <span class="hint">(Optionnel)</span> </label>
       <div class="body-form form-group">
         <%= text_area :message, :body, class: "form-control", id: "body-from-file" %>
