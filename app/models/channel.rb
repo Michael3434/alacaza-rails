@@ -14,4 +14,8 @@ class Channel < ActiveRecord::Base
   def group?
   	channel_type.in?(["group","main_group"])
   end
+
+  def self.main_groups
+    where(channel_type: "main_group")
+  end
 end

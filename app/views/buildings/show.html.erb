@@ -5,9 +5,9 @@
 
       <div class="infos-channel">
         <% if @channel.private? %>
-          <%= render "private_channel_info" %>
+          <%= render "buildings/private_channel_info" %>
         <% elsif @channel.group? %>
-          <%= render "group_channel_info" %>
+          <%= render "buildings/group_channel_info" %>
         <% end %>
       </div>
 
@@ -20,39 +20,7 @@
     </div>
   </div>
   <div class="col-channels">
-    <div class="building-information">
-      <div class="name"><%= @building.name %></div>
-    </div>
-    <div class="scroll-channels">
-      <div class="group-channels">
-        <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
-        <div class="list">
-          <ul class="list-unstyled">
-            <% current_user.group_channels.each do |channel| %>
-             <%= link_to appartments_path(@building.slug, channel) do %>
-                <li class="<%= get_current_channel(channel) %>">
-                    <span class="channel-name">#&nbsp;<%=channel.name %></span>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class="private-channels">
-        <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
-        <div class="list">
-          <ul class="list-unstyled">
-            <% current_user.private_channels.each do |channel| %>
-              <%= link_to appartments_path(@building.slug, channel) do %>
-                <li class="<%= get_current_channel(channel) %>">
-                    <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%= render "col_channels" %>
   </div>
   <div class="modal-bg hidden"></div>
   <%= render "messages/footer" %>
@@ -72,3 +40,29 @@
     <% end %>
   </div>
 <% end %>
+
+
+<div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        <p class="modal-title">Télécharger une image ?</span></p>
+      </div>
+      <div class="modal-body">
+      <div id="upload_image_preview" class="space-2">
+        <%= image_tag ("") %> <br>
+        <div class="title"></div>
+      </div>
+      <label class="space-top-2">Votre message <span class="hint">(Optionnel)</span> </label>
+      <div class="body-form form-group">
+        <%= text_area :message, :body, class: "form-control", id: "body-from-file" %>
+      </div>
+      <div class="text-right">
+        <%= button_tag "Envoyer", class: "btn btn-secondary new-photo" %>
+        <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
+      </div>
+    </div>
+  </div>
+</div>
+

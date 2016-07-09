@@ -1,0 +1,28 @@
+<%= content_tag :nav, class: "admin navbar navbar-default" do %>
+  <div class="navbar-progress" style="display: none;">
+    <span class="progress_bar_progress_thin"></span>
+    <div class="progress-text">Fichier en cours de téléchargement...</div>
+  </div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><i class="fa fa-home info-icon info-icon-admin show-sm"></i></a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Envoi de messages", admin_notifier_path %></li>
+        <li><%= link_to "Messages", admin_messages_path %></li>
+        <li ><%= link_to "Users", admin_users_path %></li>
+        <li ><%= link_to "Les immeubles", appartments_path(Building.first.slug) %></li>
+        <li><span>Logged in as <%= current_user.first_name %></span></li>
+        <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
+      </ul>
+  </div>
+  </div>
+<% end %>

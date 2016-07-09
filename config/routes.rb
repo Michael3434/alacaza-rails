@@ -7,9 +7,13 @@ mount Sidekiq::Web => '/sidekiq'
   get "sign_up", to: redirect("/")
   get "users/sign_up", to: redirect("/")
 
+  post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do
     resources :users
-    resources :messages
+    get "/notifier", to: "messages#notifier"
+    post "/notify_buildings", to: "messages#notify_buildings"
+    resources :messages do
+    end
   end
   resources :buildings do
     resources :channels

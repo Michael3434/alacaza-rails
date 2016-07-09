@@ -1,9 +1,7 @@
 class BuildingsController < ApplicationController
   before_action :sign_in_user_from_token, only: [:show]
   before_action :authenticate_user!
-
   def index
-
   end
 
   def show
@@ -11,6 +9,9 @@ class BuildingsController < ApplicationController
     @channel = Channel.find_by_id(params[:channel])
     if @building.nil? && @channel.nil?
       render status: :not_found, text: "Not Found."
+    elsif current_user.admin
+      true
+      @channel = @channel || Channel.where(building_id: @building.id, channel_type: "main_group").last
     elsif @building && user_belongs_to_building?(@building) && @channel.nil?
       @channel = Channel.where(building_id: @building.id, channel_type: "main_group").last
       redirect_to appartments_path(@building.slug, @channel)
