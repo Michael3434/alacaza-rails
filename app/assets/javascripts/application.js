@@ -22,6 +22,7 @@
 //= require app
 //= require app.pages
 //= require app.auth
+//= require app.leads
 //= require app.building.show
 
 

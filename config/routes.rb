@@ -7,6 +7,12 @@ mount Sidekiq::Web => '/sidekiq'
   get "sign_up", to: redirect("/")
   get "users/sign_up", to: redirect("/")
 
+  get "/commande", to: "leads#new"
+  resources :leads, only: [:create, :new] do
+    collection do
+      get "/sent", to: "leads#sent"
+    end
+  end
   post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do
     resources :users
