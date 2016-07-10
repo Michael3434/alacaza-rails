@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alacaza | Messagerie interne dédiée à votre immeuble</title>
+  <title><%= yield(:title) %></title>
+  <meta name="description" content="<%= yield(:description) %>">
   <!-- Dont index these pages on search engines -->
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
@@ -27,7 +28,7 @@
   <% end %>
 
   <% if content_for?(:og_url) %>
-  <%= render "layouts/facebook_og" %>
+    <%= render "layouts/facebook_og" %>
   <% end %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
