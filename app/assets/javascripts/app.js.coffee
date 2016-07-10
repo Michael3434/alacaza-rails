@@ -4,24 +4,6 @@ window.app ||= {}
 app.init = ->
   console.log "Init app.js"
 
-  if $('.button-order').length > 0
-    $(window).on 'scroll', (e) ->
-      commandTop = $('.command-section').offset().top
-      ctaTop = $('.button-order').offset().top
-      if ctaTop > commandTop
-        $('.button-order').hide()
-    $('.button-order').on "click", ->
-      $("html, body").animate {
-        scrollTop: $(".command-section").offset().top
-      }, 750
-    right = ->
-      $('.button-order > .cta').animate { left: '5px' }, 600, left
-      return
-    left = ->
-      $('.button-order > .cta').animate { left: '-5px' }, 600, right
-      return
-    right()
-
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->
