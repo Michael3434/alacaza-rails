@@ -22,5 +22,6 @@ app.init = ->
     spinnable = new Spinnable($(el))
     spinnable.init()
 
+
 $(document).on "ready page:load", ->
   app.init()

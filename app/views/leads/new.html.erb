@@ -1,0 +1,116 @@
+<% content_for :title, "Alacaza | LES BLEUS EN ACTION, LES PIZZAS A LA MAISON !" %>
+<% content_for :description, "Pour soutenir les Bleus* la pizzeria THE ART vous propose en exclusivité ses magnifiques pizzas, ses fabuleuses crèpes salées et sucrées et son merveilleux Tiramisu maison ! " %>
+<% content_for :og_url, "alacaza-staging.herokuapp.com/commande" %>
+<% content_for :og_title, "Alacaza | LES BLEUS EN ACTION, LES PIZZAS A LA MAISON !" %>
+<% content_for :og_description, "Pour soutenir les Bleus* la pizzeria THE ART vous propose en exclusivité ses magnifiques pizzas, ses fabuleuses crèpes salées et sucrées et son merveilleux Tiramisu maison ! " %>
+<% content_for :canonical, commande_path %>
+
+<div class="container">
+<div class="button-order show-sm">
+  <%= image_tag ("theart/button.png") %>
+  <div class="cta">COMMANDER !</div>
+</div>
+  <div class="photos-container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="header">
+        <div class="row">
+          <div class="title text-center space-4">
+            Alacaza en partenariat avec <br>
+            <span>( The Art Pizzeria vous <strong>offre</strong> une <strong>boisson</strong> par pizza achetée !)</span>
+          </div>
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+              <div class="col-sm-3">
+                 <div class="logo"><%= image_tag ("theart/logo.jpg") %></div>
+              </div>
+              <div class="col-sm-8">
+                <div class="brand">
+                  <strong>The Art Pizzeria</strong>, <span class="address">Saint-Ouen</span>
+                  <%= link_to "https://www.tripadvisor.fr/Restaurant_Review-g227615-d8661951-Reviews-The_Art-Saint_Ouen_Seine_Saint_Denis_Ile_de_France.html", target: :blank do  %>
+                    <div class="trip">
+                      <%= image_tag ("theart/tripadvisor.jpg") %>
+                      <span>27 avis</span>
+                    </div>
+                    <% end %>
+                    <div class="review">
+                      "Pizzas excellentes, produits frais, très bonne accueil, je le recommande à tout le monde les yeux fermés !"
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="text-center">LE MENU</div>
+        <div class="row">
+          <div class="img-wrapper space-top-4 pizza-carousel">
+            <div class="col-sm-4 space-4">
+            <%= link_to "http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/pizzas_hkftbo.jpg" do %>
+              <%= image_tag ("http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/pizzas_hkftbo.jpg") %>
+            <% end %>
+            </div>
+            <div class="col-sm-4 space-4">
+              <%= link_to "http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/crepes_kimfit.jpg" do %>
+                <%= image_tag ("http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/crepes_kimfit.jpg") %>
+              <% end %>
+            </div>
+            <div class="col-sm-4 space-4">
+              <%= link_to "http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/drinks_adufl7.jpg" do %>
+                <%= image_tag ("http://res.cloudinary.com/dyp0skivf/image/upload/a_auto_right/v1468101026/drinks_adufl7.jpg") %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="text-center space-4 command-section">Votre commande</div>
+        <div class="row">
+          <%= simple_form_for @lead, defaults: {
+                                  input_wrapper_html: { class: "col-sm-12 space-4" },
+                                  input_html: { class: "col-sm-6 input-lg" } } do |f| %>
+            <div class="col-md-6 space-2">
+              <%= f.input :first_name, label: "Prénom", input_html: { value: current_user.first_name } %>
+            </div>
+
+            <div class="col-md-6 space-2">
+              <%= f.input :last_name, label: "Nom", input_html: { value: current_user.last_name}  %>
+            </div>
+
+            <div class="col-md-6 space-2">
+              <%= f.input :address, label: "Adresse", input_html: { value: current_user.building.address}  %>
+            </div>
+
+            <div class="col-md-6 space-2">
+              <%= f.input :code, label: "Code d'accés au batiment", input_html: { value: current_user.building_access}   %>
+            </div>
+
+            <div class="col-md-6 space-2">
+              <%= f.input :phone, label: "Téléphone" %>
+            </div>
+
+            <div class="col-md-6 space-2">
+              <%= f.input :floor, label: "Numéro d'étage et d'appartement" %>
+            </div>
+
+            <div class="col-md-12 space-4">
+              <%= f.input :command, label: "Votre commande", input_html: { placeholder: "Ex: 1 pizza marguerite avec un coca et 1 pizza swift avec un sprite"}  %>
+            </div>
+
+            <div class="informations space-1 col-sm-12">
+              Informations
+              <ul class="list-unstyled">
+                <li> &#9679; Minumum de 15euros d'achat</li>
+                <li> &#9679; La boisson offerte (des sodas). Sont exclus Redbull, Granini, Bière sans alcool</li>
+                <li> &#9679; Pour bénificier de l'offre boissons, la commande doit être passée avant 19h45</li>
+                <li> &#9679; Paiement en carte bleue ou espèces lors de la livraison</li>
+                <li> &#9679; Livraison entre 20h et 21h00</li>
+              </ul>
+            </div>
+
+            <%= f.submit "Valider ma commande", class: "btn btn-secondary btn-lg col-md-12 space-4" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

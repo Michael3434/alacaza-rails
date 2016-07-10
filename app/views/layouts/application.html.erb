@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alacaza | Messagerie interne dédiée à votre immeuble</title>
+  <title><%= yield(:title) %></title>
+  <meta name="description" content="<%= yield(:description) %>">
   <!-- Dont index these pages on search engines -->
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
@@ -17,7 +18,7 @@
     <%= stylesheet_link_tag 'ie9' %>
   <![endif]-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <%= stylesheet_link_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" %>
   <%= csrf_meta_tags %>
 
   <% if Rails.env == "development" %>
@@ -27,7 +28,11 @@
   <% end %>
 
   <% if content_for?(:og_url) %>
-  <%= render "layouts/facebook_og" %>
+    <%= render "layouts/facebook_og" %>
+  <% end %>
+
+  <% if content_for?(:canonical) %>
+  <link rel="canonical" href="http://<%= request.host + yield(:canonical) %>">
   <% end %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">

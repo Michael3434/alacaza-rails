@@ -29,6 +29,23 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def new_lead(lead)
+      message = "Nouvelle commande"
+      options = {
+        channel: "#pizzas",
+        attachments: [
+          { title: "Prénom", text: lead.first_name },
+          { title: "Nom", text: lead.last_name },
+          { title: "Téléphone", text: lead.phone },
+          { title: "Adresse", text: lead.address },
+          { title: "Etage et porte", text: lead.floor },
+          { title: "Code", text: lead.code },
+          { title: "La commande", text: lead.command }
+        ]
+      }
+      notify(message, options)
+    end
+
     private
 
     def slack

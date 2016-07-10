@@ -6,6 +6,7 @@ class SlackNotifierWorker
     message = Message.where(id: params["message_id"]).first
     user = User.where(id: params["user_id"]).first
     comment = Comment.where(id: params["comment_id"]).first
+    lead = Lead.where(id: params["lead_id"]).first
 
     case method
     when "new_message"
@@ -16,6 +17,8 @@ class SlackNotifierWorker
       arguments = [user]
     when "new_user"
       arguments = [user]
+    when "new_lead"
+      arguments = [lead]
     end
 
     Notifier.send(method, *arguments)
