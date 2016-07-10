@@ -38,10 +38,16 @@
       text-align: center;
     }
     .brand {
+      .trip {
+        position: relative;
+        top: -5px;
+      }
       font-size: 18px;
       margin-left: 24px;
       .review {
+        position: relative;
         font-size: 10px;
+        top: -5px;
         font-style: italic;
         @include bp-small {
           font-size: 16px;

@@ -1,4 +1,5 @@
 class LeadsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @lead = Lead.new(lead_params)
     if @lead.save
