@@ -30,6 +30,10 @@
   <% if content_for?(:og_url) %>
     <%= render "layouts/facebook_og" %>
   <% end %>
+
+  <% if content_for?(:canonical) %>
+  <link rel="canonical" href="http://<%= request.host + yield(:canonical) %>">
+  <% end %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
   <% if current_user.try(:admin) %>
