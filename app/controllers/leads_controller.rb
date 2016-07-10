@@ -1,10 +1,8 @@
 class LeadsController < ApplicationController
-  before_action :authenticate_user!
   def create
     @lead = Lead.new(lead_params)
     if @lead.save
-      @building = current_user.building
-      redirect_to sent_leads_path(@building.slug)
+      redirect_to sent_leads_path
       SlackNotifierWorker.perform_async(:new_lead, lead_id: @lead.id)
     else
       render 'new'
@@ -16,7 +14,7 @@ class LeadsController < ApplicationController
   end
 
   def sent
-    @building = current_user.building
+    @building = current_user.building if current_user
   end
 
   private

@@ -69,19 +69,19 @@
                                   input_wrapper_html: { class: "col-sm-12 space-4" },
                                   input_html: { class: "col-sm-6 input-lg" } } do |f| %>
             <div class="col-md-6 space-2">
-              <%= f.input :first_name, label: "Prénom", input_html: { value: current_user.first_name } %>
+              <%= f.input :first_name, label: "Prénom", input_html: { value: (current_user.first_name if current_user )} %>
             </div>
 
             <div class="col-md-6 space-2">
-              <%= f.input :last_name, label: "Nom", input_html: { value: current_user.last_name}  %>
+              <%= f.input :last_name, label: "Nom", input_html: { value: ( current_user.last_name if current_user ) }  %>
             </div>
 
             <div class="col-md-6 space-2">
-              <%= f.input :address, label: "Adresse", input_html: { value: current_user.building.address}  %>
+              <%= f.input :address, label: "Adresse", input_html: { value: (current_user.building.address if current_user)}  %>
             </div>
 
             <div class="col-md-6 space-2">
-              <%= f.input :code, label: "Code d'accés au batiment", input_html: { value: current_user.building_access}   %>
+              <%= f.input :code, label: "Code d'accés au batiment" %>
             </div>
 
             <div class="col-md-6 space-2">
