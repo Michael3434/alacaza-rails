@@ -5,19 +5,13 @@
   <div class="scroll-container">
     <div class="row">
       <div class="messages-container">
-        <div class="button-order">
-          <%= link_to commande_path do %>
-            <%= image_tag ("theart/button.png") %>
-            <div class="cta">COMMANDER !</div>
+        <div class="infos-channel">
+          <% if @channel.private? %>
+            <%= render "buildings/private_channel_info" %>
+          <% elsif @channel.group? %>
+            <%= render "buildings/group_channel_info" %>
           <% end %>
         </div>
-      <div class="infos-channel">
-        <% if @channel.private? %>
-          <%= render "buildings/private_channel_info" %>
-        <% elsif @channel.group? %>
-          <%= render "buildings/group_channel_info" %>
-        <% end %>
-      </div>
 
         <% @messages.order(created_at: :asc).each do |message| %>
           <div class="message-wrapper">
