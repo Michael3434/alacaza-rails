@@ -47,6 +47,15 @@ class User < ActiveRecord::Base
     UserChannel.create(user: self, channel: channel)
   end
 
+  def buildings_associate
+    case self.email
+    when "pierre@gmail.com"
+      Building.where(slug: Building::PIERRE)
+    else
+      Building.all
+    end
+  end
+
   def private_channel_with(other_user)
     user_channels = self.private_channels.pluck(:channel_id)
     other_user_channels = other_user.private_channels.pluck(:channel_id)

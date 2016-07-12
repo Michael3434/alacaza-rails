@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alacaza | Messagerie interne dédiée à votre immeuble</title>
+  <!-- Dont index these pages on search engines -->
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css' %>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+  <!--[if lte IE 9]>
+    <%= stylesheet_link_tag 'ie9' %>
+  <![endif]-->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <% if content_for?(:og_url) %>
+  <%= render "layouts/facebook_og" %>
+  <% end %>
+</head>
+<body class="gardien <%= controller_name %> <%= action_name %>">
+  <%= render 'layouts/gardien_navbar' %>
+  <%= yield %>
+
+  <div id="users_modal_container">
+    <% if !user_signed_in? %>
+      <%= render "users/signup_modal" %>
+      <%= render "users/signin_modal" %>
+    <% end %>
+  </div>
+
+  <% if Rails.env == "development" %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_DEV"] } %>
+  <% else %>
+    <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_PROD"] } %>
+  <% end %>
+</body>
+</html>

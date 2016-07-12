@@ -1,0 +1,18 @@
+<% content_for :title, "Notify buildings" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    <h2 class="text-center">Gestion des colis  <%= image_tag ("colis.png") %></h2>
+    <div class="text-center space-4">
+
+    </div>
+      <%= simple_form_for :admin, url: gardien_notify_buildings_path, method: :post do |f| %>
+        <label>Séléctionnez les résidents qui on reçu un nouveau colis</label>
+        <%= f.input :recipients_buildings, label: false, collection: users_associate(current_user), input_html: { multiple: true, class: "js-multiple-select-users", name: "recipients_buildings[]" } %>
+        <label>Contenu du message</label>
+        <%= f.input :body, label: false, input_html: { name: "body", id: "message_body"}, as: :text %>
+        <%= f.submit "Envoyer", class: "btn btn-secondary text-right" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -13,13 +13,25 @@ mount Sidekiq::Web => '/sidekiq'
       get "/sent", to: "leads#sent"
     end
   end
+  namespace :gardien do
+    resources :messages
+    resources :buildings do
+      resources :channels
+    end
+    scope "immeubles" do
+      get "/:slug(/:channel)", to: "buildings#show", as: :appartments
+    end
+    get "/colis_notifier", to: "messages#colis_notifier"
+    get "/notify_users", to: "messages#notify_users"
+    get "/message_notifier", to: "messages#message_notifier"
+    post "/notify_buildings", to: "messages#notify_buildings"
+  end
   post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do
+    resources :messages
     resources :users
     get "/notifier", to: "messages#notifier"
     post "/notify_buildings", to: "messages#notify_buildings"
-    resources :messages do
-    end
   end
   resources :buildings do
     resources :channels
