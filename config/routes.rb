@@ -30,7 +30,10 @@ mount Sidekiq::Web => '/sidekiq'
     get "/:slug(/:channel)", to: "buildings#show", as: :appartments
   end
 
-  resources :messages
+  resources :messages do
+    post "add_like", to: "messages#add_like"
+    post "remove_like", to: "messages#remove_like"
+  end
 
   Rails.application.routes.url_helpers.module_eval do
     def building_path(building)

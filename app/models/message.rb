@@ -9,8 +9,10 @@ class Message < ActiveRecord::Base
 
   validate :file_size, if: "photo"
 
+  serialize :users_like_id, Array
+
   def file_size
-    return true unless photo.file
+    return true if !photo.file || self.persisted?
     if photo.file.size.to_f/(1000*1000) > 10
       errors.add(:photo_size, "Votre ficher dépasse les 10Mo")
     end

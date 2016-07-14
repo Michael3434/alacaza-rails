@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709210306) do
+ActiveRecord::Schema.define(version: 20160714185724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160709210306) do
     t.integer  "channel_id"
     t.string   "photo"
     t.string   "original_filename"
+    t.text     "users_like_id"
   end
 
   create_table "user_channels", force: :cascade do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160709210306) do
     t.boolean  "admin",                  default: false
     t.string   "token"
     t.boolean  "gardien",                default: false
+    t.string   "pseudo"
   end
 
   add_index "users", ["building_id"], name: "index_users_on_building_id", using: :btree

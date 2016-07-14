@@ -9,6 +9,12 @@ app.buildings.show =
       @initNewMessageModal()
       @initFile()
       @removeImgOnHideModal()
+      @showReactionOnOverMessage()
+    showReactionOnOverMessage: ->
+      $('.message-content').mouseenter ->
+        $(this).find('.reaction-container').show()
+      $('.message-content').mouseleave ->
+        $(this).find('.reaction-container').hide()
     removeImgOnHideModal: ->
       $("#new-photo_modal").on "hide.bs.modal", ->
         $('#upload_image_preview img').attr('src', "").attr("style", "")
