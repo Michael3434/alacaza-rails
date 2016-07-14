@@ -11,6 +11,12 @@
   // Resize the input text area to default
   $('textarea').css('height', "42px")
 
+  // Disabel false  submit
+  button = $('form#new_message').find("button[type='submit']")
+  button.prop('disabled', false)
+  button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+
+
   <% if @message.photo.present? %>
     $('.progress_bar_progress_thin').remove()
     $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
@@ -28,7 +34,6 @@
       "user_id": <%= @message.user.id %>,
       "Immeuble": <%= @message.user.building_id %>
   })
-
   messageTop = $('.msg-container').last().offset().top
   $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
   $('#message_body').val("")

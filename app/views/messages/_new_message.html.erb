@@ -1,4 +1,4 @@
-<%= simple_form_for Message.new, remote: true, data: { spinnable: true } do |f| %>
+<%= simple_form_for Message.new, remote: true do |f| %>
 	<%= f.hidden_field :channel_id, value: @channel.id %>
 	<%= f.hidden_field :building_id, value: @building.id %>
   <div class="input-body">
