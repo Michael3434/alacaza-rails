@@ -16,8 +16,8 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Nouveau colis", gardien_colis_notifier_path %></li>
-        <li><%= link_to "Envoi de messages", gardien_message_notifier_path %></li>
+      <li><%= link_to "Nouveau colis", gardien_notify_colis_path %></li>
+        <li><%= link_to "Envoi de messages", gardien_notify_message_path %></li>
         <li ><%= link_to "Mes immeubles", gardien_appartments_path(current_user.buildings_associate.first.slug) %></li>
         <li><span>Logged in as <%= current_user.first_name %></span></li>
         <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>

@@ -21,10 +21,10 @@ mount Sidekiq::Web => '/sidekiq'
     scope "immeubles" do
       get "/:slug(/:channel)", to: "buildings#show", as: :appartments
     end
-    get "/colis_notifier", to: "messages#colis_notifier"
-    get "/notify_users", to: "messages#notify_users"
-    get "/message_notifier", to: "messages#message_notifier"
+    get "/notify_message", to: "messages#notify_message"
+    get "/notify_colis", to: "messages#notify_colis"
     post "/notify_buildings", to: "messages#notify_buildings"
+    post "/notify_users", to: "messages#notify_users"
   end
   post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do

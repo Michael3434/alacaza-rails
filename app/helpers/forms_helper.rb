@@ -3,7 +3,7 @@ module FormsHelper
     if authority
       buildings = authority.buildings_associate
     else
-      buildings = Bulding.all
+      buildings = Building.all
     end
     buildings.all.map do |building|
       [building.name, building.id]
@@ -12,8 +12,12 @@ module FormsHelper
 
   def users_associate(authority)
     users = authority.buildings_associate.map(&:users).map do |user|
-      user.map { |user| [user.name, user.id] }
+      user.map { |user| ["#{user.name} - #{user.building.name}", user.id] }
     end
     users.inject(&:|)
+  end
+
+  def placeholder_for_colis
+    ""
   end
 end

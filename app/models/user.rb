@@ -75,4 +75,12 @@ class User < ActiveRecord::Base
     channels.where(channel_type: ["group", "main_group"])
   end
 
+  def build_colis_message
+    "Bonjour #{name}
+    Je vous informe que votre colis a bien été réceptionné dans votre immeuble du #{building.address}.
+    Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).
+    Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.
+    Pierre, votre gardien-régisseur d'immeuble"
+  end
+
 end
