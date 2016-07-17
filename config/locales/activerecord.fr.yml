@@ -11,11 +11,10 @@ fr:
           last_name: Nom
           command: Votre commande
           phone: Téléphone
-      errors:
-        models:
-          user:
-            attributes:
-              email:
-                blank: "Ce champ est obligatoire"
-                not_found: "Cette email n'est pas valide"
-
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Ce champ est obligatoire"
+              not_found: "Cette email n'est pas valide"
