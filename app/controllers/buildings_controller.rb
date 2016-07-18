@@ -11,7 +11,6 @@ class BuildingsController < ApplicationController
     if @building.nil? && @channel.nil?
       render status: :not_found, text: "Not Found."
     elsif current_user.admin
-      true
       @channel = @channel || Channel.where(building_id: @building.id, channel_type: "main_group").last
     elsif @building && user_belongs_to_building?(@building) && @channel.nil?
       @channel = Channel.where(building_id: @building.id, channel_type: "main_group").last
@@ -22,7 +21,10 @@ class BuildingsController < ApplicationController
     unless Rails.env == "development"
       SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
     end
-    @messages = @channel.messages.includes(:user) if @channel
+    if @channel
+      @messages = @channel.messages.includes(:user)
+      @channel.mark_as_seen_by(current_user)
+    end
   end
 
   private

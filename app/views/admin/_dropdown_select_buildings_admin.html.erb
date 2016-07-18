@@ -5,7 +5,7 @@
   </button>
   <ul class="dropdown-menu building-dropdown" aria-labelledby="dropdownMenu1">
     <% Building.all.each do |building| %>
-      <li><%= link_to building.name, appartments_path(building.slug)  %></li>
+      <li><%= link_to building.name, appartments_path(building.slug, building.main_channel)  %></li>
     <% end %>
   </ul>
 </div>

@@ -13,4 +13,9 @@ class Building < ActiveRecord::Base
 
   has_many :users
   has_many :messages
+  has_many :channels
+
+  def main_channel
+    channels.where(channel_type: "main_group").last
+  end
 end

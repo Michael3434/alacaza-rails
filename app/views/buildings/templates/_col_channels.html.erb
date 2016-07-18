@@ -5,21 +5,35 @@
   <div class="group-channels">
     <% if current_user.admin %>
       <%= render 'admin/dropdown_select_buildings_admin' %>
-    <% elsif current_user.gardien %>
-      <%= render 'gardien/dropdown_select_buildings_gardien' %>
-    <% end %>
-    <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
-    <div class="list">
-      <ul class="list-unstyled">
-        <% current_user.group_channels.each do |channel| %>
-         <%= link_to appartments_path(@building.slug, channel) do %>
-            <li class="<%= get_current_channel(channel) %>">
-                <span class="channel-name">#&nbsp;<%=channel.name %></span>
+      <div class="list">
+        <ul class="list-unstyled">
+           <%= link_to appartments_path(@building.slug, @building.main_channel) do %>
+            <li class="<%= get_current_channel(@building.main_channel) %>">
+              <% if @building.main_channel.messages_unseen_by(current_user) > 0 %>
+                <span class="badge candy_red_bg"><%= @building.main_channel.messages_unseen_by(current_user) %></span>
+              <% end %>
+              <span class="channel-name">#&nbsp;<%= @building.main_channel.name %></span>
             </li>
           <% end %>
-        <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    <% else %>
+      <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
+      <div class="list">
+        <ul class="list-unstyled">
+          <% current_user.group_channels.each do |channel| %>
+           <%= link_to appartments_path(@building.slug, channel) do %>
+              <li class="<%= get_current_channel(channel) %>">
+              <% if channel.messages_unseen_by(current_user) > 0 %>
+                <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
+              <% end %>
+              <span class="channel-name">#&nbsp;<%=channel.name %></span>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
   <div class="private-channels">
     <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
@@ -28,7 +42,10 @@
         <% current_user.private_channels.each do |channel| %>
           <%= link_to appartments_path(@building.slug, channel) do %>
             <li class="<%= get_current_channel(channel) %>">
-                <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
+              <% if channel.messages_unseen_by(current_user) > 0 %>
+                <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
+              <% end %>
+              <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
             </li>
           <% end %>
         <% end %>

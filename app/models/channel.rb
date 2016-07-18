@@ -15,13 +15,17 @@ class Channel < ActiveRecord::Base
   	channel_type.in?(["group","main_group"])
   end
 
+  def user_channel_with(user)
+    user_channels.where(channel_id: id, user_id: user.id).last
+  end
+
   def messages_unseen_by(user)
-    user_channels.where(channel_id: id, user_id: user.id).last.messages_unseen
+    messages.where.not(user_id: user.id).count - ( user_channel_with(user).messages_seen || 0)
   end
 
   def mark_as_seen_by(user)
-    user_channel = user_channels.where(channel_id: id, user_id: user.id).last
-    user_channel.update(messages_unseen: messages.count)
+    user_channel = user_channel_with(user)
+    user_channel.update(messages_seen: messages.where.not(user_id: user.id).count)
   end
 
   def self.main_groups
