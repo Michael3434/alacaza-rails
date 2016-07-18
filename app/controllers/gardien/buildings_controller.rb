@@ -10,5 +10,6 @@ class Gardien::BuildingsController < GardienController
     end
     @channel = @channel || Channel.where(building_id: @building.id, channel_type: "main_group").last
     @messages = @channel.messages.includes(:user) if @channel
+    @channel.mark_as_seen_by(current_user)
   end
 end

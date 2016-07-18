@@ -14,7 +14,8 @@
         <% current_user.group_channels.each do |channel| %>
          <%= link_to gardien_appartments_path(@building.slug, channel) do %>
             <li class="<%= get_current_channel(channel) %>">
-                <span class="channel-name">#&nbsp;<%=channel.name %></span>
+              <span class="badge candy_red_bg">1</span>
+              <span class="channel-name">#&nbsp;<%=channel.name %></span>
             </li>
           <% end %>
         <% end %>
@@ -28,7 +29,8 @@
         <% current_user.private_channels.each do |channel| %>
           <%= link_to gardien_appartments_path(@building.slug, channel) do %>
             <li class="<%= get_current_channel(channel) %>">
-                <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
+              <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
+              <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
             </li>
           <% end %>
         <% end %>

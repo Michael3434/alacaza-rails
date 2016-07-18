@@ -2,9 +2,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-    <h2 class="text-center">Gestion des colis  <%= image_tag ("colis.png") %></h2>
-    <div class="text-center space-4">
-    </div>
+      <%= flash_messages %>
+      <h2 class="text-center">Gestion des colis  <%= image_tag ("colis.png") %></h2>
       <%= simple_form_for :admin, url: gardien_notify_users_path, method: :post do |f| %>
         <div class="row">
           <div class="col-md-7">

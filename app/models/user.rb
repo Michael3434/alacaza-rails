@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     other_user_channels = other_user.private_channels.pluck(:channel_id)
     channel = (user_channels & other_user_channels)
     if channel.any?
-      channel
+      Channel.find(channel.first)
     else
       false
     end
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
   end
 
   def build_colis_message
-    "Bonjour #{name}
+    "Bonjour #{first_name}
     Je vous informe que votre colis a bien été réceptionné dans votre immeuble du #{building.address}.
     Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).
     Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.
