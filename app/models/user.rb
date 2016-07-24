@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   def buildings_associate
     case self.email
-    when "pierre@gmail.com"
+    when ENV["PIERRE_EMAIL"]
       Building.where(slug: Building::PIERRE)
     else
       Building.all
