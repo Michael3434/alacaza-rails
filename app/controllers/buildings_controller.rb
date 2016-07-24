@@ -1,7 +1,7 @@
 class BuildingsController < ApplicationController
   before_action :sign_in_user_from_token, only: [:show]
   before_action :authenticate_user!
-  before_action :redirect_to_if_gardien
+
   def index
   end
 
@@ -51,9 +51,4 @@ class BuildingsController < ApplicationController
     building.id == current_user.building_id
   end
 
-  def redirect_to_if_gardien
-    if current_user.gardien
-      redirect_to gardien_appartments_path(current_user.building.slug)
-    end
-  end
 end
