@@ -47,12 +47,21 @@ class User < ActiveRecord::Base
     UserChannel.create(user: self, channel: channel)
   end
 
+  def buildings_associate
+    case self.email
+    when ENV["PIERRE_EMAIL"]
+      Building.where(slug: Building::PIERRE)
+    else
+      Building.all
+    end
+  end
+
   def private_channel_with(other_user)
     user_channels = self.private_channels.pluck(:channel_id)
     other_user_channels = other_user.private_channels.pluck(:channel_id)
     channel = (user_channels & other_user_channels)
     if channel.any?
-      channel
+      Channel.find(channel.first)
     else
       false
     end
@@ -64,6 +73,14 @@ class User < ActiveRecord::Base
 
   def group_channels
     channels.where(channel_type: ["group", "main_group"])
+  end
+
+  def build_colis_message
+    "Bonjour #{first_name}
+    Je vous informe que votre colis a bien été réceptionné dans votre immeuble du #{building.address}.
+    Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).
+    Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.
+    Pierre, votre gardien-régisseur d'immeuble"
   end
 
 end

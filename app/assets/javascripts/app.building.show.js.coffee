@@ -3,7 +3,6 @@ app.buildings.show =
     init: ->
       @disableSubmitButton()
       @scrollOnloadPage()
-      @logOnMixpanel()
       @initMessageGenerator()
       @initSideBar()
       @initNewMessageModal()
@@ -73,8 +72,6 @@ app.buildings.show =
       $('.modal-bg').on "click", (e) ->
         $('.col-channels').hide("slide", { direction: "left" }, 200)
         $('.modal-bg').addClass('hidden')
-    logOnMixpanel: ->
-      mixpanel.track 'Page vue', 'Page': 'Messagerie'
     scrollOnloadPage: ->
       messageTop = $('.msg-container').last().offset()
       if messageTop != undefined

@@ -3,6 +3,9 @@ if typeof($.fn.select2) != "undefined"
   $(document).on "ready page:load", ->
     $(".js-multiple-select").select2({
       placeholder: "Ajoutez votre liste d'immeuble à notifier"
+    })
+    $(".js-multiple-select-users").select2({
+      placeholder: "Ajoutez à votre liste des résidents"
       })
     $(".js-example-basic-single").select2({
       minimumResultsForSearch: Infinity,

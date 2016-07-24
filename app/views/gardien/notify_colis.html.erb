@@ -1,0 +1,34 @@
+<% content_for :title, "Notify buildings" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= flash_messages %>
+      <h2 class="text-center">Gestion des colis  <%= image_tag ("colis.png") %></h2>
+      <%= simple_form_for :admin, url: gardien_notify_users_path, method: :post do |f| %>
+        <div class="row">
+          <div class="col-md-7">
+            <div class="left-col">
+              <h4 class="space-4 space-top-2 text-center">Le message envoyé <br> <small>(ceci est un exemple et s'adaptera à chaque résident en fonction de leur nom et de leur addresse)</small> </h4>
+              <div class="message-container space-4">
+                  <p> Bonjour Julien</p>
+                  <p>Je vous informe que votre colis a bien été réceptionné dans votre immeuble du 10 rue des Bateliers, 93400 Saint-Ouen</p>
+                  <p>Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).</p>
+                  <p>Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.</p>
+                  <p>Pierre, votre gardien-régisseur d'immeuble</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="right-col">
+              <h4 class="space-4 space-top-4 text-center">Sélectionnez les résidents qui ont reçu un nouveau colis </h4>
+              <%= f.input :recipients_buildings, label: false, collection: users_associate(current_user), input_html: { multiple: true, class: "js-multiple-select-users", name: "users_id[]" } %>
+              <div class="text-center space-top-4 space-4">
+                <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
