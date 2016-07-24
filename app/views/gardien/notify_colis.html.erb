@@ -8,13 +8,20 @@
         <div class="row">
           <div class="col-md-7">
             <div class="left-col">
-              <h4 class="space-4 space-top-2 text-center">Le message envoyé <br> <small>(ceci est un exemple et s'adaptera à chaque résident en fonction de leur nom et de leur addresse)</small> </h4>
+              <h4 class="space-4 space-top-2 text-center">Le message envoyé <br> <small>(ceci est un exemple et s'adaptera à chaque résident en fonction de leur nom )</small> </h4>
               <div class="message-container space-4">
+              <% if current_user.pierre? %>
                   <p> Bonjour Julien</p>
                   <p>Je vous informe que votre colis a bien été réceptionné dans votre immeuble du 10 rue des Bateliers, 93400 Saint-Ouen</p>
                   <p>Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).</p>
                   <p>Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.</p>
                   <p>Pierre, votre gardien-régisseur d'immeuble</p>
+              <% elsif current_user.anabel? %>
+                <p> Bonjour Rémy</p>
+                <p>Je vous informe que votre colis a bien été réceptionné dans votre immeuble du 12 rue Jean Richepin, 75116 Paris</p>
+                <p>Vous pouvez le récupérer dans ma loge.</p>
+                <p>Anabel votre gardienne d'immeuble</p>
+              <% end %>
               </div>
             </div>
           </div>

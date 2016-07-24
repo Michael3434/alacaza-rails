@@ -31,7 +31,7 @@ class Gardien::MessagesController <  GardienController
     params[:recipients_buildings].reject(&:empty?).each do |building|
       building = Building.find(building)
       channel = Channel.where(building: building, channel_type: "main_group").last
-      user = User.find_by_email("hello@alacaza.fr")
+      user = current_user
       @message = Message.new(user: user, building_id: building.id, channel_id: channel.id, body: params[:body])
       if @message.save
         notifier_users(@message)

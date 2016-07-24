@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <%= flash_messages %>
       <%= simple_form_for :admin, url: gardien_notify_buildings_path, method: :post do |f| %>
         <label>Liste des bâtiments à notifier</label>
         <%= f.input :recipients_buildings, label: false, collection: buildings_collection(current_user), input_html: { multiple: true, class: "js-multiple-select", name: "recipients_buildings[]" } %>
