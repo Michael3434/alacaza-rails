@@ -21,7 +21,7 @@
     <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
     <div class="list">
       <ul class="list-unstyled">
-        <% current_user.private_channels.each do |channel| %>
+        <% current_user.private_channels.order(created_at: :asc).each do |channel| %>
           <%= link_to gardien_appartments_path(@building.slug, channel) do %>
             <li class="<%= get_current_channel(channel) %>">
               <% if channel.messages_unseen_by(current_user) > 0 %>

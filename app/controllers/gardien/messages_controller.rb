@@ -48,7 +48,7 @@ class Gardien::MessagesController <  GardienController
       User.all.where.not(id: @message.user.id).joins(:user_channels).where(user_channels: {channel_id: @message.channel_id }).each do |user|
         Mailer::UserMailerWorker.perform_async(:new_message, message_id: @message.id, user_id: user.id)
       end
-      SlackNotifierWorker.perform_async(:new_message, message_id: @message.id)
+      SlackNotifierWorker.perform_async(:new_message_from_gardien, message_id: @message.id)
     # end
   end
 

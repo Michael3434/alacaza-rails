@@ -13,11 +13,9 @@
           <% end %>
         </div>
 
-        <% @messages.order(created_at: :asc).each do |message| %>
-          <div class="message-wrapper">
-            <%= render "messages/message", message: message %>
-          </div>
-        <% end %>
+        <div class="message-wrapper">
+          <%= render partial: "messages/message", collection: @messages.order(created_at: :asc) %>
+        </div>
       </div>
     </div>
   </div>

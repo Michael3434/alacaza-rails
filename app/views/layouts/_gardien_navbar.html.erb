@@ -1,4 +1,4 @@
-<%= content_tag :nav, class: "admin navbar navbar-default" do %>
+<%= content_tag :nav, class: "gardien navbar navbar-default" do %>
   <div class="navbar-progress" style="display: none;">
     <span class="progress_bar_progress_thin"></span>
     <div class="progress-text">Fichier en cours de téléchargement...</div>
@@ -19,7 +19,7 @@
       <li><%= link_to "Nouveau colis", gardien_notify_colis_path %></li>
         <li><%= link_to "Envoi de messages", gardien_notify_message_path %></li>
         <li ><%= link_to "Mes immeubles", gardien_appartments_path(current_user.buildings_associate.first.slug) %></li>
-        <li><span>Logged in as <%= current_user.first_name %></span></li>
+        <li><span>Connecté en tant que <%= current_user.first_name %></span></li>
         <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
       </ul>
   </div>

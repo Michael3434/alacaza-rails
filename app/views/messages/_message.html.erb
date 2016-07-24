@@ -5,10 +5,10 @@
     </div>
   </div>
   <div class="message-content">
-  <% if current_user == message.user %>
-    <div class="message-sender">
-      <%= message.user.pseudo || message.user.name %>
-    </div>
+    <% if current_user == message.user %>
+      <div class="message-sender">
+        <%= message.user.pseudo || message.user.name %>
+      </div>
     <% elsif channel = current_user.private_channel_with(message.user) %>
       <%= link_to appartments_path(@building.slug, channel.id) do %>
       <div class="message-sender">
