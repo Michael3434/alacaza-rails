@@ -25,7 +25,9 @@ class Channel < ActiveRecord::Base
 
   def mark_as_seen_by(user)
     user_channel = user_channel_with(user)
-    user_channel.update(messages_seen: messages.where.not(user_id: user.id).count)
+    if user_channel
+      user_channel.update(messages_seen: messages.where.not(user_id: user.id).count)
+    end
   end
 
   def self.main_groups
