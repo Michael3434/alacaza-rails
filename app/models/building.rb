@@ -9,6 +9,7 @@ class Building < ActiveRecord::Base
       8-allee-de-paris
       10-rue-des-bateliers
     )
+  ANABEL = %w(12-rue-jean-richepin)
 
 
   has_many :users
