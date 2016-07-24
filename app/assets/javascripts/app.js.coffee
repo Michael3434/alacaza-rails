@@ -2,8 +2,6 @@ window.app ||= {}
 
 # Write here application wide javascript code
 app.init = ->
-  console.log "Init app.js"
-
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->
@@ -21,6 +19,12 @@ app.init = ->
   $("[data-spinnable=true]").each (i, el) ->
     spinnable = new Spinnable($(el))
     spinnable.init()
+  $('.col-channels a').on "click", ->
+    $('.scroll-container').css('opacity', "0")
+    $('#loader').show()
+    if screen.width <= 766
+      $('.col-channels').hide()
+      $('.modal-bg').hide()
 
 
 $(document).on "ready page:load", ->

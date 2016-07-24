@@ -23,6 +23,12 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def new_message_from_gardien(new_message)
+      user = new_message.user
+      message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"
+      notify(message, { channel: "#gardien" })
+    end
+
     def new_comment(new_comment)
       user = new_comment.user
       message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un commentaire : #{new_comment.body}"

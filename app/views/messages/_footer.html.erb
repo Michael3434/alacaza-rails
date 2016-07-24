@@ -3,21 +3,13 @@
     <div class="new-message-container">
       <div class="options-messages">
         <div class="dropup">
-          <i class="ion-camera icon-camera icon dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <i class="ion-plus-round icon-camera icon dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <% if current_user.gardien %>
-              <% generate_button.each do |name, slug| %>
-                <li class="btn-generator" data-generator-id=<%= slug %>>
-                  <a href="#"><%= name %></a>
-                </li>
-              <% end %>
-            <% else %>
             <li class="upload-file">
               <%= simple_form_for Message.new, remote: true, data: { spinnable: true } do |f| %>
                 <%= f.input :photo, label: "Télécharger un fichier", cloudinary: {use_filename: true} %>
               <% end %>
             </li>
-            <% end %>
           </ul>
         </div>
       </div>

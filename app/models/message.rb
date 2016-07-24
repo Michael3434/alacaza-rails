@@ -17,4 +17,9 @@ class Message < ActiveRecord::Base
       errors.add(:photo_size, "Votre ficher dépasse les 10Mo")
     end
   end
+
+  def tag_as_seen_by(user)
+    seen_by << user.id
+    save
+  end
 end

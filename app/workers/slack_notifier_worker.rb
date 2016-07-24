@@ -11,6 +11,8 @@ class SlackNotifierWorker
     case method
     when "new_message"
       arguments = [message]
+    when "new_message_from_gardien"
+      arguments = [message]
     when "new_comment"
       arguments = [comment]
     when "new_message_page_view"
