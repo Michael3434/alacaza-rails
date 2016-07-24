@@ -6,7 +6,7 @@ class Admin::BuildingsController < AdminController
       render status: :not_found, text: "Not Found."
     end
     unless Rails.env == "development"
-      SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
+      # SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
     end
     @messages = @channel.messages.includes(:user) if @channel
   end

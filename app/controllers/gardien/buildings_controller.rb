@@ -6,7 +6,7 @@ class Gardien::BuildingsController < GardienController
       render status: :not_found, text: "Not Found."
     end
     unless Rails.env == "development"
-      SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
+      # SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
     end
     @channel = @channel || Channel.where(building_id: @building.id, channel_type: "main_group").last
     @messages = @channel.messages.includes(:user) if @channel
