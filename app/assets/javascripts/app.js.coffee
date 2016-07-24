@@ -19,6 +19,9 @@ app.init = ->
   $("[data-spinnable=true]").each (i, el) ->
     spinnable = new Spinnable($(el))
     spinnable.init()
+  $('.col-channels a').on "click", ->
+    $('.scroll-container').css('opacity', "0")
+    $('#loader').show()
 
 
 $(document).on "ready page:load", ->
