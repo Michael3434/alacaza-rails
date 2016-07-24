@@ -1,0 +1,37 @@
+<div class="building-information">
+  <div class="name"><%= @building.name %></div>
+</div>
+<div class="scroll-channels">
+  <div class="group-channels">
+    <%= render 'gardien/dropdown_select_buildings_gardien' %>
+    <div class="list">
+      <ul class="list-unstyled">
+         <%= link_to gardien_appartments_path(@building.slug, @building.main_channel) do %>
+          <li class="<%= get_current_channel(@building.main_channel) %>">
+            <% if @building.main_channel.messages_unseen_by(current_user) > 0 %>
+              <span class="badge candy_red_bg"><%= @building.main_channel.messages_unseen_by(current_user) %></span>
+            <% end %>
+            <span class="channel-name">#&nbsp;<%= @building.main_channel.name %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="private-channels">
+    <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
+    <div class="list">
+      <ul class="list-unstyled">
+        <% current_user.private_channels.order(created_at: :asc).each do |channel| %>
+          <%= link_to gardien_appartments_path(@building.slug, channel) do %>
+            <li class="<%= get_current_channel(channel) %>">
+              <% if channel.messages_unseen_by(current_user) > 0 %>
+                <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
+              <% end %>
+              <span class="channel-name">#&nbsp;<%= not_current_user(channel).name %></span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

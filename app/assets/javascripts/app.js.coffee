@@ -2,8 +2,6 @@ window.app ||= {}
 
 # Write here application wide javascript code
 app.init = ->
-  console.log "Init app.js"
-
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->

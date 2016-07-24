@@ -1,0 +1,11 @@
+<div class="dropdown space-2">
+  <button class="btn btn-default dropdown-toggle btn-dropdown-buildings" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <%= @building.name %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu building-dropdown" aria-labelledby="dropdownMenu1">
+    <% current_user.buildings_associate.each do |building| %>
+      <li><%= link_to building.name, gardien_appartments_path(building.slug, building.main_channel)  %></li>
+    <% end %>
+  </ul>
+</div>

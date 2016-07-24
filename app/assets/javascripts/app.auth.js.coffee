@@ -31,7 +31,10 @@ app.auth =
       $(this).closest(".modal").modal("hide")
       $('.signout').removeClass('hidden')
       $('.signin').addClass('hidden')
-      url = window.location.pathname + "immeubles/" + data.building_slug
+      if data.gardien
+        url = window.location.pathname + "gardien/immeubles/" + data.building_slug
+      else
+        url = window.location.pathname + "immeubles/" + data.building_slug
       window.location.replace(url)
   signup:
     init: ->

@@ -1,0 +1,70 @@
+<% content_for :title, "Alacaza | La première messagerie entièrement dédié à la vie de votre immeuble " %>
+<% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
+
+<div class="client-ui">
+  <div class="scroll-container">
+    <div class="row">
+      <div class="messages-container">
+        <div class="infos-channel">
+          <% if @channel.private? %>
+            <%= render "buildings/templates/private_channel_info" %>
+          <% elsif @channel.group? %>
+            <%= render "buildings/templates/group_channel_info" %>
+          <% end %>
+        </div>
+
+        <% @messages.order(created_at: :asc).each do |message| %>
+          <div class="message-wrapper">
+            <%= render "messages/message", message: message %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-channels">
+    <%= render "buildings/templates/col_channels" %>
+  </div>
+  <div class="modal-bg hidden"></div>
+  <%= render "messages/footer" %>
+</div>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
+  <div class="user-infos text-center">
+    <div class="user-icon">
+      <%= image_tag (""), class: "member-image" %>
+    </div>
+    <span class="user-name">Michael</span>
+    <%= simple_form_for [@building, Channel.new] do |f| %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :channel_type, value: "private" %>
+      <%= f.hidden_field :building_id, value: @building.id %>
+      <%= button_tag "Envoyer un message privé", class: "btn btn-secondary space-top-2" %>
+    <% end %>
+  </div>
+<% end %>
+
+
+<div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        <p class="modal-title">Télécharger une image ?</span></p>
+      </div>
+      <div class="modal-body">
+      <div id="upload_image_preview" class="space-2">
+        <%= image_tag ("") %> <br>
+        <div class="title"></div>
+      </div>
+      <label class="space-top-2">Votre message <span class="hint">(Optionnel)</span> </label>
+      <div class="body-form form-group">
+        <%= text_area :message, :body, class: "form-control", id: "body-from-file" %>
+      </div>
+      <div class="text-right">
+        <%= button_tag "Envoyer", class: "btn btn-secondary new-photo" %>
+        <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
+      </div>
+    </div>
+  </div>
+</div>
+

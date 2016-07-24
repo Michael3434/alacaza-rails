@@ -1,9 +1,12 @@
 module MailersHelper
   extend self
   def extracted_body_for_email(message)
-    message.gsub!(/\r\n?/, "")
-    return message if message.length <= 130
-    regex = message.match(/(?<extract>\A(.){100}\S*)/)
-    regex["extract"] + "..."
+    extract = message.gsub(/(\r|\n)+/, " ")
+    if extract.length <= 200
+      extract
+    else
+      regex = extract.match(/(\A.{230}\S*)/)
+      regex.captures.first + "..."
+    end
   end
 end
