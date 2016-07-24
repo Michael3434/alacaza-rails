@@ -16,6 +16,7 @@ require 'carrierwave'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module CohomeRails
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -31,7 +32,8 @@ module CohomeRails
     config.i18n.default_locale = :fr
 
     config.middleware.delete Rack::Lock
-    # config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/services)

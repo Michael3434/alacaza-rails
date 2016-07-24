@@ -4,9 +4,16 @@ ruby '2.2.3'
 
 gem 'rails', '4.2.4'
 
-# Live message system
-# gem 'faye-rails', '~> 2.0'
+gem 'faye-rails', '~> 2.0'
 gem 'thin'
+
+## BACK END ##
+gem 'pg'
+gem 'slack-notifier'
+
+# Select2 - multiple select boxes
+  gem 'select2-rails'
+
 
 gem 'has_secure_token'
 
@@ -20,12 +27,6 @@ gem 'redis'
 # Needed to build the Sidekiq web interface
 gem 'sinatra', :require => nil
 
-## BACK END ##
-gem 'pg'
-gem 'slack-notifier'
-
-# Select2 - multiple select boxes
-  gem 'select2-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -99,4 +100,3 @@ gem "figaro"
 # Server
 gem 'puma'
 # gem "rack-timeout"
-
