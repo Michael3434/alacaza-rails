@@ -4,18 +4,8 @@
   $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
   $('.navbar-progress').hide()
 <% else %>
-  // Append new message
-  // message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
-  // $(".messages-container").append(message)
-
   // Resize the input text area to default
   $('textarea').css('height', "42px")
-
-  // Disabel false  submit
-  // button = $('form#new_message').find("button[type='submit']")
-  // button.prop('disabled', false)
-  // button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
-
 
   <% if @message.photo.present? %>
     $('.progress_bar_progress_thin').remove()
@@ -34,22 +24,10 @@
       "user_id": <%= @message.user.id %>,
       "Immeuble": <%= @message.user.building_id %>
   })
-  messageTop = $('.msg-container').last().offset().top
-  $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
-  $('#message_body').val("")
 
   publisher = client.publish('/messages', {
-    message: '<%= j render @message %>'
+    message: '<%= j render @message %>',
+    channelId: <%= @message.channel.id %>
   });
-
-  publisher.callback(function() {
-    $('#new_message').find("button[type='submit']").prop('disabled', false)
-    button = $('form#new_message').find("button[type='submit']")
-    button.prop('disabled', false)
-    button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
-    mixpanel.track("Nouveau message", {
-        "user_id": <%= @message.user.id %>,
-        "Immeuble": <%= @message.user.building_id %>
-    });
 
 <% end %>

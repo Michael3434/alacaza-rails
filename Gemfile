@@ -14,6 +14,20 @@ gem 'slack-notifier'
 # Select2 - multiple select boxes
   gem 'select2-rails'
 
+
+gem 'has_secure_token'
+
+gem 'carrierwave'
+gem 'cloudinary'
+
+## Backround job
+gem "sidekiq"
+gem 'redis'
+
+# Needed to build the Sidekiq web interface
+gem 'sinatra', :require => nil
+
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -76,9 +90,8 @@ group :development do
   gem 'spring-commands-sidekiq', git: 'git@github.com:johnvoloski/spring-commands-sidekiq.git', branch: 'master'
 end
 
-group :production do
-  gem 'rails_12factor' #heroku needs it
-
+group :production, :staging do
+  gem 'rails_12factor'
 end
 
 # Config file
