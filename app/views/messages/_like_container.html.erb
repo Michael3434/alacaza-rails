@@ -1,0 +1,5 @@
+<% if message.users_like_id.count > 0 %>
+  <%= button_to message_remove_like_path(message), method: :post, remote: true do %>
+    <%= image_tag ("icons/thumb.png") %> <span></span><span class="count"><%= message.users_like_id.count %></span>
+  <% end %>
+<% end %>

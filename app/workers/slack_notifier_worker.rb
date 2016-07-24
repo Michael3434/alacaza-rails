@@ -21,6 +21,8 @@ class SlackNotifierWorker
       arguments = [user]
     when "new_lead"
       arguments = [lead]
+    when "new_like"
+      arguments = [message, user]
     end
 
     Notifier.send(method, *arguments)

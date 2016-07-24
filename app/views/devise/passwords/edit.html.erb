@@ -8,7 +8,7 @@
         <%= f.input :reset_password_token, as: :hidden %>
         <%= f.full_error :reset_password_token %>
 
-        <%= f.input :password, label: "Nouveau mot de passe", autofocus: true, required: true %>
+        <%= f.input :password, label: "Nouveau mot de passe", autofocus: true, required: true, hint: "(au moins 6 caractères)" %>
         <%= f.input :password_confirmation, label: "Confirmer mot de passe", required: true %>
 
         <%= f.button :submit, "Modifier mon mot de passe", class: "btn btn-action" %>

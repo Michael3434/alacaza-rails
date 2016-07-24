@@ -239,9 +239,59 @@
             font-size: 12px;
           }
         }
-        .message-content,
-        .comment-content {
+        .message-content {
           margin-left: 70px;
+          &:hover {
+            .message-body {
+              background-color: #f9f9f9;
+            }
+          }
+          .reaction-container {
+            position: absolute;
+            top: 6px;
+            margin-left: 10px;
+            right: 10%;
+            z-index: 5;
+            padding: 3px;
+            border: 1px solid rgb(221, 221, 221);
+            border-radius: 6px;
+            background-color: white;
+            cursor: pointer;
+            span {
+              position: relative;
+              top: 3px;
+            }
+            img {
+              width: 20px;
+              height: 20px;
+            }
+            button {
+              border: none;
+              background: white;
+              font-size: 13px;
+              color: #9f9f9f;
+              cursor: pointer;
+            }
+          }
+          .like-container {
+            img {
+              width: 15px !important;
+              height: 15px !important;
+            }
+            button {
+              border: 1px solid #dddddd;
+              background: white;
+              font-size: 11px;
+              color: #9f9f9f;
+              cursor: pointer;
+              border-radius: 6px;
+              margin-top: 3px;
+              span {
+                top: 3px;
+                position: relative;
+              }
+            }
+          }
           .message-sender,
           .comment-sender {
             font-weight: 900;
@@ -251,8 +301,7 @@
           .comment-sender {
             font-size: 12px;
           }
-          .message-time,
-          .comment-time {
+          .message-time {
             color: #9e9ea6;
             font-size: 13px;
             line-height: 1.125rem;
@@ -268,6 +317,7 @@
           }
           .message-body {
             padding-right: 40px;
+            position: relative;
             img {
               height: auto;
               max-height: 300px;
@@ -278,6 +328,15 @@
                 max-height: 165px;
                 width: auto;
                 max-width: 220px;
+              }
+            }
+            .reaction-container {
+              position: absolute;
+              right: -50px;
+              top: 0px;
+              img {
+                width: 40px;
+                height: 35px;
               }
             }
             > p {

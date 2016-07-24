@@ -1,0 +1,4 @@
+likeContainer = $("[data-message-id=<%= @message.id %>]").find('.like-container')
+likePartial = ('<%= j render(partial: "messages/like_container", locals: { message: @message } ).html_safe %>')
+likeContainer.empty()
+likeContainer.append(likePartial)

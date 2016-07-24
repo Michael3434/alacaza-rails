@@ -35,6 +35,11 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def new_like(the_message, user)
+      message = "#{user.first_name} du bâtiment #{user.building.name} a liké: #{the_message.body}"
+      notify(message, { channel: "#likes" })
+    end
+
     def new_lead(lead)
       message = "Nouvelle commande"
       options = {

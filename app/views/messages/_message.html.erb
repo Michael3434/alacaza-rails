@@ -1,4 +1,4 @@
-<div class="msg-container space-top-2">
+<div class="msg-container space-top-2" data-message-id="<%= message.id %>">
   <div class="message-gutter">
     <div class="message-icon icon-user-<%= message.user.id %>">
       <%= image_tag (user_img(message.user.image_id)), class: "member-image" %>
@@ -25,7 +25,14 @@
                   <%= message.user.name %>
        </a>
     <% end %>
-    <span class="message-time"><%= l message.created_at, format: :short %></span>
+    <span class="message-time">
+      <%= l message.created_at, format: :short %>
+      <span class="reaction-container" style="display:none;">
+        <%= button_to message_add_like_path(message), method: :post, remote: true do %>
+          <%= image_tag ("icons/thumb.png") %> <span>+</span><span class="count">1</span>
+        <% end %>
+      </span>
+    </span>
     <div class="message-body">
       <%= simple_format(message.body) %>
       <% if message.photo.present? %>
@@ -37,6 +44,9 @@
           </div>
         <% end %>
       <% end %>
+      <span class="like-container">
+        <%= render "messages/like_container", message: message %>
+      </span>
     </div>
   </div>
 </div>

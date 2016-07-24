@@ -21,9 +21,25 @@ class MessagesController < ApplicationController
   def new_photo
   end
 
+  def add_like
+    @message = Message.find(params[:message_id])
+    unless @message.users_like_id.include?(current_user.id)
+      @message.users_like_id << current_user.id
+      @message.save
+      SlackNotifierWorker.perform_async(:new_like, message_id: @message.id, user_id: current_user.id)
+    end
+  end
+
+  def remove_like
+    @message = Message.find(params[:message_id])
+    ids = @message.users_like_id
+    @message.users_like_id = ids - [current_user.id]
+    @message.save
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:body, :channel_id, :building_id, :photo)
+    params.require(:message).permit(:body, :channel_id, :building_id, :photo, :users_like_id => [])
   end
 end
