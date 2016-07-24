@@ -5,16 +5,16 @@
   $('.navbar-progress').hide()
 <% else %>
   // Append new message
-  message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
-  $(".messages-container").append(message)
+  // message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
+  // $(".messages-container").append(message)
 
   // Resize the input text area to default
   $('textarea').css('height', "42px")
 
   // Disabel false  submit
-  button = $('form#new_message').find("button[type='submit']")
-  button.prop('disabled', false)
-  button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+  // button = $('form#new_message').find("button[type='submit']")
+  // button.prop('disabled', false)
+  // button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
 
 
   <% if @message.photo.present? %>
@@ -38,15 +38,18 @@
   $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
   $('#message_body').val("")
 
-  // publisher = client.publish('/messages', {
-  //   message: '<%= j render @message %>'
-  // });
+  publisher = client.publish('/messages', {
+    message: '<%= j render @message %>'
+  });
 
-  // publisher.callback(function() {
-  //   $('#new_message').find("button[type='submit']").prop('disabled', false)
-  //   mixpanel.track("Nouveau message", {
-  //       "user_id": <%= @message.user.id %>,
-  //       "Immeuble": <%= @message.user.building_id %>
-  //   });
+  publisher.callback(function() {
+    $('#new_message').find("button[type='submit']").prop('disabled', false)
+    button = $('form#new_message').find("button[type='submit']")
+    button.prop('disabled', false)
+    button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+    mixpanel.track("Nouveau message", {
+        "user_id": <%= @message.user.id %>,
+        "Immeuble": <%= @message.user.building_id %>
+    });
 
 <% end %>

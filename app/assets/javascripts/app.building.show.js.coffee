@@ -9,6 +9,18 @@ app.buildings.show =
       @initFile()
       @removeImgOnHideModal()
       @showReactionOnOverMessage()
+      @liveChat()
+    liveChat: ->
+      liveChat: ->
+        window.client = new Faye.Client('/faye')
+        jQuery ->
+          client.subscribe '/messages', (payload) ->
+            $(".messages-container").append(payload.message) if payload.message
+            button = $('form#new_message').find("button[type='submit']")
+            button.prop('disabled', false)
+            button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+            messageTop = $('.msg-container').last().offset().top
+            $('html, body').animate({scrollTop:messageTop}, 'slow');
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
         $(this).find('.reaction-container').show()

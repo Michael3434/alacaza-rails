@@ -4,21 +4,8 @@ ruby '2.2.3'
 
 gem 'rails', '4.2.4'
 
-# Live message system
-# gem 'faye-rails', '~> 2.0'
+gem 'faye-rails', '~> 2.0'
 gem 'thin'
-
-gem 'has_secure_token'
-
-gem 'carrierwave'
-gem 'cloudinary'
-
-## Backround job
-gem "sidekiq"
-gem 'redis'
-
-# Needed to build the Sidekiq web interface
-gem 'sinatra', :require => nil
 
 ## BACK END ##
 gem 'pg'
@@ -89,8 +76,9 @@ group :development do
   gem 'spring-commands-sidekiq', git: 'git@github.com:johnvoloski/spring-commands-sidekiq.git', branch: 'master'
 end
 
-group :production, :staging do
-  gem 'rails_12factor'
+group :production do
+  gem 'rails_12factor' #heroku needs it
+
 end
 
 # Config file
@@ -99,4 +87,3 @@ gem "figaro"
 # Server
 gem 'puma'
 # gem "rack-timeout"
-
