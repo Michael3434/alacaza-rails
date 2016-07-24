@@ -14,7 +14,7 @@ app.buildings.show =
       window.client = new Faye.Client('/faye')
       jQuery ->
         client.subscribe '/messages', (payload) ->
-          if $('[data-channel-id=' + payload.channelId + ']').length > 0
+          if $('[data-channel-id=' + payload.channelId + ']').length > 0 && $('[data-message-id=' + payload.messageId + ']').length < 1
             $(".messages-container").append(payload.message) if payload.message
             $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
             button = $('form#new_message').find("button[type='submit']")

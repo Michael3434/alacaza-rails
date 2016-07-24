@@ -27,7 +27,8 @@
 
   publisher = client.publish('/messages', {
     message: '<%= j render @message %>',
-    channelId: <%= @message.channel.id %>
+    channelId: "<%= @message.channel.id %>",
+    messageId: "<%= @message.id %>"
   });
 
 <% end %>
