@@ -22,6 +22,9 @@ app.init = ->
   $('.col-channels a').on "click", ->
     $('.scroll-container').css('opacity', "0")
     $('#loader').show()
+    if screen.width <= 1280
+      $('.col-channels').hide()
+      $('.modal-bg').hide()
 
 
 $(document).on "ready page:load", ->
