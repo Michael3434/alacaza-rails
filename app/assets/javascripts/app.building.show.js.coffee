@@ -14,13 +14,16 @@ app.buildings.show =
       window.client = new Faye.Client('/faye')
       jQuery ->
         client.subscribe '/messages', (payload) ->
-          if $('[data-channel-id=' + payload.channelId + ']').length > 0
+          channel = $('[data-channel-id=' + payload.channelId + ']')
+          if channel.length > 0
             $(".messages-container").append(payload.message) if payload.message
             $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
             button = $('form#new_message').find("button[type='submit']")
             button.prop('disabled', false)
             button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
             $('#message_body').val("")
+            channel.append('<span class="badge candy_red_bg">1</span>')
+
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
         $(this).find('.reaction-container').show()
