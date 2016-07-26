@@ -2,7 +2,24 @@
 
 <p>Nous sommes très heureux de t’accueillir dans la communauté alacaza de ton immeuble du <%= @user.building.address %>.</p>
 
-<p>Tu peux désormais participer autrement à la vie de ton bâtiment en te connectant sur le site <%= link_to "Alacaza.fr", root_url %></p>
+<p>Tu peux désormais participer autrement à la vie de ton bâtiment en te connectant sur ta messagerie d'immeuble :
+
+<table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
+  <td>
+    <a href= <%= appartments_url(@user.building.slug, token: @user.token) %> style="text-decoration: none;">
+      <span style="text-align: center;
+        width: 140px;
+        background-color: #FF6E41;
+        padding: 8px;
+        color: white;
+        margin-top: 20px;
+        font-size: 14px;
+        display: block;">Me connecter
+      </span>
+    </a>
+  </td>
+</table>
+
 
 <table cellspacing="0" cellpadding="0" style="margin-top:30px;">
   <tr>
