@@ -19,7 +19,8 @@
         <li><%= link_to "Envoi de messages", admin_notifier_path %></li>
         <li><%= link_to "Messages", admin_messages_path %></li>
         <li ><%= link_to "Users", admin_users_path %></li>
-        <li ><%= link_to "Les immeubles", appartments_path(Building.first.slug) %></li>
+        <li ><%= link_to "Le chat", appartments_path(Building.first.slug) %></li>
+        <li ><%= link_to "Les immeubles", admin_buildings_path %></li>
         <li><span>Logged in as <%= current_user.first_name %></span></li>
         <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
       </ul>

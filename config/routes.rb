@@ -28,6 +28,7 @@ mount Sidekiq::Web => '/sidekiq'
   end
   post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do
+    resources :buildings
     resources :messages
     resources :users
     get "/notifier", to: "messages#notifier"

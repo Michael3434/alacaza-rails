@@ -1,0 +1,26 @@
+<% content_for :title, "Immeubles" %>
+<div class="container">
+  <h3 class="text-left">Immeubles <small>(<%= @buildings.count %>)</small></h3>
+
+  <%= link_to new_icon("Ajouter un immeuble"), new_admin_building_path, class: "btn btn-secondary space-top-2 space-2" %>
+
+  <table class="table table-hover" data-behavior="autoclick">
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>adresse</th>
+      <th>Slug(url)</th>
+      <th>Mdp immeuble</th>
+    </tr>
+
+    <% @buildings.each do |building| %>
+      <%= content_tag :tr  do %>
+        <td><%= building.id %></td>
+        <td> <%= building.name %> </td>
+        <td> <%= building.address %> </td>
+        <td><%= building.slug %></td>
+        <td><%= building.building_access %></td>
+      <% end %>
+    <% end %>
+  </table>
+</div>

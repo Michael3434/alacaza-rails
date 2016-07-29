@@ -30,7 +30,7 @@
               <h4 class="space-4 space-top-4 text-center">Sélectionnez les résidents qui ont reçu un nouveau colis </h4>
               <%= f.input :recipients_buildings, label: false, collection: users_associate(current_user), input_html: { multiple: true, class: "js-multiple-select-users", name: "users_id[]" } %>
               <div class="text-center space-top-4 space-4">
-                <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+                <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg btn-submit" %>
               </div>
             </div>
           </div>

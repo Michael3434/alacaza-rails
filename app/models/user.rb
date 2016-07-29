@@ -18,19 +18,23 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :user_channels, dependent: :destroy
   has_many :channels, through: :user_channels, dependent: :destroy
+
   # validations
 
   def verify_building_password
     return false unless building_id
     building = Building.find(building_id)
     if building
-      if building.password == building_access.downcase
+      if building.building_access == building_access.downcase
       else
         errors.add(:building_access)
       end
     end
   end
 
+  def self.admin
+    find_by_email("hello@alacaza.fr")
+  end
   def name
     [first_name.capitalize, last_name.capitalize].join(' ')
   end

@@ -53,4 +53,11 @@ module ApplicationHelper
     nil
   end
 
+  #
+  # Icons
+  #
+
+  def new_icon(text)
+    icon("plus", text)
+  end
 end
