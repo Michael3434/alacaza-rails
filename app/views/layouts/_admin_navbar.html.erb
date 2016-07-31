@@ -22,7 +22,6 @@
         <li ><%= link_to "Chat", appartments_path(Building.first.slug) %></li>
         <li ><%= link_to "Immeubles", admin_buildings_path %></li>
         <li ><%= link_to "Stats", admin_stats_path %></li>
-        <li><span>Logged in as <%= current_user.first_name %></span></li>
         <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
       </ul>
   </div>

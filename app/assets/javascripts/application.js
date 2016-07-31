@@ -18,6 +18,7 @@
 //= require select2
 //= require class/spinnable
 //= require class/message_generator
+//= require jquery-ui/sortable
 
 //= require_tree ./plugins
 //= require app

@@ -32,6 +32,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.search(options = {})
+    options.inject(User) do |scope, (field, value)|
+      case field.to_sym
+      when :events
+        joins(:events).having("count(events.id) >= #{value}").group("users.id")
+      else
+        scope
+      end
+    end
+  end
+
   def self.admin
     find_by_email("hello@alacaza.fr")
   end
