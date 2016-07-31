@@ -11,6 +11,10 @@ gem 'thin'
 
 gem 'has_secure_token'
 
+# Graph
+gem 'groupdate'
+gem "chartkick"
+
 gem 'carrierwave'
 gem 'cloudinary'
 
