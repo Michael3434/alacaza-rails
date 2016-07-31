@@ -27,7 +27,7 @@
   <p class="text-center hint">Les immeubles dans la ville de Paris</p>
   <div class="container content-wrapper">
     <div class="row">
-      <% Building.all.each do |building| %>
+      <% Building.where(id: [4,5,6, 7, 8, 9]).each do |building| %>
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
           <div class="picture-wrapper" >
             <div class="city-picture" data-city=<%= building.slug %>>
