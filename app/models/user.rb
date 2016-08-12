@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   after_create :set_channel
 
   belongs_to :building
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_many :comments
   has_many :user_channels, dependent: :destroy
   has_many :channels, through: :user_channels, dependent: :destroy
