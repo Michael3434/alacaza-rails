@@ -14,15 +14,24 @@ app.buildings.show =
       window.client = new Faye.Client('/faye')
       jQuery ->
         client.subscribe '/messages', (payload) ->
-          channel = $('[data-channel-id=' + payload.channelId + ']')
-          if channel.length > 0
-            $(".messages-container").append(payload.message) if payload.message
-            $('html, .scroll-container').animate({scrollTop:9999999999}, 'slow');
-            button = $('form#new_message').find("button[type='submit']")
-            button.prop('disabled', false)
-            button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
-            $('#message_body').val("")
-            channel.append('<span class="badge candy_red_bg">1</span>')
+          if $('[data-message-id=' + payload.messageId + ']').length  == 0
+            channel = $('.current[data-channel-id=' + payload.channelId + ']')
+            if channel.length > 0
+              $(".messages-container").append(payload.message) if payload.message
+              $(".messages-container .message-content").last()[0].scrollIntoView(true);
+              button = $('form#new_message').find("button[type='submit']")
+              button.prop('disabled', false)
+              button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+              $('#message_body').val("")
+            else
+              channel = $('.others[data-channel-id=' + payload.channelId + ']')
+              badge = channel.find('.badge')
+              if badge.length == 0
+                messageUnseen = 1
+              else
+                messageUnseen = parseInt(badge.text()) + 1
+                badge.remove()
+              channel.append('<span class="badge candy_red_bg">' + messageUnseen + '</span>')
 
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
