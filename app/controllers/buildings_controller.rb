@@ -6,7 +6,7 @@ class BuildingsController < ApplicationController
   end
 
   def show
-    @building = current_user.building
+    @building = Building.find_by_slug(params[:slug])
     @channel = Channel.find_by_id(params[:channel])
     if @building.nil? && @channel.nil?
       render status: :not_found, text: "Not Found."
