@@ -21,6 +21,19 @@ class User < ActiveRecord::Base
 
   # validations
 
+  def self.to_be_notify(message)
+    where.not(id: message.user.id)
+    .joins(:user_channels)
+    .where(user_channels: {channel_id: message.channel_id, want_notification: true })
+  end
+
+  def user_channels_group
+    user_channels
+    .joins(:channel)
+    .where('channels.channel_type in (?)', ["group", "main_group"])
+    .order("channels.channel_type = 'main_group' asc")
+  end
+
   def verify_building_password
     return false unless building_id
     building = Building.find(building_id)
@@ -89,6 +102,10 @@ class User < ActiveRecord::Base
   end
 
   def group_channels
+    channels.where(channel_type: "group")
+  end
+
+  def all_group_channels
     channels.where(channel_type: ["group", "main_group"])
   end
 

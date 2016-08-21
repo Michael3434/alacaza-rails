@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818211950) do
+ActiveRecord::Schema.define(version: 20160821170034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +89,10 @@ ActiveRecord::Schema.define(version: 20160818211950) do
   create_table "user_channels", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "messages_seen"
+    t.boolean  "want_notification", default: false
   end
 
   add_index "user_channels", ["channel_id"], name: "index_user_channels_on_channel_id", using: :btree

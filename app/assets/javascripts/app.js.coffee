@@ -19,12 +19,16 @@ app.init = ->
   $("[data-spinnable=true]").each (i, el) ->
     spinnable = new Spinnable($(el))
     spinnable.init()
-  $('.col-channels a').on "click", ->
+  $('.group-channels, private-channels a').on "click", ->
     $('.scroll-container').css('opacity', "0")
     $('#loader').show()
     if screen.width <= 766
       $('.col-channels').hide()
       $('.modal-bg').hide()
+  $("[data-autosubmit=true]").on "change", ->
+    $(this).submit()
+  $(document).on "change", "[data-behavior=autosubmit]", ->
+    $(this).submit()
 
 
 $(document).on "ready page:load", ->
