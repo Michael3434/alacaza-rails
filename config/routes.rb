@@ -39,7 +39,7 @@ mount Sidekiq::Web => '/sidekiq'
     resources :channels
   end
   resources :comments
-
+  resources :user_channels, only: [:update]
   scope "immeubles" do
     get "/:slug(/:channel)", to: "buildings#show", as: :appartments
   end

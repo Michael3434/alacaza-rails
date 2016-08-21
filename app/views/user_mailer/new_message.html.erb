@@ -1,5 +1,5 @@
 <p>Bonjour <%= @user.first_name %>,</p>
-<p>Un nouveau message est arrivé sur Alacaza de <%= @message.user.name %></p>
+<p>Un nouveau message est arrivé sur Alacaza de <%= @message.user.name %> <%= name_for_channel(@message.channel) %></p>
 
 <div style="background-color: #DCEFFF; padding: 15px; margin: 16px;">
 <span style="line-height: 1.5; font-style: italic;">
@@ -19,13 +19,14 @@
       <td>
         <a href= <%= gardien_appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
           <span style="text-align: center;
-            width: 140px;
+            width: 210px;
+            font-family: helvetica;
             background-color: #FF6E41;
             padding: 8px;
             color: white;
             margin-left: 16px;
             font-size: 14px;
-            display: block;">Lire le message
+            display: block;"> Lire / Répondre au message
           </span>
         </a>
       </td>
@@ -35,13 +36,14 @@
       <td>
         <a href= <%= appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
           <span style="text-align: center;
-            width: 140px;
+            width: 210px;
+            font-family: helvetica;
             background-color: #FF6E41;
             padding: 8px;
             color: white;
             margin-left: 16px;
             font-size: 14px;
-            display: block;">Lire le message
+            display: block;">Lire / Répondre au message
           </span>
         </a>
       </td>

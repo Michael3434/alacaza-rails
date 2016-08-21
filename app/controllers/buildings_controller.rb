@@ -6,12 +6,14 @@ class BuildingsController < ApplicationController
   end
 
   def show
-    @building = Building.where(slug: params[:slug]).last
+    @building = current_user.building
     @channel = Channel.find_by_id(params[:channel])
     if @building.nil? && @channel.nil?
       render status: :not_found, text: "Not Found."
     elsif current_user.admin
       @channel = @channel || Channel.where(building_id: @building.id, channel_type: "main_group").last
+    elsif @channel.try(:channel_type) == "group" && UserChannel.where(user: current_user, channel: @channel).first
+      true
     elsif @building && user_belongs_to_building?(@building) && @channel.nil?
       @channel = Channel.where(building_id: @building.id, channel_type: "main_group").last
       redirect_to appartments_path(@building.slug, @channel)
