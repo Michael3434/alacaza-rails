@@ -44,7 +44,7 @@
   </div>
 <% end %>
 
-<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Sélectionnez les conversations pour recevoir les notifications par email" } do %>
+<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
   <div class="">
     <% current_user.user_channels_group.each do |user_channel| %>
       <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
