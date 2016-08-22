@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   after_create :set_image_id
   after_create :set_channel
+  after_create :set_group_channel
 
   belongs_to :building
   has_many :messages, dependent: :destroy
@@ -73,6 +74,16 @@ class User < ActiveRecord::Base
   def set_channel
     channel = Channel.where(building_id: building_id, channel_type: "main_group").last
     UserChannel.create(user: self, channel: channel)
+
+  end
+
+  def set_group_channel
+    if self.building.docks?
+      c1 = Channel.where(name: "Les services des Docks")
+      c2 = Channel.where(name: "Achats/Ventes des Docks")
+      self.channels << c1
+      self.channels << c2
+    end
   end
 
   def buildings_associate
