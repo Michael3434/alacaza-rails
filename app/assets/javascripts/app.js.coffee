@@ -19,7 +19,7 @@ app.init = ->
   $("[data-spinnable=true]").each (i, el) ->
     spinnable = new Spinnable($(el))
     spinnable.init()
-  $('.group-channels, private-channels a').on "click", ->
+  $('.group-channels, .private-channels a').on "click", ->
     $('.scroll-container').css('opacity', "0")
     $('#loader').show()
     if screen.width <= 766

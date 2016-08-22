@@ -2,9 +2,11 @@
   <div class="name"><%= @building.name %></div>
 </div>
 <div class="scroll-channels">
+  <% if current_user.admin %>
+    <%= render 'admin/dropdown_select_buildings_admin' %>
+  <% end %>
   <div class="group-channels">
     <% if current_user.admin %>
-      <%= render 'admin/dropdown_select_buildings_admin' %>
       <div class="list">
         <ul class="list-unstyled">
           <%= link_to appartments_path(@building.slug, @building.main_channel) do %>
