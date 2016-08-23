@@ -39,8 +39,10 @@
         <% if message.photo.format == "pdf" %>
           <%= link_to icon("paperclip", message.original_filename), message.photo.url, target: "_blank" %></li>
         <% else %>
-          <div class="picture-wrapper">
-            <%= cl_image_tag message.photo, crop: :fill %>
+          <div class="picture-wrapper-<%= message.id %>">
+            <%= link_to message.photo.url do %>
+              <%= cl_image_tag message.photo, crop: :fill %>
+            <% end %>
           </div>
         <% end %>
       <% end %>

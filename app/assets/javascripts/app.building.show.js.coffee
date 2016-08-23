@@ -9,6 +9,19 @@ app.buildings.show =
       @initFile()
       @removeImgOnHideModal()
       @showReactionOnOverMessage()
+      @initCarousel()
+    initCarousel: ->
+      $("[class*='picture-wrapper-']").each ->
+        $(this).magnificPopup
+          delegate: 'a'
+          type: 'image'
+          gallery:
+            enabled: true
+            navigateByImgClick: true
+            preload: [
+              0
+              1
+            ]
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
         $(this).find('.reaction-container').show()
