@@ -44,8 +44,8 @@ class Building < ActiveRecord::Base
   validates :slug, :name, :building_access, :address, presence: :true
 
   has_many :users
-  has_many :messages
-  has_many :channels
+  has_many :messages, dependent: :destroy
+  has_many :channels, dependent: :destroy
 
   after_create :create_processor
 
