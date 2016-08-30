@@ -37,6 +37,8 @@ class Building < ActiveRecord::Base
    "12-bis-rue-des-bateliers",
    "24-rue-des-bateliers",
    "18-et-20-rue-de-la-clé-des-champs",
+   "30-rue-albert-dhalenne",
+   "1-et-3-rue-de-la-clé-des-champs",
    "30-rue-des-bateliers"]
 
   validates :slug, :name, :building_access, :address, presence: :true
