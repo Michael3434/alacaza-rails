@@ -44,4 +44,8 @@ class Message < ActiveRecord::Base
   def vote_count(option_id)
     self.send("vote_for_#{option_id}").length
   end
+
+  def users_vote(option_id)
+    User.where(id: self.send("vote_for_#{option_id}")).map(&:name).join(" / ")
+  end
 end

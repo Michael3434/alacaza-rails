@@ -3,6 +3,11 @@
   <%= button_to message_vote_path(message), method: :post, remote: true, params: { option: option_id }, disabled: already_voted?(message, option_id), class: option_id do %>
   <% end %>
     <%= option_text %>
-    <span class="pull-right"><%= message.vote_count(option_id) %></span>
+    <span class="pull-right">
+      <%= message.vote_count(option_id) %>
+      <% if message.vote_count(option_id) > 0 %>
+        <i class="fa fa-info-circle icon-info-users" data-toggle="tooltip" data-placement="top"  data-html="true" title="<%=  message.users_vote(option_id) %>"></i>
+      <% end %>
+    </span>
   </div>
 <% end %>
