@@ -40,11 +40,16 @@
           <%= link_to icon("paperclip", message.original_filename), message.photo.url, target: "_blank" %></li>
         <% else %>
           <div class="picture-wrapper-<%= message.id %>">
-            <%= link_to message.photo.url do %>
-              <%= cl_image_tag message.photo, crop: :fill %>
+            <%= link_to message.photo.url(:large) do %>
+              <%= cl_image_tag message.photo.url(:large), crop: :fill %>
             <% end %>
           </div>
         <% end %>
+      <% end %>
+      <% if message.as_vote_option %>
+        <div class="option-container space-top-2">
+          <%= render "messages/option_vote_partial", message: message %>
+        </div>
       <% end %>
       <span class="like-container">
         <%= render "messages/like_container", message: message %>

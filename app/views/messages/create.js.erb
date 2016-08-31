@@ -7,6 +7,7 @@
   // Append new message
   message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
   $(".messages-container").append(message)
+  $('#votes_modal').modal('hide')
 
   // Resize the input text area to default
   $('textarea').css('height', "42px")

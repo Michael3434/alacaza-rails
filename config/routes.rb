@@ -47,6 +47,7 @@ mount Sidekiq::Web => '/sidekiq'
   resources :messages do
     post "add_like", to: "messages#add_like"
     post "remove_like", to: "messages#remove_like"
+    post "vote", to: "messages#vote"
   end
 
   Rails.application.routes.url_helpers.module_eval do
