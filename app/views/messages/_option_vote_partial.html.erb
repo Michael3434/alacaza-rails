@@ -1,0 +1,8 @@
+<% message.options.each do |option_id, option_text| %>
+  <div class="option-wrapper space-1">
+  <%= button_to message_vote_path(message), method: :post, remote: true, params: { option: option_id }, disabled: already_voted?(message, option_id), class: option_id do %>
+  <% end %>
+    <%= option_text %>
+    <span class="pull-right"><%= message.vote_count(option_id) %></span>
+  </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821170034) do
+ActiveRecord::Schema.define(version: 20160827170345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(version: 20160821170034) do
     t.string   "photo"
     t.string   "original_filename"
     t.text     "users_like_id"
+    t.boolean  "as_vote_option"
+    t.string   "option_1"
+    t.string   "option_2"
+    t.string   "option_3"
+    t.text     "vote_for_option_1"
+    t.text     "vote_for_option_2"
+    t.text     "vote_for_option_3"
   end
 
   create_table "user_channels", force: :cascade do |t|

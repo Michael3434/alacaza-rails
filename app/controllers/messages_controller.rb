@@ -30,6 +30,14 @@ class MessagesController < ApplicationController
     end
   end
 
+  def vote
+    @option = params[:option]
+    @message = Message.find(params[:message_id])
+    @message.clean_vote(current_user.id)
+    @message.send("vote_for_#{@option}") << current_user.id
+    @message.save
+  end
+
   def remove_like
     @message = Message.find(params[:message_id])
     ids = @message.users_like_id
@@ -40,6 +48,18 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :channel_id, :building_id, :photo, :users_like_id => [])
+    params.require(:message).permit(
+    :body,
+    :channel_id,
+    :building_id,
+    :photo,
+    :as_vote_option,
+    :option_1,
+    :option_2,
+    :option_3,
+    :vote_for_option_1 => [],
+    :vote_for_option_2 => [],
+    :vote_for_option_3 => [],
+    :users_like_id => [])
   end
 end
