@@ -29,6 +29,6 @@ class Admin::BuildingsController < AdminController
   end
 
   def building_params
-    params.require(:building).permit(:slug, :address, :building_access, :name)
+    params.require(:building).permit(:slug, :address, :building_access, :name, :district)
   end
 end

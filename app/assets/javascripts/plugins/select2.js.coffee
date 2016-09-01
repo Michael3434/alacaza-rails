@@ -10,4 +10,8 @@ if typeof($.fn.select2) != "undefined"
     $(".js-example-basic-single").select2({
       minimumResultsForSearch: Infinity,
       placeholder: "Choisissez votre immeuble"
-      })
+    })
+    $(".js-district-basic-single").select2({
+      minimumResultsForSearch: Infinity,
+      placeholder: "Choisissez le quartier"
+    })

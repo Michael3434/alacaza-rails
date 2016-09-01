@@ -11,6 +11,10 @@ class Building < ActiveRecord::Base
     )
   ANABEL = %w(12-rue-jean-richepin)
 
+  DOCKS = "Docks"
+
+  DISTRICT = [DOCKS]
+
   DOCKS_SLUG = ["2-rue-maurine-audin",
    "7-allee-de-paris",
    "5-allee-de-paris",
@@ -39,6 +43,8 @@ class Building < ActiveRecord::Base
    "18-et-20-rue-de-la-clé-des-champs",
    "30-rue-albert-dhalenne",
    "1-et-3-rue-de-la-clé-des-champs",
+   "19-rue-de-la-cle-des-champs",
+   "15-rue-de-la-cle-des-champs",
    "30-rue-des-bateliers"]
 
   validates :slug, :name, :building_access, :address, presence: :true
@@ -60,7 +66,7 @@ class Building < ActiveRecord::Base
   end
 
   def docks?
-    self.slug.in?(DOCKS_SLUG)
+    self.district == DOCKS
   end
 
   def create_processor
