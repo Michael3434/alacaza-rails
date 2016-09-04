@@ -6,6 +6,7 @@ class BuildingsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @building = Building.find_by_slug(params[:slug])
     @channel = Channel.find_by_id(params[:channel])
     if @building.nil? && @channel.nil?

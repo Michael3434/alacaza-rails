@@ -8,6 +8,7 @@
     @include box-shadow(1px 1px 3px $btn-default-border);
     background-color: $brand-secondary;
   }
+
   .tooltip-arrow {
     &:after {
       position: absolute;

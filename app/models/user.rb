@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_token
+  mount_uploader :photo, PhotoUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 

@@ -11,6 +11,36 @@ app.buildings.show =
       @showReactionOnOverMessage()
       @initCarousel()
       @showHomeIconBadge()
+      @initUserPhoto()
+    initUserPhoto: ->
+      $('.image-wrapper').on "hover", ->
+        $(".hover-background").show()
+      $('.image-wrapper').on "mouseleave", ->
+        $(".hover-background").show()
+      $('.hover-background').on "click", ->
+        $('#user_photo').click()
+
+      $('#user_photo').on "change", ->
+        formData = new FormData
+        $input = $('#user_photo')
+        userId = $('.modal-content').data('user-id')
+        formData.append 'user[photo]', $input[0].files[0]
+        $('form.edit_user').serializeArray().forEach (field) ->
+          formData.append field.name, field.value
+        $.ajax
+          url: "/users/" + userId
+          data: formData
+          cache: false
+          contentType: false
+          processData: false
+          type: 'POST'
+          beforeSend: (xhr) ->
+            i = $('<i></i>', class: 'fa fa-spinner fa-spin').css('font-size', "27px")
+            $('.fa-camera').remove()
+            $(".hover-background").show().prepend(i)
+            $('.hover-background .text-center').html("Téléchargement...")
+
+
     showHomeIconBadge: ->
       if $(".badge.candy_red_bg").length > 0
         $('.badge-home').removeClass("hidden")

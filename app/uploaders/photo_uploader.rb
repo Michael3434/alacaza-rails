@@ -10,8 +10,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
       process :resize_to_fit => [600, 10000]
     end
 
+  version :thumb do
+      process resize_to_fill: [200,200]
+  end
+
   def save_original_filename(file)
-    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+    unless model.is_a?(User)
+      model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+    end
   end
 
   def extension_white_list

@@ -15,3 +15,11 @@ if typeof($.fn.select2) != "undefined"
       minimumResultsForSearch: Infinity,
       placeholder: "Choisissez le quartier"
     })
+    $(".js-sex-basic-single").select2({
+      minimumResultsForSearch: Infinity,
+      placeholder: "Choisissez votre sexe"
+    })
+    $(".js-user-status-basic-single").select2({
+      minimumResultsForSearch: Infinity,
+      placeholder: "Êtes-vous locataire/propriétaire"
+    })

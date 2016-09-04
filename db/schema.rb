@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904052729) do
+ActiveRecord::Schema.define(version: 20160904125228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,22 @@ ActiveRecord::Schema.define(version: 20160904052729) do
     t.text     "vote_for_option_3"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text     "description"
+    t.string   "title"
+    t.text     "tag"
+    t.boolean  "published"
+    t.string   "availability"
+    t.float    "price"
+    t.string   "mobile_phone"
+    t.boolean  "show_mobile_phone"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "user_channels", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
@@ -130,6 +146,10 @@ ActiveRecord::Schema.define(version: 20160904052729) do
     t.string   "pseudo"
     t.integer  "floor"
     t.string   "door"
+    t.string   "age"
+    t.string   "sex"
+    t.string   "user_status"
+    t.string   "photo"
   end
 
   add_index "users", ["building_id"], name: "index_users_on_building_id", using: :btree
@@ -139,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160904052729) do
   add_foreign_key "channels", "buildings"
   add_foreign_key "comments", "messages"
   add_foreign_key "comments", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "user_channels", "channels"
   add_foreign_key "user_channels", "users"
 end
