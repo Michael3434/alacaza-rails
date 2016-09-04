@@ -28,7 +28,7 @@ class Building < ActiveRecord::Base
    "28-rue-la-cle-des-champs",
    "7-rue-maurice-audin",
    "15-allee-de-paris",
-   "3-rue-maurice -audin",
+   "3-rue-maurice-audin",
    "13-allee-de-paris",
    "17-rue-de-la-cle-des-champs",
    "22-24-rue-de-la-cle-des-champs",
