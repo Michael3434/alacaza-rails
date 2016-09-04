@@ -10,6 +10,10 @@ app.buildings.show =
       @removeImgOnHideModal()
       @showReactionOnOverMessage()
       @initCarousel()
+      @showHomeIconBadge()
+    showHomeIconBadge: ->
+      if $(".badge.candy_red_bg").length > 0
+        $('.badge-home').removeClass("hidden")
     initCarousel: ->
       $("[class*='picture-wrapper-']").each ->
         $(this).magnificPopup

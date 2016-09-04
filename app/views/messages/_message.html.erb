@@ -34,7 +34,7 @@
       </span>
     </span>
     <div class="message-body">
-      <%= simple_format(message.body) %>
+      <%= auto_link(simple_format(message.body), html: { target: '_blank' }) %>
       <% if message.photo.present? %>
         <% if message.photo.format == "pdf" %>
           <%= link_to icon("paperclip", message.original_filename), message.photo.url, target: "_blank" %></li>

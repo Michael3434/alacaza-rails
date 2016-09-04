@@ -15,6 +15,10 @@ gem 'has_secure_token'
 gem 'groupdate'
 gem "chartkick"
 
+#Auto link for messages
+
+gem 'rails_autolink'
+
 gem 'carrierwave'
 gem 'cloudinary'
 
