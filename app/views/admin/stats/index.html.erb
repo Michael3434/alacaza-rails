@@ -1,0 +1,12 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div class="container">
+  <h3 class="text-left page-header">Les inscriptions par semaine (total = <%= @users_count %>)</h3>
+  <%= line_chart @users %>
+</div>
+<div class="container">
+  <h3 class="text-left page-header">Les inscriptions par semaine (total = <%= @messages_count %>)</h3>
+  <%= line_chart @messages %>
+</div>
+

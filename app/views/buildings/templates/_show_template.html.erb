@@ -1,4 +1,4 @@
-<% content_for :title, "Alacaza | La première messagerie entièrement dédié à la vie de votre immeuble " %>
+<% content_for :title, "Alacaza | La première messagerie entièrement dédiée à la vie de votre immeuble " %>
 <% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
 
 <div class="client-ui">
@@ -31,7 +31,7 @@
 
 <%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
   <div class="user-infos text-center">
-    <div class="user-icon">
+    <div class="user-icon space-2">
       <%= image_tag (""), class: "member-image" %>
     </div>
     <span class="user-name">Michael</span>
@@ -44,6 +44,22 @@
   </div>
 <% end %>
 
+<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
+  <div class="">
+    <% current_user.user_channels_group.each do |user_channel| %>
+      <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
+        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}" }, label: "#{user_channel.channel.name}"  %>
+      <% end %>
+    <% end %>
+    <div class="text-center">
+      <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" aria-label="Close"><span>Enregistrer et fermer</span></button>
+    </div>
+  </div>
+<% end %>
+
+
+<%= render "buildings/templates/votes_modal" %>
+<%= render "users/edit_profil_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">

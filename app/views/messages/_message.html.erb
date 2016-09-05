@@ -1,7 +1,7 @@
 <div class="msg-container space-top-2" data-message-id="<%= message.id %>">
   <div class="message-gutter">
     <div class="message-icon icon-user-<%= message.user.id %>">
-      <%= image_tag (user_img(message.user.image_id)), class: "member-image" %>
+      <%= image_tag (user_photo_url(message.user)), class: "member-image" %>
     </div>
   </div>
   <div class="message-content">
@@ -34,15 +34,22 @@
       </span>
     </span>
     <div class="message-body">
-      <%= simple_format(message.body) %>
+      <%= auto_link(simple_format(message.body), html: { target: '_blank' }) %>
       <% if message.photo.present? %>
         <% if message.photo.format == "pdf" %>
           <%= link_to icon("paperclip", message.original_filename), message.photo.url, target: "_blank" %></li>
         <% else %>
-          <div class="picture-wrapper">
-            <%= cl_image_tag message.photo, crop: :fill %>
+          <div class="picture-wrapper-<%= message.id %>">
+            <%= link_to message.photo.url(:large) do %>
+              <%= cl_image_tag message.photo.url(:large), crop: :fill %>
+            <% end %>
           </div>
         <% end %>
+      <% end %>
+      <% if message.as_vote_option %>
+        <div class="option-container space-top-2">
+          <%= render "messages/option_vote_partial", message: message %>
+        </div>
       <% end %>
       <span class="like-container">
         <%= render "messages/like_container", message: message %>

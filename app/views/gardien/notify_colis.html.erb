@@ -14,7 +14,7 @@
                   <p> Bonjour Julien</p>
                   <p>Je vous informe que votre colis a bien été réceptionné dans votre immeuble du 10 rue des Bateliers, 93400 Saint-Ouen</p>
                   <p>Vous pouvez le récupérer dans ma loge située dans l’immeuble Soho / Noho (code d’entrée : 7680), généralement ouverte le matin (de 9h00 à 12h00).</p>
-                  <p>Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 XX XX XX XX que nous puissions convenir d’un moment pour vous transmettre votre colis.</p>
+                  <p>Si vous n’êtes pas disponible à ce moment-là, vous pouvez me joindre au +33 6 31 20 24 19 que nous puissions convenir d’un moment pour vous transmettre votre colis.</p>
                   <p>Pierre, votre gardien-régisseur d'immeuble</p>
               <% elsif current_user.anabel? %>
                 <p> Bonjour Rémy</p>
@@ -30,7 +30,7 @@
               <h4 class="space-4 space-top-4 text-center">Sélectionnez les résidents qui ont reçu un nouveau colis </h4>
               <%= f.input :recipients_buildings, label: false, collection: users_associate(current_user), input_html: { multiple: true, class: "js-multiple-select-users", name: "users_id[]" } %>
               <div class="text-center space-top-4 space-4">
-                <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+                <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg btn-submit" %>
               </div>
             </div>
           </div>

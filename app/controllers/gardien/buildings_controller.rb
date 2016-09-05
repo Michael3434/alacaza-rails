@@ -1,5 +1,6 @@
 class Gardien::BuildingsController < GardienController
   def show
+    @user = current_user
     @building = Building.where(slug: params[:slug]).last
     @channel = Channel.find_by_id(params[:channel])
     if @building.nil? && @channel.nil?

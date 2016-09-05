@@ -6,13 +6,15 @@
       <th>Id</th>
       <th>Inscrit le</th>
       <th>Nom</th>
+      <th>Email</th>
     </tr>
 
     <% @users.each do |user| %>
-    <%= content_tag :tr, id: "users_#{user.id}", class: "user", data: { user_id: user.id } do %>
-      <td><%= user.id %></td>
-      <td><%= I18n.l user.created_at.to_date, format: :short %></td>
-      <td><%= user.name %></td>
+      <%= content_tag :tr, id: "users_#{user.id}", class: "user", data: { user_id: user.id } do %>
+        <td><%= user.id %></td>
+        <td><%= I18n.l user.created_at.to_date, format: :short %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
     <% end %>
     <% end %>
   </table>

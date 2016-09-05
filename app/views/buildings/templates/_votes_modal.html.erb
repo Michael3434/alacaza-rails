@@ -1,0 +1,16 @@
+<%= render layout: "layouts/modal", locals: { modal_name: "votes", modal_size: "", modal_title: "Proposez un vote" } do %>
+  <%= simple_form_for Message.new, remote: true, data: { spinnable: true }, html: { id: "da" } do |f| %>
+    <%= f.hidden_field :channel_id, value: @channel.id %>
+    <%= f.hidden_field :building_id, value: @building.id %>
+    <%= f.hidden_field :as_vote_option, value: true %>
+    <%= f.input :body, label: false, input_html: { class: "js-auto-size" }, placeholder: "Votre message pour votre proposition de vote" %>
+    <div class="hint space-2">Vous pouvez avoir 1, 2 ou 3 propositions c'est au choix !</div>
+    <%= f.input :option_1, label: false, placeholder: "Proposition 1..." %>
+    <%= f.input :option_2, label: false, placeholder: "Proposition 2..." %>
+    <%= f.input :option_3, label: false, placeholder: "Proposition 3..." %>
+    <div class="text-right">
+      <%= button_tag "Envoyer", class: "btn btn-secondary btn-lg" %>
+      <%#= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+    </div>
+  <% end %>
+<% end %>

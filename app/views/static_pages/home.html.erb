@@ -1,7 +1,7 @@
-<% content_for :title, "Alacaza | La première messagerie entièrement dédié à la vie de votre immeuble " %>
+<% content_for :title, "Alacaza | La première messagerie entièrement dédiée à la vie de votre immeuble " %>
 <% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
 <% content_for :og_url, "http://www.alacaza.fr" %>
-<% content_for :og_title, "« Alacaza.fr : La première messagerie entièrement dédié à la vie de votre immeuble »" %>
+<% content_for :og_title, "« Alacaza.fr : La première messagerie entièrement dédiée à la vie de votre immeuble »" %>
 <% content_for :og_type, "article" %>
 <% content_for :og_description, "Alacaza est le premier réseau social privé entièrement dédié à la vie de votre immeuble. Propriétaire, locataire, gardien(ne) ou property manager: Alacaza vous permet de communiquer facilement avec l'ensemble des parties prenantes, d'échanger des services ponctuels, de régler rapidement les imprévus ou problèmes récurrents dans les parties communes et de participer aux rendez-vous qui animent la vie de votre immeuble. Utilisez Alacaza à votre rythme, et prenez part à cette dynamique collaborative au sein de votre immeuble !"%>
 
@@ -12,7 +12,11 @@
       Une messagerie pour votre immeuble<br>
       <span class="p2"></span>
       <h1>
-      <span class="btn btn-cta" data-toggle="modal" data-target="#signup_modal">Rejoindre mon immeuble</span>
+      <% if current_user %>
+        <%= link_to "Rejoindre mon immeuble", appartments_path(current_user.building.slug), class: "btn btn-cta" %>
+      <% else %>
+        <span class="btn btn-cta" data-toggle="modal" data-target="#signup_modal">Rejoindre mon immeuble</span>
+      <% end %>
     </div>
   </div>
 
@@ -27,7 +31,7 @@
   <p class="text-center hint">Les immeubles dans la ville de Paris</p>
   <div class="container content-wrapper">
     <div class="row">
-      <% Building.all.each do |building| %>
+      <% Building.where(id: [4,5,6, 7, 8, 9]).each do |building| %>
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 text-center">
           <div class="picture-wrapper" >
             <div class="city-picture" data-city=<%= building.slug %>>

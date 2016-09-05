@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'rails', '4.2.4'
+gem 'rack-cors'
 
 gem 'faye-rails', '~> 2.0'
 gem 'thin'
@@ -16,6 +17,14 @@ gem 'slack-notifier'
 
 
 gem 'has_secure_token'
+
+# Graph
+gem 'groupdate'
+gem "chartkick"
+
+#Auto link for messages
+
+gem 'rails_autolink'
 
 gem 'carrierwave'
 gem 'cloudinary'

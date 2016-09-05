@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :first_name, :last_name, :building_id, :building_access) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :first_name, :last_name, :building_id, :building_access, :floor, :door) }
   end
 
   def store_previous_url
@@ -17,4 +17,5 @@ class ApplicationController < ActionController::Base
       session[:previous_url] = request.fullpath
     end
   end
+
 end

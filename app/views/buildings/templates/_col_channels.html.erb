@@ -2,9 +2,18 @@
   <div class="name"><%= @building.name %></div>
 </div>
 <div class="scroll-channels">
+  <div class="settings space-left-2 space-top-2">
+    <ul class="list-unstyled">
+      <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
+      <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
+    </ul>
+  </div>
+  <hr>
+  <% if current_user.admin %>
+    <%= render 'admin/dropdown_select_buildings_admin' %>
+  <% end %>
   <div class="group-channels">
     <% if current_user.admin %>
-      <%= render 'admin/dropdown_select_buildings_admin' %>
       <div class="list">
         <ul class="list-unstyled">
            <%= link_to appartments_path(@building.slug, @building.main_channel) do %>
@@ -15,19 +24,29 @@
               <span class="channel-name">#&nbsp;<%= @building.main_channel.name %></span>
             </li>
           <% end %>
+          <% current_user.group_channels.each do |channel| %>
+           <%= link_to appartments_path(@building.slug, channel) do %>
+              <li class="<%= get_current_channel(channel) %>">
+              <% if channel.messages_unseen_by(current_user) > 0 %>
+                <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
+              <% end %>
+              <span class="channel-name">#&nbsp;<%= channel.name %></span>
+              </li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     <% else %>
-      <div class="title">Groupes <span class="conversation-count">(<%= current_user.group_channels.count %>)</span> </div>
+      <div class="title">Groupes <span class="conversation-count">(<%= current_user.all_group_channels.length %>)</span> </div>
       <div class="list">
         <ul class="list-unstyled">
-          <% current_user.group_channels.each do |channel| %>
+          <% current_user.all_group_channels.each do |channel| %>
            <%= link_to appartments_path(@building.slug, channel) do %>
               <li class="<%= get_current_channel(channel) %>" data-channel-id=<%= channel.id %>>
               <% if channel.messages_unseen_by(current_user) > 0 %>
                 <span class="badge candy_red_bg"><%= channel.messages_unseen_by(current_user) %></span>
               <% end %>
-              <span class="channel-name">#&nbsp;<%=channel.name %></span>
+              <span class="channel-name">#&nbsp;<%= channel.name %></span>
               </li>
             <% end %>
           <% end %>
@@ -51,5 +70,6 @@
         <% end %>
       </ul>
     </div>
+  </div>
   </div>
 </div>

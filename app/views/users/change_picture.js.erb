@@ -1,0 +1,18 @@
+$(".image-container .member-image").remove()
+image = ('<%= j render(partial: "users/image").html_safe %>')
+
+$('.icon-user-' + <%= @user.id %> + ' img').attr('src', '<%= @user.photo.url %>')
+
+$('.fa-spinner').remove()
+i = $('<i></i>', {class : "fa fa-camera"})
+$('.hover-background').hide().prepend(i)
+$('.hover-background .text-center').html("Changer ma photo")
+
+$('.image-wrapper').on("mouseover", function() {
+  $(".hover-background").show();
+});
+$('.image-wrapper').on("mouseleave", function() {
+  $(".hover-background").hide();
+});
+$(".image-container .image-wrapper").append(image)
+

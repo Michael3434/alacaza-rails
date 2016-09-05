@@ -1,4 +1,4 @@
-<%= image_tag (user_img(not_current_user(@channel).image_id)), class: "member-image" %>
+<%= image_tag (user_photo_url(not_current_user(@channel))), class: "member-image" %>
 <div class="user-name space-top-1"><%= not_current_user(@channel).name %> </div>
 <div class="infos space-top-1">
 Ceci est le début de votre conversation avec <strong><%= not_current_user(@channel).name.downcase %> </strong>  <br>

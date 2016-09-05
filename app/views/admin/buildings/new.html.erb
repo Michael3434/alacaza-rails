@@ -1,0 +1,18 @@
+<input type="address" style="display:none">
+<input type="password" style="display:none">
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+      <h3 class="page-header">Ajouter un nouvel immeuble</h3>
+      <%= simple_form_for @building, url: admin_buildings_path, autocomplete: :false do |f| %>
+        <%= f.input :name, label: "Nom de l'immeuble" %>
+        <%= f.input :slug, label: "Slug: Ne surtout pas mettre d'accent ! Ex: 3-allee-de-paris et tout en minuscule" %>
+        <%= f.input :district, label: "Quartier", collection: distric_collection, as: :select, input_html: { class: "js-district-basic-single" } %>
+        <%= f.input :address, label: "Address Ex: 10 rue des bateliers, 93400 Saint Ouen", autocomplete: "off" %>
+        <%= f.input :building_access, label: "Mot de passe de l'immeuble", autocomplete: :false %>
+        <%= f.button :submit, "Créer cet immeuble", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

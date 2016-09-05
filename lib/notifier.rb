@@ -7,7 +7,7 @@ module Notifier
 
     def new_user(user)
       building_name = user.building.name
-      message = "Sign Up -> Prénom: #{user.first_name} | Nom: #{user.last_name} | Email: #{user.email} | Building: #{building_name}"
+      message = "Sign Up -> Prénom: #{user.first_name} | Nom: #{user.last_name} | Email: #{user.email} | Building: #{building_name} | Etage: #{user.floor} | Numéro d'appartement: #{user.door}"
       notify(message)
     end
 

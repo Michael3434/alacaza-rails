@@ -12,6 +12,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#"><i class="ion-home info-icon info-icon-admin show-sm"></i></a>
+      <span class="candy_red_bg badge-home hidden"> ! </span>
 
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,8 +20,9 @@
         <li><%= link_to "Envoi de messages", admin_notifier_path %></li>
         <li><%= link_to "Messages", admin_messages_path %></li>
         <li ><%= link_to "Users", admin_users_path %></li>
-        <li ><%= link_to "Les immeubles", appartments_path(Building.first.slug) %></li>
-        <li><span>Logged in as <%= current_user.first_name %></span></li>
+        <li ><%= link_to "Chat", appartments_path(Building.first.slug) %></li>
+        <li ><%= link_to "Immeubles", admin_buildings_path %></li>
+        <li ><%= link_to "Stats", admin_stats_path %></li>
         <li><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete %></li>
       </ul>
   </div>

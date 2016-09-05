@@ -10,4 +10,25 @@ class Admin::BuildingsController < AdminController
     end
     @messages = @channel.messages.includes(:user) if @channel
   end
+
+  def index
+    @buildings = Building.all
+  end
+
+  def new
+    @building = Building.new
+  end
+
+  def create
+    @building = Building.new(building_params)
+    if @building.save
+      redirect_to admin_buildings_path
+    else
+      render "new"
+    end
+  end
+
+  def building_params
+    params.require(:building).permit(:slug, :address, :building_access, :name, :district)
+  end
 end

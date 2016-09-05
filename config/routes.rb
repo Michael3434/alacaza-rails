@@ -7,12 +7,17 @@ mount Sidekiq::Web => '/sidekiq'
   get "sign_up", to: redirect("/")
   get "users/sign_up", to: redirect("/")
 
+  resources :users do
+    patch "change_picture", to: "users#change_picture"
+  end
+
   get "/commande", to: "leads#new"
   resources :leads, only: [:create, :new] do
     collection do
       get "/sent", to: "leads#sent"
     end
   end
+
   namespace :gardien do
     resources :messages
     resources :buildings do
@@ -28,6 +33,8 @@ mount Sidekiq::Web => '/sidekiq'
   end
   post "messages/new_photo", to: "messages#new_photo"
   namespace :admin do
+    resources :stats
+    resources :buildings
     resources :messages
     resources :users
     get "/notifier", to: "messages#notifier"
@@ -37,7 +44,7 @@ mount Sidekiq::Web => '/sidekiq'
     resources :channels
   end
   resources :comments
-
+  resources :user_channels, only: [:update]
   scope "immeubles" do
     get "/:slug(/:channel)", to: "buildings#show", as: :appartments
   end
@@ -45,6 +52,7 @@ mount Sidekiq::Web => '/sidekiq'
   resources :messages do
     post "add_like", to: "messages#add_like"
     post "remove_like", to: "messages#remove_like"
+    post "vote", to: "messages#vote"
   end
 
   Rails.application.routes.url_helpers.module_eval do

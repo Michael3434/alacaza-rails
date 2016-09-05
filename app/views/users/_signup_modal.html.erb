@@ -14,6 +14,8 @@
                                            html: { class: "form form-horizontal text-center", id: "new_user" } do |f| %>
                 <%= f.input :first_name, placeholder: "Prénom" %>
                 <%= f.input :last_name, placeholder: "Nom" %>
+                <%= f.input :floor, include_blank: false, placeholder: "Votre étage", as: :string, input_html: { type: "number" } %>
+                <%= f.input :door, include_blank: false, placeholder: "Votre numéro d'appartement" %>
                 <%= f.input :building_id, label: false, collection: buildings_collection, as: :select, placeholder: "-- Choisissez votre immeuble --", input_html: { class: "js-example-basic-single" } %>
                 <%= f.input :building_access, placeholder: "Mot de passe de votre immeuble" %>
                 <%= f.input :email, placeholder: "Email" %>

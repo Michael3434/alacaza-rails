@@ -117,6 +117,26 @@
         }
       }
     }
+    hr {
+      width: 80%;
+      border-top: 1px solid rgba(255, 255, 255, 0.61);
+    }
+    .settings {
+      font-size: 16px;
+      a {
+        padding: 4px;
+        margin-right: -10px;
+        color: white;
+        margin-left: 1px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      i {
+        color: white;
+        margin-left: 4px;
+      }
+    }
   }
   .client-ui {
     #loader {
@@ -265,7 +285,7 @@
         .message-content {
           margin-left: 70px;
           &:hover {
-            .message-body {
+            .message-body p {
               background-color: #f9f9f9;
             }
           }
@@ -375,6 +395,41 @@
           }
         }
       }
+    }
+  }
+  #votes_modal {
+    .hint {
+      font-style: italic;
+      font-size: 13px;
+      color: #9e9ea6;
+    }
+  }
+  .option-wrapper {
+    border: 1px solid #eee;
+    padding: 5px;
+    width: 70%;
+    @include bp-small {
+      width: 100%;
+    }
+    .button_to {
+      display: inline-block;
+    }
+    button {
+      background-color: transparent;
+      border: 1px solid #eee;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      top: -2px;
+      position: relative;
+    }
+    button[disabled] {
+      background-color: $brand-secondary;
+    }
+    .icon-info-users {
+      color: $brand-secondary;
+      font-size: 16px;
+      margin-left: 10px;
     }
   }
 }

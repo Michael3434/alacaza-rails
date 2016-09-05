@@ -1,0 +1,4 @@
+container = $('[data-message-id=<%= @message.id %>] .option-container')
+container.empty()
+container.append('<%= j render(partial: "messages/option_vote_partial", locals: { message: @message } ).html_safe %>')
+$('[data-toggle="tooltip"]').tooltip()

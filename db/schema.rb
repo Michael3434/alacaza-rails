@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718071351) do
+ActiveRecord::Schema.define(version: 20160904125228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(version: 20160718071351) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "name"
-    t.string   "password"
+    t.string   "building_access"
     t.string   "address"
     t.string   "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "district"
   end
 
   create_table "channels", force: :cascade do |t|
@@ -84,14 +85,38 @@ ActiveRecord::Schema.define(version: 20160718071351) do
     t.string   "photo"
     t.string   "original_filename"
     t.text     "users_like_id"
+    t.boolean  "as_vote_option"
+    t.string   "option_1"
+    t.string   "option_2"
+    t.string   "option_3"
+    t.text     "vote_for_option_1"
+    t.text     "vote_for_option_2"
+    t.text     "vote_for_option_3"
   end
+
+  create_table "posts", force: :cascade do |t|
+    t.text     "description"
+    t.string   "title"
+    t.text     "tag"
+    t.boolean  "published"
+    t.string   "availability"
+    t.float    "price"
+    t.string   "mobile_phone"
+    t.boolean  "show_mobile_phone"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "user_channels", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "messages_seen"
+    t.boolean  "want_notification", default: true
   end
 
   add_index "user_channels", ["channel_id"], name: "index_user_channels_on_channel_id", using: :btree
@@ -119,6 +144,12 @@ ActiveRecord::Schema.define(version: 20160718071351) do
     t.string   "token"
     t.boolean  "gardien",                default: false
     t.string   "pseudo"
+    t.integer  "floor"
+    t.string   "door"
+    t.string   "age"
+    t.string   "sex"
+    t.string   "user_status"
+    t.string   "photo"
   end
 
   add_index "users", ["building_id"], name: "index_users_on_building_id", using: :btree
@@ -128,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160718071351) do
   add_foreign_key "channels", "buildings"
   add_foreign_key "comments", "messages"
   add_foreign_key "comments", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "user_channels", "channels"
   add_foreign_key "user_channels", "users"
 end

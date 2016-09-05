@@ -32,7 +32,54 @@ app.buildings.show =
                 messageUnseen = parseInt(badge.text()) + 1
                 badge.remove()
               channel.append('<span class="badge candy_red_bg">' + messageUnseen + '</span>')
+      @initCarousel()
+      @showHomeIconBadge()
+      @initUserPhoto()
+    initUserPhoto: ->
+      $('.image-wrapper').on "mouseenter", ->
+        $(".hover-background").show()
+      $('.image-wrapper').on "mouseleave", ->
+        $(".hover-background").hide()
+      $('.hover-background').on "click", ->
+        $('#user_photo').click()
 
+      $('#user_photo').on "change", ->
+        formData = new FormData
+        $input = $('#user_photo')
+        userId = $('#edit_profil_modal .modal-content').data('user-id')
+        formData.append 'user[photo]', $input[0].files[0]
+        $('form.edit_user').serializeArray().forEach (field) ->
+          formData.append field.name, field.value
+        $.ajax
+          url: "/users/" + userId + "/change_picture"
+          data: formData
+          cache: false
+          contentType: false
+          processData: false
+          type: 'POST'
+          beforeSend: (xhr) ->
+            i = $('<i></i>', class: 'fa fa-spinner fa-spin').css('font-size', "27px")
+            $('.fa-camera').remove()
+            $(".hover-background").show().prepend(i)
+            $('.hover-background .text-center').html("Téléchargement...")
+
+
+    showHomeIconBadge: ->
+      if $(".badge.candy_red_bg").length > 0
+        $('.badge-home').removeClass("hidden")
+    initCarousel: ->
+      $("[class*='picture-wrapper-']").each ->
+        $(this).magnificPopup
+          delegate: 'a'
+          type: 'image'
+          gallery:
+            enabled: true
+            navigateByImgClick: true
+            preload: [
+              0
+              1
+            ]
+>>>>>>> abc3ba04e55dfc921a1f5ca5425f3d089b786110
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
         $(this).find('.reaction-container').show()

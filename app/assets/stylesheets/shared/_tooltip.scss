@@ -1,0 +1,54 @@
+.tooltip {
+  &.in {
+    opacity: 1;
+  }
+  .tooltip-inner {
+    padding: 5px 8px;
+    border: 1px solid $btn-default-border;
+    @include box-shadow(1px 1px 3px $btn-default-border);
+    background-color: $brand-secondary;
+  }
+
+  .tooltip-arrow {
+    &:after {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      z-index: -1
+    }
+  }
+  &.left .tooltip-arrow {
+    right: 3px;
+    &:after {
+      right: -2px;
+      margin-top: -8px;
+      border-width: 8px 0 8px 8px;
+      border-left-color: $btn-default-border;
+      background-color: $brand-secondary;
+    }
+  }
+  &.right .tooltip-arrow {
+    left: 3px;
+    &:after {
+      left: -1px;
+      margin-top: -8px;
+      border-width: 8px 8px 8px 0;
+      border-right-color: $btn-default-border;
+    }
+  }
+  &.top .tooltip-arrow {
+    bottom: 3px;
+    border-top-color: $brand-secondary;
+    &:after {
+      top: 2px;
+      left: -8px;
+      margin-top: -8px;
+      border-width: 8px 8px 0 8px;
+      border-top-color: $btn-default-border;
+    }
+
+  }
+}

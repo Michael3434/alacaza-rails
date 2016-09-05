@@ -12,7 +12,7 @@ class Channel < ActiveRecord::Base
   end
 
   def group?
-  	channel_type.in?(["group","main_group"])
+  	channel_type.in?(["group",""])
   end
 
   def user_channel_with(user)

@@ -71,6 +71,7 @@
         display: none;
       }
       .form-group {
+        position: relative;
         margin: 0px;
         label.file {
           background-color: white;
@@ -103,6 +104,10 @@
             cursor: pointer;
           }
         }
+      }
+      .vote {
+        position: relative;
+        margin: 3px 20px;
       }
     }
   }
