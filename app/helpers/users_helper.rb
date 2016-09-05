@@ -1,6 +1,6 @@
 module UsersHelper
   def status_collection
-    ["Co-propriétaire", "Locataire"].map { |status| [status, status]}
+    ["Copropriétaire", "Locataire"].map { |status| [status, status]}
   end
 
   def sex_collection

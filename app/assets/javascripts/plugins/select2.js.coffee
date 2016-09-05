@@ -21,5 +21,5 @@ if typeof($.fn.select2) != "undefined"
     })
     $(".js-user-status-basic-single").select2({
       minimumResultsForSearch: Infinity,
-      placeholder: "Êtes-vous locataire/propriétaire ?"
+      placeholder: "Êtes-vous locataire/copropriétaire ?"
     })
