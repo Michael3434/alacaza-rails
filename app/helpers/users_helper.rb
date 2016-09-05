@@ -17,6 +17,14 @@ module UsersHelper
         toutefois les modifier, vous pouvez nous adresser un message privé.'></i>".html_safe
   end
 
+  def user_photo_url(user)
+    if user.photo.url
+      user.photo.url(:thumb)
+    else
+      "icons/icon" + user.image_id.to_s + ".png"
+    end
+  end
+
   def link_to_new_message_admin
     if channel = current_user.private_channel_with(User.admin)
       link_to "Alacaza Team", appartments_path(@building.slug, channel.id)

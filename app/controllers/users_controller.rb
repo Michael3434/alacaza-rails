@@ -10,14 +10,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      p @user.photo_changed?
-      p "-==============================================="
       respond_to do |format|
         format.js
       end
     else
-      @error = current_user.errors
-      flash.now[:error] = "Vos modifications n'ont pas pu être enregistrées."
+    end
+  end
+
+  def change_picture
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      respond_to do |format|
+        format.js
+      end
+    else
     end
   end
 

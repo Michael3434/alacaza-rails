@@ -2,15 +2,6 @@
   padding: 20px 35px 60px 35px !important;
   .modal-title {
     position: relative;
-    .update-icon {
-      display: none;
-      position: absolute;
-      bottom: 5px;
-      font-size: 14px;
-    }
-    &:hover > .update-icon {
-      display: inline-block;
-    }
   }
   .image-container {
     margin-left: auto;

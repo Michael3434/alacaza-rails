@@ -13,22 +13,22 @@ app.buildings.show =
       @showHomeIconBadge()
       @initUserPhoto()
     initUserPhoto: ->
-      $('.image-wrapper').on "hover", ->
+      $('.image-wrapper').on "mouseenter", ->
         $(".hover-background").show()
       $('.image-wrapper').on "mouseleave", ->
-        $(".hover-background").show()
+        $(".hover-background").hide()
       $('.hover-background').on "click", ->
         $('#user_photo').click()
 
       $('#user_photo').on "change", ->
         formData = new FormData
         $input = $('#user_photo')
-        userId = $('.modal-content').data('user-id')
+        userId = $('#edit_profil_modal .modal-content').data('user-id')
         formData.append 'user[photo]', $input[0].files[0]
         $('form.edit_user').serializeArray().forEach (field) ->
           formData.append field.name, field.value
         $.ajax
-          url: "/users/" + userId
+          url: "/users/" + userId + "/change_picture"
           data: formData
           cache: false
           contentType: false

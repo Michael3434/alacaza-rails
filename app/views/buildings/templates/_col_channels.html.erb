@@ -2,6 +2,13 @@
   <div class="name"><%= @building.name %></div>
 </div>
 <div class="scroll-channels">
+  <div class="settings space-left-2 space-top-2">
+    <ul class="list-unstyled">
+      <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
+      <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
+    </ul>
+  </div>
+  <hr>
   <% if current_user.admin %>
     <%= render 'admin/dropdown_select_buildings_admin' %>
   <% end %>
@@ -63,13 +70,6 @@
         <% end %>
       </ul>
     </div>
-  </div>
-  <hr>
-  <div class="settings space-left-2">
-    <ul class="list-unstyled">
-      <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
-      <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
-    </ul>
   </div>
   </div>
 </div>

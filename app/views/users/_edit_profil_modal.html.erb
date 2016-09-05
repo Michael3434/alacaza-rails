@@ -6,7 +6,6 @@
           <button type="button" class="close show-sm" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
           <p class="modal-title">
             Editez votre profil
-            <a href="#"<i class="fa fa-pencil update-icon"></i></a>
             <div class="text-center image-container">
               <div class="image-wrapper">
                 <div class="hover-background">
@@ -22,13 +21,12 @@
         <%= simple_form_for current_user, remote: true do |f| %>
           <%= f.input :first_name, label: "Prénom #{informations_form}".html_safe, disabled: true %>
           <%= f.input :last_name, label: "Nom #{informations_form}".html_safe, disabled: true %>
-          <%= f.input :age, label: "Age" %>
+          <%= f.input :age, label: "Âge" %>
           <%= f.input :sex, label: "Sexe", collection: sex_collection, as: :select, input_html: { class: "js-sex-basic-single" } %>
-          <%= f.input :user_status, label: "Votre status dans l'immeuble", collection: status_collection, as: :select, input_html: { class: "js-user-status-basic-single" } %>
+          <%= f.input :user_status, label: "Votre statut dans l'immeuble", collection: status_collection, as: :select, input_html: { class: "js-user-status-basic-single" } %>
           <div class="row">
             <%= f.input :floor, label: "Votre étage", wrapper_html: { class: "col-md-6"} %>
             <%= f.input :door, label: "Votre numéro d'appartement", wrapper_html: { class: "col-md-6"} %>
-            <%= f.input :photo, label: false, cloudinary: {use_filename: true}, input_html: { class: "hidden" } %>
           </div>
           <div class="modal-footer">
             <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
@@ -39,3 +37,7 @@
     </div>
   </div>
 </div>
+
+<%= simple_form_for current_user do |f| %>
+  <%= f.input :photo, label: false, cloudinary: {use_filename: true}, input_html: { class: "hidden" } %>
+<% end %>
