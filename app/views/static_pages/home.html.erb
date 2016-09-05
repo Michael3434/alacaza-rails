@@ -12,7 +12,11 @@
       Une messagerie pour votre immeuble<br>
       <span class="p2"></span>
       <h1>
-      <span class="btn btn-cta" data-toggle="modal" data-target="#signup_modal">Rejoindre mon immeuble</span>
+      <% if current_user %>
+        <%= link_to "Rejoindre mon immeuble", appartments_path(current_user.building.slug), class: "btn btn-cta" %>
+      <% else %>
+        <span class="btn btn-cta" data-toggle="modal" data-target="#signup_modal">Rejoindre mon immeuble</span>
+      <% end %>
     </div>
   </div>
 

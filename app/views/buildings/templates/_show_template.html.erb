@@ -31,7 +31,7 @@
 
 <%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
   <div class="user-infos text-center">
-    <div class="user-icon">
+    <div class="user-icon space-2">
       <%= image_tag (""), class: "member-image" %>
     </div>
     <span class="user-name">Michael</span>
@@ -59,6 +59,7 @@
 
 
 <%= render "buildings/templates/votes_modal" %>
+<%= render "users/edit_profil_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">

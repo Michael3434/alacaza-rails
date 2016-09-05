@@ -14,10 +14,6 @@ module MessagesHelper
     ]
   end
 
-  def user_img(img_id)
-    "icons/icon" + img_id.to_s + ".png"
-  end
-
   def already_voted?(message, option_id)
     message.send("vote_for_#{option_id}").include?(current_user.id)
   end

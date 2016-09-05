@@ -3,7 +3,6 @@ app.pages =
     init: ->
       @mixpanelTracking()
       $("body #scroll-down").click this.scrollHeroClicked
-      $(".btn-cta").click this.scrollHeroClicked
       $('.p2').typed
         strings: [
           'entièrement sécurisée et privée'
