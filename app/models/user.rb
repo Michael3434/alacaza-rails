@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     find_by_email("hello@alacaza.fr")
   end
   def name
-    [first_name.capitalize, last_name.capitalize].join(' ')
+    [first_name, last_name.capitalize].join(' ')
   end
 
   def set_image_id
