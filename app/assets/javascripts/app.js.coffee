@@ -2,6 +2,10 @@ window.app ||= {}
 
 # Write here application wide javascript code
 app.init = ->
+  if $('.admin').length > 0
+    $('form').attr('remote', 'true').each (i, el) ->
+      obj = new Huddable($(el))
+      obj.init()
   $.each $('.js-auto-size'), ->
     offset = @offsetHeight - (@clientHeight)
     resizeTextarea = (el) ->

@@ -34,6 +34,12 @@
     <% end %>
   </div>
 
+  <div class="update-status">
+    <span class="loading" style="display:none;"><i class="fa fa-2x fa-spinner fa-spin"></i></span>
+    <span class="success" style="display:none;"><i class="fa fa-2x fa-check"></i></span>
+    <span class="error update-error" style="display:none;"><i class="fa fa-2x fa-times"></i></span>
+  </div>
+
   <% if Rails.env == "development" %>
     <%= render partial: 'scripts/mixpanel', locals: { mixpanel_token: ENV["MIXPANEL_TOKEN_DEV"] } %>
   <% else %>

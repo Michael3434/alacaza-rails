@@ -23,3 +23,5 @@ if typeof($.fn.select2) != "undefined"
       minimumResultsForSearch: Infinity,
       placeholder: "Êtes-vous locataire/copropriétaire ?"
     })
+    $(".js-single-value-select-building").select2
+      maximumSelectionLength: 1

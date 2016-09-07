@@ -1,0 +1,12 @@
+.update-status {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  color: green;
+  font-weight: 500;
+  font-style: 16px;
+  z-index: 10;
+}
+.update-error {
+  color: red;
+}

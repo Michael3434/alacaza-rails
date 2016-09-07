@@ -1,13 +1,27 @@
 <% content_for :title, "Users" %>
 <div class="container">
   <h3 class="text-left">Utilisateurs <small>(<%= @users.count %>)</small></h3>
-  <table class="table table-hover" data-behavior="autoclick">
-    <tr>
-      <th>Id</th>
-      <th>Inscrit le</th>
-      <th>Nom</th>
-      <th>Email</th>
-    </tr>
+  <% @buildings_collection = buildings_collection %>
+  <%= simple_form_for :user, url: admin_users_path,
+                             html: { class: "space-2" },
+                             data: { autosubmit: true },
+                             method: :get do |f| %>
+    <div class="row">
+      <%= f.input :building, collection: @buildings_collection, label: false, wrapper_html: { class: "col-md-4" }, include_blank: "--- Choisissez un immeuble ---", input_html: { name: :building }, selected: params['building'] %>
+    </div>
+  <% end %>
+  <table class="table table-hover users_table" data-behavior="autoclick">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Inscrit le</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Immeuble</th>
+        <th>Etage</th>
+        <th>Appartement</th>
+      </tr>
+    </thead>
 
     <% @users.each do |user| %>
       <%= content_tag :tr, id: "users_#{user.id}", class: "user", data: { user_id: user.id } do %>
@@ -15,6 +29,17 @@
         <td><%= I18n.l user.created_at.to_date, format: :short %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td>
+          <%= simple_form_for [:admin, user],
+                                    method: 'PATCH',
+                                    html: { class: "form-inline" },
+                                    data: { autosubmit: true },
+                                     remote: true do |f| %>
+            <%= f.input :building_id, label: "Groupe", collection: @buildings_collection, selected: user.building_id, label: false, wrapper_html: { class: "space-0" } %>
+          <% end %>
+        </td>
+        <td>Et: <%= user.floor %></td>
+        <td>Apt: <%= user.door %></td>
     <% end %>
     <% end %>
   </table>
