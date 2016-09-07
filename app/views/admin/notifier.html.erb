@@ -1,13 +1,32 @@
 <% content_for :title, "Notify buildings" %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <%= flash_messages %>
       <%= simple_form_for :admin, url: admin_notify_buildings_path, method: :post do |f| %>
         <label>Liste des bâtiments à notifier</label>
         <%= f.input :recipients_buildings, label: false, collection: buildings_collection, input_html: { multiple: true, class: "js-multiple-select", name: "recipients_buildings[]" } %>
         <label>Contenu du message</label>
         <%= f.input :body, label: false, input_html: { name: "body", id: "message_body"}, as: :text %>
         <%= f.submit "Envoyer", class: "btn btn-secondary text-right" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    <h3 class="text-center">Envoi de mail avec mot de passe</h3>
+      <%= simple_form_for :admin, url: admin_password_email_path, method: :post, html: { class: "form-inline password-form" } do |f| %>
+      <div class="initial-form space-top-2">
+          <%= f.input :recipients_buildings, label: false, collection: users_associate(current_user), input_html: { multiple: 1, class: "js-multiple-select-user", name: "user[id]" } %>
+          <%= f.input :pass, label: false, input_html: { name: "user[pass]" }, placeholder: "Mot de passe" %>
+          <%= f.submit "Envoyer", class: "btn btn-secondary space-top-4 submit space-3 space-left-2" %>
       <% end %>
     </div>
   </div>
