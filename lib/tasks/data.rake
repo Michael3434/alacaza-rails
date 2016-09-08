@@ -13,6 +13,17 @@ namespace :data do
     end
   end
 
+  task delete_extra_channels: :environment do
+    User.all.each do |user|
+      ids = user.user_channels.pluck(:channel_id)
+      ids.each do |id|
+        if UserChannel.where(user_id: user.id, channel_id: id).count > 1
+          UserChannel.where(user_id: user.id, channel_id: id).last.destroy
+        end
+      end
+    end
+  end
+
   task create_new_channel: :environment do
     UserChannel.update_all(want_notification: true)
     channel1 = Channel.create(name: "Les services des Docks", channel_type: "group")

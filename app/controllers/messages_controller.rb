@@ -5,7 +5,11 @@ class MessagesController < ApplicationController
     @building_name = @message.user.building.name
     @building = @message.user.building
     if @message.save
-      message_notifier
+      if @message.user = User.where(email: "r.seigneur@free.fr").last
+        @message.update(validated: false)
+      else
+        message_notifier
+      end
     end
   end
 

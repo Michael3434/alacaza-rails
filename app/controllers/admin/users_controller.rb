@@ -17,3 +17,4 @@ class Admin::UsersController < AdminController
     params.require(:user).permit(:first_name, :last_name, :phone, :email, :company, :building_id)
   end
 end
+

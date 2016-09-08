@@ -64,6 +64,7 @@ class User < ActiveRecord::Base
   def self.admin
     find_by_email("hello@alacaza.fr")
   end
+
   def name
     pseudo || [first_name, last_name.capitalize].join(' ')
   end
@@ -150,8 +151,7 @@ class User < ActiveRecord::Base
 
   def set_channel
     channel = Channel.where(building_id: building_id, channel_type: "main_group").last
-    UserChannel.create(user: self, channel: channel)
-
+    self.channels << channel
   end
 
   def set_group_channel
@@ -164,6 +164,7 @@ class User < ActiveRecord::Base
   end
 
   def change_building_processor
+    return if building_id_was.nil?
     self.building_access = self.building.building_access
     self.user_channels.each do |user_channel|
       if user_channel.channel.channel_type == "main_group"
