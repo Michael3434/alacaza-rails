@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     if @message.save
       if @message.user = User.where(email: "r.seigneur@free.fr").last
         @message.update(validated: false)
+        SlackNotifierWorker.perform_async(:new_message, message_id: @message.id)
       else
         message_notifier
       end
