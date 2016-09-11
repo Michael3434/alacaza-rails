@@ -1,0 +1,19 @@
+<div class="modal fade" id="post_card_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-header space-2">
+          <button type="button" class="close show-sm hide-xs" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+          <span type="button" class="back show-xs ion-arrow-left-c" data-dismiss="modal" aria-label="Close"><span></span></span>
+        </div>
+        <div class="post-card space-4">
+        </div>
+
+        <%= simple_form_for Message.new, url: post_add_message_path(1), remote: true, html: { id: "new_post_message" } do |f| %>
+          <%= f.input :body, label: "Ecrivez votre message concernant cette annonce", input_html: { rows: 4, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
+          <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

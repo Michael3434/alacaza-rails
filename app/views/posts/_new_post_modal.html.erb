@@ -1,0 +1,68 @@
+<div class="modal fade" id="new_post_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" data-user-id="<%= current_user.id %>" >
+      <div class="modal-body">
+        <div class="modal-header space-2">
+          <button type="button" class="close show-sm hide-xs" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+          <span type="button" class="back show-xs ion-arrow-left-c" data-dismiss="modal" aria-label="Close"><span></span></span>
+          <p class="modal-title">
+            Quel service proposez-vous ?
+            <div class="text-center image-container">
+              <div class="image-wrapper">
+                <div class="hover-background">
+                  <i class="fa fa-camera" aria-hidden="true"></i>
+                  <div class="text-center"> Changer ma photo</div>
+                </div>
+                <div class="fa icon-camera"></div>
+                <%= render "users/image" %>
+              </div>
+            </div>
+          </p>
+        </div>
+        <div class="hint space-4">Votre photo de profil s'affichera sur votre annonce.</div class="hint space-4">
+
+        <%= simple_form_for @post, remote: true, data: { autosubmit: true }, html: { } do |f| %>
+          <%= f.input :title, label: "Le titre de votre annonce" %>
+          <%= f.input :description, input_html: { rows: 4 }, label: "Description de votre annonce" %>
+          <%= f.input :tags, collection: Post::TAG, input_html: { multiple: true, class: "js-multiple-select-tags" }, label: "Vos domaines de compétance", selected: @post.tags %>
+          <%= f.input :availability, label: "Vos disponibilitées", placeholder: "Ex: le soir et le week end... " %>
+          <%= f.input :mobile_phone, label: "Téléphone", hint: "Optionnel" %>
+          <%= f.input :price, label: "Votre prix", hint: "Optionnel", as: :string %>
+
+          <div class="modal-footer">
+            <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
+            <%= button_tag "Enregistrer", class: "btn btn-secondary ", data: { dismiss: "modal" } %>
+          </div>
+        <% end %>
+
+        <% if @post.persisted? %>
+          <div class="errors"></div>
+          <div class="publish-success"></div>
+          <div class="row">
+            <div class="col-md-6">
+              Publier cette annonce ?
+            </div>
+            <div class="col-md-6">
+              <%= simple_form_for @post, url: post_publish_path(@post), method: :put, remote: true, defaults: { label_html: { class: "sr-only" }}, data: { spinnable: true, autosubmit: true } do |f|%>
+                <%= f.collection_radio_buttons :published, [['Oui', true], ['Non', false]], :last, :first do |b| %>
+                  <span class="collection_radio_wrapper">
+                    <%= b.label(for: "post_#{@post.id}_published_#{b.value}") { %>
+                      <%= b.radio_button(id: "post_#{@post.id}_published_#{b.value}") + b.label(class: "collection_radio_buttons", for: "post_#{@post.id}_published_#{b.value}") %>
+                    <% } %>
+                  </span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= simple_form_for current_user do |f| %>
+  <%= f.input :photo, label: false, cloudinary: {use_filename: true}, input_html: { class: "hidden" } %>
+<% end %>
+

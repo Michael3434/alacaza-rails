@@ -1,0 +1,18 @@
+$('.scroll-container').empty()
+$('.scroll-container').html('<%= j render "post_index" %>');
+
+// init JS
+$('.post-container .post-card').on("click", function() {
+  // render html of post in modal
+  postCard = $(this).html()
+  $('#post_card_modal .post-card').prepend(postCard)
+  // change form path with post id
+  postId = $(this).find(".header").data("post-id")
+  url = $('#post_card_modal form').attr("action").replace(/[0-9]/g, postId)
+  $('#post_card_modal form').attr("action", url)
+
+});
+// clean modal post when close it
+$('#post_card_modal').on('hidden.bs.modal', function () {
+    $(this).find('.post-card').html("")
+})

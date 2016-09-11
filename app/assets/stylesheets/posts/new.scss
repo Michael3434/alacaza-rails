@@ -1,0 +1,20 @@
+.hint {
+  font-size: 13px;
+  text-align: center;
+}
+.select2-search__field {
+  width: 100% !important;
+}
+.modal-title {
+  @include bp-extra-small {
+    font-size: 20px !important;
+  }
+}
+.modal-body input {
+  font-size: 14px !important;
+}
+.button_to {
+  position: absolute;
+  right: 0;
+  z-index: 4;
+}

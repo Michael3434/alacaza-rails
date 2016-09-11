@@ -1,5 +1,6 @@
 <div class="client-ui">
   <div id="loader" style="display: none;"></div>
+  <%= button_to "Voir les profils des Docks", posts_path, remote: true, class: "btn btn-primary", method: :get %>
   <div class="scroll-container">
     <div class="row">
       <div class="messages-container">
@@ -57,6 +58,8 @@
 
 <%= render "buildings/templates/votes_modal" %>
 <%= render "users/edit_profil_modal" %>
+<%= render "posts/new_post_modal" %>
+<%= render "posts/post_card_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">

@@ -1,0 +1,71 @@
+.post-container {
+  margin-top: 30px;
+  margin-left: 220px;
+  overflow-wrap: break-word;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
+  a:hover {
+    text-decoration: none;
+  }
+  @include bp-small {
+    margin-left: 0px
+  }
+}
+.post-card {
+  color: #333;
+  border: 1px solid #eee;
+  padding: 15px;
+  .title {
+    padding: 10px;
+    font-size: 18px;
+  }
+  .picture-wrapper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    img {
+      width: 100%;
+      border-radius: 100%;
+    }
+  }
+  .user-infos {
+    font-weight: 600;
+  }
+  .body {
+    text-align: left;
+    hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .description {
+      line-height: 19px;
+      font-weight: 400;
+      padding: 10px;
+      background-color: #f7f7f7;
+      max-height: 70px;
+      overflow: hidden;
+    }
+    .availability {
+      text-align: left;
+    }
+    .hint {
+      font-size: 13px;
+      color: #c1c1c1;
+    }
+  }
+}
+#post_card_modal {
+  .description {
+    max-height: inherit;
+    overflow: inherit;
+  }
+  .btn-lg {
+    padding: 13px 40px;
+  }
+  .help-block {
+    font-size: 14px;
+  }
+}

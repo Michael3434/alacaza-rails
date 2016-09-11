@@ -12,6 +12,8 @@ app.buildings.show =
       @initCarousel()
       @showHomeIconBadge()
       @initUserPhoto()
+      @closePostCardToModal()
+    closePostCardToModal: ->
     initUserPhoto: ->
       $('.image-wrapper').on "mouseenter", ->
         $(".hover-background").show()
