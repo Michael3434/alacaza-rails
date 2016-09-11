@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @message = message
 
-     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Nouveau message sur la messagerie de votre immeuble !"
+     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Re: Nouveau message sur la messagerie de votre immeuble !"
   end
 
   def password_email(user, password)
