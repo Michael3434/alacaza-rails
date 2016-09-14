@@ -4,7 +4,8 @@
   padding-left: 10px;
   padding-right: 10px;
 }
-.badge-home {
+.badge-home,
+.badge-home-profil {
   position: absolute;
   left: 14px;
   top: 12px;
@@ -22,6 +23,15 @@
   border-radius: 50px;
   @include bp-min(767px) {
     display: none;
+  }
+}
+
+.badge-home-profil {
+  position: relative;
+  left: -6px;
+  padding: 2px 8px;
+  @include bp-min(767px) {
+    display: inherit;
   }
 }
 

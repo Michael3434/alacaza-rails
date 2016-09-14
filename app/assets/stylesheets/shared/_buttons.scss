@@ -23,6 +23,16 @@ button:focus, button:active {
   right: 0;
 }
 
+.btn-tag {
+  background: white;
+  border: 1px solid #4f3339;
+  color: #4f3339;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 .btn-lg {
   padding: 13px 40px;
   font-size: 18px;

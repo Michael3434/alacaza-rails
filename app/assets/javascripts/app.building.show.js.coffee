@@ -8,11 +8,13 @@ app.buildings.show =
       @initNewMessageModal()
       @initFile()
       @removeImgOnHideModal()
+      # @showReactionOnOverMessage() // Disable like
       @showReactionOnOverMessage()
       @liveChat()
     liveChat: ->
       window.client = new Faye.Client('/faye')
       jQuery ->
+        client.unsubscribe
         client.subscribe '/messages', (payload) ->
           if $('[data-message-id=' + payload.messageId + ']').length  == 0
             channel = $('.current[data-channel-id=' + payload.channelId + ']')
@@ -35,6 +37,11 @@ app.buildings.show =
       @initCarousel()
       @showHomeIconBadge()
       @initUserPhoto()
+      @disabledOnSubmitPostMessage()
+    disabledOnSubmitPostMessage: ->
+      $('form#new_post_message').on 'submit', ->
+        $(this).find('btn').attr('disabled', 'true')
+        $(this).css('opacity', '0.3')
     initUserPhoto: ->
       $('.image-wrapper').on "mouseenter", ->
         $(".hover-background").show()
@@ -69,7 +76,10 @@ app.buildings.show =
 
     showHomeIconBadge: ->
       if $(".badge.candy_red_bg").length > 0
-        $('.badge-home').removeClass("hidden")
+        $('.badge-home.candy_red_bg').removeClass("hidden")
+      else if $(".candy_yellow_bg").length > 0
+        $('.badge-home.candy_yellow_bg').removeClass("hidden")
+
     initCarousel: ->
       $("[class*='picture-wrapper-']").each ->
         $(this).magnificPopup

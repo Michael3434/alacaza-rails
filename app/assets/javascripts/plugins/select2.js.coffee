@@ -4,6 +4,12 @@ if typeof($.fn.select2) != "undefined"
     $(".js-multiple-select").select2({
       placeholder: "Ajoutez votre liste d'immeuble à notifier"
     })
+    $(".js-multiple-select-tags").select2({
+      placeholder: "2 tags maximum"
+      maximumSelectionLength: 2
+      formatSelectionTooBig: (limit) ->
+        '2 tags maximum'
+    })
     $(".js-multiple-select-user").select2({
       placeholder: "Selectionnez un user"
       maximumSelectionLength: 1

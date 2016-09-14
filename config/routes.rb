@@ -18,6 +18,11 @@ mount Sidekiq::Web => '/sidekiq'
     end
   end
 
+  resources :posts do
+    put "/publish", to: "posts#publish"
+    post "add_message", to: "posts#add_message"
+  end
+
   namespace :gardien do
     resources :messages
     resources :buildings do
@@ -55,6 +60,7 @@ mount Sidekiq::Web => '/sidekiq'
     post "add_like", to: "messages#add_like"
     post "remove_like", to: "messages#remove_like"
     post "vote", to: "messages#vote"
+    post "add_message", to: "messages#add_message"
   end
 
   Rails.application.routes.url_helpers.module_eval do
