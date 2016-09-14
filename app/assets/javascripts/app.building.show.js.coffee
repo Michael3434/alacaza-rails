@@ -33,7 +33,7 @@ app.buildings.show =
               else
                 messageUnseen = parseInt(badge.text()) + 1
                 badge.remove()
-              channel.append('<span class="badge candy_red_bg">' + messageUnseen + '</span>')
+              # channel.append('<span class="badge candy_red_bg">' + messageUnseen + '</span>')
       @initCarousel()
       @showHomeIconBadge()
       @initUserPhoto()
