@@ -82,7 +82,6 @@ app.buildings.show =
               0
               1
             ]
->>>>>>> abc3ba04e55dfc921a1f5ca5425f3d089b786110
     showReactionOnOverMessage: ->
       $('.message-content').mouseenter ->
         $(this).find('.reaction-container').show()
