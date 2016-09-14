@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.published
   end
 
   def update
@@ -31,11 +31,11 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:post_id])
+    return @post.update(post_params) if @post.published
     if @post.valid?(:publish)
       @post.update(post_params)
     end
   end
-
 
   def add_message
     post_user = Post.find(params[:post_id]).user
@@ -43,9 +43,11 @@ class PostsController < ApplicationController
       message = Message.create(body: params[:body], channel: channel, user: current_user)
     else
       channel = Channel.create(building: post_user.building, channel_type: "private")
+      message = Message.create(body: params[:body], channel: channel, user: current_user)
       current_user.channels << channel
       post_user.channels << channel
     end
+    redirect_to appartments_path(current_user.building.slug, channel)
   end
 
 

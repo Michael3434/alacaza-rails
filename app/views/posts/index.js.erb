@@ -1,5 +1,8 @@
 $('.scroll-container').empty()
 $('.scroll-container').html('<%= j render "post_index" %>');
+if ( $('.post-container') ) {
+  $('footer').remove()
+}
 
 // init JS
 $('.post-container .post-card').on("click", function() {
@@ -8,11 +11,17 @@ $('.post-container .post-card').on("click", function() {
   $('#post_card_modal .post-card').prepend(postCard)
   // change form path with post id
   postId = $(this).find(".header").data("post-id")
-  url = $('#post_card_modal form').attr("action").replace(/[0-9]/g, postId)
-  $('#post_card_modal form').attr("action", url)
+  $('#post_card_modal form').attr("action", "/posts/" + postId + "/add_message")
+
+  // Hide message form is current user is the post owner
+  if ( $('#new_post_modal .modal-content').data('user-id') == $('#post_card_modal .header').data('post-user-id') ) {
+    $('#new_post_message').hide()
+  }
+
 
 });
 // clean modal post when close it
 $('#post_card_modal').on('hidden.bs.modal', function () {
     $(this).find('.post-card').html("")
+    $('#new_post_message').show()
 })

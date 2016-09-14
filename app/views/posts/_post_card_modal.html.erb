@@ -9,7 +9,7 @@
         <div class="post-card space-4">
         </div>
 
-        <%= simple_form_for Message.new, url: post_add_message_path(1), remote: true, html: { id: "new_post_message" } do |f| %>
+        <%= simple_form_for Message.new, url: post_add_message_path(1), html: { id: "new_post_message" } do |f| %>
           <%= f.input :body, label: "Ecrivez votre message concernant cette annonce", input_html: { rows: 4, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
           <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
         <% end %>

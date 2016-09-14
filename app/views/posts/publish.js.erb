@@ -7,6 +7,7 @@
 $(".publish-success").empty()
 <% if @post.published %>
   $("input[id$='published_false']").attr("checked", false)
+  $("input[id$='published_false']").siblings('label').css('background-color', 'white').css('color', '#333')
 <% end %>
 $(".publish-success").append("<%= j render(partial: 'publish_success', locals: { post: @post }).html_safe %>");
 <% end %>

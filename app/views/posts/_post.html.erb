@@ -1,7 +1,7 @@
-<div class="col-md-4">
+<div class="col-md-4 space-4">
 <a href="#" data-toggle="modal" data-target="#post_card_modal" id="post-card">
   <div class="post-card text-center">
-    <div class="header" data-post-id="<%= post.id %>">
+    <div class="header" data-post-id="<%= post.id %>" data-post-user-id="<%= post.user.id %>">
       <div class="title text-center"><%= post.title %></div>
       <div class="picture-wrapper">
         <%= image_tag user_photo_url(post.user) %>

@@ -1,6 +1,12 @@
 <div class="client-ui">
   <div id="loader" style="display: none;"></div>
-  <%= button_to "Voir les profils des Docks", posts_path, remote: true, class: "btn btn-primary", method: :get %>
+  <% if current_user.building.docks? && !@channel.private? %>
+    <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
+      <span class="candy_red_bg">NOUVEAU</span>
+      Voir les profils des Docks
+      </span>
+    <% end %>
+  <% end %>
   <div class="scroll-container">
     <div class="row">
       <div class="messages-container">
