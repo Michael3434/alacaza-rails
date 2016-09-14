@@ -39,6 +39,8 @@ mount Sidekiq::Web => '/sidekiq'
     resources :users
     get "/notifier", to: "messages#notifier"
     post "/notify_buildings", to: "messages#notify_buildings"
+    post "/password_email", to: "messages#password_email"
+
   end
   resources :buildings do
     resources :channels

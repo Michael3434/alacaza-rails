@@ -4,10 +4,9 @@
 <html>
 <head>
   <title><%= yield(:title) %></title>
+  <meta name="google-site-verification" content="_KO64AvtVJI8VOUkrPcWLdTmO7vXeJ8KaLk4mIvDJkM" />
   <meta name="description" content="<%= yield(:description) %>">
   <!-- Dont index these pages on search engines -->
-  <meta name="robots" content="noindex">
-  <meta name="googlebot" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
   <%= stylesheet_link_tag 'application', media: 'screen', 'data-turbolinks-track' => true %>
@@ -17,6 +16,7 @@
   <!--[if lte IE 9]>
     <%= stylesheet_link_tag 'ie9' %>
   <![endif]-->
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" %>
   <%= csrf_meta_tags %>
@@ -30,6 +30,8 @@
   <% if content_for?(:og_url) %>
     <%= render "layouts/facebook_og" %>
   <% end %>
+
+  <%= render "scripts/google_analytics" %>
 
   <% if content_for?(:canonical) %>
   <link rel="canonical" href="http://<%= request.host + yield(:canonical) %>">

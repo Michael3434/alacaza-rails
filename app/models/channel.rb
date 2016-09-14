@@ -3,7 +3,7 @@ class Channel < ActiveRecord::Base
 
   has_many :user_channels, dependent: :destroy
   has_many :users, through: :user_channels
-  has_many :messages, dependent: :destroy
+  has_many :messages, -> { where(validated: true) }, dependent: :destroy
 
   attr_accessor :recipient_id
 

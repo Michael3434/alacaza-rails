@@ -43,6 +43,9 @@ app.buildings.show =
       $('.hover-background').on "click", ->
         $('#user_photo').click()
 
+      $('.submit-tick').on "click", ->
+        $('form#edit_user_fields').submit()
+
       $('#user_photo').on "change", ->
         formData = new FormData
         $input = $('#user_photo')

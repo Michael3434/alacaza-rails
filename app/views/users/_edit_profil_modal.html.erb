@@ -2,8 +2,10 @@
   <div class="modal-dialog">
     <div class="modal-content" data-user-id="<%= current_user.id %>" >
       <div class="modal-body">
-        <div class="modal-header">
-          <button type="button" class="close show-sm" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        <div class="modal-header space-2">
+          <button type="button" class="close show-sm hide-xs" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+          <span type="button" class="back show-xs ion-arrow-left-c" data-dismiss="modal" aria-label="Close"><span></span></span>
+          <span type="button" class="submit-tick show-xs ion-checkmark-round" data-dismiss="modal" aria-label="Close"><span></span></span>
           <p class="modal-title">
             Editez votre profil
             <div class="text-center image-container">
@@ -18,7 +20,7 @@
             </div>
           </p>
         </div>
-        <%= simple_form_for current_user, remote: true do |f| %>
+        <%= simple_form_for current_user, remote: true, html: { id: :edit_user_fields } do |f| %>
           <%= f.input :first_name, label: "Prénom #{informations_form}".html_safe, disabled: true %>
           <%= f.input :last_name, label: "Nom #{informations_form}".html_safe, disabled: true %>
           <%= f.input :age, label: "Âge" %>

@@ -36,6 +36,28 @@ body.modal-open {
       font-weight: 300;
       font-size: 40px;
     }
+    span.back {
+      position: absolute;
+      left: 21px;
+      top: 0px;
+      font-weight: 100;
+      font-size: 27px;
+      color: #565a5C;
+      @include bp-min(480px) {
+        display: none;
+      }
+    }
+    span.submit-tick {
+      position: absolute;
+      right: 21px;
+      top: 3px;
+      font-weight: 100;
+      font-size: 20px;
+      color: #565a5C;
+      @include bp-min(480px) {
+        display: none;
+      }
+    }
   }
   // modal-dialog: the black overlay on the body
   .modal-dialog {

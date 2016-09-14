@@ -14,7 +14,7 @@
                                            html: { class: "form form-horizontal text-center", id: "new_user" } do |f| %>
                 <%= f.input :first_name, placeholder: "Prénom" %>
                 <%= f.input :last_name, placeholder: "Nom" %>
-                <%= f.input :floor, include_blank: false, placeholder: "Votre étage", as: :string, input_html: { type: "number" } %>
+                <%= f.input :floor, include_blank: false, placeholder: "Votre étage", as: :string, type: "number" %>
                 <%= f.input :door, include_blank: false, placeholder: "Votre numéro d'appartement" %>
                 <%= f.input :building_id, label: false, collection: buildings_collection, as: :select, placeholder: "-- Choisissez votre immeuble --", input_html: { class: "js-example-basic-single" } %>
                 <%= f.input :building_access, placeholder: "Mot de passe de votre immeuble" %>
@@ -34,11 +34,4 @@
      <p class="signature">L'Équipe Alacaza with <i class="fa fa-heart"></i></p>
     <i class="ion-loading-c"></i>
   </div>
-
-  <div class="step-3 text-center"  style="display:none;">
-    <p class="modal-info text-center">Cohome n’est pas encore disponible dans votre ville mais pour que nous arrivions encore plus vite, parlez-en autour de vous ! </p>
-    <p class="signature">L'Équipe Cohome with <i class="fa fa-heart"></i></p>
-    <span class="btn btn-action bnt-lg btn-closing">Fermer</span>
-  </div>
-
 <% end %>

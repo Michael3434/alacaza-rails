@@ -1,5 +1,13 @@
 body {
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
+.update-status {
+  position: fixed;
+  top: 25px;
+  right: 50px;
+  color: green;
+  letter-spacing: -0.6px;
+  font-style: 16px;
+}
 
 @import "layout/navbar";

@@ -21,6 +21,14 @@ module ApplicationHelper
     Devise.mappings[:user]
   end
 
+  def title_for_channel(channel)
+    if channel.channel_type == "private"
+      "#{not_current_user(channel).name} | Messagerie Alacaza"
+    else
+      "#{@channel.name} | Messagerie Alacaza"
+    end
+  end
+
   def namespace_name
     params[:controller].match(/(?<namespace>.*)\//).try(:[],"namespace")
   end

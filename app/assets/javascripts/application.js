@@ -19,6 +19,7 @@
 //= require select2
 //= require class/spinnable
 //= require class/message_generator
+//= require class/huddable
 //= require jquery-ui/sortable
 
 //= require_tree ./plugins
@@ -29,6 +30,7 @@
 //= require app.building.show
 //= require faye
 
+//= require admin/messages/notifier
 
 
 

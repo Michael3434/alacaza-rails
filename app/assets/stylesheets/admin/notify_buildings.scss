@@ -1,5 +1,22 @@
-.admin.messages.notify_buildings {
+.admin.messages.notifier {
   #message_body {
     height: 200px;
   }
+  .password-form {
+    margin-bottom: 100px;
+  }
+  .form-group {
+    margin-top: 10px;
+    .select2 {
+      min-width: 400px;
+    }
+    .select2-selection__rendered {
+      height: 33px !important;
+    }
+    .select2-selection__choice + .select2-search {
+      display: none;
+    }
+
+  }
 }
+

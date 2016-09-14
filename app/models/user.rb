@@ -10,11 +10,13 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true
   validates_presence_of :floor, :door, :on => :create
   validates :token, uniqueness: true, allow_blank: true
-  validate :verify_building_password
+  validate :verify_building_password, :on => :create
 
   after_create :set_image_id
   after_create :set_channel
   after_create :set_group_channel
+
+  after_update :change_building_processor, if: :building_id_changed?
 
   belongs_to :building
   has_many :messages, dependent: :destroy
@@ -62,30 +64,9 @@ class User < ActiveRecord::Base
   def self.admin
     find_by_email("hello@alacaza.fr")
   end
+
   def name
-    [first_name.capitalize, last_name.capitalize].join(' ')
-  end
-
-  def set_image_id
-    user = User.all.last(2).first
-    image_id = user.image_id + 1
-    image_id = image_id > 33 ? 2 : image_id
-    self.update(image_id: image_id)
-  end
-
-  def set_channel
-    channel = Channel.where(building_id: building_id, channel_type: "main_group").last
-    UserChannel.create(user: self, channel: channel)
-
-  end
-
-  def set_group_channel
-    if self.building.docks?
-      c1 = Channel.where(name: "Les services des Docks")
-      c2 = Channel.where(name: "Achats/Ventes des Docks")
-      self.channels << c1
-      self.channels << c2
-    end
+    pseudo || [first_name, last_name.capitalize].join(' ')
   end
 
   def buildings_associate
@@ -143,7 +124,54 @@ class User < ActiveRecord::Base
       Vous pouvez le récupérer dans ma loge.
       Anabel votre gardienne d'immeuble"
     end
+  end
 
+  def self.search(options = {})
+    options.inject(User) do |scope, (field, value)|
+      next scope if value.blank?
+      case field.to_sym
+      when :building
+        scope.where(building_id: value)
+      else
+        scope
+      end
+    end
+  end
+
+  #
+  # Callbacks
+  #
+
+  def set_image_id
+    user = User.all.last(2).first
+    image_id = user.image_id + 1
+    image_id = image_id > 33 ? 2 : image_id
+    self.update(image_id: image_id)
+  end
+
+  def set_channel
+    channel = Channel.where(building_id: building_id, channel_type: "main_group").last
+    self.channels << channel
+  end
+
+  def set_group_channel
+    if self.building.docks?
+      c1 = Channel.where(name: "Les services des Docks").last
+      c2 = Channel.where(name: "Achats/Ventes des Docks").last
+      UserChannel.create(user: self, channel: c1, want_notification: false)
+      UserChannel.create(user: self, channel: c2, want_notification: false)
+    end
+  end
+
+  def change_building_processor
+    return if building_id_was.nil?
+    self.building_access = self.building.building_access
+    self.user_channels.each do |user_channel|
+      if user_channel.channel.channel_type == "main_group"
+        user_channel.destroy
+      end
+    end
+    self.channels << Channel.where(channel_type: "main_group", building_id: self.building.id).last
   end
 
 end

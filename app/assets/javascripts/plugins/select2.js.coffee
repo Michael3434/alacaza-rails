@@ -4,6 +4,10 @@ if typeof($.fn.select2) != "undefined"
     $(".js-multiple-select").select2({
       placeholder: "Ajoutez votre liste d'immeuble à notifier"
     })
+    $(".js-multiple-select-user").select2({
+      placeholder: "Selectionnez un user"
+      maximumSelectionLength: 1
+    })
     $(".js-multiple-select-users").select2({
       placeholder: "Ajoutez à votre liste des résidents"
       })
@@ -23,3 +27,5 @@ if typeof($.fn.select2) != "undefined"
       minimumResultsForSearch: Infinity,
       placeholder: "Êtes-vous locataire/copropriétaire ?"
     })
+    $(".js-single-value-select-building").select2
+      maximumSelectionLength: 1

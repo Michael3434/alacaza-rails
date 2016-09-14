@@ -22,7 +22,15 @@ class Admin::MessagesController < AdminController
   end
 
   def notifier
+  end
 
+  def password_email
+    if Mailer::UserMailerWorker.perform_async(:password_email, user_id: params["user"]["id"], password: params["user"]["pass"])
+      redirect_to :back
+      flash[:success] = "Messages bien envoyés"
+    else
+       flash[:alert] = "Un problème est survenue, si le problème persiste, contactez Michael au 0768453300"
+      end
   end
 
   def notify_buildings
@@ -32,7 +40,8 @@ class Admin::MessagesController < AdminController
       @message = Message.create(user: user, building_id: building, channel_id: channel.id, body: params[:body])
       message_notifier(@message)
     end
-    redirect_to admin_messages_path
+    flash[:success] = "Messages bien envoyés"
+    redirect_to :back
   end
 
   def message_notifier(message)
