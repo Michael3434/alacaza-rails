@@ -1,0 +1,10 @@
+ <div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Oups, pour publier ton annonce du doit avoir :
+    <ul class="list-unstyled">
+      <% @post.errors.messages.each do |attr, message| %>
+        <li class="space-left-2"><%= message.first %>
+      <% end %>
+    </ul>
+ </div>
+

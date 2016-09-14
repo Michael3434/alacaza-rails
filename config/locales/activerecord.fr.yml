@@ -13,6 +13,14 @@ fr:
           phone: Téléphone
     errors:
       models:
+        post:
+          attributes:
+            title:
+              blank: Un titre
+            description:
+              blank: Une description
+            tags:
+              blank: Au moins un tag
         user:
           attributes:
             email:

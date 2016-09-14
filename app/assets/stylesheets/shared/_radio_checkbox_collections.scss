@@ -1,0 +1,66 @@
+// Add some space between the default radio button and the label
+.collection_radio_buttons,
+.collection_check_boxes {
+  margin-left: 5px;
+}
+
+.collection_li_wrapper {
+  > label {
+    margin-bottom: 0;
+  }
+}
+
+// By default collection items are rendered with a class .collection_radio_buttons
+// or .collection_check_boxes. To change the default styling to buttons,
+// just add on the builder item_wrapper_class: "collection_button_wrapper"
+
+.collection_button_wrapper,
+.collection_radio_wrapper {
+  > label {
+    margin-bottom: 0;
+  }
+  input {
+    display: none;
+  }
+  .collection_radio_buttons,
+  .collection_check_boxes, {
+    background: white;
+    font-weight: 300;
+    border: 1px solid $gray-light;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  input:checked + .collection_radio_buttons,
+  input:checked + .collection_check_boxes {
+    background: rgba($brand-primary, 0.5);
+  }
+  input[value=true]:checked + label {
+    background-color: $green;
+    // border-color: $green;
+    color: white;
+  }
+  input[value=false]:checked + label {
+    background-color: $state-danger-text;
+    // border-color: $state-danger-text;
+    color: white;
+  }
+
+  // Checkbox specific
+  .collection_check_boxes {
+    margin: 0 5px 5px 0;
+    border-radius: $border-radius-base;
+  }
+
+  .collection_radio_buttons {
+    margin: 0;
+  }
+
+  // Radio buttons specific
+  &:first-child .collection_radio_buttons {
+  }
+  &:last-child .collection_radio_buttons {
+  }
+  + .collection_button_wrapper {
+    margin-left: -1px;
+  }
+}

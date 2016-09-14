@@ -183,6 +183,7 @@
         .infos-channel {
           padding: 20px 20px 0px 20px;
           text-align: center;
+          margin-top: 30px;
           .member-image {
             width: 45px;
           }
@@ -285,9 +286,9 @@
         .message-content {
           margin-left: 70px;
           &:hover {
-            .message-body p {
-              background-color: #f9f9f9;
-            }
+            // .message-body p {
+            //   background-color: #f9f9f9;
+            // }
           }
           .reaction-container {
             position: absolute;
