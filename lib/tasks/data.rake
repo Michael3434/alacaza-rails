@@ -16,15 +16,10 @@ namespace :data do
   task add_new_users: :environment do
     CSV.foreach('db/users.csv', headers: true) do |row|
       password = "#{row["first_name"]}.#{rand(99999)}"
-      user = User.new(
-          first_name: row["first_name"],
-          last_name: row["last_name"],
-          email: row['email'],
-          door: row["door"],
-          password: password
-          )
+      user = User.new(first_name: row["first_name"], last_name: row["last_name"], email: row['email'], floor: row['floor'], door: row["door"], password: password)
       if user.save!
-        Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password)
+        byebug
+        Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password: password)
       end
     end
   end
