@@ -5,7 +5,7 @@
 <span style="line-height: 1.5; font-style: italic;">
       <%= extracted_body_for_email(@message.body) %>
       <% if @user.gardien %>
-        <%= link_to "lire plus", gardien_appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %>
+        <%= link_to "lire plus", gardien_appartments_url(@user.building.slug, @message.channel_id, token: @user.token) %>
       <% else %>
         <%= link_to "lire plus", appartments_url(@user.building.slug, @message.channel_id, token: @user.token) %>
       <% end %>
@@ -17,7 +17,7 @@
   <% if @user.gardien %>
     <table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
       <td>
-        <a href= <%= gardien_appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
+        <a href= <%= gardien_appartments_url(@user.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
           <span style="text-align: center;
             width: 210px;
             font-family: helvetica;
@@ -34,7 +34,7 @@
   <% else %>
     <table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
       <td>
-        <a href= <%= appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
+        <a href= <%= appartments_url(@user.building.slug, @message.channel_id, token: @user.token) %> style="text-decoration: none;">
           <span style="text-align: center;
             width: 210px;
             font-family: helvetica;
