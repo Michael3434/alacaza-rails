@@ -41,6 +41,7 @@
         </td>
         <td>Et: <%= user.floor %></td>
         <td>Apt: <%= user.door %></td>
+        <% p user.id %>
         <td><%= link_to "Compte user", appartments_url(user.building.slug, token: user.token), target: "blank" %></td>
     <% end %>
     <% end %>

@@ -14,13 +14,23 @@ namespace :data do
   end
 
   task add_new_users: :environment do
-    CSV.foreach('db/users.csv', headers: true) do |row|
+    i = 1
+    CSV.foreach('db/users_1.csv', headers: true) do |row|
       password = "#{row["first_name"]}.#{rand(99999)}"
-      user = User.new(first_name: row["first_name"], last_name: row["last_name"], email: row['email'], floor: row['floor'], door: row["door"], password: password)
-      if user.save!
-        byebug
-        Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password: password)
+      user = User.find_by_email(row['email']) || User.find_by_email(row['email_2'])
+      if user
+        p i
+        p "---------------"
+        p "#{user.id} already exist"
+        p user.email
+        "---------------------"
+        i += 1
       end
+      # user = User.new(first_name: row["first_name"], last_name: row["last_name"], email: row['email'], floor: row['floor'], door: row["door"], password: password)
+      # if user.save!
+      #   byebug
+      #   Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password: password)
+      # end
     end
   end
 
