@@ -16,6 +16,8 @@ class Mailer::UserMailerWorker
       arguments = [user]
     when "password_email"
       arguments = [user, password]
+    when "welcome_with_mail"
+      arguments = [user, password]
     end
 
     UserMailer.send(method, *arguments).deliver!

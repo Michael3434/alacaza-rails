@@ -1,4 +1,4 @@
-
+require 'csv'
 namespace :data do
 
   task asign_channel_to_pierre: :environment do
@@ -10,6 +10,22 @@ namespace :data do
       else
         user.channels << channel
       end
+    end
+  end
+
+  task add_new_users: :environment do
+    CSV.foreach('db/users.csv', headers: true) do |row|
+      password = "#{row["first_name"]}.#{rand(99999)}"
+      user = User.new(
+          first_name: row["first_name"],
+          last_name: row["last_name"],
+          email: row['email'],
+          door: row["door"],
+          password: password
+          )
+      if user.save!
+        Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password)
+
     end
   end
 
