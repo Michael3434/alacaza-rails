@@ -25,7 +25,7 @@ namespace :data do
           )
       if user.save!
         Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password)
-
+      end
     end
   end
 
