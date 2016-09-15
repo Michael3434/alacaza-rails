@@ -7,7 +7,7 @@
       <% if @user.gardien %>
         <%= link_to "lire plus", gardien_appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %>
       <% else %>
-        <%= link_to "lire plus", appartments_url(@message.building.slug, @message.channel_id, token: @user.token) %>
+        <%= link_to "lire plus", appartments_url(@user.building.slug, @message.channel_id, token: @user.token) %>
       <% end %>
 
 </span>
