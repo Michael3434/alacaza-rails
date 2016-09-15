@@ -47,6 +47,10 @@ class PostsController < ApplicationController
       current_user.channels << channel
       post_user.channels << channel
     end
+
+    Mailer::UserMailerWorker.perform_async(:new_message, message_id: message.id, user_id: post_user.id)
+    SlackNotifierWorker.perform_async(:new_message, message_id: message.id)
+
     redirect_to appartments_path(current_user.building.slug, channel)
   end
 
