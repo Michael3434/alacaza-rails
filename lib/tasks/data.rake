@@ -17,6 +17,9 @@ namespace :data do
     CSV.foreach('db/users_1.csv', headers: true) do |row|
       password = "#{row["first_name"]}-#{rand(99999)}"
       user = User.find_by_email(row["email"])
+      user.password = password
+      user.password_confirmation = password
+      user.save!
       Mailer::UserMailerWorker.perform_async(:welcome_with_password, user_id: user.id, password: password)
     end
   end
