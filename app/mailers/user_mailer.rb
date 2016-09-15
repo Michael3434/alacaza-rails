@@ -22,6 +22,13 @@ class UserMailer < ActionMailer::Base
     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Alacaza - Votre mot de passe"
   end
 
+  def welcome_with_password(user, password)
+    @user = user
+    @password = password
+
+    mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, bcc: "hello@alacaza.fr", subject: "Bienvenue sur Alacaza!"
+  end
+
   def new_comment(comment, user)
     @user = user
     @comment = comment

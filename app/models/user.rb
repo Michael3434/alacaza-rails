@@ -172,7 +172,9 @@ class User < ActiveRecord::Base
         user_channel.destroy
       end
     end
-    self.channels << Channel.where(channel_type: "main_group", building_id: self.building.id).last
+    channel = Channel.where(channel_type: "main_group", building_id: self.building.id).last
+    self.messages.joins(:channel).where('channels.channel_type = ?', 'main_group').update_all(channel_id: channel.id)
+    self.channels << channel
   end
 
 end
