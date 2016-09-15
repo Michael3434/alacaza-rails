@@ -57,6 +57,19 @@ module Notifier
       notify(message, options)
     end
 
+    def new_post(post)
+      message = "Nouveau post"
+      options = {
+        channel: "#website",
+        attachments: [
+          { title: "Prénom", text: post.user.first_name },
+          { title: "Nom", text: post.user.last_name },
+          { title: "Titre", text: post.title },
+          { title: "Description", text: post.description }
+        ]
+      }
+      notify(message, options)
+    end
     private
 
     def slack

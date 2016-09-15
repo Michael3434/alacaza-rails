@@ -7,6 +7,7 @@ class SlackNotifierWorker
     user = User.where(id: params["user_id"]).first
     comment = Comment.where(id: params["comment_id"]).first
     lead = Lead.where(id: params["lead_id"]).first
+    post = Post.where(id: params["post_id"]).first
 
     case method
     when "new_message"
@@ -23,6 +24,8 @@ class SlackNotifierWorker
       arguments = [lead]
     when "new_like"
       arguments = [message, user]
+    when "new_post"
+      arguments = [post]
     end
 
     Notifier.send(method, *arguments)

@@ -6,7 +6,6 @@ class PostsController < ApplicationController
       respond_to do |format|
         format.js
       end
-      SlackNotifierWorker.perform_async(:new_post, post_id: @post.id)
     else
       render 'new'
     end
@@ -34,6 +33,7 @@ class PostsController < ApplicationController
     return @post.update(post_params) if @post.published
     if @post.valid?(:publish)
       @post.update(post_params)
+      SlackNotifierWorker.perform_async(:new_post, post_id: @post.id)
     end
   end
 
