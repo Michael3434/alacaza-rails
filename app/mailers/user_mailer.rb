@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Alacaza - Votre mot de passe"
   end
 
-  def welcom_with_password(user, password)
+  def welcome_with_password(user, password)
     @user = user
     @password = password
 

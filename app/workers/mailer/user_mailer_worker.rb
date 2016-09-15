@@ -16,7 +16,7 @@ class Mailer::UserMailerWorker
       arguments = [user]
     when "password_email"
       arguments = [user, password]
-    when "welcome_with_mail"
+    when "welcome_with_password"
       arguments = [user, password]
     end
 
