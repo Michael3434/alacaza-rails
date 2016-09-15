@@ -1,7 +1,7 @@
 <% content_for :title, "Alacaza | La première messagerie entièrement dédiée à la vie de votre immeuble " %>
 <% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
 
-<div class="client-ui">
+<div class="client-ui" data-channel-id="<%= @channel.id %>">
   <div id="loader" style="display: none;"></div>
   <div class="scroll-container">
     <div class="row">

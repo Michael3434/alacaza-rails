@@ -1,0 +1,13 @@
+<% if @post.errors.any? %>
+  $(".errors").empty()
+  $(".errors").append("<%= j render(partial: 'publish_errors', locals: { post: @post }).html_safe %>");
+  $("input[id$='published_true']").attr("checked", false)
+  $("input[id$='published_false']").siblings('label').css('background-color', '#DE3B38').css('color', 'white')
+<% else %>
+$(".publish-success").empty()
+<% if @post.published %>
+  $("input[id$='published_false']").attr("checked", false)
+  $("input[id$='published_false']").siblings('label').css('background-color', 'white').css('color', '#333')
+<% end %>
+$(".publish-success").append("<%= j render(partial: 'publish_success', locals: { post: @post }).html_safe %>");
+<% end %>

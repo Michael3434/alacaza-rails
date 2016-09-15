@@ -8,10 +8,40 @@ app.buildings.show =
       @initNewMessageModal()
       @initFile()
       @removeImgOnHideModal()
+      # @showReactionOnOverMessage() // Disable like
       @showReactionOnOverMessage()
+      @liveChat()
+    liveChat: ->
+      window.client = new Faye.Client('/faye')
+      jQuery ->
+        client.unsubscribe
+        client.subscribe '/messages', (payload) ->
+          if $('[data-message-id=' + payload.messageId + ']').length  == 0
+            channel = $('.current[data-channel-id=' + payload.channelId + ']')
+            if channel.length > 0
+              $(".messages-container").append(payload.message) if payload.message
+              $(".messages-container .message-content").last()[0].scrollIntoView(true);
+              button = $('form#new_message').find("button[type='submit']")
+              button.prop('disabled', false)
+              button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+              $('#message_body').val("")
+            else
+              channel = $('.others[data-channel-id=' + payload.channelId + ']')
+              badge = channel.find('.badge')
+              if badge.length == 0
+                messageUnseen = 1
+              else
+                messageUnseen = parseInt(badge.text()) + 1
+                badge.remove()
+              # channel.append('<span class="badge candy_red_bg">' + messageUnseen + '</span>')
       @initCarousel()
       @showHomeIconBadge()
       @initUserPhoto()
+      @disabledOnSubmitPostMessage()
+    disabledOnSubmitPostMessage: ->
+      $('form#new_post_message').on 'submit', ->
+        $(this).find('btn').attr('disabled', 'true')
+        $(this).css('opacity', '0.3')
     initUserPhoto: ->
       $('.image-wrapper').on "mouseenter", ->
         $(".hover-background").show()
@@ -46,7 +76,10 @@ app.buildings.show =
 
     showHomeIconBadge: ->
       if $(".badge.candy_red_bg").length > 0
-        $('.badge-home').removeClass("hidden")
+        $('.badge-home.candy_red_bg').removeClass("hidden")
+      else if $(".candy_yellow_bg").length > 0
+        $('.badge-home.candy_yellow_bg').removeClass("hidden")
+
     initCarousel: ->
       $("[class*='picture-wrapper-']").each ->
         $(this).magnificPopup

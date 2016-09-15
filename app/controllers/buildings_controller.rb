@@ -25,6 +25,7 @@ class BuildingsController < ApplicationController
       # SlackNotifierWorker.perform_async(:new_message_page_view, user_id: current_user.id)
     end
     if @channel
+      @post = current_user.posts.last || Post.new
       @messages = @channel.messages.includes(:user)
       @channel.mark_as_seen_by(current_user)
     end
