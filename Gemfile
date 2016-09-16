@@ -6,7 +6,7 @@ gem 'rails', '4.2.4'
 gem 'rack-cors'
 
 # gem 'faye-rails', '~> 2.0'
-# gem 'thin'
+gem 'thin'
 
 ## BACK END ##
 gem 'pg'
