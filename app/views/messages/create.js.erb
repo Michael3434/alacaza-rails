@@ -7,6 +7,19 @@
   // Resize the input text area to default
   $('textarea').css('height', "42px")
 
+  // Append new message
+  message = ('<%= j render(partial: "messages/message", locals: { message: @message } ).html_safe %>')
+  $(".messages-container").append(message)
+  $('#votes_modal').modal('hide')
+
+  // Disabel false  submit
+  button = $('form#new_message').find("button[type='submit']")
+  button.prop('disabled', false)
+  button.removeClass('ion-loading-c').addClass('ion-paper-airplane')
+
+  $(".messages-container .message-content").last()[0].scrollIntoView(true);
+  $('#message_body').val("")
+
   <% if @message.photo.present? %>
     $('.progress_bar_progress_thin').remove()
     $('.navbar-progress').append("<span class='progress_bar_progress_thin'>")
@@ -25,10 +38,10 @@
       "Immeuble": <%= @message.user.building_id %>
   })
 
-  publisher = client.publish('/messages', {
-    message: '<%= j render @message %>',
-    channelId: <%= @message.channel.id %>,
-    messageId: <%= @message.id %>
-  });
+  // publisher = client.publish('/messages', {
+  //   message: '<%= j render @message %>',
+  //   channelId: <%= @message.channel.id %>,
+  //   messageId: <%= @message.id %>
+  // });
 
 <% end %>

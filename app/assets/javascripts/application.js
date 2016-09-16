@@ -28,7 +28,6 @@
 //= require app.auth
 //= require app.leads
 //= require app.building.show
-//= require faye
 
 //= require admin/messages/notifier
 
