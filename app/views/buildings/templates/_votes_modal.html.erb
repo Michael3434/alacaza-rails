@@ -3,14 +3,36 @@
     <%= f.hidden_field :channel_id, value: @channel.id %>
     <%= f.hidden_field :building_id, value: @building.id %>
     <%= f.hidden_field :as_vote_option, value: true %>
-    <%= f.input :body, label: false, input_html: { class: "js-auto-size" }, placeholder: "Votre message pour votre proposition de vote" %>
-    <div class="hint space-2">Vous pouvez avoir 1, 2 ou 3 propositions c'est au choix !</div>
-    <%= f.input :option_1, label: false, placeholder: "Proposition 1..." %>
-    <%= f.input :option_2, label: false, placeholder: "Proposition 2..." %>
-    <%= f.input :option_3, label: false, placeholder: "Proposition 3..." %>
-    <div class="text-right">
+    <div class="text-center">
+      <%= button_tag "Planifier un événement", class: "btn btn-secondary toogle-event" %>
+      <%= button_tag "Faire un choix", class: "btn btn-secondary toogle-survey" %>
+    </div>
+
+    <div class="survey-wrapper" style="display: none">
+      <div class="hint space-2">Vous pouvez avoir de 1 à 5 propositions, c'est au choix !</div>
+      <%= f.input :body, label: false, input_html: { class: "js-auto-size space-top-3" }, placeholder: "Votre message pour votre proposition de vote" %>
+      <%= f.input :option_1, label: false, placeholder: "Proposition 1..." %>
+      <%= f.input :option_2, label: false, placeholder: "Proposition 2..." %>
+      <%= f.input :option_3, label: false, placeholder: "Proposition 3..." %>
+      <%= f.input :option_4, label: false, placeholder: "Proposition 4..." %>
+      <%= f.input :option_5, label: false, placeholder: "Proposition 5..." %>
       <%= button_tag "Envoyer", class: "btn btn-secondary btn-lg" %>
-      <%#= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+    </div>
+
+      <div class="event-wrapper" style="display: none">
+        <%= f.input :body, label: false, input_html: { class: "js-auto-size space-top-3" }, placeholder: "Votre message pour votre proposition de vote" %>
+        <div class="row">
+          <div class="h4 text-center space-4">Choisissez maximum 5 dates</div>
+          <div class="col-md-6 col-sm-12">
+            <div class="calendar"></div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="h4 text-center"><strong>Votre selection</strong></div>
+            <div class="date-wrapper"></div>
+          </div>
+        </div>
+        <%= button_tag "Envoyer", class: "btn btn-secondary btn-lg" %>
+      </div>
     </div>
   <% end %>
 <% end %>

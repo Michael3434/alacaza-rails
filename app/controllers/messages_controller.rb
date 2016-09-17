@@ -63,9 +63,13 @@ class MessagesController < ApplicationController
     :option_1,
     :option_2,
     :option_3,
+    :option_4,
+    :option_5,
     :vote_for_option_1 => [],
     :vote_for_option_2 => [],
     :vote_for_option_3 => [],
+    :vote_for_option_4 => [],
+    :vote_for_option_5 => [],
     :users_like_id => [])
   end
 end

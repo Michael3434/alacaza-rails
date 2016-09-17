@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914190417) do
+ActiveRecord::Schema.define(version: 20160916155518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,10 @@ ActiveRecord::Schema.define(version: 20160914190417) do
     t.text     "vote_for_option_2"
     t.text     "vote_for_option_3"
     t.boolean  "validated",         default: true
+    t.string   "option_4"
+    t.string   "option_5"
+    t.text     "vote_for_option_4"
+    t.text     "vote_for_option_5"
   end
 
   create_table "posts", force: :cascade do |t|

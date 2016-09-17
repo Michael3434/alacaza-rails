@@ -16,11 +16,13 @@
 //= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require select2
 //= require class/spinnable
 //= require class/message_generator
 //= require class/huddable
 //= require jquery-ui/sortable
+
 
 //= require_tree ./plugins
 //= require app
@@ -28,6 +30,8 @@
 //= require app.auth
 //= require app.leads
 //= require app.building.show
+
+//= require vote/new
 
 //= require admin/messages/notifier
 

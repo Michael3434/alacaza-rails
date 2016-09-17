@@ -13,6 +13,8 @@ class Message < ActiveRecord::Base
   serialize :vote_for_option_1, Array
   serialize :vote_for_option_2, Array
   serialize :vote_for_option_3, Array
+  serialize :vote_for_option_4, Array
+  serialize :vote_for_option_5, Array
 
 
   def file_size
@@ -32,6 +34,8 @@ class Message < ActiveRecord::Base
     options << ["option_1", option_1] if option_1.present?
     options << ["option_2", option_2] if option_2.present?
     options << ["option_3", option_3] if option_3.present?
+    options << ["option_4", option_4] if option_4.present?
+    options << ["option_5", option_5] if option_5.present?
     options
   end
 
