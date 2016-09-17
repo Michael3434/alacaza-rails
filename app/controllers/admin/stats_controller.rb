@@ -12,8 +12,8 @@ class Admin::StatsController < AdminController
   end
 
   def get_stats_messages
-    messages = Message.joins(:user).where('users.email != ?', "hello@alacaza.fr")
-    @messages_count = messages.all.count
+    messages = Message.all
+    @messages_count = messages.count
     @messages = messages.group_by_week('messages.created_at').count
   end
 end
