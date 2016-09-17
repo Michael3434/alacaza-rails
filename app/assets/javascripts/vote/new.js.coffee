@@ -24,16 +24,18 @@ app.votes.new =
           $('.date-wrapper').append('<div class="space-2 space-top-2 date-text">' + date + '</div>')
   showHideForm: ->
     $('.toogle-event').on "click", ->
+      $("#votes_modal #message_body").detach().prependTo(".event-wrapper")
       $('.event-wrapper').show()
       $('.survey-wrapper').hide()
       return false
     $('.toogle-survey').on "click", ->
+      $("#votes_modal #message_body").detach().prependTo(".survey-wrapper .hint")
       $('.survey-wrapper').show()
       $('.event-wrapper').hide()
       return false
   addDateToForm: ->
-    if $('.survey-event').is(":visible")
-      $('#votes_modal .new_message').on 'submit', ->
+    $('#votes_modal .new_message').on 'submit', ->
+      if $('.event-wrapper').is(":visible")
         $.each $('.date-wrapper .date-text'), (index, el) ->
           $('#message_option_' + (index + 1)).val($(el).text())
 
