@@ -17,5 +17,10 @@ class Admin::StatsController < AdminController
     @messages = messages.group_by_week('messages.created_at').count
 
     @survey_messages = Message.where("body like '%nous réalisons un son%'")
+
+    @total1 = @survey_messages.pluck(:vote_for_option_1).flatten.length
+    @total2 = @survey_messages.pluck(:vote_for_option_2).flatten.length
+    @total3 = @survey_messages.pluck(:vote_for_option_3).flatten.length
+    @total4 = @survey_messages.pluck(:vote_for_option_4).flatten.length
   end
 end
