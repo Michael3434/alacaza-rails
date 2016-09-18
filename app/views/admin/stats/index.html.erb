@@ -11,3 +11,26 @@
   <%= line_chart @messages %>
 </div>
 
+<div class="container">
+    <table class="table table-hover" data-behavior="autoclick">
+      <tr>
+        <th>Building</th>
+        <th>Pas intéressé</th>
+        <th>Oui pour tester</th>
+        <th>Oui pour achat régulier</th>
+        <th>Oui pour être animateur</th>
+      </tr>
+
+      <% @survey_messages.each do |message| %>
+        <%= content_tag :tr  do %>
+          <td><%= message.channel.building.name %></td>
+          <td> <%= message.vote_for_option_1.count %> </td>
+          <td> <%= message.vote_for_option_2.count %> </td>
+          <td><%= message.vote_for_option_3.count %></td>
+          <td><%= message.vote_for_option_4.count %></td>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
+

@@ -15,5 +15,7 @@ class Admin::StatsController < AdminController
     messages = Message.all
     @messages_count = messages.count
     @messages = messages.group_by_week('messages.created_at').count
+
+    @survey_messages = Message.where("body like '%nous réalisons un son%'")
   end
 end
