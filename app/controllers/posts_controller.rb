@@ -40,10 +40,10 @@ class PostsController < ApplicationController
   def add_message
     post_user = Post.find(params[:post_id]).user
     if channel = current_user.private_channel_with(post_user)
-      message = Message.create(body: params[:body], channel: channel, user: current_user)
+      message = Message.create(body: params[:body], channel: channel, user: current_user, building_id: current_user.building.id)
     else
       channel = Channel.create(building: post_user.building, channel_type: "private")
-      message = Message.create(body: params[:body], channel: channel, user: current_user)
+      message = Message.create(body: params[:body], channel: channel, user: current_user, building_id: current_user.building.id)
       current_user.channels << channel
       post_user.channels << channel
     end
