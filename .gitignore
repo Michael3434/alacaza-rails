@@ -46,27 +46,9 @@ app/assets/images/temp/*
 # All the old files
 *_old*
 
-# Ignore those fonts
-app/assets/fonts/calluna/*
-app/assets/fonts/DIN/*
-
-# Application.yml
-config/application.yml
-
 # Remove .DS_Store
 .DS_Store
 .env
-
-# Archives
-/app/assets/stylesheets/archives/*
-/app/assets/javascripts/archives/*
-
-# Spring
-bin/rspec
-bin/sidekiq
-
-# Salesforce
-db/salesforce/
 
 # Ignore application configuration
 /config/application.yml
