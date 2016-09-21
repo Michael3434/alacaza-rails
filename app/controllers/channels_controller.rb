@@ -6,16 +6,20 @@ class ChannelsController < ApplicationController
 			User.find(channel_params[:recipient_id]).channels << @channel
 		else
 			redirect_to appartments_path(@building.slug)
-			return 
+			return
 		end
 		redirect_to appartments_path(@building.slug, @channel)
 	end
 
+  def custom_channel
+
+  end
+
 	def show
-		
+
 	end
 
-	private	
+	private
 
 	def channel_params
 		 params.require(:channel).permit(:recipient_id, :channel_type, :building_id)

@@ -66,6 +66,7 @@
 <%= render "users/edit_profil_modal" %>
 <%= render "posts/new_post_modal" %>
 <%= render "posts/post_card_modal" %>
+<%= render "channels/new_channel_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">
@@ -90,4 +91,40 @@
     </div>
   </div>
 </div>
+
+<!-- Algolia -->
+
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+
+<script>
+  var client = algoliasearch('1JYIOVD1XV', '17089a316d90016992bd5611977d69e7')
+  var index = client.initIndex('User_<%= Rails.env %>');
+  $('#user_name').autocomplete({ hint: false }, [
+    {
+      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+      displayKey: 'first_name',
+      templates: {
+        suggestion: function(suggestion) {
+          if ( suggestion.photo_url.toString().match(/cloudinary/) ) {
+            photoUrl = suggestion.photo_url
+          }
+          else {
+            obj = new(imageUrlGenerator)
+            photoUrl = obj.generate(suggestion.photo_url)
+          }
+          return '<img src="' + photoUrl + '">' + suggestion.first_name + " " + suggestion.last_name + '<span data-user-for-channel="' + suggestion.id + '" class="hidden"></span>'
+        }
+      }
+    }
+  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+    user = $('.aa-suggestions .aa-suggestion.aa-cursor').clone()
+    user.append('<i class="fa fa-times remove-user"></i>')
+    user.appendTo($('.selection'))
+    $(".remove-user").on("click", function() {
+      $(this).closest('.aa-suggestion.aa-cursor').remove();
+    });
+    $('#user_name').val("")
+  });
+</script>
 

@@ -1,0 +1,24 @@
+#new_channel_modal {
+  .selection {
+    .aa-suggestion.aa-cursor {
+      border: 1px solid #eee;
+      font-size: 14px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+    img  {
+      width: 36px;
+      height: 36px;
+      margin-right: 5px;
+    }
+    .remove-user {
+      position: absolute;
+      right: 13px;
+      top: 9px;
+      border: 0;
+      font-size: 22px;
+      cursor: pointer;
+      color: #eb4d5c;
+    }
+  }
+}

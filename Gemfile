@@ -13,8 +13,10 @@ gem 'pg'
 gem 'slack-notifier'
 
 # Select2 - multiple select boxes
-  gem 'select2-rails'
+gem 'select2-rails'
 
+# Algolia search engine
+gem "algoliasearch-rails"
 
 gem 'has_secure_token'
 
