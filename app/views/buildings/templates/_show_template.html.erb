@@ -125,6 +125,8 @@
     user.append('<i class="fa fa-times remove-user"></i>')
     user.prependTo($('.selection'))
     $(".remove-user").on("click", function() {
+      id = $(this).siblings('[data-user-for-channel]').data('user-for-channel')
+      $('.selection .aa-suggestion [data-user-for-channel=' + id + ']').remove();
       $(this).closest('.aa-suggestion.aa-cursor').remove();
     });
     $('#user_name').val("")
