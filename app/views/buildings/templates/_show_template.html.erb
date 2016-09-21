@@ -1,4 +1,4 @@
-<div class="client-ui">
+<div class="client-ui" data-current-user-building="<%= current_user.building_id %>">
   <div id="loader" style="display: none;"></div>
   <% if current_user.building.docks? && !@channel.private? %>
     <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
@@ -94,33 +94,36 @@
 
 <!-- Algolia -->
 
-<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
-
 <script>
-  var client = algoliasearch('1JYIOVD1XV', '17089a316d90016992bd5611977d69e7')
-  var index = client.initIndex('User_<%= Rails.env %>');
   $('#user_name').autocomplete({ hint: false }, [
     {
-      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 10 }),
       displayKey: 'first_name',
       templates: {
         suggestion: function(suggestion) {
-          if ( suggestion.photo_url.toString().match(/cloudinary/) ) {
-            photoUrl = suggestion.photo_url
+          alreadySelected = $('.selection .aa-suggestion [data-user-for-channel=' + suggestion.id + ']').length > 0
+          if ( suggestion.building_id == $('[data-current-user-building]').data('current-user-building') && !alreadySelected ) {
+            if ( suggestion.photo_url.toString().match(/cloudinary/) ) {
+              photoUrl = suggestion.photo_url
+            }
+            else {
+              obj = new(imageUrlGenerator)
+              photoUrl = obj.generate(suggestion.photo_url)
+            }
+            return '<img src="' + photoUrl + '">' + suggestion.first_name + " " + suggestion.last_name + '<span data-user-for-channel="' + suggestion.id + '" class="hidden"></span>'
           }
           else {
-            obj = new(imageUrlGenerator)
-            photoUrl = obj.generate(suggestion.photo_url)
+            return '<span class="to-remove"></span>'
           }
-          return '<img src="' + photoUrl + '">' + suggestion.first_name + " " + suggestion.last_name + '<span data-user-for-channel="' + suggestion.id + '" class="hidden"></span>'
         }
       }
     }
-  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+  ]).on('autocomplete:updated', function(event, suggestion, dataset) {
+    $('.to-remove').closest('.aa-suggestion').remove()
+  }).on('autocomplete:selected', function(event, suggestion, dataset) {
     user = $('.aa-suggestions .aa-suggestion.aa-cursor').clone()
     user.append('<i class="fa fa-times remove-user"></i>')
-    user.appendTo($('.selection'))
+    user.prependTo($('.selection'))
     $(".remove-user").on("click", function() {
       $(this).closest('.aa-suggestion.aa-cursor').remove();
     });

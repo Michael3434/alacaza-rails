@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
       photo_url
     end
 
-    attribute :first_name, :last_name, :id, :photo_url
+    attribute :first_name, :last_name, :id, :photo_url, :building_id
   end
 
   devise :database_authenticatable, :registerable,

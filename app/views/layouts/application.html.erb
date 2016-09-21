@@ -32,6 +32,7 @@
   <% end %>
 
   <%= render "scripts/google_analytics" %>
+  <%= render "scripts/algolia" %>
 
   <% if content_for?(:canonical) %>
   <link rel="canonical" href="http://<%= request.host + yield(:canonical) %>">

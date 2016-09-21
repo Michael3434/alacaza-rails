@@ -22,7 +22,11 @@
   &.hover {
     color: white;
   }
+  + span.hidden {
+    display: none;
+  }
 }
+
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
   background-color: red;
   color: white;
