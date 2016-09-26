@@ -8,24 +8,22 @@
           <span class="candy_red_bg badge-home hidden"> ! </span>
         </button>
         </div>
-        <h2 class="channel-name-container">
-          <span class="channel-name">
-            <span class="channel-title">
-              #<%= @channel.name %>
+        <a data-toggle="modal" data-target="#edit_channel_modal" class="cursor-pointer">
+          <h2 class="channel-name-container">
+            <span class="channel-name">
+              <span class="channel-title">
+                #<%= @channel.name %>
+              </span>
             </span>
-            <div class="channel-title-info">
-            <button class="channel-actions-toggle btn-unstyle" data-toggle="modal" data-target="#edit_channel_modal">
-              <i class="fa fa-cog" aria-hidden="true"></i>
-            </button>
+          </h2>
+          <div class="channel-header-info">
+            <div class="channel-members-toggle-count">
+              <%= @channel.users.length %> membres
             </div>
-          </span>
-        </h2>
-        <div class="channel-header-info">
-          <div class="channel-members-toggle-count">
-            <%= @channel.users.length %> membres
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
 </header>
+

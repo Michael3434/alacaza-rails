@@ -1,6 +1,10 @@
 <div class="infos space-top-1">
+<% if @channel.description.present? %>
+<%= @channel.description %>
+<% else %>
 Sur ce fil de discussion vous pouvez échanger avec toutes les personnes de votre quartier !  <br>
 Profitez-en !
+<% end %>
 </div>
 <hr>
 

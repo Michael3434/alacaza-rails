@@ -1,5 +1,7 @@
 <p>Bonjour <%= @user.first_name %>,</p>
-<p>Tu as été ajouté dans le fil de discussion #<%= @channel.name %> par <%= @created_by.name %>.</p>
+<p>Tu as été ajouté dans le fil de discussion #<%= @channel.name %> par <%= @created_by.name %> qui a le sujet suivant : <br>
+  <p><%= @channel.description.present? ? @channel.description : @channel.name %></p>
+</p>
 
 <p>Tu peux désormais y communiquer avec l(es) autre(s) membre(s) qui ont été ajouté(s).</p>
 

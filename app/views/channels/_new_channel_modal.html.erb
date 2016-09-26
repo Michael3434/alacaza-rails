@@ -12,7 +12,8 @@
         <div class="hint space-4"></div>
 
         <%= simple_form_for Channel.new, url: channel_custom_channel_path(1), html: { id: "new_custom_channel" } do |f| %>
-          <%= f.input :name, label: "Le titre de votre channel", placeholder: "Problèmes ICAD" %>
+          <%= f.input :name, label: "Le titre de votre channel", placeholder: "Ex: Problèmes ICAD" %>
+          <%= f.input :description, label: "La description du channel", placeholder: "Ex: Ce channel a pour but d'échanger sur les problèmes liés à ICAD", hint: "Optionnel" %>
           <label>Envoyer une invitation à :</label>
           <%= f.input :users_id, collection: users_from_same_building, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
           <div class="modal-footer">

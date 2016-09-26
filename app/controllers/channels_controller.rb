@@ -13,6 +13,7 @@ class ChannelsController < ApplicationController
 
   def custom_channel
     channel = Channel.create(
+        description: params[:channel][:description],
         created_by: current_user.id,
         channel_type: 'group',
         building_id: current_user.building_id,
@@ -43,6 +44,6 @@ class ChannelsController < ApplicationController
 	private
 
 	def channel_params
-		 params.require(:channel).permit(:recipient_id, :channel_type, :building_id, :users_id, :created_by, :name)
+		 params.require(:channel).permit(:recipient_id, :channel_type, :building_id, :users_id, :created_by, :name, :description)
 	end
 end
