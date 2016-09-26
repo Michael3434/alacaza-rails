@@ -38,6 +38,9 @@
         </ul>
       </div>
     <% else %>
+      <div class="add-channel">
+        <i class="ion-plus-round  fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_channel_modal">Créer un channel</a>
+      </div>
       <div class="title">Groupes <span class="conversation-count">(<%= current_user.all_group_channels.length %>)</span> </div>
       <div class="list">
         <ul class="list-unstyled">
@@ -72,5 +75,8 @@
       </ul>
     </div>
   </div>
+    <ul class="list-unstyled">
+      <li class="logout"><%= link_to icon("sign-out", "Se déconnecter"), destroy_user_session_path, method: :delete, class: "logout" %></li>
+    </ul>
   </div>
 </div>

@@ -32,6 +32,7 @@
   <% end %>
 
   <%= render "scripts/google_analytics" %>
+  <%= render "scripts/algolia" %>
 
   <% if content_for?(:canonical) %>
   <link rel="canonical" href="http://<%= request.host + yield(:canonical) %>">
@@ -41,7 +42,11 @@
   <% if current_user.try(:admin) %>
     <%= render 'layouts/admin_navbar' %>
   <% else %>
-    <%= render 'layouts/navbar' %>
+    <% if controller_name == "static_pages" && action_name == "home" %>
+      <%= render 'layouts/navbar' %>
+    <% else %>
+      <%= render "layouts/public_navbar" %>
+    <% end %>
   <% end %>
   <%= yield %>
 

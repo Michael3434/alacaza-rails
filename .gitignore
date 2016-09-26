@@ -38,17 +38,13 @@ app/assets/stylesheets/sample_style.css
 *.dump
 *.rdb
 
-# Images for mailers
-app/assets/images/mailer/
-app/assets/sample_map_search
+# Temp assets
 app/assets/images/temp/*
 
 # All the old files
 *_old*
 
-# Ignore those fonts
-app/assets/fonts/calluna/*
-app/assets/fonts/DIN/*
+.byebug_history
 
 # Application.yml
 config/application.yml
@@ -68,5 +64,4 @@ bin/sidekiq
 # Salesforce
 db/salesforce/
 
-# Ignore application configuration
-/config/application.yml
+conversion-import-template.csv

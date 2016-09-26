@@ -11,6 +11,15 @@ mount Sidekiq::Web => '/sidekiq'
     patch "change_picture", to: "users#change_picture"
   end
 
+  resources :buildings do
+    resources :channels
+  end
+  resources :comments
+  resources :channels do
+    post "custom_channel", to: "channels#custom_channel"
+    patch "edit_custom_channel", to: "channels#edit_custom_channel"
+  end
+
   get "/commande", to: "leads#new"
   resources :leads, only: [:create, :new] do
     collection do
@@ -47,10 +56,6 @@ mount Sidekiq::Web => '/sidekiq'
     post "/password_email", to: "messages#password_email"
 
   end
-  resources :buildings do
-    resources :channels
-  end
-  resources :comments
   resources :user_channels, only: [:update]
   scope "immeubles" do
     get "/:slug(/:channel)", to: "buildings#show", as: :appartments

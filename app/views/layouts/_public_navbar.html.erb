@@ -1,0 +1,31 @@
+<header id="client-header">
+  <div class="channel-header">
+    <div class="messages-header">
+      <div class="channel-title">
+        <div class="show-sm info-icon">
+        <button class="menu-toggle btn-unstyle">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+          <span class="candy_red_bg badge-home hidden"> ! </span>
+        </button>
+        </div>
+        <h2 class="channel-name-container">
+          <span class="channel-name">
+            <span class="channel-title">
+              #<%= @channel.name %>
+            </span>
+            <div class="channel-title-info">
+            <button class="channel-actions-toggle btn-unstyle" data-toggle="modal" data-target="#edit_channel_modal">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+            </button>
+            </div>
+          </span>
+        </h2>
+        <div class="channel-header-info">
+          <div class="channel-members-toggle-count">
+            <%= @channel.users.length %> membres
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

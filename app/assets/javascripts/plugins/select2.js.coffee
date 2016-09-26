@@ -35,3 +35,5 @@ if typeof($.fn.select2) != "undefined"
     })
     $(".js-single-value-select-building").select2
       maximumSelectionLength: 1
+    $(".js-multiple-select-users").select2
+      placeholder: "Cherche par nom"

@@ -74,6 +74,17 @@
         padding: 10px;
       }
     }
+    .add-channel {
+      text-transform: uppercase;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.61);
+      text-decoration: none;
+      margin-bottom: 10px;
+      a {
+        color: rgba(255, 255, 255, 0.61);
+        margin-left: 7px;
+      }
+    }
     .group-channels,
     .private-channels {
       padding-top: 10px;
@@ -88,6 +99,12 @@
         padding-left: 5px;
         a {
           text-decoration: none;
+          li {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 182px;
+          }
           .current {
             background-color: #476963;
             font-weight: 500;
@@ -95,6 +112,12 @@
             margin-left: -15px;
             margin-right: -10px;
             color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 182px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
             .channel-name {
               margin-left: 10px;
             }
@@ -115,6 +138,14 @@
             }
           }
         }
+      }
+    }
+    .logout {
+      text-align: center;
+      color: white;
+      a {
+        color: white;
+        font-size: 16px;
       }
     }
     hr {
@@ -181,7 +212,7 @@
         margin-left: 220px;
         overflow-wrap: break-word;
         .infos-channel {
-          padding: 20px 20px 0px 20px;
+          padding-top: 5px;
           text-align: center;
           margin-top: 30px;
           .member-image {

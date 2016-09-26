@@ -1,6 +1,6 @@
-<div class="client-ui">
+<div class="client-ui" data-current-user-building="<%= current_user.building_id %>">
   <div id="loader" style="display: none;"></div>
-  <% if current_user.building.docks? && !@channel.private? %>
+  <% if @channel.services_for_docks? %>
     <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
       <span class="candy_red_bg">NOUVEAU</span>
       Voir les profils des Docks
@@ -66,6 +66,8 @@
 <%= render "users/edit_profil_modal" %>
 <%= render "posts/new_post_modal" %>
 <%= render "posts/post_card_modal" %>
+<%= render "channels/new_channel_modal" %>
+<%= render "channels/edit_channel_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">
@@ -90,4 +92,5 @@
     </div>
   </div>
 </div>
+
 
