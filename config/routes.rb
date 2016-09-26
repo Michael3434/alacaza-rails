@@ -17,6 +17,7 @@ mount Sidekiq::Web => '/sidekiq'
   resources :comments
   resources :channels do
     post "custom_channel", to: "channels#custom_channel"
+    patch "edit_custom_channel", to: "channels#edit_custom_channel"
   end
 
   get "/commande", to: "leads#new"

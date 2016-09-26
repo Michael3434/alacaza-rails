@@ -7,6 +7,15 @@ module UsersHelper
     ["Homme", "Femme"].map { |sex| [sex, sex]}
   end
 
+  def users_from_same_building
+    User.where(building_id: current_user.building_id).where.not(id: current_user.id).map { |user| [user.name, user.id] }
+  end
+
+  def users_that_can_be_add_in_channel
+    users_already_in = @channel.users.pluck(:id)
+    User.where(building_id: current_user.building_id).where.not(id: users_already_in).map { |user| [user.name, user.id] }
+  end
+
   def informations_form
     "<i class='fa fa-info-circle tooltip-large'
         data-toggle='tooltip'

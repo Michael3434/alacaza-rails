@@ -1,6 +1,6 @@
 <div class="client-ui" data-current-user-building="<%= current_user.building_id %>">
   <div id="loader" style="display: none;"></div>
-  <% if current_user.building.docks? && !@channel.private? %>
+  <% if @channel.services_for_docks? %>
     <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
       <span class="candy_red_bg">NOUVEAU</span>
       Voir les profils des Docks
@@ -67,6 +67,7 @@
 <%= render "posts/new_post_modal" %>
 <%= render "posts/post_card_modal" %>
 <%= render "channels/new_channel_modal" %>
+<%= render "channels/edit_channel_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">
@@ -92,44 +93,4 @@
   </div>
 </div>
 
-<!-- Algolia -->
-
-<script>
-  $('#user_name').autocomplete({ hint: false }, [
-    {
-      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 10 }),
-      displayKey: 'first_name',
-      templates: {
-        suggestion: function(suggestion) {
-          alreadySelected = $('.selection .aa-suggestion [data-user-for-channel=' + suggestion.id + ']').length > 0
-          if ( suggestion.building_id == $('[data-current-user-building]').data('current-user-building') && !alreadySelected ) {
-            if ( suggestion.photo_url.toString().match(/cloudinary/) ) {
-              photoUrl = suggestion.photo_url
-            }
-            else {
-              obj = new(imageUrlGenerator)
-              photoUrl = obj.generate(suggestion.photo_url)
-            }
-            return '<img src="' + photoUrl + '">' + suggestion.first_name + " " + suggestion.last_name + '<span data-user-for-channel="' + suggestion.id + '" class="hidden"></span>'
-          }
-          else {
-            return '<span class="to-remove"></span>'
-          }
-        }
-      }
-    }
-  ]).on('autocomplete:updated', function(event, suggestion, dataset) {
-    $('.to-remove').closest('.aa-suggestion').remove()
-  }).on('autocomplete:selected', function(event, suggestion, dataset) {
-    user = $('.aa-suggestions .aa-suggestion.aa-cursor').clone()
-    user.append('<i class="fa fa-times remove-user"></i>')
-    user.prependTo($('.selection'))
-    $(".remove-user").on("click", function() {
-      id = $(this).siblings('[data-user-for-channel]').data('user-for-channel')
-      $('.selection .aa-suggestion [data-user-for-channel=' + id + ']').remove();
-      $(this).closest('.aa-suggestion.aa-cursor').remove();
-    });
-    $('#user_name').val("")
-  });
-</script>
 

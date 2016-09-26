@@ -7,9 +7,9 @@ app.channels.new =
     @initForm()
   initForm: ->
     $('form#new_custom_channel').on "submit", ->
-      ids = $('.selection [data-user-for-channel]').map((index,idContainer) ->
-        $(idContainer).data('user-for-channel')
-      )
-      ids = $.unique(ids)
-      ids = $.makeArray( ids ).join(",")
-      $('#channel_users_id').val(ids)
+      # ids = $('.selection [data-user-for-channel]').map((index,idContainer) ->
+      #   $(idContainer).data('user-for-channel')
+      # )
+      # ids = $.unique(ids)
+      # ids = $.makeArray( ids ).join(",")
+      # $('#channel_users_id').val(ids)

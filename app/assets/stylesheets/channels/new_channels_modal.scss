@@ -22,3 +22,44 @@
     }
   }
 }
+.select2-selection {
+  height: 100% !important;
+}
+
+
+.select2-search .select2-search--inline {
+  width: 100%;
+}
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 3px;
+  position: absolute;
+  right: 0;
+  font-size: 21px;
+  top: -5px;
+  font-weight: 200;
+  color: white;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+  display: inline-block;
+  padding: 2px 21px 2px 4px;
+  border: 1px solid $brand-secondary;
+  border-radius: 3px;
+  background: $brand-secondary;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  vertical-align: middle;
+  margin: 7px 0 0px 6px;
+}
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered {
+  padding-bottom: 7px;
+}
+.select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+  position: relative;
+  top: 4px;
+}

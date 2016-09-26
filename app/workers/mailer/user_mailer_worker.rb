@@ -4,6 +4,7 @@ class Mailer::UserMailerWorker
   def perform(method, params)
     message = Message.where(id: params["message_id"]).first
     comment = Comment.where(id: params["comment_id"]).first
+    channel = Channel.where(id: params["channel_id"]).first
     user = User.where(id: params["user_id"]).first
     password = params["password"]
 
@@ -18,6 +19,8 @@ class Mailer::UserMailerWorker
       arguments = [user, password]
     when "welcome_with_password"
       arguments = [user, password]
+    when "new_channel_invitation"
+      arguments = [user, channel]
     end
 
     UserMailer.send(method, *arguments).deliver!

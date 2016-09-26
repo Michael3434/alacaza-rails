@@ -30,6 +30,10 @@ class Channel < ActiveRecord::Base
     end
   end
 
+  def services_for_docks?
+    self == Channel.where(name: "Les services des Docks").last
+  end
+
   def self.main_groups
     where(channel_type: "main_group")
   end

@@ -11,14 +11,10 @@
         </div>
         <div class="hint space-4"></div>
 
-        <%= simple_form_for :channel, url: channel_custom_channel_path(1), html: { id: "new_custom_channel" } do |f| %>
-          <%= f.hidden_field :users_id, name: "users_id" %>
-          <%= f.input :name, label: "Le titre de votre channel", placeholder: "Fuite du 3ième", input_html: { name: 'name' } %>
+        <%= simple_form_for Channel.new, url: channel_custom_channel_path(1), html: { id: "new_custom_channel" } do |f| %>
+          <%= f.input :name, label: "Le titre de votre channel", placeholder: "Problèmes ICAD" %>
           <label>Envoyer une invitation à :</label>
-          <input placeholder="Cherche par nom", id="user_name" class="form-control">
-          <div class="h5 space-top-4">Votre séléction</div>
-          <div class="selection space-top-1">
-          </div>
+          <%= f.input :users_id, collection: users_from_same_building, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
           <div class="modal-footer">
             <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
             <%= button_tag "Enregistrer", class: "btn btn-secondary " %>
