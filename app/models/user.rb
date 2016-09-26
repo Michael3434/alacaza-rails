@@ -4,17 +4,6 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  include AlgoliaSearch
-
-  algoliasearch per_environment: true, :disable_indexing => Proc.new { Rails.env.test? } do
-
-    add_attribute :photo_url do
-      photo_url
-    end
-
-    attribute :first_name, :last_name, :id, :photo_url, :building_id
-  end
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
