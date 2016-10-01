@@ -193,6 +193,30 @@
         100%{-webkit-transform:rotate(360deg)}
       }
     }
+    #messages-loader {
+      padding-top: 5px;
+      text-align: center;
+      margin-top: 10px;
+      left: 50%;
+      z-index: 10px;
+      width:20px;
+      height:20px;
+      border-radius:150px;
+      border:2px solid $brand-primary;
+      border-top-color:rgba(0,0,0,0.1);
+      box-sizing:border-box;
+      position:relative;
+      animation:loading 1.2s linear infinite;
+      -webkit-animation:loading 1.2s linear infinite;
+      @keyframes loading{
+        0%{transform:rotate(0deg)}
+        100%{transform:rotate(360deg)}
+      }
+      @-webkit-keyframes loading{
+        0%{-webkit-transform:rotate(0deg)}
+        100%{-webkit-transform:rotate(360deg)}
+      }
+    }
     .scroll-container {
       overflow-x: hidden;
       position: absolute;

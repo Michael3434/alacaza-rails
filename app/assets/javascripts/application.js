@@ -32,6 +32,9 @@
 //= require app.leads
 //= require app.building.show
 
+//= require infinit_scroll
+
+
 //= require votes/new
 //= require channels/new
 

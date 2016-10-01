@@ -18,10 +18,10 @@
           <% end %>
         </div>
 
-        <% @messages.order(created_at: :asc).each do |message| %>
-          <div class="message-wrapper">
-            <%= render "messages/message", message: message %>
-          </div>
+        <div id="messages-loader" style="display:none;" data-continue="true"></div>
+
+        <% @messages.each do |message| %>
+          <%= render "messages/message", message: message %>
         <% end %>
       </div>
     </div>
@@ -32,6 +32,9 @@
   <div class="modal-bg hidden"></div>
   <%= render "messages/footer" %>
 </div>
+
+
+<span id="next-page" data-url="<%= appartments_path(@building.slug, @channel) %>" data-next-page="<%= params[:page] || 2 %>"></span>
 
 <%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
   <div class="user-infos text-center">
