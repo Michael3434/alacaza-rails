@@ -21,9 +21,24 @@
       color: #eb4d5c;
     }
   }
+  @include bp-small {
+    .modal-footer {
+      position: fixed;
+      bottom: 0;
+    }
+  }
 }
 .select2-selection {
   height: 100% !important;
+}
+
+#new_custom_channel.edit_channel {
+  @include bp-small {
+    .modal-footer {
+      position: fixed;
+      bottom: 0;
+    }
+  }
 }
 
 
