@@ -11,11 +11,12 @@
         </div>
         <div class="hint space-4"></div>
 
-        <%= simple_form_for Channel.new, url: channel_custom_channel_path(1), html: { id: "new_custom_channel" } do |f| %>
-          <%= f.input :name, label: "Titre", placeholder: "Ex: Gestion de la fuite du 3ème étage" %>
-          <%= f.input :description, label: "Description", placeholder: "Ex: Ce canal de discussion a pour but de rassembler les personnes concernées par cette fuite.", hint: "Optionnel", input_html: { rows: 4 } %>
+        <%= simple_form_for Channel.new, url: channel_custom_channel_path(@channel), html: { id: "new_custom_channel" } do |f| %>
+          <%= f.input :name, label: "Titre", placeholder: "Ex : Gestion de la fuite du 3ème étage" %>
+          <%= f.input :description, label: "Description", placeholder: "Ex : Ce canal de discussion a pour but de rassembler les personnes concernées par cette fuite.", hint: "Optionnel", input_html: { rows: 4 } %>
           <label>Envoyer une invitation à :</label>
           <%= f.input :users_id, collection: users_from_same_building, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
+          <%= f.input :all_building, as: :boolean, label: "Notifier tout mon immeuble" %>
           <div class="modal-footer">
             <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
             <%= button_tag "Enregistrer", class: "btn btn-secondary " %>

@@ -19,11 +19,17 @@ class ChannelsController < ApplicationController
         building_id: current_user.building_id,
         name: channel_params[:name])
     current_user.channels << channel
-    params[:channel][:users_id].each do |user_id|
+    if params[:channel][:all_building] == "1"
+      users_id = current_user.building.users.where.not(id: current_user.id).pluck(:id)
+    else
+      users_id = params[:channel][:users_id]
+    end
+    users_id.each do |user_id|
       next user_id if !user_id.present?
       User.find(user_id).channels << channel
       Mailer::UserMailerWorker.perform_async(:new_channel_invitation, user_id: user_id, channel_id: channel.id)
     end
+    SlackNotifierWorker.perform_async(:new_channel, channel_id: channel.id)
     redirect_to appartments_path(current_user.building.slug, channel)
   end
 

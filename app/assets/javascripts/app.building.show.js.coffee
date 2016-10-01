@@ -160,7 +160,6 @@ app.buildings.show =
         userId = $(this).data('user-id')
         userName = $(this).data('user-name')
         imgSrc = $('.icon-user-' + userId).first().find('img').attr('src')
-        buildingId = $(this).data('channel-id')
 
         $('#new-message_modal .member-image').attr("src", imgSrc)
         $('#new-message_modal .user-name').text(userName)

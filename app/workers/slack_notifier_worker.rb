@@ -4,6 +4,7 @@ class SlackNotifierWorker
 
   def perform(method, params)
     message = Message.where(id: params["message_id"]).first
+    channel = Channel.where(id: params["channel_id"]).first
     user = User.where(id: params["user_id"]).first
     comment = Comment.where(id: params["comment_id"]).first
     lead = Lead.where(id: params["lead_id"]).first
@@ -26,6 +27,8 @@ class SlackNotifierWorker
       arguments = [message, user]
     when "new_post"
       arguments = [post]
+    when "new_channel"
+      arguments = [channel]
     end
 
     Notifier.send(method, *arguments)

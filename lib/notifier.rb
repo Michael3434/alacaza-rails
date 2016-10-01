@@ -23,6 +23,20 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def new_channel(channel)
+      user = User.find(channel.created_by)
+      message = "Nouveau canal de discussion"
+      options = {
+        channel: "#website",
+        attachments: [
+          { title: "Crée par", text: "#{user.name} du bâtiment #{user.building.name}" },
+          { title: "Name", text: channel.name },
+          { title: "Descripion", text: channel.description }
+        ]
+      }
+      notify(message, options)
+    end
+
     def new_message_from_gardien(new_message)
       user = new_message.user
       message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"

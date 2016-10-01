@@ -5,7 +5,7 @@ class Channel < ActiveRecord::Base
   has_many :users, through: :user_channels
   has_many :messages, -> { where(validated: true) }, dependent: :destroy
 
-  attr_accessor :recipient_id, :users_id
+  attr_accessor :recipient_id, :users_id, :all_building
 
   def private?
   	channel_type == "private"

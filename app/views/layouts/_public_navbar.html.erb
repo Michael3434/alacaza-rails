@@ -12,7 +12,11 @@
           <h2 class="channel-name-container">
             <span class="channel-name">
               <span class="channel-title">
+              <% if @channel.private? %>
+                #<%= not_current_user(@channel).name %>
+              <% else %>
                 #<%= @channel.name %>
+              <% end %>
               </span>
             </span>
           </h2>

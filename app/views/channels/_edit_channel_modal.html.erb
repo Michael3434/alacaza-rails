@@ -6,26 +6,50 @@
           <button type="button" class="close show-sm hide-xs" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
           <span type="button" class="back show-xs ion-arrow-left-c" data-dismiss="modal" aria-label="Close"><span></span></span>
           <p class="modal-title">
-            #<%= @channel.name %>
+            <% if @channel.private? %>
+              #<%= not_current_user(@channel).name %>
+            <% else %>
+              #<%= @channel.name %>
+            <% end %>
           </p>
         </div>
-          <h3 class="text-center"><%= @channel.users.length %> membres</h3>
-        <% if @channel.created_by == current_user.id %>
-          <%= simple_form_for @channel, url: channel_edit_custom_channel_path(@channel), html: { id: "new_custom_channel" } do |f| %>
-            <label>Ajouter des membres :</label>
-            <%= f.input :users_id, collection: users_that_can_be_add_in_channel, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
-            <div class="modal-footer">
-              <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
-              <%= button_tag "Enregistrer", class: "btn btn-secondary " %>
-            </div>
+          <% if @channel.created_by == current_user.id %>
+            <%= simple_form_for @channel, url: channel_edit_custom_channel_path(@channel), html: { id: "new_custom_channel" } do |f| %>
+              <label>Ajouter des membres :</label>
+              <%= f.input :users_id, collection: users_that_can_be_add_in_channel, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
+              <div class="text-right">
+                <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
+                <%= button_tag "Ajouter", class: "btn btn-secondary " %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+
+          <h4 class="text-center"><%= @channel.users.length %> membres</h4>
+          <div class="users-list">
+            <div class="row">
+              <% @channel.users.each do |user| %>
+              <div class="col-md-6 space-2 message-icon icon-user-<%= user.id %>">
+                <span> <%= image_tag (user_photo_url(user)), class: "member-image" %></span>
+                <% if channel = current_user.private_channel_with(user) %>
+                  <%= link_to appartments_path(@building.slug, channel.id) do %>
+                    <%= user.name %>
+                  <% end %>
+                <% else %>
+                  <a href="#" data-toggle="modal"
+                              data-target="#new-message_modal"
+                              class="message-sender"
+                              data-user-id="<%= user.id %>"
+                              data-building-id="<%= @building.id %>"
+                              data-user-name="<%= user.name %>">
+                              <%= user.name %>
+                   </a>
+                <% end %>
+              </div>
+              <% end %>
+            </div>
+          </div>
       </div>
     </div>
   </div>
 </div>
-
-<%= simple_form_for current_user do |f| %>
-  <%= f.input :photo, label: false, cloudinary: {use_filename: true}, input_html: { class: "hidden" } %>
-<% end %>
 

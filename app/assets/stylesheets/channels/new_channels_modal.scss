@@ -32,12 +32,28 @@
   height: 100% !important;
 }
 
-#new_custom_channel.edit_channel {
+#edit_channel_modal {
   @include bp-small {
     .modal-footer {
       position: fixed;
       bottom: 0;
     }
+  }
+  .users-list {
+    a {
+      color: #333;
+      top: 4px;
+      position: relative;
+    }
+  }
+  .member-image {
+    width: 36px;
+    height: 36px;
+    border-radius: .2rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
   }
 }
 
