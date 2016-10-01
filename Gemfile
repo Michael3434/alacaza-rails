@@ -21,6 +21,9 @@ gem 'has_secure_token'
 gem 'groupdate'
 gem "chartkick"
 
+# Pagination
+gem 'kaminari'
+
 #Auto link for messages
 
 gem 'rails_autolink'
