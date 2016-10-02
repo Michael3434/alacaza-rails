@@ -24,6 +24,14 @@ namespace :data do
     end
   end
 
+  task export_messages: :environment do
+    CSV.open("db/messages_export.csv", "a") do |csv|
+      Message.all.each do |message|
+        csv << [message.user.id, message.user.name, message.user.building.name, message.body, message.created_at]
+      end
+    end
+  end
+
   task delete_extra_channels: :environment do
     User.all.each do |user|
       ids = user.user_channels.pluck(:channel_id)

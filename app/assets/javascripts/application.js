@@ -21,6 +21,7 @@
 //= require class/spinnable
 //= require class/message_generator
 //= require class/huddable
+//= require class/image_url_generator
 //= require jquery-ui/sortable
 
 
@@ -31,7 +32,11 @@
 //= require app.leads
 //= require app.building.show
 
-//= require vote/new
+//= require infinit_scroll
+
+
+//= require votes/new
+//= require channels/new
 
 //= require admin/messages/notifier
 

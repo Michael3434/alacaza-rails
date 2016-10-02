@@ -13,14 +13,16 @@ gem 'pg'
 gem 'slack-notifier'
 
 # Select2 - multiple select boxes
-  gem 'select2-rails'
-
+gem 'select2-rails'
 
 gem 'has_secure_token'
 
 # Graph
 gem 'groupdate'
 gem "chartkick"
+
+# Pagination
+gem 'kaminari'
 
 #Auto link for messages
 
@@ -35,7 +37,6 @@ gem 'redis'
 
 # Needed to build the Sidekiq web interface
 gem 'sinatra', :require => nil
-
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

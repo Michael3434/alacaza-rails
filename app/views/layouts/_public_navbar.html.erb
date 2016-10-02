@@ -1,0 +1,34 @@
+<header id="client-header">
+  <div class="channel-header">
+    <div class="messages-header">
+      <div class="channel-title">
+        <div class="show-sm info-icon">
+        <button class="menu-toggle btn-unstyle">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+          <span class="candy_red_bg badge-home hidden"> ! </span>
+        </button>
+        </div>
+        <a data-toggle="modal" data-target="#edit_channel_modal" class="cursor-pointer">
+          <h2 class="channel-name-container">
+            <span class="channel-name">
+              <span class="channel-title">
+              <% if @channel.private? %>
+                #<%= not_current_user(@channel).name %>
+              <% else %>
+                #<%= @channel.name %>
+              <% end %>
+              <span class="candy_yellow_bg badge badge-title"> ! </span>
+              </span>
+            </span>
+          </h2>
+          <div class="channel-header-info">
+            <div class="channel-members-toggle-count">
+              <%= @channel.users.length %> membres
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+

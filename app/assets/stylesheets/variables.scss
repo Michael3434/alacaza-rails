@@ -12,6 +12,7 @@ $high-season: #1A6A70;
 $green: #27AD29;
 $beach: #FFB400;
 $candy-red: #eb4d5c;
+$yellow: #F6BD60;
 
 $brand-action: lighten($brand-secondary, 10%);
 $brand-valid: #00bb00;
@@ -25,7 +26,7 @@ $border-success: transparentize($brand-success, 0.5);
 $border-primary: transparentize($brand-primary, 0.5);
 
 // Fonts
-$font-family-sans-serif: "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font-family-sans-serif: "Lato", "Helvetica Neue", Arial, sans-serif;
 $font-size-base: 14px;
 $font-size-large: 16px;
 $line-height-base: 1.5;

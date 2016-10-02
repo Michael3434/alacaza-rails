@@ -51,6 +51,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def photo_url
+    if self.photo.url
+      self.photo.url(:thumb)
+    else
+      image_id
+    end
+  end
+
   def self.search(options = {})
     options.inject(User) do |scope, (field, value)|
       case field.to_sym

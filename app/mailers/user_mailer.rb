@@ -37,4 +37,12 @@ class UserMailer < ActionMailer::Base
      mail from: "Michael de Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Nouveau commentaire sur la messagerie de votre immeuble !"
   end
 
+  def new_channel_invitation(user, channel)
+    @user = user
+    @channel = channel
+    @created_by = User.find(channel.created_by)
+
+    mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "#{@created_by.name} vous a ajouté au groupe #{@channel.name}"
+  end
+
 end

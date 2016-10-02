@@ -1,6 +1,6 @@
-<div class="client-ui">
+<div class="client-ui" data-current-user-building="<%= current_user.building_id %>">
   <div id="loader" style="display: none;"></div>
-  <% if current_user.building.docks? && !@channel.private? %>
+  <% if @channel.services_for_docks? %>
     <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
       <span class="candy_red_bg">NOUVEAU</span>
       Voir les profils des Docks
@@ -18,10 +18,10 @@
           <% end %>
         </div>
 
-        <% @messages.order(created_at: :asc).each do |message| %>
-          <div class="message-wrapper">
-            <%= render "messages/message", message: message %>
-          </div>
+        <div id="messages-loader" style="display:none;" data-continue="true"></div>
+
+        <% @messages.each do |message| %>
+          <%= render "messages/message", message: message %>
         <% end %>
       </div>
     </div>
@@ -32,6 +32,9 @@
   <div class="modal-bg hidden"></div>
   <%= render "messages/footer" %>
 </div>
+
+
+<span id="next-page" data-url="<%= appartments_path(@building.slug, @channel) %>" data-next-page="<%= params[:page] || 2 %>"></span>
 
 <%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
   <div class="user-infos text-center">
@@ -66,6 +69,8 @@
 <%= render "users/edit_profil_modal" %>
 <%= render "posts/new_post_modal" %>
 <%= render "posts/post_card_modal" %>
+<%= render "channels/new_channel_modal" %>
+<%= render "channels/edit_channel_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">
@@ -90,4 +95,5 @@
     </div>
   </div>
 </div>
+
 

@@ -5,7 +5,7 @@ class Channel < ActiveRecord::Base
   has_many :users, through: :user_channels
   has_many :messages, -> { where(validated: true) }, dependent: :destroy
 
-  attr_accessor :recipient_id
+  attr_accessor :recipient_id, :users_id, :all_building
 
   def private?
   	channel_type == "private"
@@ -28,6 +28,10 @@ class Channel < ActiveRecord::Base
     if user_channel
       user_channel.update(messages_seen: messages.where.not(user_id: user.id).count)
     end
+  end
+
+  def services_for_docks?
+    self == Channel.where(name: "Les services des Docks").last
   end
 
   def self.main_groups
