@@ -56,7 +56,7 @@ mount Sidekiq::Web => '/sidekiq'
     post "/password_email", to: "messages#password_email"
 
   end
-  resources :user_channels, only: [:update]
+  resources :user_channels, only: [:update, :destroy]
   scope "immeubles" do
     get "/:slug(/:channel)", to: "buildings#show", as: :appartments
   end

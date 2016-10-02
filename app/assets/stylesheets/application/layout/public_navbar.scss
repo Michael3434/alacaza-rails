@@ -44,6 +44,11 @@
         -webkit-flex: 1 1 auto;
         flex: 1 1 auto;
         min-width: 0;
+        .badge-title {
+          right: -14px;
+          padding: 1px 5px;
+          top: -7px;
+        }
         .channel-name-container {
           display: block;
           white-space: nowrap;

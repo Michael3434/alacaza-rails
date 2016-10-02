@@ -16,7 +16,7 @@
           <%= f.input :description, label: "Description", placeholder: "Ex : Ce canal de discussion a pour but de rassembler les personnes concernées par cette fuite.", hint: "Optionnel", input_html: { rows: 4 } %>
           <label>Envoyer une invitation à :</label>
           <%= f.input :users_id, collection: users_from_same_building, input_html: { multiple: true, class: "js-multiple-select-users" }, input: { include_blank: false }, label: false %>
-          <%= f.input :all_building, as: :boolean, label: "Notifier tout mon immeuble" %>
+          <%= f.input :all_building, as: :boolean, label: "Inviter tout mon immeuble" %>
           <div class="modal-footer">
             <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
             <%= button_tag "Enregistrer", class: "btn btn-secondary " %>

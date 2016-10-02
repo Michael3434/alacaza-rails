@@ -40,10 +40,20 @@
     }
   }
   .users-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 300px;
+    border: 1px solid #eee;
+    padding: 10px;
     a {
       color: #333;
       top: 4px;
       position: relative;
+    }
+  }
+  .leave-channel {
+    span {
+      color: #333;
     }
   }
   .member-image {
