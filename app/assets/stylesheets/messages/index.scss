@@ -63,6 +63,7 @@
     position: absolute;
     top: 0px;
     height: 100%;
+    -webkit-overflow-scrolling: touch;
     .building-information {
       height: 65px;
       margin-top: 5px;
