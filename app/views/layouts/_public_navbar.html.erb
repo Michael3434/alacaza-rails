@@ -12,20 +12,26 @@
           <h2 class="channel-name-container">
             <span class="channel-name">
               <span class="channel-title">
-              <% if @channel.private? %>
-                #<%= not_current_user(@channel).name %>
+              <% if @channel %>
+                <% if @channel.private? %>
+                  #<%= not_current_user(@channel).name %>
+                <% else %>
+                  #<%= @channel.name %>
+                <% end %>
               <% else %>
-                #<%= @channel.name %>
+                Alacaza
               <% end %>
               <span class="candy_yellow_bg badge badge-title"> ! </span>
               </span>
             </span>
           </h2>
+          <% if @channel %>
           <div class="channel-header-info">
             <div class="channel-members-toggle-count">
               <%= @channel.users.length %> membres
             </div>
           </div>
+          <% end %>
         </a>
       </div>
     </div>
