@@ -15,6 +15,10 @@ class Channel < ActiveRecord::Base
   	channel_type.in?(["group",""])
   end
 
+  def main_group?
+    channel_type.in?(["main_group",""])
+  end
+
   def user_channel_with(user)
     user_channels.where(channel_id: id, user_id: user.id).last
   end

@@ -48,7 +48,7 @@
               <% end %>
             </div>
           </div>
-          <% unless @channel.private? %>
+          <% unless @channel.private? || @channel.main_group? %>
             <%= link_to user_channel_path(user_channel(@channel)), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir quitter ce canal de discussion ?" } do %>
               <div class="leave-channel space-top-4  text-center row-flex row-center">
                 <%= embedded_svg "icons/leave.svg" %>

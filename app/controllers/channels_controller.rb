@@ -1,4 +1,5 @@
 class ChannelsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:create]
 	def create
 		@building = Building.find(params[:building_id])
 		if @channel = Channel.create(channel_params)
