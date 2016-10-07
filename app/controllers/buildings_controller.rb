@@ -26,7 +26,7 @@ class BuildingsController < ApplicationController
     end
     if @channel
       @post = current_user.posts.last || Post.new
-      @messages = @channel.messages.order(created_at: :desc).includes(:user).page(params[:page] || 1).per(10).reverse
+      @messages = @channel.messages.order(created_at: :desc).includes(:user).page(params[:page] || 1).per(20).reverse
       @channel.mark_as_seen_by(current_user)
     end
     respond_to do |format|

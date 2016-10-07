@@ -7,7 +7,7 @@
   $('#messages-loader').detach().prependTo(".messages-container").hide()
   $(".infos-channel").detach().prependTo(".messages-container")
   $('#next-page').data('next-page', "<%= params[:page].to_i + 1 %>")
-  initialMessageTop = $($('.message-wrapper')[11]).offset().top
+  initialMessageTop = $($('.message-wrapper')[20]).offset().top
   $(".scroll-container" ).scrollTop(initialMessageTop);
   app.buildings.show.initNewMessageModal()
 <% else %>
