@@ -30,7 +30,7 @@ app.init = ->
   $('.group-channels .list, .private-channels a').on "click", ->
     $('.scroll-container').css('opacity', "0")
     $('#loader').show()
-    if screen.width <= 766
+    if $( window ).width() <= 766
       $('.col-channels').hide()
       $('.modal-bg').hide()
 
