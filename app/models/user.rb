@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  serialize :private_channel_ids, Array
+
   validates :first_name, :last_name, presence: true
   validates_presence_of :floor, :door, :on => :create
   validates :token, uniqueness: true, allow_blank: true
@@ -15,6 +17,7 @@ class User < ActiveRecord::Base
   after_create :set_image_id
   after_create :set_channel
   after_create :set_group_channel
+  after_create :set_pseudo
 
   after_update :change_building_processor, if: :building_id_changed?
 
@@ -90,8 +93,8 @@ class User < ActiveRecord::Base
   end
 
   def private_channel_with(other_user)
-    user_channels = self.private_channels.pluck(:channel_id)
-    other_user_channels = other_user.private_channels.pluck(:channel_id)
+    user_channels = self.private_channel_ids
+    other_user_channels = other_user.private_channel_ids
     channel = (user_channels & other_user_channels)
     if channel.any?
       Channel.find(channel.first)
@@ -150,6 +153,10 @@ class User < ActiveRecord::Base
   #
   # Callbacks
   #
+
+  def set_pseudo
+    self.update(pseudo: self.name)
+  end
 
   def set_image_id
     user = User.all.last(2).first
