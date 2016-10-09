@@ -80,5 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: alacaza-rails_production
-  username: alacaza-rails
+  url: <%= ENV['DATABASE_URL'] %>

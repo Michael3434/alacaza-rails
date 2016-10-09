@@ -27,7 +27,16 @@ namespace :data do
   task export_messages: :environment do
     CSV.open("db/messages_export.csv", "a") do |csv|
       Message.all.each do |message|
-        csv << [message.user.id, message.user.name, message.user.building.name, message.body, message.created_at]
+        csv << [message.id, message.user.id, message.user.name, message.user.building.name, message.body, message.created_at, message.channel.name, message.channel.channel_type]
+      end
+    end
+  end
+
+  task export_users: :environment do
+    CSV.open("db/users_export.csv", "a") do |csv|
+      User.all.each do |user|
+        p user.id
+        csv << [user.created_at, user.id, user.name, user.building.name]
       end
     end
   end
