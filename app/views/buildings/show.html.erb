@@ -2,3 +2,10 @@
 <% content_for :description, "Communiquer facilement avec l'ensemble de votre immeuble" %>
 
 <%= render "buildings/templates/show_template" %>
+
+
+<script>
+  mixpanel.identify(<%= current_user.id %>);
+  mixpanel.people.set({ '$first_name': "<%= current_user.first_name %>", '$last_name': "<%= current_user.last_name %>", '$email': "<%= current_user.email %>", '$building': "<%= current_user.building.name %>"  });
+  mixpanel.track('Viewed Chat Page' )
+</script>
