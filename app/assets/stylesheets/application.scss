@@ -27,6 +27,12 @@
 @import "application/pages/*";
 @import "application/users/*";
 
+@import "users/items/*";
+
+@import "items/*";
+
+@import "sidebar";
+
 @import "application/layout";
 @import "application/layout/public_navbar";
 

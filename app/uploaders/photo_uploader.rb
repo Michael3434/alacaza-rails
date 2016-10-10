@@ -15,7 +15,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def save_original_filename(file)
-    unless model.is_a?(User)
+    unless model.is_a?(User) || model.is_a?(Item)
       model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
     end
   end

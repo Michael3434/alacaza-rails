@@ -34,6 +34,8 @@
 
 //= require infinit_scroll
 
+//= require items/new
+
 
 //= require votes/new
 //= require channels/new

@@ -41,7 +41,8 @@
   <% if current_user.try(:admin) %>
     <%= render 'layouts/admin_navbar' %>
   <% else %>
-    <% if controller_name.in?(["static_pages", "sessions"]) || action_name == "home" %>
+    <% if controller_name == "items" %>
+    <% elsif controller_name.in?(["static_pages", "sessions"]) || action_name == "home" %>
       <%= render 'layouts/navbar' %>
     <% else %>
       <%= render "layouts/public_navbar" %>

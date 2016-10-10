@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   belongs_to :building
   has_many :messages, dependent: :destroy
   has_many :comments
+  has_many :items
   has_many :user_channels, dependent: :destroy
   has_many :channels, through: :user_channels, dependent: :destroy
   has_many :posts, dependent: :destroy

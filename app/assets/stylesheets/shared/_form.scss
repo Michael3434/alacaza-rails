@@ -11,6 +11,28 @@
   }
 }
 
+.new-select {
+  position: relative;
+  vertical-align: bottom;
+  display: inline-block;
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 22px;
+    &.input-lg {
+      line-height: inherit;
+    }
+  }
+  &:before {
+    @extend .fa;
+    @extend .fa-caret-down;
+    @include vertical-align(absolute);
+    color: $gray-light;
+    right: 8px;
+    z-index: 1;
+  }
+}
+
 
 input, textarea {
   font-weight: 400 !important;

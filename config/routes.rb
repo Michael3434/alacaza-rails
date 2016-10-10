@@ -7,8 +7,18 @@ mount Sidekiq::Web => '/sidekiq'
   get "sign_up", to: redirect("/")
   get "users/sign_up", to: redirect("/")
 
+  namespace :users do
+    resources :items do
+    end
+  end
+
   resources :users do
     patch "change_picture", to: "users#change_picture"
+  end
+
+  resources :items do
+    resources :item_photos do
+    end
   end
 
   resources :buildings do

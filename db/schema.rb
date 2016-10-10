@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008103809) do
+ActiveRecord::Schema.define(version: 20161009192415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,30 @@ ActiveRecord::Schema.define(version: 20161008103809) do
 
   add_index "comments", ["message_id"], name: "index_comments_on_message_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "item_photos", force: :cascade do |t|
+    t.integer  "item_id"
+    t.string   "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "item_photos", ["item_id"], name: "index_item_photos_on_item_id", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.boolean  "sold"
+    t.string   "category"
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.string   "location"
+    t.string   "photo"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "leads", force: :cascade do |t|
     t.string   "phone"
@@ -167,6 +191,8 @@ ActiveRecord::Schema.define(version: 20161008103809) do
   add_foreign_key "channels", "buildings"
   add_foreign_key "comments", "messages"
   add_foreign_key "comments", "users"
+  add_foreign_key "item_photos", "items"
+  add_foreign_key "items", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "user_channels", "channels"
   add_foreign_key "user_channels", "users"

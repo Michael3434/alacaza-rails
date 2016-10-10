@@ -45,6 +45,10 @@ module ApplicationHelper
     devise_mapping.to
   end
 
+  def humanize(price)
+    number_to_currency(price, strip_insignificant_zeros: true).gsub(" ", "&nbsp;").html_safe
+  end
+
   def js_error_message(model)
     message = "Veuillez corriger les erreurs suivantes :\n"
     model.errors.messages.each do |field, errors|

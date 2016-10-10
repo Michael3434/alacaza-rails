@@ -1,0 +1,78 @@
+<div class="col-channels">
+    <%= render "buildings/templates/col_channels" %>
+</div>
+
+<div class="client-ui">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+        <h2 class="text-center"> Vendre un objet</h2>
+        <%= simple_form_for Item.new, data: { spinnable: true } do |f| %>
+
+         <div class="field">
+           <%= f.input_field :photo, :multiple => false, name: "item[photo]", class: "hidden" %>
+         </div>
+          <div class="row row-flex row-center">
+            <div class="col-sm-6 col-xs-12">
+              <div class="photo-pending">
+                <div class="camera">
+                  <%= embedded_svg "camera.svg" %>
+                </div>
+              </div>
+              <div class="photo-container">
+                <div id="upload_image_preview" style="display:none;">
+                  <%= image_tag ("") %>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+
+              <%= f.input :category, label: "Categorie", collection: categories_collection, as: :select, input_html: { class: "input-lg" }, wrapper_html: { class: "" } %>
+              <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Titre de votre objet", wrapper_html: { class: "" } %>
+              <%= f.input :price, label: "Prix", input_html: { class: "input-lg" }, wrapper_html: { class: "" } %>
+            </div>
+          </div>
+          <%= f.input :description, label: "Description", input_html: { class: "input-lg", rows: 5 }, placeholder: "Decription de votre objet", wrapper_html: { class: "" } %>
+          <div class="row">
+            <div class="col-md-12 space-top-4">
+              <%= f.button :submit, "Publier", class: "btn btn-secondary btn-lg btn-group" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
+  <div class="user-infos text-center">
+    <div class="user-icon space-2">
+      <%= image_tag (""), class: "member-image" %>
+    </div>
+    <span class="user-name">Michael</span>
+    <%= simple_form_for [@building, Channel.new] do |f| %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :channel_type, value: "private" %>
+      <%= f.hidden_field :building_id, value: @building.id %>
+      <%= button_tag "Envoyer un message privé", class: "btn btn-secondary space-top-2" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
+  <div class="">
+    <% current_user.user_channels_group.each do |user_channel| %>
+      <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
+        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}" }, label: "#{user_channel.channel.name}"  %>
+      <% end %>
+    <% end %>
+    <div class="text-center">
+      <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" aria-label="Close"><span>Enregistrer et fermer</span></button>
+    </div>
+  </div>
+<% end %>
+
+<%= render "users/edit_profil_modal" %>
+<%= render "posts/new_post_modal" %>
+
