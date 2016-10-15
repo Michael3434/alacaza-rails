@@ -28,7 +28,7 @@
               <span class="channel-name">#&nbsp;<%= @building.main_channel.name %></span>
             </li>
           <% end %>
-          <% current_user.group_channels.each do |channel| %>
+          <% @group_channels.each do |channel| %>
            <%= link_to appartments_path(@building.slug, channel) do %>
               <li class="<%= get_current_channel(channel) %>">
               <% if channel.messages_unseen_by(current_user) > 0 %>
@@ -44,10 +44,10 @@
       <div class="add-channel">
         <i class="ion-plus-round  fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_channel_modal">Canal de discussion</a>
       </div>
-      <div class="title">Groupes <span class="conversation-count">(<%= current_user.all_group_channels.length %>)</span> </div>
+      <div class="title">Groupes <span class="conversation-count">(<%= @group_channels.length %>)</span> </div>
       <div class="list">
         <ul class="list-unstyled">
-          <% current_user.all_group_channels.each do |channel| %>
+          <% @group_channels.each do |channel| %>
            <%= link_to appartments_path(@building.slug, channel) do %>
               <li class="<%= get_current_channel(channel) %>" data-channel-id=<%= channel.id %>>
               <% if channel.messages_unseen_by(current_user) > 0 %>
@@ -62,10 +62,10 @@
     <% end %>
   </div>
   <div class="private-channels">
-    <div class="title">Messages privé <span class="conversation-count">(<%= current_user.private_channels.count %>)</span> </div>
+    <div class="title">Messages privé <span class="conversation-count">(<%= @private_channels.length %>)</span> </div>
     <div class="list">
       <ul class="list-unstyled">
-        <% current_user.private_channels.each do |channel| %>
+        <% @private_channels.each do |channel| %>
           <%= link_to appartments_path(@building.slug, channel) do %>
             <li class="<%= get_current_channel(channel) %>" data-channel-id=<%= channel.id %>>
               <% if channel.messages_unseen_by(current_user) > 0 %>

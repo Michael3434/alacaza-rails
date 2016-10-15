@@ -28,6 +28,8 @@ class BuildingsController < ApplicationController
       @post = current_user.posts.last || Post.new
       @messages = @channel.messages.order(created_at: :desc).includes(:user).page(params[:page] || 1).per(20).reverse
       @channel.mark_as_seen_by(current_user)
+      @group_channels = current_user.all_group_channels.preload(:messages, :user_channels, :users)
+      @private_channels = current_user.private_channels.preload(:messages, :user_channels, :users)
     end
     respond_to do |format|
       format.html {}

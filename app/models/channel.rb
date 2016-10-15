@@ -20,11 +20,14 @@ class Channel < ActiveRecord::Base
   end
 
   def user_channel_with(user)
-    user_channels.where(channel_id: id, user_id: user.id).last
+    user_channels.select { |user_channel|
+      user_channel.channel_id == id &&
+      user_channel.user_id == user.id
+    }.last
   end
 
   def messages_unseen_by(user)
-    messages.where.not(user_id: user.id).count - ( user_channel_with(user).messages_seen || 0)
+    messages.select { |message| message.user_id != user.id }.length - ( user_channel_with(user).messages_seen || 0)
   end
 
   def mark_as_seen_by(user)
