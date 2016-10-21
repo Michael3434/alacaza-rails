@@ -14,6 +14,12 @@ app.buildings.show =
       @showHomeIconBadge()
       @initUserPhoto()
       @disabledOnSubmitPostMessage()
+      @unsubscribeFromChannel()
+    unsubscribeFromChannel: ->
+      channelId = $('.client-ui').data('unsubscribe')
+      if channelId
+        $('#notification_modal input[data-channel-id=' + channelId + ']').click()
+        alert("Désinscription aux notifications pour ce canal de discussion réussie. \nSi toutefois vous souhaitez réactiver les notifications, rendez-vous sur le menu de gauche dans la section 'Mes notifications'")
     disabledOnSubmitPostMessage: ->
       $('form#new_post_message').on 'submit', ->
         $(this).find('btn').attr('disabled', 'true')

@@ -28,7 +28,7 @@ class BuildingsController < ApplicationController
       @post = current_user.posts.last || Post.new
       @messages = @channel.messages.order(created_at: :desc).includes(:user).page(params[:page] || 1).per(20).reverse
       @channel.mark_as_seen_by(current_user)
-      @group_channels = current_user.all_group_channels.preload(:messages, :user_channels, :users)
+      @group_channels = current_user.all_group_channels.preload(:messages, :user_channels)
       @private_channels = current_user.private_channels.preload(:messages, :user_channels, :users)
     end
     respond_to do |format|
@@ -36,6 +36,7 @@ class BuildingsController < ApplicationController
       format.js {}
     end
   end
+
   private
 
   def sign_in_user_from_token
@@ -52,6 +53,15 @@ class BuildingsController < ApplicationController
     elsif user && user_signed_in? && current_user != user
       sign_out(current_user)
       sign_in(user)
+    elsif invitation = Invitation.find_by_invitee_token(params[:token])
+      if user = User.find_by_email(invitation.invitee_email)
+        sign_in(user)
+      else
+        redirect_to new_user_registration_path(
+          invitee_email: invitation.invitee_email,
+          building_id: invitation.building.id,
+          building_access: invitation.building.building_access)
+      end
     else
     end
   end

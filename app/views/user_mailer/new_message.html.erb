@@ -51,3 +51,7 @@
   <% end %>
 <p>Bonne journée,<br>
 L'équipe Alacaza</p>
+
+<% unless @message.channel.private? %>
+<small><%= link_to "Je ne veux plus recevoir d'email de notification pour ce canal de discussion", appartments_url(@user.building.slug, @message.channel_id, token: @user.token, unsubscribe: @message.channel.id) %></small>
+<% end %>

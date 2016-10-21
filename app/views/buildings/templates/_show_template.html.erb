@@ -1,4 +1,4 @@
-<div class="client-ui" data-current-user-building="<%= current_user.building_id %>">
+<div class="client-ui" data-current-user-building="<%= current_user.building_id %>" data-unsubscribe="<%= params[:unsubscribe]%>">
   <div id="loader" style="display: none;"></div>
   <% if @channel.services_for_docks? %>
     <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
@@ -55,7 +55,7 @@
   <div class="">
     <% current_user.user_channels_group.each do |user_channel| %>
       <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
-        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}" }, label: "#{user_channel.channel.name}"  %>
+        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}", "data-channel-id": user_channel.channel.id }, label: "#{user_channel.channel.name}"  %>
       <% end %>
     <% end %>
     <div class="text-center">
@@ -71,6 +71,7 @@
 <%= render "posts/post_card_modal" %>
 <%= render "channels/new_channel_modal" %>
 <%= render "channels/edit_channel_modal" %>
+<%= render "buildings/templates/new_invitation_modal" %>
 
 <div class="modal fade upload-dialog" id="new-photo_modal" role="dialog">
   <div class="modal-dialog">

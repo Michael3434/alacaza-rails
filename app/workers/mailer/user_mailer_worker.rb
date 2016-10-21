@@ -6,6 +6,7 @@ class Mailer::UserMailerWorker
     comment = Comment.where(id: params["comment_id"]).first
     channel = Channel.where(id: params["channel_id"]).first
     user = User.where(id: params["user_id"]).first
+    invitation = Invitation.where(id: params["invitation_id"]).first
     password = params["password"]
 
     case method
@@ -21,6 +22,8 @@ class Mailer::UserMailerWorker
       arguments = [user, password]
     when "new_channel_invitation"
       arguments = [user, channel]
+    when "invitation"
+      arguments = [invitation]
     end
 
     UserMailer.send(method, *arguments).deliver!

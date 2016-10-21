@@ -1,25 +1,65 @@
-<div class="signup_form">
-  <%= simple_form_for :user,
-                            url: registration_path("user"),
-                            wrapper: :vertical_form,
-                           defaults: { label_html: { class: "sr-only"},
-                         input_html: { class: "input-lg" }},
-                               html: { class: "form form-horizontal", id: "new_user" } do |f| %>
-    <%= f.input :first_name, placeholder: "Prénom" %>
-    <%= f.input :last_name, placeholder: "Nom" %>
-    <%= f.input :city, input_html: { value: params[:city] }, placeholder: "Votre ville" %>
-    <%= f.input :email, placeholder: "Email" %>
-    <%= f.input :password, placeholder: "Mot de passe", required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-    <p class="disclaimer">
-      <strong>Notre engagement</strong> : vos coordonnées ne seront jamais communiquées aux salles sans votre accord.
-    </p>
+<% content_for :body_class, "registration new" %>
+<% content_for :noindex, "noindex" %>
 
-    <%= button_tag "Je m'inscris", type: "submit", class: "btn btn-lg btn-action" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-container">
+        <h2 class="text-center space-top-10 space-4">Inscription</h2>
+        <div class="error_explanation"></div>
+        <%= flash_messages %>
+        <%= simple_form_for(@user || resource,
+                            as: resource_name,
+                            url: registration_path(resource_name),
+                            defaults: {
+                              label_html: { class: "col-md-6"},
+                              input_html: { class: "input-lg" }},
+                             html: { class: "form form-horizontal", id: "new_user" }) do |f| %>
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Prénom</label></div>
+          <div class="col-md-7"> <%= f.input :first_name, label: false, placeholder: "Prénom" %></div>
+        </div>
 
-    <div class="shared-links">
-      Déjà membre ? <%= link_to "Connectez-vous ici", "#", id: "already_signed_up", rel: :nofollow %>
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Nom</label></div>
+          <div class="col-md-7"><%= f.input :last_name, label: false, placeholder: "Nom" %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Votre étage</label></div>
+          <div class="col-md-7"><%= f.input :floor, label: false, include_blank: false, placeholder: "Votre étage", as: :string, type: "number" %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Numéro d'appartement</label></div>
+          <div class="col-md-7"><%= f.input :door, label: false, include_blank: false, placeholder: "Votre numéro d'appartement" %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Choisissez votre immeuble</label></div>
+          <div class="col-md-7"><%= f.input :building_id, label: false, label: false, collection: buildings_collection, as: :select, placeholder: "-- Choisissez votre immeuble --", input_html: { class: "js-example-basic-single input-lg" }, selected: params[:building_id] || @user.building_id %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Mot de passe de votre immeuble</label></div>
+          <div class="col-md-7"><%= f.input :building_access, label: false, placeholder: "Mot de passe de votre immeuble", input_html: { value: params[:building_access] ||  @user.building_access }  %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Votre adresse email</label></div>
+          <div class="col-md-7"><%= f.input :email, label: false, placeholder: "Email", input_html: { value: params[:invitee_email] || @user.email } %></div>
+        </div>
+
+        <div class="row row-flex row-center">
+          <div class="col-md-4"><label>Votre mot de passe</label></div>
+          <div class="col-md-7"><%= f.input :password, label: false, placeholder: "Mot de passe", required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)%></div>
+        </div>
+          <div class="text-center">
+            <%= button_tag "Rejoindre mon immeuble", type: "submit", class: "btn btn-lg btn-action space-1 space-top-1" %>
+          </div>
+          <p class="want-to-signin">Déjà inscrit ? <%= link_to "Se connecter", "#", class: "" %></p>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
-
-<%= render "devise/shared/links" %>

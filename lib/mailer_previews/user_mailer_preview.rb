@@ -8,4 +8,8 @@ class UserMailerPreview < ActionMailer::Preview
     m = Message.first
     UserMailer.new_message(m, User.first)
   end
+
+  def invitation
+    UserMailer.invitation(Invitation.last)
+  end
 end

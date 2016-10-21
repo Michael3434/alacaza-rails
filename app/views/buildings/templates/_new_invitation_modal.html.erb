@@ -1,0 +1,6 @@
+<%= render layout: "layouts/modal", locals: { modal_name: "new_invitation", modal_size: "", modal_title: "Inviter votre voisin" } do %>
+  <%= simple_form_for Invitation.new, url: invitations_path, data: { spinnable: true }, html: { id: "da" } do |f| %>
+    <%= f.input :invitee_email, input_html: { class: "input-lg" }, label: "Email de votre voisin" %>
+    <%= button_tag "Envoyer l'invitation", type: "submit", class: "btn btn-lg btn-action space-1 space-top-1" %>
+  <% end %>
+<% end %>
