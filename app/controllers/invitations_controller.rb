@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params.merge(inviter: current_user, building: current_user.building))
     if @invitation.save!
+      SlackNotifierWorker.perform_async(:new_invitation, invitation_id: @invitation.id)
       redirect_to :back
     end
   end

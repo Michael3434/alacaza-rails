@@ -54,6 +54,15 @@ module Notifier
       notify(message, { channel: "#likes" })
     end
 
+    def new_invitation(invitation)
+      @invitation = invitation
+      @inviter = invitation.inviter
+      @building = invitation.building
+
+      message = "#{@inviter.first_name} du bâtiment #{@building.name} a invité: #{@invitation.invitee_email}"
+      notify(message, { channel: "#invitation" })
+    end
+
     def new_lead(lead)
       message = "Nouvelle commande"
       options = {
