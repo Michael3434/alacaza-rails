@@ -9,6 +9,8 @@ mount Sidekiq::Web => '/sidekiq'
 
   namespace :users do
     resources :items do
+      patch 'sold', to: "items#sold", on: :member
+      patch 'resell', to: "items#resell", on: :member
     end
   end
 
@@ -17,6 +19,7 @@ mount Sidekiq::Web => '/sidekiq'
   end
 
   resources :items do
+    post "add_message", to: "posts#add_message", on: :member
     resources :item_photos do
     end
   end

@@ -1,0 +1,105 @@
+<div class="col-channels">
+    <%= render "buildings/templates/col_channels" %>
+</div>
+
+<div class="client-ui">
+  <div class="container-fluid">
+    <div class="ongoing-items">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="item-card">
+            <div class="photo-container">
+              <%= cl_image_tag(@item.photo.url(:thumb)) %>
+            </div>
+            <div class="infos space-top-2">
+              <div class="decription space-left-2"><%= @item.description %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="action-wrapper">
+            <div class="infos text-center space-2">
+              <div class="price"><%= humanize(@item.price.round(0)) %></div>
+              <div class="title"><%= @item.title %></div>
+            </div>
+            <hr>
+            <div class="actions text-center">
+              <%= link_to "Contacter le vendeur", "", data: { toggle: "modal", target: "#contact_seller_modal"}, class: "btn btn-action-green btn-lg" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 space-top-4">
+          <div class="seller-wrapper text-center">
+            <div class="picture-wrapper">
+              <%= image_tag user_photo_url(@item.user) %>
+            </div>
+            <div class="user-infos space-top-1">
+              <%= @item.user.name %>
+            </div>
+            <hr>
+            <div class="others-items space-top-2">
+              <div class="row">
+                <% @other_items.each do |item| %>
+                  <div class="col-sm-6">
+                    <%= link_to item_path(item) do %>
+                      <%= cl_image_tag(item.photo.url(:thumb)) %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="contact_seller_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-header space-2">
+          <button type="button" class="close show-sm hide-xs" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+          <span type="button" class="back show-xs ion-arrow-left-c" data-dismiss="modal" aria-label="Close"><span></span></span>
+        </div>
+
+        <%= simple_form_for Message.new, url: add_message_item_path(@item), html: { id: "new_item_message" } do |f| %>
+          <%= f.input :body, label: "Ecrivez votre message concernant ce bien", input_html: {  value: "Bonjour #{@item.user.name},\n\nJe suis intéressé par #{@item.title}.\nJe vous propose #{@item.price.round(0)} euros.\n\nCordialement,\n#{current_user.name}" , rows: 8, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
+          <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "new-message", modal_size: "", modal_title: "" } do %>
+  <div class="user-infos text-center">
+    <div class="user-icon space-2">
+      <%= image_tag (""), class: "member-image" %>
+    </div>
+    <span class="user-name">Michael</span>
+    <%= simple_form_for [@building, Channel.new] do |f| %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :channel_type, value: "private" %>
+      <%= f.hidden_field :building_id, value: @building.id %>
+      <%= button_tag "Envoyer un message privé", class: "btn btn-secondary space-top-2" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
+  <div class="">
+    <% current_user.user_channels_group.each do |user_channel| %>
+      <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
+        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}" }, label: "#{user_channel.channel.name}"  %>
+      <% end %>
+    <% end %>
+    <div class="text-center">
+      <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" aria-label="Close"><span>Enregistrer et fermer</span></button>
+    </div>
+  </div>
+<% end %>
+
+<%= render "users/edit_profil_modal" %>
+<%= render "posts/new_post_modal" %>

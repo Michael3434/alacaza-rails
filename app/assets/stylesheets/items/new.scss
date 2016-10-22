@@ -36,6 +36,10 @@
         transform: translate(-50%, -50%);
       }
     }
+    .photo-container {
+      position: relative;
+      overflow: hidden;
+    }
     #upload_image_preview {
       height: 150px;
       cursor: pointer;

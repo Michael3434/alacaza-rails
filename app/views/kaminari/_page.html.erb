@@ -1,0 +1,17 @@
+<% if page.current? %>
+  <li class='active'>
+    <%= content_tag :a, page, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)) %>
+  </li>
+<% elsif page.last? %>
+  <li class="last-page">
+    <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)) %>
+  </li>
+<% elsif page.first? %>
+  <li class="first-page">
+    <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)) %>
+  </li>
+<% else %>
+  <li class="away-<%= (page - current_page).abs %>">
+    <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)) %>
+  </li>
+<% end %>

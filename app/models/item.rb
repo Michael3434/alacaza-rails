@@ -9,4 +9,14 @@ class Item < ActiveRecord::Base
   def self.sold
     where(sold: true)
   end
+
+  def sold!
+    self.sold = true
+    self.save
+  end
+
+  def resell!
+    self.sold = nil
+    self.save
+  end
 end

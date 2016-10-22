@@ -3,15 +3,15 @@
 </div>
 
 <div class="client-ui">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-7 col-md-offset-1">
+      <div class="col-sm-12">
         <h2 class="text-center"> Mes objets</h2>
         <div class="ongoing-items">
           <h3 class="page-header">Mes objets en vente</h3>
           <div class="row">
             <% @items.ongoing.each do |item| %>
-              <div class="col-md-4">
+              <div class="col-md-3 col-sm-4">
                 <div class="item-card">
                   <div class="photo-container">
                     <%= cl_image_tag(item.photo.url(:thumb)) %>
@@ -22,7 +22,7 @@
                   </div>
                   <div class="actions">
                     <%= link_to "Modifier", "", class: "btn btn-secondary space-2 btn-group" %>
-                    <%= link_to "Marquer comme vendu", "", class: "btn btn-action-green btn-group" %>
+                    <%= button_to "Marquer comme vendu", sold_users_item_path(item), class: "btn btn-action-green btn-group", method: :patch %>
                   </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                   <div class="price"><%= humanize(item.price.round(0)) %></div>
                 </div>
                 <div class="actions">
-                  <%= link_to "Remettre en vente", "", class: "btn btn-secondary space-2 btn-group" %>
+                <%= button_to "Remettre en vente", resell_users_item_path(item), class: "btn btn-secondary space-2 btn-group", method: :patch %>
                 </div>
               </div>
             </div>
