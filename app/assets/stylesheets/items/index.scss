@@ -15,6 +15,29 @@
      margin-left: 0px;
     }
   }
+  #button-sell {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%,0);
+    -webkit-transform: translate(-50%,0);
+    -moz-transform: translate(-50%,0);
+    .btn-sell {
+      border-radius: 30px;
+      height: 50px;
+      padding: 0 30px;
+      .text {
+        top: 0px;
+        font-size: 18px;
+      }
+      svg {
+        width: 31px;
+        height: 25px;
+        top: 6px;
+        position: relative;
+      }
+    }
+  }
   // Item card
   .item-card {
     padding: 0 0 20px 0;
@@ -39,19 +62,6 @@
     }
     .actions {
       padding: 10px 10px 0px 10px;
-    }
-  }
-  .sold-items {
-    .sold-icon {
-      opacity: 0.5;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-    img {
-      opacity: 0.2;
     }
   }
 }
