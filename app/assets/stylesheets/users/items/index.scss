@@ -32,10 +32,17 @@
     }
     .infos {
       padding-left: 10px;
+      padding-top: 10px;
       .price {
         font-size: 20px;
         font-weight: 700;
         color: #969696;
+      }
+      .title {
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
     .actions {

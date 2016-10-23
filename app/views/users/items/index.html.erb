@@ -3,7 +3,8 @@
 </div>
 
 <div class="client-ui">
-  <div class="container-fluid">
+  <div class="modal-bg hidden"></div>
+  <div class="container-fluid space-top-7">
     <div class="row">
       <div class="col-sm-12">
         <h2 class="text-center"> Mes objets</h2>
@@ -11,18 +12,23 @@
           <h3 class="page-header">Mes objets en vente</h3>
           <div class="row">
             <% @items.ongoing.each do |item| %>
-              <div class="col-md-3 col-sm-4">
+              <div class="col-md-3 col-sm-4 col-xs-6 space-top-2">
                 <div class="item-card">
                   <div class="photo-container">
-                    <%= cl_image_tag(item.photo.url(:thumb)) %>
+                    <%= link_to item_path(item) do %>
+                      <%= cl_image_tag(item.photo.url(:thumb)) %>
+                    <% end %>
                   </div>
                   <div class="infos">
                     <div class="title"><%= item.title %></div>
                     <div class="price"><%= humanize(item.price.round(0)) %></div>
                   </div>
                   <div class="actions">
-                    <%= link_to "Modifier", "", class: "btn btn-secondary space-2 btn-group" %>
-                    <%= button_to "Marquer comme vendu", sold_users_item_path(item), class: "btn btn-action-green btn-group", method: :patch %>
+                    <%= link_to "Modifier", edit_item_path(item), class: "btn btn-secondary space-2 btn-group" %>
+                    <%= button_to "C'est vendu !", sold_users_item_path(item), class: "btn btn-action-green btn-group", method: :patch %>
+                    <div class="text-center space-top-2">
+                      <%= link_to "<i class='fa fa-lg fa-trash-o'></i>".html_safe, item_path(item), method: :delete, class: "rm-item", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"} %>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -33,7 +39,7 @@
         <div class="sold-items">
           <h3 class="page-header">Mes objets vendus</h3>
           <% @items.sold.each do |item| %>
-            <div class="col-md-4">
+            <div class="col-md-3 col-sm-4 col-xs-6">
               <div class="item-card">
                 <div class="photo-container">
                   <div class="sold-icon">

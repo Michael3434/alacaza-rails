@@ -2,6 +2,8 @@ class Item < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
   belongs_to :user
 
+  validates :photo, :title, :category, :price, presence: true
+
   def self.ongoing
     where(sold: nil)
   end

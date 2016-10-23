@@ -36,3 +36,14 @@
 @import "application/layout";
 @import "application/layout/public_navbar";
 
+.modal-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 220px;
+  bottom: 0;
+  z-index: 100;
+  background-color: black;
+  opacity: 0.5;
+}
+

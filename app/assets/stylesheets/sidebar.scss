@@ -115,5 +115,15 @@
       color: white;
       margin-left: 4px;
     }
+    svg {
+      width: 21px;
+      left: 2px;
+      top: 4px;
+      height: 21px;
+      position: relative;
+      g {
+        fill: white;
+      }
+    }
   }
 }

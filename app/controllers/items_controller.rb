@@ -1,9 +1,12 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @item = Item.new(item_params.merge(user: current_user))
     if @item.save
       redirect_to users_items_path
     else
+      @building = current_user.building
+      @post = current_user.posts.last || Post.new
       render 'new'
     end
   end
@@ -21,10 +24,33 @@ class ItemsController < ApplicationController
     @post = current_user.posts.last || Post.new
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    @building = current_user.building
+    @post = current_user.posts.last || Post.new
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to users_items_path
+    else
+      @building = current_user.building
+      @post = current_user.posts.last || Post.new
+      render 'edit'
+    end
+  end
+
   def index
     @post = current_user.posts.last || Post.new
     @building = current_user.building
-    @items = Item.all.page(params[:page] || 1).per(20)
+    @items = Item.ongoing.page(params[:page] || 1).per(40)
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.delete
+    redirect_to :back
   end
 
   def add_message

@@ -34,6 +34,16 @@
           <% end %>
         </a>
       </div>
+      <div class="link-list">
+        <ul class="list-unstyled">
+          <li>
+          <%= link_to new_item_path, class: "btn btn-sell" do %>
+            <span class="text">Vendez un bien</span>
+            <%= embedded_svg "camera.svg" %>
+          <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>

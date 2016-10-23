@@ -19,7 +19,7 @@ mount Sidekiq::Web => '/sidekiq'
   end
 
   resources :items do
-    post "add_message", to: "posts#add_message", on: :member
+    post "add_message", to: "items#add_message", on: :member
     resources :item_photos do
     end
   end

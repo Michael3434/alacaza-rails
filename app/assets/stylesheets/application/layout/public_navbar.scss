@@ -6,7 +6,7 @@
   width: 100%;
   top: 0;
   background-color: white;
-  z-index: 1;
+  z-index: 2;
   border-bottom: .0625rem solid #e8e8e8;
   .cursor-pointer {
     &:hover {
@@ -144,6 +144,24 @@
             left: -29px;
             font-size: 22px;
             top: -4px;
+          }
+        }
+      }
+      .link-list {
+        margin: -5px 9px 0 0;
+        position: fixed;
+        right: 0;
+        .sell-button {
+          background: #ff3f55;
+          border-radius: 4px;
+          color: #FFF;
+          display: inline-block;
+          height: 35px;
+          padding: 0 10px;
+        }
+        svg {
+          g {
+            fill: white;
           }
         }
       }

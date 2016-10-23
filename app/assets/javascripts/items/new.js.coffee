@@ -1,10 +1,11 @@
 $(document).on "ready page:load", ->
-  app.items.new.init() if $('.items.new').length > 0 || $('.items.edit').length > 0
-
+  app.items.new.init() if $('.items.new, .items.create, items.edit').length > 0
 app.items ||= {}
 app.items.new =
   init: ->
     @initPhoto()
+    @initForm()
+    app.buildings.show.initSideBar()
   initPhoto: ->
     $('.photo-pending, #upload_image_preview').on "click", ->
       $('#item_photo').click()
@@ -33,4 +34,22 @@ app.items.new =
               $('.photo-pending').hide()
             img.src = reader.result
           reader.readAsDataURL this.files[0]
-
+  initForm: ->
+    $('#new_item').on 'submit', ->
+      FormIsValid = true
+      if $('#item_category').val() == ""
+        $('.item_category').addClass('has-error')
+        FormIsValid = false
+      if $('#item_price').val() == ""
+        $('.item_price').addClass('has-error')
+        FormIsValid = false
+      if $('#item_title').val() == ""
+        $('.item_title').addClass('has-error')
+        FormIsValid = false
+      if !$("#upload_image_preview").is(":visible")
+        $('.photo-pending').css('border-color', 'red')
+        FormIsValid = false
+      if FormIsValid
+        $('[type=submit]').attr('disabled', true)
+      else
+        return false

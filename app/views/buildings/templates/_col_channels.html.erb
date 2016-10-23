@@ -6,7 +6,11 @@
     <ul class="list-unstyled">
       <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
       <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
-      <li class="space-1"><i class="fa fa-clipboard  fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_post_modal">Mon annonce<span class="badge candy_yellow_bg">!</span></a></li>
+      <li class="space-1"><i class="fa fa-clipboard  fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_post_modal">Mon annonce</a></li>
+      <li class="space-1">
+        <%= embedded_svg "camera.svg" %>
+        <%= link_to "Mes biens", users_items_path %>
+      </li>
     </ul>
   </div>
   <hr>
@@ -56,6 +60,9 @@
               <span class="channel-name">#&nbsp;<%= channel.name %></span>
               </li>
             <% end %>
+          <% end %>
+          <%= link_to items_path do %>
+            <li class="others"><span class="channel-name">#&nbsp;Achats/Vente</span></li>
           <% end %>
         </ul>
       </div>

@@ -9,6 +9,6 @@ module ItemsHelper
     "Sport & jeux",
     "Films, livres & musique",
     "Immobilier",
-    "Autre"].map { |item| [item] }
+    "Autre"].map { |item| [item, item] }
   end
 end
