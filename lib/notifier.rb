@@ -49,9 +49,57 @@ module Notifier
       notify(message, { channel: "#messages" })
     end
 
+    def item_sold(item)
+      message = "Object vendu"
+      options = {
+        channel: "#item",
+        attachments: [
+          { title: "Vendeur", text: "#{item.user.name} du bâtiment #{item.user.building.name}" },
+          { title: "Objet", text: item.title },
+          { title: "Prix", text: "#{item.price.round(0)}" }
+        ]
+      }
+      notify(message, options)
+    end
+
+    def item_destroyed(item)
+      message = "Object supprimé"
+      options = {
+        channel: "#item",
+        attachments: [
+          { title: "Vendeur", text: "#{item.user.name} du bâtiment #{item.user.building.name}" },
+          { title: "Objet", text: item.title },
+          { title: "Prix", text: "#{item.price.round(0)}" }
+        ]
+      }
+      notify(message, options)
+    end
+
+    def item_created(item)
+      message = "Nouvel objet en vente"
+      options = {
+        channel: "#item",
+        attachments: [
+          { title: "Vendeur", text: "#{item.user.name} du bâtiment #{item.user.building.name}" },
+          { title: "Objet", text: item.title },
+          { title: "Prix", text: "#{item.price.round(0)}" }
+        ]
+      }
+      notify(message, options)
+    end
+
     def new_like(the_message, user)
       message = "#{user.first_name} du bâtiment #{user.building.name} a liké: #{the_message.body}"
       notify(message, { channel: "#likes" })
+    end
+
+    def new_invitation(invitation)
+      @invitation = invitation
+      @inviter = invitation.inviter
+      @building = invitation.building
+
+      message = "#{@inviter.first_name} du bâtiment #{@building.name} a invité: #{@invitation.invitee_email}"
+      notify(message, { channel: "#invitation" })
     end
 
     def new_lead(lead)

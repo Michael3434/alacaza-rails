@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161009192415) do
+=======
+ActiveRecord::Schema.define(version: 20161017044104) do
+>>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +68,21 @@ ActiveRecord::Schema.define(version: 20161009192415) do
   add_index "comments", ["message_id"], name: "index_comments_on_message_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+<<<<<<< HEAD
+=======
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "building_id"
+    t.integer  "invitee_id"
+    t.integer  "inviter_id"
+    t.string   "invitee_email"
+    t.string   "invitee_token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "invitations", ["building_id"], name: "index_invitations_on_building_id", using: :btree
+
+>>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
   create_table "item_photos", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "photo"
@@ -191,6 +210,10 @@ ActiveRecord::Schema.define(version: 20161009192415) do
   add_foreign_key "channels", "buildings"
   add_foreign_key "comments", "messages"
   add_foreign_key "comments", "users"
+<<<<<<< HEAD
+=======
+  add_foreign_key "invitations", "buildings"
+>>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
   add_foreign_key "posts", "users"

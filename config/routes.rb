@@ -27,7 +27,9 @@ mount Sidekiq::Web => '/sidekiq'
   resources :buildings do
     resources :channels
   end
+
   resources :comments
+  resources :invitations
   resources :channels do
     post "custom_channel", to: "channels#custom_channel"
     patch "edit_custom_channel", to: "channels#edit_custom_channel"

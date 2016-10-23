@@ -41,18 +41,20 @@
             <div class="user-infos space-top-1">
               <%= @item.user.name %>
             </div>
-            <hr>
-            <div class="others-items space-top-2">
-              <div class="row">
-                <% @other_items.each do |item| %>
-                  <div class="col-xs-6">
-                    <%= link_to item_path(item) do %>
-                      <%= cl_image_tag(item.photo.url(:thumb)) %>
-                    <% end %>
-                  </div>
-                <% end %>
+            <% if @other_items.length > 0 %>
+              <hr>
+              <div class="others-items space-top-2">
+                <div class="row">
+                  <% @other_items.each do |item| %>
+                    <div class="col-xs-6">
+                      <%= link_to item_path(item) do %>
+                        <%= cl_image_tag(item.photo.url(:thumb)) %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>

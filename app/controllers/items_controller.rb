@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_variables
   def create
     @item = Item.new(item_params.merge(user: current_user))
     if @item.save
+      SlackNotifierWorker.perform_async(:item_created, item_id: @item.id)
       redirect_to users_items_path
     else
       @building = current_user.building
@@ -49,6 +51,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    SlackNotifierWorker.perform_async(:item_destroyed, item_id: @item.id)
     @item.delete
     redirect_to :back
   end
@@ -71,6 +74,11 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def get_variables
+    @group_channels = current_user.all_group_channels.preload(:messages, :user_channels)
+    @private_channels = current_user.private_channels.preload(:messages, :user_channels, :users)
+  end
 
   def item_params
     params.require(:item).permit(:description, :title, :price, :location, :sold, :photo, :category)

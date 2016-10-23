@@ -34,7 +34,7 @@
                 </div>
               <% end %>
             </div>
-            <div class="col-sm-6 col-xs-12">
+            <div class="col-sm-6 col-xs-12 space-top-2">
 
               <%= f.input :category, label: "Categorie", collection: categories_collection, as: :select, input_html: { class: "input-lg" }, wrapper_html: { class: "" }, selected: @item.category %>
               <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Titre de votre objet", wrapper_html: { class: "" } %>
@@ -44,7 +44,7 @@
           <%= f.input :description, label: "Description", input_html: { class: "input-lg", rows: 5 }, placeholder: "Decription de votre objet", wrapper_html: { class: "" } %>
           <div class="row">
             <div class="col-md-12 space-top-4">
-              <%= f.button :submit, "Publier", class: "btn btn-secondary btn-lg btn-group" %>
+              <%= f.button :submit, "Publier", class: "btn btn-secondary btn-lg btn-group space-5" %>
             </div>
           </div>
         <% end %>

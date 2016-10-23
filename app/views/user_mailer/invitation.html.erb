@@ -1,0 +1,16 @@
+<p>Bonjour,</p>
+
+<p><%= @inviter.first_name %> vous a invité à rejoindre la messagerie de votre immeuble <%= @building.name %></p>
+
+<p>Pour accéder à la messagerie, cliquez sur le lien ci-dessous :</p>
+
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" width="300" height="40" bgcolor="#FF6E41" style="-webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #ffffff; display: block;">
+      <a href="<%= appartments_url(@building.slug, token: @invitation.invitee_token) %>" style="font-size:16px; text-decoration: none; line-height:40px; width:100%; display:inline-block"><span style="color: #FFFFFF">Accepter l'invitation</span></a>
+    </td>
+  </tr>
+</table>
+
+<p>Bonne journée,<br>
+L'équipe Alacaza</p>
