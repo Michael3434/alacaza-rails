@@ -1,5 +1,5 @@
 $(document).on "ready page:load", ->
-  app.items.new.init() if $('.items.new, .items.create, items.edit').length > 0
+  app.items.new.init() if $('.items.new, .items.create, .items.edit').length > 0
 app.items ||= {}
 app.items.new =
   init: ->
