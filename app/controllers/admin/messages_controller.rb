@@ -42,7 +42,7 @@ class Admin::MessagesController < AdminController
       channel = Channel.where(building: building, channel_type: "main_group").last
       user = User.find_by_email("hello@alacaza.fr")
       @message = Message.create(user: user, building_id: building, channel_id: channel.id, body: params[:body])
-      # message_notifier(@message)
+      message_notifier(@message)
     end
     flash[:success] = "Messages bien envoyés"
     redirect_to :back
