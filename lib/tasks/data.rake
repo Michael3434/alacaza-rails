@@ -13,6 +13,11 @@ namespace :data do
     end
   end
 
+  task remove_users_from_channel: :environment do
+    c = Channel.where(name: "Achats/Ventes des Docks").last
+    UserChannel.where(channel: c).where.not(user: User.where(email: "hello@alacaza.fr")).destroy_all
+  end
+
   task add_new_users: :environment do
     CSV.foreach('db/users_1.csv', headers: true) do |row|
       password = "#{row["first_name"]}-#{rand(99999)}"

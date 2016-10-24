@@ -34,7 +34,7 @@
           <% end %>
         </a>
       </div>
-      <% if current_user %>
+      <% if current_user && current_user.building.docks? %>
       <div class="link-list hide-sm">
         <ul class="list-unstyled">
           <li>
