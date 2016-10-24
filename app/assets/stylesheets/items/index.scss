@@ -46,10 +46,45 @@
     border-radius: 4px;
     .photo-container {
       position: relative;
+      overflow: hidden;
       img {
         width: 100%;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
+      }
+      .ribbon {
+        background-color: $brand-primary;
+        color: #FFF;
+        font-weight: bold;
+        color: #fff;
+        display: block;
+        height: 30px;
+        margin: 1px 0;
+        position: absolute;
+        right: -30px;
+        top: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 13px;
+        padding: 5px 0 10px 0;
+        text-transform: lowercase;
+        width: 120px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 2px 0 rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+        svg {
+          width: 12px;
+          height: 13px;
+          g {
+            fill: white;
+          }
+        }
       }
     }
     .infos {

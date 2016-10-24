@@ -13,6 +13,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def index
+    @post = current_user.posts.last || Post.new
+    @building = current_user.building
+    @items = Item.ongoing.order('created_at desc').page(params[:page] || 1).per(40)
+  end
+
   def new
     @item = Item.new
     @building = current_user.building
@@ -41,12 +47,6 @@ class ItemsController < ApplicationController
       @post = current_user.posts.last || Post.new
       render 'edit'
     end
-  end
-
-  def index
-    @post = current_user.posts.last || Post.new
-    @building = current_user.building
-    @items = Item.ongoing.page(params[:page] || 1).per(40)
   end
 
   def destroy

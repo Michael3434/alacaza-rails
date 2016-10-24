@@ -13,8 +13,10 @@
       <div class="row">
         <div class="col-sm-6 col-xs-12">
           <div class="item-card">
-            <div class="photo-container">
-              <%= cl_image_tag(@item.photo.url(:large)) %>
+            <div class="photo-container js-carousel">
+              <%= link_to @item.photo.url(:large) do %>
+                <%= cl_image_tag(@item.photo.url(:large)) %>
+              <% end %>
             </div>
             <div class="infos space-top-2">
               <div class="description space-left-2"><%= simple_format(@item.description) %></div>
@@ -27,10 +29,12 @@
               <div class="price"><%= humanize(@item.price.round(0)) %></div>
               <div class="title"><%= @item.title %></div>
             </div>
+            <% unless @item.user == current_user %>
             <hr>
             <div class="actions text-center">
               <%= link_to "Demander", "", data: { toggle: "modal", target: "#contact_seller_modal"}, class: "btn btn-action-green btn-lg" %>
             </div>
+            <% end %>
           </div>
         </div>
         <div class="col-sm-6 space-top-4">
@@ -72,7 +76,7 @@
         </div>
 
         <%= simple_form_for Message.new, url: add_message_item_path(@item), html: { id: "new_item_message" } do |f| %>
-          <%= f.input :body, label: "Ecrivez votre message concernant ce bien", input_html: {  value: "Bonjour #{@item.user.name},\n\nJe suis intéressé par #{@item.title}.\nJe vous propose #{@item.price.round(0)} euros.\n\nCordialement,\n#{current_user.name}" , rows: 8, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
+          <%= f.input :body, label: "Ecrivez votre message concernant ce bien", input_html: {  value: "Bonjour #{@item.user.name},\n\nJe suis intéressé(e) par #{@item.title}.\nJe vous propose #{@item.price.round(0)} euros.\n\nCordialement,\n#{current_user.name}" , rows: 8, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
           <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
         <% end %>
       </div>
