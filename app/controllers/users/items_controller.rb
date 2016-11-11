@@ -1,4 +1,5 @@
 class Users::ItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_variables
   def index
     @items = current_user.items
