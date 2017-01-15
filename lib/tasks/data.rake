@@ -13,6 +13,12 @@ namespace :data do
     end
   end
 
+  task send_happy: :environment do
+    User.joins(:building).where('buildings.district = ?', 'Docks').uniq.each do |user|
+      UserMailer.happy(user).deliver!
+    end
+  end
+
   task remove_users_from_channel: :environment do
     c = Channel.where(name: "Achats/Ventes des Docks").last
     UserChannel.where(channel: c).where.not(user: User.where(email: "hello@alacaza.fr")).destroy_all

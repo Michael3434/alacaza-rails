@@ -5,7 +5,6 @@ app.users ||= {}
 app.users.items ||= {}
 app.users.items.show =
   init: ->
-    app.buildings.show.initSideBar()
     @initCarousel()
   initCarousel: ->
     $(".js-carousel").each ->

@@ -5,7 +5,6 @@ app.items.new =
   init: ->
     @initPhoto()
     @initForm()
-    app.buildings.show.initSideBar()
   initPhoto: ->
     $('.photo-pending, #upload_image_preview').on "click", ->
       $('#item_photo').click()

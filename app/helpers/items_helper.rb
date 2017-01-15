@@ -1,5 +1,5 @@
 module ItemsHelper
-  def categories_collection
+  def items_categories_collection
     ["Informatique & téléphonie",
     "Mode femme",
     "Mode homme",

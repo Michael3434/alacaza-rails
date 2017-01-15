@@ -5,15 +5,13 @@
   <div class="settings space-left-2 space-top-2">
     <ul class="list-unstyled">
       <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
-      <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
-      <li class="space-1"><i class="fa fa-clipboard  fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_post_modal">Mon annonce</a></li>
-      <% if current_user.building.docks? %>
-        <li class="space-1">
-          <%= embedded_svg "camera.svg" %>
-          <%= link_to "Mes biens", users_items_path %>
-        </li>
-      <% end %>
+      <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><%= link_to "Mon compte", users_account_path %></li>
       <li class="space-1"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#new_invitation_modal">Inviter un voisin<span class="badge candy_yellow_bg">!</span></a></li>
+      <hr>
+      <div class="activities-link">
+        <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><%= link_to "Achats/Ventes", items_path %></li>
+        <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><%= link_to "Ils proposent leur services", services_path %></li>
+      </div>
     </ul>
   </div>
   <hr>

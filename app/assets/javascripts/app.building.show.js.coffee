@@ -4,15 +4,12 @@ app.buildings.show =
       @disableSubmitButton()
       @scrollOnloadPage()
       @initMessageGenerator()
-      @initSideBar()
       @initNewMessageModal()
       @initFile()
       @removeImgOnHideModal()
-      # @showReactionOnOverMessage() // Disable like
       @showReactionOnOverMessage()
       @initCarousel()
       @showHomeIconBadge()
-      @initUserPhoto()
       @disabledOnSubmitPostMessage()
       @unsubscribeFromChannel()
     unsubscribeFromChannel: ->
@@ -25,37 +22,6 @@ app.buildings.show =
       $('form#new_post_message').on 'submit', ->
         $(this).find('btn').attr('disabled', 'true')
         $(this).css('opacity', '0.3')
-    initUserPhoto: ->
-      $('.image-wrapper').on "mouseenter", ->
-        $(".hover-background").show()
-      $('.image-wrapper').on "mouseleave", ->
-        $(".hover-background").hide()
-      $('.hover-background').on "click", ->
-        $('#user_photo').click()
-
-      $('.submit-tick').on "click", ->
-        $('form#edit_user_fields').submit()
-
-      $('#user_photo').on "change", ->
-        formData = new FormData
-        $input = $('#user_photo')
-        userId = $('#edit_profil_modal .modal-content').data('user-id')
-        formData.append 'user[photo]', $input[0].files[0]
-        $('form.edit_user').serializeArray().forEach (field) ->
-          formData.append field.name, field.value
-        $.ajax
-          url: "/users/" + userId + "/change_picture"
-          data: formData
-          cache: false
-          contentType: false
-          processData: false
-          type: 'POST'
-          beforeSend: (xhr) ->
-            i = $('<i></i>', class: 'fa fa-spinner fa-spin').css('font-size', "27px")
-            $('.fa-camera').remove()
-            $(".hover-background").show().prepend(i)
-            $('.hover-background .text-center').html("Téléchargement...")
-
 
     showHomeIconBadge: ->
       if $(".badge.candy_red_bg").length > 0
@@ -136,14 +102,6 @@ app.buildings.show =
               width++
               elem.style.width = width + '%'
             id = setInterval(frame, 100)
-    initSideBar: ->
-      $('.info-icon').on "click", (e) ->
-        e.preventDefault()
-        $('.col-channels').show("slide", { direction: "left" }, 200);
-        $('.modal-bg').hide().removeClass('hidden').fadeIn().show()
-      $('.modal-bg').on "click", (e) ->
-        $('.col-channels').hide("slide", { direction: "left" }, 200)
-        $('.modal-bg').addClass('hidden')
     scrollOnloadPage: ->
       messageTop = $('.msg-container').last().offset()
       if messageTop != undefined

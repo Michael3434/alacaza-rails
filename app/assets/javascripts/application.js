@@ -37,7 +37,7 @@
 //= require items/new
 //= require items/show
 
-//= require users/items/index
+//= require users/users/account
 
 
 //= require votes/new

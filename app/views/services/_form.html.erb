@@ -4,41 +4,26 @@
 
 <div class="client-ui">
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
-    <div class="ongoing-items">
-      <div class="row">
-        <% @items.ongoing.each do |item| %>
-          <div class="col-md-3 item space-top-2 col-xs-6 col-sm-4 col-md-3 col-lg-3">
-            <div class="item-card">
-              <div class="photo-container">
-               <%= link_to item_path(item) do %>
-                 <%= cl_image_tag(item.photo.url(:thumb)) %>
-                 <span class="ribbon">
-                 <%= embedded_svg "flame.svg" %>
-                  <%= time_ago_in_words_formated(item.created_at) %>
-                 </span>
-               <% end %>
-              </div>
-              <div class="infos">
-                <div class="title"><%= item.title %></div>
-                <div class="price"><%= humanize(item.price.round(0)) %></div>
-              </div>
-            </div>
-          </div>
+  <div class="container space-top-7">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+        <h2 class="text-center"> Je propose mes services</h2>
+        <%= simple_form_for @service, data: { spinnable: true } do |f| %>
+          <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Aide ménagère ...", wrapper_html: { class: "" } %>
+          <%= f.input :description, label: "Précision", input_html: { class: "input-lg", rows: 5 }, placeholder: "Soyez le plus précis possible", wrapper_html: { class: "" } %>
+
+          <%#= f.input :category, label: "Catégorie", collection: services_categories_collection, input_html: { class: "input-lg" }, wrapper_html: { class: "" }, selected: @service.category %>
+          <%= f.input :category, label: "Catégorie",
+                              collection: services_categories_collection,
+                                      as: :grouped_select,
+                            group_method: :last,
+                      group_label_method: :first,
+                           include_blank: "Choisissez une catégorie" %>
+
+          <%= f.input :price, label: "Prix", input_html: { class: "input-lg" }, placeholder: "Ex : 10e/heure ou Sur demande", wrapper_html: { class: "" } %>
+          <%= f.button :submit, "Publier", class: "btn btn-secondary btn-lg btn-group space-5" %>
         <% end %>
       </div>
-    </div>
-    <% if @items.total_pages > 1 && @items.length > 0 %>
-    <footer>
-      <%= paginate @items, max_pages: 20 %>
-    </footer>
-    <% end %>
-
-    <div id="button-sell" class="show-sm">
-      <%= link_to new_item_path, class: "btn btn-sell" do %>
-        <span class="text">Vendre un bien</span>
-        <%= embedded_svg "camera.svg" %>
-      <% end %>
     </div>
   </div>
 
@@ -75,3 +60,4 @@
 <%= render "users/edit_profil_modal" %>
 
 <%= render "buildings/templates/new_invitation_modal" %>
+

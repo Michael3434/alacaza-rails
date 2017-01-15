@@ -1,0 +1,127 @@
+.account {
+  .client-ui {
+    margin-left: 220px;
+    margin-top: 0;
+    padding-top: 20px;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(251, 251, 251, 1);
+    @include bp-small {
+      margin-left: 0px;
+    }
+  }
+  .image-container {
+    margin-left: auto;
+    width: 200px;
+    height: 200px;
+    margin-right: auto;
+    @include bp-extra-small {
+      width: 100px;
+      height: 100px;
+    }
+    .image-wrapper {
+      position: relative;
+      cursor: pointer;
+      .hover-background {
+        display: none;
+        content: "Change your profile photo";
+        box-sizing: border-box;
+        padding: 8.5rem 2rem 0;
+        font-weight: 700;
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        background-color: rgba(0,0,0,.7);
+        border: .25rem solid #439fe0;
+        border-radius: 100%;
+        top: 20px;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        z-index: 1;
+        @include bp-extra-small {
+          width: 100px;
+          height: 100px;
+          padding: 25px 0px;
+          font-size: 13px;
+        }
+      }
+      &:hover {
+        .fa-camera,
+        .fa-spinner {
+          font-size: 27px;
+          @include bp-extra-small {
+            font-size: 16px;
+          }
+        }
+        .hover-background {
+          display: inline-block;
+        }
+      }
+      .member-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: inline-block;
+        position: relative;
+        @include bp-extra-small {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+  .activity-container {
+    h3 {
+      line-height: 25px;
+    }
+    .nav-item {
+      a {
+        color: #333;
+      }
+    }
+    #items {
+      img {
+        width: 70px;
+      }
+      .item {
+        background-color: white;
+        border: 1px solid #eee;
+        padding: 10px;
+        .description {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+      .sold {
+        opacity: 0.3;
+        &:after {
+        }
+      }
+    }
+    #services {
+      img {
+        width: 70px;
+      }
+      .service {
+        background-color: white;
+        border: 1px solid #eee;
+        padding: 10px;
+        .description {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}

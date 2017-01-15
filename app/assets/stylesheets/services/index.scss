@@ -1,0 +1,75 @@
+.services.index {
+  .link:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+     .service-card {
+      background-color: #fbfbfb;
+      border-left-color: #FF845E;
+    }
+  }
+  .link {
+    color: inherit;
+  }
+  .client-ui {
+    margin-left: 220px;
+    margin-top: 0;
+    padding-top: 20px;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(251, 251, 251, 1);
+    @include bp-small {
+      margin-left: 0px;
+    }
+  }
+  .service-card:first-child {
+    border: 1px solid #eee;
+    background-color: white;
+    padding: 10px;
+    img {
+      width: 105px;
+    }
+  }
+  a > .service-card {
+    border: 1px solid #eee;
+    background-color: white;
+    padding: 10px;
+    &:hover {
+      background-color: #fbfbfb;
+
+    }
+    .user-name {
+      color: $green-action;
+    }
+    .title {
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #494849;
+    }
+    .user-img {
+      img {
+        width: 75px;
+        border-radius: 100%;
+      }
+    }
+    .price-container {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      .price-field {
+        color: #FF845E !important;
+        font-size: 15px;
+        line-height: 20px;
+        margin-top: 5px;
+        font-weight: 600;
+        padding: 3px 7px 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="col-channels">
+    <%= render "buildings/templates/col_channels" %>
+</div>
+
+<div class="client-ui">
+  <div class="container space-top-7">
+    <div class="col-md-6">
+      <%= simple_form_for current_user, html: { id: :edit_user_fields } do |f| %>
+        <%= f.input :first_name, label: "Prénom #{informations_form}".html_safe, disabled: true, input_html: { class: "input-lg"} %>
+        <%= f.input :last_name, label: "Nom #{informations_form}".html_safe, disabled: true, input_html: { class: "input-lg"} %>
+        <%= f.input :age, label: "Âge", input_html: { class: "input-lg"} %>
+        <%= f.input :sex, label: "Sexe", collection: sex_collection, as: :select, input_html: { class: "js-sex-basic-single" } %>
+        <%= f.input :user_status, label: "Votre statut dans l'immeuble", collection: status_collection, as: :select, input_html: { class: "js-user-status-basic-single" } %>
+        <%= button_tag "Annuler", class: "btn btn-secondary-outline ", data: { dismiss: "modal" } %>
+        <%= button_tag "Enregistrer", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,15 @@ button:focus, button:active {
 .cursor-pointer {
   cursor: pointer;
 }
+.btn-edit {
+  font-size: 20px;
+  color: #333;
+}
+
+.btn-delete {
+  color: #eb4d5c;
+  font-size: 20px;
+}
 
 .btn-sell {
   background: $green-action;

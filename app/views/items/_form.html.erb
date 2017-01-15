@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-6 col-xs-12 space-top-2">
 
-              <%= f.input :category, label: "Catégorie", collection: categories_collection, as: :select, input_html: { class: "input-lg" }, wrapper_html: { class: "" }, selected: @item.category %>
+              <%= f.input :category, label: "Catégorie", collection: items_categories_collection, as: :select, input_html: { class: "input-lg" }, wrapper_html: { class: "" }, selected: @item.category %>
               <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Titre de votre objet", wrapper_html: { class: "" } %>
               <%= f.input :price, label: "Prix", input_html: { class: "input-lg" }, wrapper_html: { class: "" } %>
             </div>
@@ -83,6 +83,6 @@
 <% end %>
 
 <%= render "users/edit_profil_modal" %>
-<%= render "posts/new_post_modal" %>
+
 <%= render "buildings/templates/new_invitation_modal" %>
 

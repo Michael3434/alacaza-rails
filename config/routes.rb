@@ -8,6 +8,8 @@ mount Sidekiq::Web => '/sidekiq'
   get "users/sign_up", to: redirect("/")
 
   namespace :users do
+    get "account", to: "users#account"
+    get "edit_account", to: "users#edit_account"
     resources :items do
       patch 'sold', to: "items#sold", on: :member
       patch 'resell', to: "items#resell", on: :member
@@ -42,9 +44,9 @@ mount Sidekiq::Web => '/sidekiq'
     end
   end
 
-  resources :posts do
-    put "/publish", to: "posts#publish"
-    post "add_message", to: "posts#add_message"
+  resources :services do
+    put "/publish", to: "services#publish"
+    post "add_message", to: "services#add_message"
   end
 
   namespace :gardien do

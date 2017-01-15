@@ -8,7 +8,6 @@ class SlackNotifierWorker
     user = User.where(id: params["user_id"]).first
     comment = Comment.where(id: params["comment_id"]).first
     lead = Lead.where(id: params["lead_id"]).first
-    post = Post.where(id: params["post_id"]).first
     item = Item.where(id: params["item_id"]).first
     invitation = Invitation.where(id: params["invitation_id"]).first
 

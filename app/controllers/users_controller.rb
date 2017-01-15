@@ -9,11 +9,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      respond_to do |format|
-        format.js
-      end
-    else
+      redirect_to users_account_path
     end
+  end
+
+  def account
+
   end
 
   def change_picture

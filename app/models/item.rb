@@ -21,4 +21,5 @@ class Item < ActiveRecord::Base
     self.sold = nil
     self.save
   end
+
 end

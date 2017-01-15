@@ -1,7 +1,4 @@
-$(".image-container .member-image").remove()
-image = ('<%= j render(partial: "users/image").html_safe %>')
-
-$('.icon-user-' + <%= @user.id %> + ' img').attr('src', '<%= @user.photo.url %>')
+$('.member-image').attr('src', '<%= @user.photo.url %>')
 
 $('.fa-spinner').remove()
 i = $('<i></i>', {class : "fa fa-camera"})

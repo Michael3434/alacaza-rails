@@ -1,12 +1,5 @@
 <div class="client-ui" data-current-user-building="<%= current_user.building_id %>" data-unsubscribe="<%= params[:unsubscribe]%>">
   <div id="loader" style="display: none;"></div>
-  <% if @channel.services_for_docks? %>
-    <%= button_to posts_path, remote: true, class: "btn open-profil", method: :get do %>
-      <span class="candy_red_bg">NOUVEAU</span>
-      Voir les profils des Docks
-      </span>
-    <% end %>
-  <% end %>
   <div class="scroll-container">
     <div class="row">
       <div class="messages-container">
@@ -66,9 +59,6 @@
 
 
 <%= render "buildings/templates/votes_modal" %>
-<%= render "users/edit_profil_modal" %>
-<%= render "posts/new_post_modal" %>
-<%= render "posts/post_card_modal" %>
 <%= render "channels/new_channel_modal" %>
 <%= render "channels/edit_channel_modal" %>
 <%= render "buildings/templates/new_invitation_modal" %>

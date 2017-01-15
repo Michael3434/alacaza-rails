@@ -1,0 +1,29 @@
+.underline {
+  text-decoration: underline;
+}
+
+.light {
+  font-weight: 200 !important;
+}
+.normal {
+  font-weight: 300 !important;
+}
+.strong {
+  font-weight: 400 !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.no-whitespace {
+  font-size: 0;
+}
+
+.jusify {
+  text-align: justify;
+}
+
+.text-large {
+  font-size: $font-size-large;
+}

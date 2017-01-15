@@ -2,6 +2,14 @@ window.app ||= {}
 
 # Write here application wide javascript code
 app.init = ->
+  # init Sidebar
+  $('.info-icon').on "click", (e) ->
+    e.preventDefault()
+    $('.col-channels').show("slide", { direction: "left" }, 200);
+    $('.modal-bg').hide().removeClass('hidden').fadeIn().show()
+  $('.modal-bg').on "click", (e) ->
+    $('.col-channels').hide("slide", { direction: "left" }, 200)
+    $('.modal-bg').addClass('hidden')
   if $('.admin').length > 0
     $('form').attr('remote', 'true').each (i, el) ->
       obj = new Huddable($(el))

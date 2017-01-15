@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161009192415) do
-=======
-ActiveRecord::Schema.define(version: 20161017044104) do
->>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
+ActiveRecord::Schema.define(version: 20170106142234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +64,6 @@ ActiveRecord::Schema.define(version: 20161017044104) do
   add_index "comments", ["message_id"], name: "index_comments_on_message_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-<<<<<<< HEAD
-=======
   create_table "invitations", force: :cascade do |t|
     t.integer  "building_id"
     t.integer  "invitee_id"
@@ -82,7 +76,6 @@ ActiveRecord::Schema.define(version: 20161017044104) do
 
   add_index "invitations", ["building_id"], name: "index_invitations_on_building_id", using: :btree
 
->>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
   create_table "item_photos", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "photo"
@@ -144,21 +137,19 @@ ActiveRecord::Schema.define(version: 20161017044104) do
     t.text     "vote_for_option_5"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "services", force: :cascade do |t|
     t.text     "description"
     t.string   "title"
-    t.text     "tags"
-    t.boolean  "published",         default: false
-    t.string   "availability"
+    t.string   "category"
     t.string   "price"
     t.string   "mobile_phone"
     t.boolean  "show_mobile_phone"
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "user_channels", force: :cascade do |t|
     t.integer  "user_id"
@@ -210,13 +201,10 @@ ActiveRecord::Schema.define(version: 20161017044104) do
   add_foreign_key "channels", "buildings"
   add_foreign_key "comments", "messages"
   add_foreign_key "comments", "users"
-<<<<<<< HEAD
-=======
   add_foreign_key "invitations", "buildings"
->>>>>>> abd3a139b9e1e3ac2b582d347a54d4fc4e88926a
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
-  add_foreign_key "posts", "users"
+  add_foreign_key "services", "users"
   add_foreign_key "user_channels", "channels"
   add_foreign_key "user_channels", "users"
 end

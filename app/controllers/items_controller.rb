@@ -5,46 +5,43 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params.merge(user: current_user))
     if @item.save
       SlackNotifierWorker.perform_async(:item_created, item_id: @item.id)
-      redirect_to users_items_path
+      redirect_to users_account_path
     else
       @building = current_user.building
-      @post = current_user.posts.last || Post.new
       render 'new'
     end
   end
 
   def index
-    @post = current_user.posts.last || Post.new
     @building = current_user.building
-    @items = Item.ongoing.order('created_at desc').page(params[:page] || 1).per(40)
+    @items = Item.ongoing.order('created_at desc').page(params[:page] || 1).per(20)
   end
 
   def new
     @item = Item.new
     @building = current_user.building
-    @post = current_user.posts.last || Post.new
   end
 
   def show
     @item = Item.find(params[:id])
     @other_items = @item.user.items.ongoing.where.not(id: @item.id)
     @building = current_user.building
-    @post = current_user.posts.last || Post.new
   end
 
   def edit
     @item = Item.find(params[:id])
     @building = current_user.building
-    @post = current_user.posts.last || Post.new
+    unless @item.user == current_user
+      redirect_to items_path
+    end
   end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to users_items_path
+      redirect_to users_account_path
     else
       @building = current_user.building
-      @post = current_user.posts.last || Post.new
       render 'edit'
     end
   end

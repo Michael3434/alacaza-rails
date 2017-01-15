@@ -1,0 +1,138 @@
+<% content_for :title, "Mon compte" %>
+<div class="col-channels">
+    <%= render "buildings/templates/col_channels" %>
+</div>
+
+<div class="client-ui">
+  <div class="container space-top-7">
+    <div class="row">
+      <div class="col-md-3 text-center col-xs-12">
+        <div class="image-container">
+          <div class="image-wrapper">
+            <div class="hover-background">
+              <i class="fa fa-camera" aria-hidden="true"></i>
+              <div class="text-center"> Changer ma photo</div>
+            </div>
+            <div class="fa icon-camera"></div>
+            <%= render "users/image" %>
+          </div>
+        </div>
+        <h3 class="space-top-6"><%= current_user.pseudo %></h3>
+        <%= link_to "Editer mon profil", users_edit_account_path, class: 'btn btn-secondary' %>
+      </div>
+      <div class="col-md-7 col-xs-12">
+        <div class="activity-container">
+          <% if current_user.building.docks? %>
+            <h3>Mes activitées <br><span class="hint">Vous pouvez ici retrouver tous vos objets, services.</span></h3>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs space-top-4" role="tablist">
+              <li class="nav-item active">
+                <a class="nav-link active" data-toggle="tab" href="#items" role="tab">Mes biens (<%= current_user.items.count %>)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#services" role="tab">Je propose mes services (<%= current_user.services.count %>)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#missions" role="tab">J'ai besoin d'aide</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="items" role="tabpanel">
+                <div class="space-top-2 text-left">Ici sont affiché tous vos objets actuellement en vente sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <% current_user.items.order('sold is null desc').each do |item| %>
+                  <div class="item space-top-2 <%= 'sold' if item.sold?  %>">
+                    <div class="row row-flex row-center">
+                      <div class="col-md-2">
+                        <%= link_to item_path(item) do %>
+                          <%= cl_image_tag(item.photo.url(:thumb)) %>
+                        <% end %>
+                      </div>
+                      <div class="col-md-3 hide-xs description">
+                        <%= item.title %> <br>
+                        <span class="hint"><%= l item.created_at, format: :short %></span>
+                      </div>
+                      <div class="col-md-2">
+                        <span class="bold"><%= humanize(item.price) %></span>
+                      </div>
+                      <div class="col-md-2 col-xs-3">
+                      <% if item.sold %>
+                        Bien vendu
+                      <% else %>
+                        <%= button_to "Vendu !", sold_users_item_path(item), method: :patch, class: "btn btn-group btn-secondary" %>
+                      <% end %>
+                      </div>
+                      <div class="col-md-3 col-xs-3 text-center">
+                        <% if item.sold? %>
+                          <%= button_to "Remettre en vente", resell_users_item_path(item), class: "btn btn-secondary space-2 btn-group", method: :patch %>
+                        <% else %>
+                          <%= link_to icon('pencil'), edit_item_path(item), class: "btn-edit" %>
+                          <%= link_to icon('trash-o'), item_path(item), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"}, class: "btn-delete space-left-2" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <hr>
+                <div class="text-right">
+                  <%= link_to new_item_path, class: "btn btn-sell" do %>
+                    <span class="text">Vendre un bien</span>
+                    <%= embedded_svg "camera.svg" %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="tab-pane" id="services" role="tabpanel">
+                <div class="space-top-2 text-left">Ici sont affiché vos propositions de services sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <% current_user.services.each do |service| %>
+                  <div class="service space-top-2">
+                    <div class="row row-flex row-center">
+                      <div class="col-md-5 text-center">
+                        <span class="btn-tag"><%= service.category %></span>
+                      </div>
+                      <div class="col-md-3 hide-xs description">
+                        <%= service.title %> <br>
+                        <span class="hint"><%= l service.created_at, format: :short %></span>
+                      </div>
+                      <div class="col-md-2 hide-xs">
+                        <span class="bold"><%= service_price(service) %></span>
+                      </div>
+                      <div class="col-md-2 col-xs-3 text-center">
+                        <%= link_to icon('pencil'), edit_service_path(service), class: "btn-edit" %>
+                        <%= link_to icon('trash-o'), service_path(service), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"}, class: "btn-delete space-left-2" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <hr>
+                <div class="text-right">
+                  <%= link_to "Proposer mes services", new_service_path, class: "btn btn-secondary" %>
+                </div>
+              </div>
+              <div class="tab-pane" id="missions" role="tabpanel">...</div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "buildings/templates/new_invitation_modal" %>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
+  <div class="">
+    <% current_user.user_channels_group.each do |user_channel| %>
+      <%= simple_form_for user_channel, remote: true, data: { autosubmit: true } do |f| %>
+        <%= f.input :want_notification, input_html: { id: "user_channel_#{user_channel.id}", "data-channel-id": user_channel.channel.id }, label: "#{user_channel.channel.name}"  %>
+      <% end %>
+    <% end %>
+    <div class="text-center">
+      <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" aria-label="Close"><span>Enregistrer et fermer</span></button>
+    </div>
+  </div>
+<% end %>
+
+<%= simple_form_for current_user do |f| %>
+  <%= f.input :photo, label: false, cloudinary: {use_filename: true}, input_html: { class: "hidden" } %>
+<% end %>

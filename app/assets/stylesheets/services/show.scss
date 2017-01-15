@@ -1,0 +1,54 @@
+.services.show {
+  .client-ui {
+    margin-left: 220px;
+    margin-top: 0;
+    padding-top: 20px;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(251, 251, 251, 1);
+    @include bp-small {
+      margin-left: 0px;
+    }
+  }
+  .service-card,
+  .user-card {
+    padding: 20px;
+    border: 1px solid #eee;
+    background-color: #fefefe;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,.08);
+    border-radius: 3px;
+    padding-bottom: 24px;
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+    }
+    .price {
+      font-size: 15px;
+      line-height: 24px;
+      color: #FF845E;
+      margin-top: 5px;
+      font-weight: 600;
+      padding: 3px 7px 5px;
+    }
+  }
+  .user-card {
+    .star-rating {
+      font-size: 20px;
+      text-align: center;
+    }
+    .user-img {
+      text-align: center;
+      img {
+        width: 105px;
+        border-radius: 100%;
+      }
+    }
+  }
+}

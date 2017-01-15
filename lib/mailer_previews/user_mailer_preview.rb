@@ -12,4 +12,8 @@ class UserMailerPreview < ActionMailer::Preview
   def invitation
     UserMailer.invitation(Invitation.last)
   end
+
+  def happy
+    UserMailer.happy(User.last)
+  end
 end

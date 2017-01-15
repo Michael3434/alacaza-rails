@@ -3,7 +3,7 @@ class Users::ItemsController < ApplicationController
   before_action :get_variables
   def index
     @items = current_user.items
-    @post = current_user.posts.last || Post.new
+    @service = current_user.services.last || Service.new
     @building = current_user.building
   end
 
