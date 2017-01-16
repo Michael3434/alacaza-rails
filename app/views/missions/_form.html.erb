@@ -1,44 +1,29 @@
-<% content_for :title, "Tous les services" %>
 <div class="col-channels">
     <%= render "buildings/templates/col_channels" %>
 </div>
 
 <div class="client-ui">
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
-    <div class="services-list">
-      <div class="row">
-        <div class="col-md-8 col-xs-12 service col-md-offset-2 col-xs-offset-0">
-        <div class="row service-card">
-          <div class="col-md-2 user-img">
-            <%= image_tag "list-service-explainer.png" %>
-          </div>
-          <div class="col-md-10">
-            <h3>Ils proposent leurs services</h4>
-            <div class="hint">Ici vous trouverez toutes les personnes de votre quartier qui proposent leurs services.</div>
-            Vous pouvez aussi <%= link_to "proposer vos services", new_service_path, class: "bold" %>
-          </div>
-        </div>
-          <% @services.order('created_at desc').each do |service| %>
-            <%= link_to service_path(service), class: "link" do %>
-              <div class="row row-flex row-center service-card">
-                <div class="col-md-2 user-img">
-                  <%= image_tag user_photo_url(service.user) %>
-                </div>
-                <div class="col-md-7">
-                  <span class="user-name space-1"><%= service.user.name %></span> <br>
-                  <span class="bold title"> <%= service.title %></span> <br>
-                  <span class="btn-tag"><%= service.category %></span> <br>
-                  </div>
-                <div class="col-md-3 price-container">
-                  <span class="bold price-field"><%= price_formated(service) %></span>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+  <div class="container space-top-7">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+        <h2 class="text-center"> J'ai besoin d'aide</h2>
+        <%= simple_form_for @mission, data: { spinnable: true } do |f| %>
+          <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Aide ménagère ...", wrapper_html: { class: "" } %>
+          <%= f.input :description, label: "Précision", input_html: { class: "input-lg", rows: 5 }, placeholder: "Soyez le plus précis possible", wrapper_html: { class: "" } %>
+          <%= f.input :category, label: "Catégorie",
+                              collection: services_categories_collection,
+                                      as: :grouped_select,
+                            group_method: :last,
+                      group_label_method: :first,
+                           include_blank: "Choisissez une catégorie" %>
+
+          <%= f.input :price, label: "Votre budget", input_html: { class: "input-lg" }, placeholder: "Indiquez votre budget", wrapper_html: { class: "" } %>
+          <%= f.button :submit, "Publier", class: "btn btn-secondary btn-lg btn-group space-5" %>
+        <% end %>
       </div>
     </div>
+  </div>
 
 </div>
 
@@ -73,3 +58,4 @@
 <%= render "users/edit_profil_modal" %>
 
 <%= render "buildings/templates/new_invitation_modal" %>
+

@@ -23,7 +23,8 @@
       <div class="col-md-7 col-xs-12">
         <div class="activity-container">
           <% if current_user.building.docks? %>
-            <h3>Mes activitées <br><span class="hint">Vous pouvez ici retrouver tous vos objets, services.</span></h3>
+            <h3>Mes activitées </h3>
+            <span class="hint">Vous retrouverez ici tous vos objets, services et missions.</span>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs space-top-4" role="tablist">
               <li class="nav-item active">
@@ -33,7 +34,7 @@
                 <a class="nav-link" data-toggle="tab" href="#services" role="tab">Je propose mes services (<%= current_user.services.count %>)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#missions" role="tab">J'ai besoin d'aide</a>
+                <a class="nav-link" data-toggle="tab" href="#missions" role="tab">J'ai besoin d'aide (<%= current_user.missions.count %>)</a>
               </li>
             </ul>
 
@@ -95,11 +96,11 @@
                         <span class="hint"><%= l service.created_at, format: :short %></span>
                       </div>
                       <div class="col-md-2 hide-xs">
-                        <span class="bold"><%= service_price(service) %></span>
+                        <span class="bold"><%= price_formated(service) %></span>
                       </div>
                       <div class="col-md-2 col-xs-3 text-center">
                         <%= link_to icon('pencil'), edit_service_path(service), class: "btn-edit" %>
-                        <%= link_to icon('trash-o'), service_path(service), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"}, class: "btn-delete space-left-2" %>
+                        <%= link_to icon('trash-o'), service_path(service), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce service ?"}, class: "btn-delete space-left-2" %>
                       </div>
                     </div>
                   </div>
@@ -109,7 +110,33 @@
                   <%= link_to "Proposer mes services", new_service_path, class: "btn btn-secondary" %>
                 </div>
               </div>
-              <div class="tab-pane" id="missions" role="tabpanel">...</div>
+              <div class="tab-pane" id="missions" role="tabpanel">
+                <div class="space-top-2 text-left">Ici sont affiché toutes les missions dont vous avez besoin d'aide sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <% current_user.missions.each do |mission| %>
+                  <div class="mission space-top-2">
+                    <div class="row row-flex row-center">
+                      <div class="col-md-5 text-center">
+                        <span class="btn-tag"><%= mission.category %></span>
+                      </div>
+                      <div class="col-md-3 hide-xs description">
+                        <%= mission.title %> <br>
+                        <span class="hint"><%= l mission.created_at, format: :short %></span>
+                      </div>
+                      <div class="col-md-2 hide-xs">
+                        <span class="bold"><%= price_formated(mission) %></span>
+                      </div>
+                      <div class="col-md-2 col-xs-3 text-center">
+                        <%= link_to icon('pencil'), edit_mission_path(mission), class: "btn-edit" %>
+                        <%= link_to icon('trash-o'), mission_path(mission), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer cette mission ?"}, class: "btn-delete space-left-2" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <hr>
+                <div class="text-right">
+                  <%= link_to "J'ai besoin d'aide", new_mission_path, class: "btn btn-secondary" %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>

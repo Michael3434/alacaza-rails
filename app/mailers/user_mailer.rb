@@ -15,6 +15,20 @@ class UserMailer < ActionMailer::Base
      mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Re: Nouveau message sur la messagerie de votre immeuble !"
   end
 
+  def new_mission_posted(mission, user)
+    @user = user
+    @mission = mission
+
+     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Quelqu'un a besoin de vous !"
+  end
+
+  def new_service_posted(service, user)
+    @user = user
+    @service = service
+
+     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Quelqu'un peut vous aider !"
+  end
+
   def invitation(invitation)
     @invitation = invitation
     @inviter = invitation.inviter

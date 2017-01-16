@@ -3,9 +3,9 @@ module ServicesHelper
     Service::CATEGORY
   end
 
-  def service_price(service)
-    if service.price.present?
-      service.price
+  def price_formated(model)
+    if model.price.present?
+      model.price
     else
       "Sur demande"
     end

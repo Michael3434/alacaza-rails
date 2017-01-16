@@ -1,8 +1,6 @@
 class Service < ActiveRecord::Base
   belongs_to :user
 
-  scope :published, -> { where(published: true) }
-
   CATEGORY = {
     "Service à domicile" =>
       ["Babysitting et nounous",

@@ -1,4 +1,4 @@
-<% content_for :title, "Tous les services" %>
+<% content_for :title, "Toutes les missions" %>
 <div class="col-channels">
     <%= render "buildings/templates/col_channels" %>
 </div>
@@ -6,7 +6,7 @@
 <div class="client-ui">
   <div class="modal-bg hidden"></div>
   <div class="container-fluid space-top-7">
-    <div class="services-list">
+    <div class="missions-list">
       <div class="row">
         <div class="col-md-8 col-xs-12 service col-md-offset-2 col-xs-offset-0">
         <div class="row service-card">
@@ -14,12 +14,12 @@
             <%= image_tag "list-service-explainer.png" %>
           </div>
           <div class="col-md-10">
-            <h3>Ils proposent leurs services</h4>
-            <div class="hint">Ici vous trouverez toutes les personnes de votre quartier qui proposent leurs services.</div>
-            Vous pouvez aussi <%= link_to "proposer vos services", new_service_path, class: "bold" %>
+            <h3>Ils ont besoin d'aide </h4>
+            <div class="hint">Ici vous trouverez toutes les personnes de votre quartier qui ont besoin d'aide.</div>
+            Vous pouvez aussi <%= link_to "demander de l'aide", new_mission_path, class: "bold" %>
           </div>
         </div>
-          <% @services.order('created_at desc').each do |service| %>
+          <% @missions.order('created_at desc').each do |service| %>
             <%= link_to service_path(service), class: "link" do %>
               <div class="row row-flex row-center service-card">
                 <div class="col-md-2 user-img">

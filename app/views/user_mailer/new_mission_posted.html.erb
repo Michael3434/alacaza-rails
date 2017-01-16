@@ -1,0 +1,31 @@
+<p>Bonjour <%= @user.first_name %>,</p>
+<p><%= @mission.user.name %> à besoin d'aide dans vos domaines de compétences !</p>
+
+<p>
+<strong>Information sur la mission :</strong> <br>
+Titre : <%= @mission.title %> <br>
+Description : <%= @mission.description %> <br>
+Prix : <%= @mission.price %> <br>
+</p>
+
+<p>N'hésitez pas à lui envoyer un message privé sur Alacaza afin d'en savoir plus !</p>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
+      <td>
+        <a href= <%= mission_path(@mission, token: @user.token) %> style="text-decoration: none;">
+          <span style="text-align: center;
+            width: 210px;
+            font-family: helvetica;
+            background-color: #FF6E41;
+            padding: 8px;
+            color: white;
+            margin-left: 16px;
+            font-size: 14px;
+            display: block;">Voir la mission
+          </span>
+        </a>
+      </td>
+    </table>
+
+<p>Bonne journée,<br>
+L'équipe Alacaza</p>

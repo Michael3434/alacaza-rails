@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :user_channels, dependent: :destroy
   has_many :channels, through: :user_channels, dependent: :destroy
   has_many :services, dependent: :destroy
+  has_many :missions, dependent: :destroy
 
   # validations
 

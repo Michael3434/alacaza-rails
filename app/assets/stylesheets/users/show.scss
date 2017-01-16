@@ -88,6 +88,16 @@
         color: #333;
       }
     }
+    #items, #services, #missions {
+      .link:hover {
+        text-decoration: none !important;
+        color: inherit !important;
+         .item {
+          background-color: #fbfbfb;
+          border-left-color: #FF845E;
+        }
+      }
+    }
     #items {
       img {
         width: 70px;
@@ -109,10 +119,22 @@
       }
     }
     #services {
+      .service {
+        background-color: white;
+        border: 1px solid #eee;
+        padding: 10px;
+        .description {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+    #missions {
       img {
         width: 70px;
       }
-      .service {
+      .mission {
         background-color: white;
         border: 1px solid #eee;
         padding: 10px;

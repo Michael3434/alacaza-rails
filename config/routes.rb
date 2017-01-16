@@ -45,8 +45,11 @@ mount Sidekiq::Web => '/sidekiq'
   end
 
   resources :services do
-    put "/publish", to: "services#publish"
     post "add_message", to: "services#add_message"
+  end
+
+  resources :missions do
+    post "add_message", to: "missions#add_message"
   end
 
   namespace :gardien do

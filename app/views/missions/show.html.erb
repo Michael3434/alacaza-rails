@@ -1,4 +1,4 @@
-<% content_for :title, @service.title %>
+<% content_for :title, @mission.title %>
 <div class="col-channels">
     <%= render "buildings/templates/col_channels" %>
 </div>
@@ -6,28 +6,28 @@
 <div class="client-ui">
   <div class="modal-bg hidden"></div>
   <div class="container-fluid space-top-7">
-    <div class="ongoing-services">
+    <div class="ongoing-missions">
       <ol class="breadcrumb">
-        <li><span><%= link_to "Tous les services", services_path %></span></li>
-        <li><span><%= @service.title %></span></li>
+        <li><span><%= link_to "Toutes les missions", missions_path %></span></li>
+        <li><span><%= @mission.title %></span></li>
       </ol>
       <div class="row">
         <div class="col-sm-8 col-xs-12">
-          <div class="service-card">
+          <div class="mission-card">
             <div class="row">
               <div class="col-md-8">
-                <span class="title"> <%= @service.title %> <br></span>
-                <span class="btn-tag"><%= @service.category %></span> <br>
+                <span class="title"> <%= @mission.title %> <br></span>
+                <span class="btn-tag"><%= @mission.category %></span> <br>
               </div>
               <div class="col-md-4 price">
-                <%= price_formated(@service) %>
+                <%= price_formated(@mission) %>
               </div>
             </div>
-            <div class="space-top-4"><%= @service.description %></div>
+            <div class="space-top-4"><%= @mission.description %></div>
             <hr>
-            <% unless @service.user == current_user %>
-              <h4>Envoyer un message privé à <%= @service.user.name %></h4>
-              <%= simple_form_for Message.new, url: service_add_message_path(@service), html: { id: "new_post_message" } do |f| %>
+            <% unless @mission.user == current_user %>
+              <h4>Envoyer un message privé à <%= @mission.user.name %></h4>
+              <%= simple_form_for Message.new, url: mission_add_message_path(@mission), html: { id: "new_post_message" } do |f| %>
                 <%= f.input :body, label: false, input_html: { rows: 4, name: "body" }, placeholder: "Votre message", hint: "Votre message sera directement envoyé par message privé" %>
                 <%= f.submit "Envoyer", class: "btn btn-secondary btn-lg" %>
               <% end %>
@@ -37,9 +37,9 @@
         <div class="col-sm-4 col-xs-12">
           <div class="user-card">
             <div class="user-img">
-              <%= image_tag user_photo_url(@service.user) %>
+              <%= image_tag user_photo_url(@mission.user) %>
             </div>
-            <div class="bold space-top-2 text-center"><%= @service.user.name %></div>
+            <div class="bold space-top-2 text-center"><%= @mission.user.name %></div>
             <%= render "users/stars_rating" %>
           </div>
         </div>

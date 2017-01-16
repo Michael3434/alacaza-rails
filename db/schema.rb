@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106142234) do
+ActiveRecord::Schema.define(version: 20170116062634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,18 @@ ActiveRecord::Schema.define(version: 20170106142234) do
     t.text     "vote_for_option_5"
   end
 
+  create_table "missions", force: :cascade do |t|
+    t.text     "description"
+    t.string   "price"
+    t.string   "category"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "missions", ["user_id"], name: "index_missions_on_user_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.text     "description"
     t.string   "title"
@@ -204,6 +216,7 @@ ActiveRecord::Schema.define(version: 20170106142234) do
   add_foreign_key "invitations", "buildings"
   add_foreign_key "item_photos", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "missions", "users"
   add_foreign_key "services", "users"
   add_foreign_key "user_channels", "channels"
   add_foreign_key "user_channels", "users"

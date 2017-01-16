@@ -1,9 +1,0 @@
-// $("#new_post_modal").modal("hide")
-$('#new_post').attr('action', "/posts/<%= @post.id %>").attr('method', 'PATCH')
-
-$('.published-container').append('<%= j render(partial: "posts/published").html_safe %>')
-
-// Init autosubmit for published form
-$("[data-autosubmit=true]").on("change", function() {
-  return $(this).submit();
-});
