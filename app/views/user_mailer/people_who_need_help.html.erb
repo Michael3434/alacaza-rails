@@ -3,7 +3,7 @@
 <p>Vous venez de proposez vos services sur Alacaza.</p>
 
 <% if @missions.present? %>
-<p>Voici les personnes qui sont susceptible d'avoir besoin de vous : <br>
+<p>Vous trouverez ci-dessous les personnes disponibles qui sont susceptibles d'avoir besoin de vous : <br>
 <% @missions.each do |mission| %>
  - <%= mission.title %> (par <strong><%= mission.user.pseudo %></strong>) - <%= link_to "Lui envoyer un message", mission_url(mission) %>.<br>
 <% end %>

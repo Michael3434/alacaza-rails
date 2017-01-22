@@ -3,7 +3,7 @@
 <p>Vous venez de demander de l'aide sur Alacaza pour <%= @mission.title %>.</p>
 
 <% if @services.present? %>
-<p>Voici les personnes disponibles qui sont susceptible de pouvoir vous aider : <br>
+<p>Vous trouverez ci-dessous les personnes disponibles qui sont susceptibles de pouvoir vous aider : <br>
 <% @services.each do |service| %>
  - <%= service.title %> (par <strong><%= service.user.pseudo %></strong>) - <%= link_to "Lui envoyer un message", service_url(service, token: @user.token) %>.<br>
 <% end %>
