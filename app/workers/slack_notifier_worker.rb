@@ -5,7 +5,7 @@ class SlackNotifierWorker
   def perform(method, params)
     message = Message.where(id: params["message_id"]).first
     mission = Mission.where(id: params["mission_id"]).first
-    service = Mission.where(id: params["service_id"]).first
+    service = Service.where(id: params["service_id"]).first
     channel = Channel.where(id: params["channel_id"]).first
     user = User.where(id: params["user_id"]).first
     comment = Comment.where(id: params["comment_id"]).first

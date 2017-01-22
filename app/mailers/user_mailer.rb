@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def people_availble_to_help(mission)
     @mission = mission
     @user = mission.user
-    @services = Service.where(category: mission.category).where.not(user: @user)
+    @services = Service.same_district_of(@user).where(category: mission.category).where.not(user: @user)
 
     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Vous venez de poster une mission !"
   end
@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
   def people_who_need_help(service)
     @service = service
     @user = service.user
-    @missions = Mission.where(category: service.category).where.not(user: @user)
+    @missions = Mission.same_district_of(@user).where(category: service.category).where.not(user: @user)
 
     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Vous venez de proposer vos services !"
   end

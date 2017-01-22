@@ -11,9 +11,10 @@ class Building < ActiveRecord::Base
     )
   ANABEL = %w(12-rue-jean-richepin)
 
-  DOCKS = ["Docks", "Paris 2ieme"]
+  DOCKS = "Docks"
+  PARIS_2 = "Paris 2ieme"
 
-  DISTRICT = [DOCKS]
+  DISTRICT = [DOCKS, PARIS_2]
 
   DOCKS_SLUG = ["2-rue-maurine-audin",
    "7-allee-de-paris",
