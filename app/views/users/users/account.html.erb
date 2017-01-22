@@ -24,118 +24,116 @@
       </div>
       <div class="col-md-7 col-xs-12">
         <div class="activity-container">
-          <% if current_user.building.docks? %>
-            <h3>Mes activités </h3>
-            <span class="hint">Vous retrouverez ici tous vos objets, services et missions.</span>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs space-top-4" role="tablist">
-              <li class="nav-item active">
-                <a class="nav-link active" data-toggle="tab" href="#items" role="tab">Mes biens (<%= current_user.items.count %>)</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#services" role="tab">Je propose mes services (<%= current_user.services.count %>)</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#missions" role="tab">J'ai besoin d'aide (<%= current_user.missions.count %>)</a>
-              </li>
-            </ul>
+          <h3>Mes activités </h3>
+          <span class="hint">Vous retrouverez ici tous vos objets, services et missions.</span>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs space-top-4" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link active" data-toggle="tab" href="#items" role="tab">Mes biens (<%= current_user.items.count %>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#services" role="tab">Je propose mes services (<%= current_user.services.count %>)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#missions" role="tab">J'ai besoin d'aide (<%= current_user.missions.count %>)</a>
+            </li>
+          </ul>
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div class="tab-pane active" id="items" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affichés tous vos objets actuellement en vente sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
-                <% current_user.items.order('sold is null desc').each do |item| %>
-                  <div class="item space-top-2 <%= 'sold' if item.sold?  %>">
-                    <div class="row row-flex row-center">
-                      <div class="col-md-2">
-                        <%= link_to item_path(item) do %>
-                          <%= cl_image_tag(item.photo.url(:thumb)) %>
-                        <% end %>
-                      </div>
-                      <div class="col-md-3 hide-xs description">
-                        <%= item.title %> <br>
-                        <span class="hint"><%= l item.created_at, format: :short %></span>
-                      </div>
-                      <div class="col-md-2">
-                        <span class="bold"><%= humanize(item.price) %></span>
-                      </div>
-                      <div class="col-md-2 col-xs-3">
-                      <% if !item.sold %>
-                        <%= button_to "Vendu !", sold_users_item_path(item), method: :patch, class: "btn btn-group btn-secondary" %>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="items" role="tabpanel">
+              <div class="space-top-2 text-left">Ici sont affichés tous vos objets actuellement en vente sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+              <% current_user.items.order('sold is null desc').each do |item| %>
+                <div class="item space-top-2 <%= 'sold' if item.sold?  %>">
+                  <div class="row row-flex row-center">
+                    <div class="col-md-2">
+                      <%= link_to item_path(item) do %>
+                        <%= cl_image_tag(item.photo.url(:thumb)) %>
                       <% end %>
-                      </div>
-                      <div class="col-md-3 col-xs-3 text-center">
-                        <% if item.sold? %>
-                          <%= button_to "Remettre en vente", resell_users_item_path(item), class: "btn btn-secondary space-2 btn-group", method: :patch %>
-                        <% else %>
-                          <%= link_to icon('pencil'), edit_item_path(item), class: "btn-edit" %>
-                          <%= link_to icon('trash-o'), item_path(item), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"}, class: "btn-delete space-left-2" %>
-                        <% end %>
-                      </div>
+                    </div>
+                    <div class="col-md-3 hide-xs description">
+                      <%= item.title %> <br>
+                      <span class="hint"><%= l item.created_at, format: :short %></span>
+                    </div>
+                    <div class="col-md-2">
+                      <span class="bold"><%= humanize(item.price) %></span>
+                    </div>
+                    <div class="col-md-2 col-xs-3">
+                    <% if !item.sold %>
+                      <%= button_to "Vendu !", sold_users_item_path(item), method: :patch, class: "btn btn-group btn-secondary" %>
+                    <% end %>
+                    </div>
+                    <div class="col-md-3 col-xs-3 text-center">
+                      <% if item.sold? %>
+                        <%= button_to "Remettre en vente", resell_users_item_path(item), class: "btn btn-secondary space-2 btn-group", method: :patch %>
+                      <% else %>
+                        <%= link_to icon('pencil'), edit_item_path(item), class: "btn-edit" %>
+                        <%= link_to icon('trash-o'), item_path(item), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce bien ?"}, class: "btn-delete space-left-2" %>
+                      <% end %>
                     </div>
                   </div>
-                <% end %>
-                <hr>
-                <div class="text-right">
-                  <%= link_to "Vendre un bien", new_item_path, class: "btn btn-secondary"%>
                 </div>
-              </div>
-              <div class="tab-pane" id="services" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affichés vos propositions de services sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
-                <% current_user.services.each do |service| %>
-                  <div class="service space-top-2">
-                    <div class="row row-flex row-center">
-                      <div class="col-md-5 text-center">
-                        <span class="btn-tag"><%= service.category %></span>
-                      </div>
-                      <div class="col-md-3 hide-xs description">
-                        <%= service.title %> <br>
-                        <span class="hint"><%= l service.created_at, format: :short %></span>
-                      </div>
-                      <div class="col-md-2 hide-xs">
-                        <span class="bold"><%= price_formated(service) %></span>
-                      </div>
-                      <div class="col-md-2 col-xs-3 text-center">
-                        <%= link_to icon('pencil'), edit_service_path(service), class: "btn-edit" %>
-                        <%= link_to icon('trash-o'), service_path(service), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce service ?"}, class: "btn-delete space-left-2" %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-                <hr>
-                <div class="text-right">
-                  <%= link_to "Proposer mes services", new_service_path, class: "btn btn-secondary" %>
-                </div>
-              </div>
-              <div class="tab-pane" id="missions" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affichées toutes vos demandes d'aide sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
-                <% current_user.missions.each do |mission| %>
-                  <div class="mission space-top-2">
-                    <div class="row row-flex row-center">
-                      <div class="col-md-5 text-center">
-                        <span class="btn-tag"><%= mission.category %></span>
-                      </div>
-                      <div class="col-md-3 hide-xs description">
-                        <%= mission.title %> <br>
-                        <span class="hint"><%= l mission.created_at, format: :short %></span>
-                      </div>
-                      <div class="col-md-2 hide-xs">
-                        <span class="bold"><%= price_formated(mission) %></span>
-                      </div>
-                      <div class="col-md-2 col-xs-3 text-center">
-                        <%= link_to icon('pencil'), edit_mission_path(mission), class: "btn-edit" %>
-                        <%= link_to icon('trash-o'), mission_path(mission), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer cette mission ?"}, class: "btn-delete space-left-2" %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-                <hr>
-                <div class="text-right">
-                  <%= link_to "Demander de l'aide", new_mission_path, class: "btn btn-secondary" %>
-                </div>
+              <% end %>
+              <hr>
+              <div class="text-right">
+                <%= link_to "Vendre un bien", new_item_path, class: "btn btn-secondary"%>
               </div>
             </div>
-          <% end %>
+            <div class="tab-pane" id="services" role="tabpanel">
+              <div class="space-top-2 text-left">Ici sont affichés vos propositions de services sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+              <% current_user.services.each do |service| %>
+                <div class="service space-top-2">
+                  <div class="row row-flex row-center">
+                    <div class="col-md-5 text-center">
+                      <span class="btn-tag"><%= service.category %></span>
+                    </div>
+                    <div class="col-md-3 hide-xs description">
+                      <%= service.title %> <br>
+                      <span class="hint"><%= l service.created_at, format: :short %></span>
+                    </div>
+                    <div class="col-md-2 hide-xs">
+                      <span class="bold"><%= price_formated(service) %></span>
+                    </div>
+                    <div class="col-md-2 col-xs-3 text-center">
+                      <%= link_to icon('pencil'), edit_service_path(service), class: "btn-edit" %>
+                      <%= link_to icon('trash-o'), service_path(service), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce service ?"}, class: "btn-delete space-left-2" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <hr>
+              <div class="text-right">
+                <%= link_to "Proposer mes services", new_service_path, class: "btn btn-secondary" %>
+              </div>
+            </div>
+            <div class="tab-pane" id="missions" role="tabpanel">
+              <div class="space-top-2 text-left">Ici sont affichées toutes vos demandes d'aide sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+              <% current_user.missions.each do |mission| %>
+                <div class="mission space-top-2">
+                  <div class="row row-flex row-center">
+                    <div class="col-md-5 text-center">
+                      <span class="btn-tag"><%= mission.category %></span>
+                    </div>
+                    <div class="col-md-3 hide-xs description">
+                      <%= mission.title %> <br>
+                      <span class="hint"><%= l mission.created_at, format: :short %></span>
+                    </div>
+                    <div class="col-md-2 hide-xs">
+                      <span class="bold"><%= price_formated(mission) %></span>
+                    </div>
+                    <div class="col-md-2 col-xs-3 text-center">
+                      <%= link_to icon('pencil'), edit_mission_path(mission), class: "btn-edit" %>
+                      <%= link_to icon('trash-o'), mission_path(mission), method: :delete, class: "rm-item ", data: { confirm: "Êtes-vous sûr de vouloir supprimer cette mission ?"}, class: "btn-delete space-left-2" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <hr>
+              <div class="text-right">
+                <%= link_to "Demander de l'aide", new_mission_path, class: "btn btn-secondary" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

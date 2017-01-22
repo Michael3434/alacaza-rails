@@ -1,5 +1,6 @@
 class Service < ActiveRecord::Base
   belongs_to :user
+  has_one :building, through: :user
 
   CATEGORY = {
     "Service à domicile" =>
@@ -40,6 +41,12 @@ class Service < ActiveRecord::Base
       Mailer::UserMailerWorker.perform_in(3.seconds, :new_service_posted, service_id: self.id, user_id: service.user.id)
     end
     Mailer::UserMailerWorker.perform_in(3.seconds, :people_who_need_help, service_id: self.id)
+  end
+
+  def self.same_district_of(user)
+    joins(:user)
+    .joins(:building)
+    .where('buildings.district = ?', user.building.district)
   end
 
 end

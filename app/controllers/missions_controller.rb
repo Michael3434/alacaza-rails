@@ -26,7 +26,7 @@ class MissionsController < ApplicationController
 
   def index
     @building = current_user.building
-    @missions = Mission.all.includes(:user)
+    @missions = Mission.same_district_of(current_user).order('missions.created_at desc').includes(:user)
   end
 
   def destroy

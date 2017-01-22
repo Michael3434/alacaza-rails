@@ -25,7 +25,7 @@ class ServicesController < ApplicationController
 
   def index
     @building = current_user.building
-    @services = Service.all.includes(:user)
+    @services = Service.same_district_of(current_user).order('services.created_at desc').includes(:user)
   end
 
   def destroy

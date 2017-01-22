@@ -20,7 +20,7 @@
             Vous pouvez aussi <%= link_to "proposer vos services", new_service_path, class: "bold" %>
           </div>
         </div>
-          <% @services.order('created_at desc').each do |service| %>
+          <% @services.each do |service| %>
             <%= link_to service_path(service), class: "link" do %>
               <div class="row row-flex row-center service-card">
                 <div class="col-md-2 user-img">

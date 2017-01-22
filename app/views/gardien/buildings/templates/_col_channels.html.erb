@@ -6,12 +6,10 @@
     <ul class="list-unstyled">
       <li class="space-1"><i class="fa fa-bell-o" aria-hidden="true"></i></i><a href="#" data-toggle="modal" data-target="#notification_modal">Mes notifications</a></li>
       <li class="space-1"><i class="fa fa-user fa-lg" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#edit_profil_modal">Mon profil</a></li>
-      <% if current_user.building.docks? %>
-        <li class="space-1">
-          <%= embedded_svg "camera.svg" %>
-          <%= link_to "Mes biens", users_items_path %>
-        </li>
-      <% end %>
+      <li class="space-1">
+        <%= embedded_svg "camera.svg" %>
+        <%= link_to "Mes biens", users_items_path %>
+      </li>
     </ul>
   </div>
   <hr>

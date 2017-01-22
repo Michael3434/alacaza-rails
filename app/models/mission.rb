@@ -1,5 +1,6 @@
 class Mission < ActiveRecord::Base
   belongs_to :user
+  has_one :building, through: :user
 
   validates :title, :category, :description, presence: true
 
@@ -12,5 +13,11 @@ class Mission < ActiveRecord::Base
       Mailer::UserMailerWorker.perform_in(3.seconds, :new_mission_posted, mission_id: self.id, user_id: service.user.id)
     end
     Mailer::UserMailerWorker.perform_in(3.seconds, :people_availble_to_help, mission_id: self.id)
+  end
+
+  def self.same_district_of(user)
+    joins(:user)
+    .joins(:building)
+    .where('buildings.district = ?', user.building.district)
   end
 end

@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def index
     @building = current_user.building
-    @items = Item.ongoing.order('created_at desc').includes(:user).page(params[:page] || 1).per(20)
+    @items = Item.ongoing.same_district_of(current_user).order('items.created_at desc').includes(:user).page(params[:page] || 1).per(20)
   end
 
   def new

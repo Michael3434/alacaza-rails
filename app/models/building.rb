@@ -11,7 +11,7 @@ class Building < ActiveRecord::Base
     )
   ANABEL = %w(12-rue-jean-richepin)
 
-  DOCKS = "Docks"
+  DOCKS = ["Docks", "Paris 2ieme"]
 
   DISTRICT = [DOCKS]
 

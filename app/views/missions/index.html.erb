@@ -20,7 +20,7 @@
             Vous pouvez aussi <%= link_to "demander de l'aide", new_mission_path, class: "bold" %>
           </div>
         </div>
-          <% @missions.order('created_at desc').each do |mission| %>
+          <% @missions.each do |mission| %>
             <%= link_to mission_path(mission), class: "link" do %>
               <div class="row row-flex row-center mission-card">
                 <div class="col-md-2 user-img">
