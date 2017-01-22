@@ -5,11 +5,11 @@
 <% if @services.present? %>
 <p>Vous trouverez ci-dessous les personnes disponibles qui sont susceptibles de pouvoir vous aider : <br>
 <% @services.each do |service| %>
- - <%= service.title %> (par <strong><%= service.user.pseudo %></strong>) - <%= link_to "Lui envoyer un message", service_url(service, token: @user.token) %>.<br>
+ - <%= service.title %> (par <strong><%= service.user.pseudo %></strong>) - <%= link_to "Envoyer un message", service_url(service, token: @user.token) %>.<br>
 <% end %>
 </p>
 <% else %>
-<p>Vous serez informez si une personne de votre quartier publie une annonce avec les compétences pour vous aider.</p>
+<p>Vous serez informé si une personne de votre quartier publie une annonce avec les compétences pour vous aider.</p>
 <% end %>
 
 <p>Bonne journée,<br>
