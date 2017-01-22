@@ -11,7 +11,7 @@ Prix : <%= @mission.price %> <br>
 
     <table border="0" cellpadding="0" cellspacing="0" width="600" style="width:155px">
       <td>
-        <a href= <%= mission_path(@mission, token: @user.token) %> style="text-decoration: none;">
+        <a href= <%= mission_url(@mission, token: @user.token) %> style="text-decoration: none;">
           <span style="text-align: center;
             width: 210px;
             font-family: helvetica;
