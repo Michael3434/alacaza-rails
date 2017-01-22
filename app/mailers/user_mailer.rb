@@ -15,11 +15,27 @@ class UserMailer < ActionMailer::Base
      mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Re: Nouveau message sur la messagerie de votre immeuble !"
   end
 
+  def people_availble_to_help(mission)
+    @mission = mission
+    @user = mission.user
+    @services = Service.where(category: mission.category).where.not(user: @user)
+
+    mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Vous venez de poster une mission !"
+  end
+
+  def people_who_need_help(service)
+    @service = service
+    @user = service.user
+    @missions = Mission.where(category: service.category).where.not(user: @user)
+
+    mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Vous venez de proposer vos services !"
+  end
+
   def new_mission_posted(mission, user)
     @user = user
     @mission = mission
 
-     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "Quelqu'un a besoin de vous !"
+     mail from: "Alacaza <hello@alacaza.fr>", to: @user.email, subject: "#{@mission.user.pseudo} a besoin de vous !"
   end
 
   def new_service_posted(service, user)

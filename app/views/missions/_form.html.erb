@@ -10,7 +10,7 @@
         <h2 class="text-center"> J'ai besoin d'aide</h2>
         <%= simple_form_for @mission, data: { spinnable: true } do |f| %>
           <%= f.input :title, label: "Titre", input_html: { class: "input-lg" }, placeholder: "Aide ménagère ...", wrapper_html: { class: "" } %>
-          <%= f.input :description, label: "Précision", input_html: { class: "input-lg", rows: 5 }, placeholder: "Soyez le plus précis possible", wrapper_html: { class: "" } %>
+          <%= f.input :description, label: "Précisions", input_html: { class: "input-lg", rows: 5 }, placeholder: "Soyez le plus précis possible", wrapper_html: { class: "" } %>
           <%= f.input :category, label: "Catégorie",
                               collection: services_categories_collection,
                                       as: :grouped_select,

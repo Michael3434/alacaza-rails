@@ -4,8 +4,9 @@
 </div>
 
 <div class="client-ui">
+  <div id="loader" style="display: none;"></div>
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
+  <div class="container-fluid space-top-7 page-wrapper">
     <div class="services-list">
       <div class="row">
         <div class="col-md-8 col-xs-12 service col-md-offset-2 col-xs-offset-0">
@@ -30,7 +31,7 @@
                   <span class="bold title"> <%= service.title %></span> <br>
                   <span class="btn-tag"><%= service.category %></span> <br>
                   </div>
-                <div class="col-md-3 price-container">
+                <div class="col-md-3 price-container  hide-xs">
                   <span class="bold price-field"><%= price_formated(service) %></span>
                 </div>
               </div>

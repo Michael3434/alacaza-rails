@@ -12,6 +12,10 @@ class Mailer::UserMailerWorker
     password = params["password"]
 
     case method
+    when "people_availble_to_help"
+      arguments = [mission]
+    when "people_who_need_help"
+      arguments = [service]
     when "new_mission_posted"
       arguments = [mission, user]
     when "new_service_posted"

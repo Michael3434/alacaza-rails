@@ -1,6 +1,8 @@
 class MissionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, only: [:edit, :update]
   before_action :get_variables
+
   def create
     @mission = Mission.new(mission_params.merge(user: current_user))
     @building = current_user.building
@@ -24,7 +26,7 @@ class MissionsController < ApplicationController
 
   def index
     @building = current_user.building
-    @missions = Mission.all
+    @missions = Mission.all.includes(:user)
   end
 
   def destroy
@@ -67,6 +69,13 @@ class MissionsController < ApplicationController
 
 
   private
+
+  def authorize_user!
+    mission = Mission.find(params[:id])
+    unless mission.user == current_user
+      redirect_to missions_path
+    end
+  end
 
   def get_variables
     @group_channels = current_user.all_group_channels.preload(:messages, :user_channels)

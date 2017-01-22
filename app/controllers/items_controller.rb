@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, only: [:edit, :update]
   before_action :get_variables
+
   def create
     @item = Item.new(item_params.merge(user: current_user))
     if @item.save
@@ -14,7 +16,7 @@ class ItemsController < ApplicationController
 
   def index
     @building = current_user.building
-    @items = Item.ongoing.order('created_at desc').page(params[:page] || 1).per(20)
+    @items = Item.ongoing.order('created_at desc').includes(:user).page(params[:page] || 1).per(20)
   end
 
   def new
@@ -71,6 +73,13 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def authorize_user!
+    item = Item.find(params[:id])
+    unless item.user == current_user
+      redirect_to items_path
+    end
+  end
 
   def get_variables
     @group_channels = current_user.all_group_channels.preload(:messages, :user_channels)

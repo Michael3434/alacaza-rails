@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, only: [:edit, :update]
   before_action :get_variables
   def create
     @service = Service.new(service_params.merge(user: current_user))
@@ -24,7 +25,7 @@ class ServicesController < ApplicationController
 
   def index
     @building = current_user.building
-    @services = Service.all
+    @services = Service.all.includes(:user)
   end
 
   def destroy
@@ -67,6 +68,13 @@ class ServicesController < ApplicationController
 
 
   private
+
+  def authorize_user!
+    service = Service.find(params[:id])
+    unless service.user == current_user
+      redirect_to services_path
+    end
+  end
 
   def get_variables
     @group_channels = current_user.all_group_channels.preload(:messages, :user_channels)

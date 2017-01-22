@@ -56,6 +56,9 @@
       img {
         width: 75px;
         border-radius: 100%;
+        @include bp-extra-small {
+          width: 60px;
+        }
       }
     }
     .price-container {

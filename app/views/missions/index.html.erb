@@ -4,12 +4,13 @@
 </div>
 
 <div class="client-ui">
+  <div id="loader" style="display: none;"></div>
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
+  <div class="container-fluid space-top-7 page-wrapper">
     <div class="missions-list">
       <div class="row">
-        <div class="col-md-8 col-xs-12 service col-md-offset-2 col-xs-offset-0">
-        <div class="row service-card">
+        <div class="col-md-8 col-xs-12 mission col-md-offset-2 col-xs-offset-0">
+        <div class="row mission-card">
           <div class="col-md-2 user-img">
             <%= image_tag "list-service-explainer.png" %>
           </div>
@@ -19,19 +20,19 @@
             Vous pouvez aussi <%= link_to "demander de l'aide", new_mission_path, class: "bold" %>
           </div>
         </div>
-          <% @missions.order('created_at desc').each do |service| %>
-            <%= link_to service_path(service), class: "link" do %>
-              <div class="row row-flex row-center service-card">
+          <% @missions.order('created_at desc').each do |mission| %>
+            <%= link_to mission_path(mission), class: "link" do %>
+              <div class="row row-flex row-center mission-card">
                 <div class="col-md-2 user-img">
-                  <%= image_tag user_photo_url(service.user) %>
+                  <%= image_tag user_photo_url(mission.user) %>
                 </div>
                 <div class="col-md-7">
-                  <span class="user-name space-1"><%= service.user.name %></span> <br>
-                  <span class="bold title"> <%= service.title %></span> <br>
-                  <span class="btn-tag"><%= service.category %></span> <br>
+                  <span class="user-name space-1"><%= mission.user.name %></span> <br>
+                  <span class="bold title"> <%= mission.title %></span> <br>
+                  <span class="btn-tag"><%= mission.category %></span> <br>
                   </div>
-                <div class="col-md-3 price-container">
-                  <span class="bold price-field"><%= price_formated(service) %></span>
+                <div class="col-md-3 price-container  hide-xs">
+                  <span class="bold price-field"><%= price_formated(mission) %></span>
                 </div>
               </div>
             <% end %>

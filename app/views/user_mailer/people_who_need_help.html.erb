@@ -1,0 +1,16 @@
+<p>Bonjour <%= @user.first_name %>,</p>
+
+<p>Vous venez de proposez vos services sur Alacaza.</p>
+
+<% if @missions.present? %>
+<p>Voici les personnes qui sont susceptible d'avoir besoin de vous : <br>
+<% @missions.each do |mission| %>
+ - <%= mission.title %> (par <strong><%= mission.user.pseudo %></strong>) - <%= link_to "Lui envoyer un message", mission_url(mission) %>.<br>
+<% end %>
+</p>
+<% else %>
+<p>Vous serez informez si une personne de votre quartier a besoin d'aide dans vos domaines de compétences. ! </p>
+<% end %>
+
+<p>Bonne journée,<br>
+L'équipe Alacaza</p>

@@ -3,8 +3,9 @@
 </div>
 
 <div class="client-ui">
+  <div id="loader" style="display: none;"></div>
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
+  <div class="container-fluid space-top-7 page-wrapper">
     <div class="ongoing-items">
       <div class="row">
         <% @items.ongoing.each do |item| %>
@@ -13,10 +14,12 @@
               <div class="photo-container">
                <%= link_to item_path(item) do %>
                  <%= cl_image_tag(item.photo.url(:thumb)) %>
+                 <% unless item.created_at < 1.month.ago %>
                  <span class="ribbon">
                  <%= embedded_svg "flame.svg" %>
                   <%= time_ago_in_words_formated(item.created_at) %>
                  </span>
+                 <% end %>
                <% end %>
               </div>
               <div class="infos">

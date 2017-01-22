@@ -4,8 +4,9 @@
 </div>
 
 <div class="client-ui">
+  <div id="loader" style="display: none;"></div>
   <div class="modal-bg hidden"></div>
-  <div class="container-fluid space-top-7">
+  <div class="container-fluid space-top-7 page-wrapper">
     <div class="ongoing-items">
       <ol class="breadcrumb">
         <li><span><%= link_to "Tous les objets", items_path %></span></li>
@@ -49,6 +50,7 @@
             <% if @other_items.length > 0 %>
               <hr>
               <div class="others-items space-top-2">
+                <div class="h4 space-2 text-center">Vend aussi</div>
                 <div class="row">
                   <% @other_items.each do |item| %>
                     <div class="col-xs-6 space-2">

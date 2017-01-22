@@ -2,7 +2,7 @@
   .link:hover {
     text-decoration: none !important;
     color: inherit !important;
-     .service-card {
+     .mission-card {
       background-color: #fbfbfb;
       border-left-color: #FF845E;
     }
@@ -27,7 +27,7 @@
       margin-left: 0px;
     }
   }
-  .service-card:first-child {
+  .mission-card:first-child {
     border: 1px solid #eee;
     background-color: white;
     padding: 10px;
@@ -35,7 +35,7 @@
       width: 105px;
     }
   }
-  a > .service-card {
+  a > .mission-card {
     border: 1px solid #eee;
     background-color: white;
     padding: 10px;
@@ -56,6 +56,9 @@
       img {
         width: 75px;
         border-radius: 100%;
+        @include bp-extra-small {
+          width: 60px;
+        }
       }
     }
     .price-container {

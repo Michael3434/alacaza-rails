@@ -12,6 +12,14 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.new_service_posted(Service.last, User.last)
   end
 
+  def people_availble_to_help
+    UserMailer.people_availble_to_help(Mission.last)
+  end
+
+  def people_who_need_help
+    UserMailer.people_who_need_help(Service.last)
+  end
+
   def new_message
     m = Message.first
     UserMailer.new_message(m, User.first)

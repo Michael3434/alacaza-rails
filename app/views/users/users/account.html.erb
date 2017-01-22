@@ -4,7 +4,9 @@
 </div>
 
 <div class="client-ui">
-  <div class="container space-top-7">
+  <div id="loader" style="display: none;"></div>
+  <div class="modal-bg hidden"></div>
+  <div class="container space-top-7 page-wrapper">
     <div class="row">
       <div class="col-md-3 text-center col-xs-12">
         <div class="image-container">
@@ -23,7 +25,7 @@
       <div class="col-md-7 col-xs-12">
         <div class="activity-container">
           <% if current_user.building.docks? %>
-            <h3>Mes activitées </h3>
+            <h3>Mes activités </h3>
             <span class="hint">Vous retrouverez ici tous vos objets, services et missions.</span>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs space-top-4" role="tablist">
@@ -41,7 +43,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div class="tab-pane active" id="items" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affiché tous vos objets actuellement en vente sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <div class="space-top-2 text-left">Ici sont affichés tous vos objets actuellement en vente sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
                 <% current_user.items.order('sold is null desc').each do |item| %>
                   <div class="item space-top-2 <%= 'sold' if item.sold?  %>">
                     <div class="row row-flex row-center">
@@ -58,9 +60,7 @@
                         <span class="bold"><%= humanize(item.price) %></span>
                       </div>
                       <div class="col-md-2 col-xs-3">
-                      <% if item.sold %>
-                        Bien vendu
-                      <% else %>
+                      <% if !item.sold %>
                         <%= button_to "Vendu !", sold_users_item_path(item), method: :patch, class: "btn btn-group btn-secondary" %>
                       <% end %>
                       </div>
@@ -84,7 +84,7 @@
                 </div>
               </div>
               <div class="tab-pane" id="services" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affiché vos propositions de services sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <div class="space-top-2 text-left">Ici sont affichés vos propositions de services sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
                 <% current_user.services.each do |service| %>
                   <div class="service space-top-2">
                     <div class="row row-flex row-center">
@@ -111,7 +111,7 @@
                 </div>
               </div>
               <div class="tab-pane" id="missions" role="tabpanel">
-                <div class="space-top-2 text-left">Ici sont affiché toutes les missions dont vous avez besoin d'aide sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
+                <div class="space-top-2 text-left">Ici sont affichées toutes vos demandes d'aide sur Alacaza. <br> Vous pouvez les supprimer ou bien les modifier. </div>
                 <% current_user.missions.each do |mission| %>
                   <div class="mission space-top-2">
                     <div class="row row-flex row-center">
@@ -134,7 +134,7 @@
                 <% end %>
                 <hr>
                 <div class="text-right">
-                  <%= link_to "J'ai besoin d'aide", new_mission_path, class: "btn btn-secondary" %>
+                  <%= link_to "Demander de l'aide", new_mission_path, class: "btn btn-secondary" %>
                 </div>
               </div>
             </div>

@@ -1,8 +1,7 @@
 <p>Bonjour <%= @user.first_name %>,</p>
-<p><%= @mission.user.name %> à besoin d'aide dans vos domaines de compétences !</p>
+<p><%= @mission.user.name %> a besoin d'aide dans l'un de vos domaines de compétences.</p>
 
-<p>
-<strong>Information sur la mission :</strong> <br>
+<p>Informations sur la mission : <br>
 Titre : <%= @mission.title %> <br>
 Description : <%= @mission.description %> <br>
 Prix : <%= @mission.price %> <br>
@@ -19,7 +18,6 @@ Prix : <%= @mission.price %> <br>
             background-color: #FF6E41;
             padding: 8px;
             color: white;
-            margin-left: 16px;
             font-size: 14px;
             display: block;">Voir la mission
           </span>

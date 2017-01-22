@@ -35,12 +35,15 @@ app.init = ->
     spinnable = new Spinnable($(el))
     spinnable.init()
 
-  $('.group-channels .list, .private-channels a').on "click", ->
-    $('.scroll-container').css('opacity', "0")
-    $('#loader').show()
-    if $( window ).width() <= 766
-      $('.col-channels').hide()
-      $('.modal-bg').hide()
+  $(".group-channels .list,
+    .private-channels a,
+    .activities-link a,
+    .settings a:not('[data-toggle=modal]')").on "click", ->
+      $('.page-wrapper').css('opacity', "0")
+      $('#loader').show()
+      if $( window ).width() <= 766
+        $('.col-channels').hide()
+        $('.modal-bg').hide()
 
   $("[data-autosubmit=true]").on "change", ->
     $(this).submit()

@@ -174,7 +174,7 @@ class User < ActiveRecord::Base
 
   def set_group_channel
     if self.building.docks?
-      c1 = Channel.where(name: "Les services des Docks").last
+      c1 = Channel.where(name: "Quartier des Docks").last
       UserChannel.create(user: self, channel: c1, want_notification: false)
     end
   end

@@ -37,6 +37,36 @@ module Notifier
       notify(message, options)
     end
 
+    def new_mission(mission)
+      message = "Nouvelle mission"
+      options = {
+        channel: "#website",
+        attachments: [
+          { title: "Prénom", text: mission.user.first_name },
+          { title: "Nom", text: mission.user.last_name },
+          { title: "Immeuble", text: mission.user.building.name },
+          { title: "Titre", text: mission.title },
+          { title: "Description", text: mission.description }
+        ]
+      }
+      notify(message, options)
+    end
+
+    def new_service(service)
+      message = "Nouveau service"
+      options = {
+        channel: "#website",
+        attachments: [
+          { title: "Prénom", text: service.user.first_name },
+          { title: "Nom", text: service.user.last_name },
+          { title: "Immeuble", text: service.user.building.name },
+          { title: "Titre", text: service.title },
+          { title: "Description", text: service.description }
+        ]
+      }
+      notify(message, options)
+    end
+
     def new_message_from_gardien(new_message)
       user = new_message.user
       message = "#{user.first_name} du bâtiment #{user.building.name} a laissé un message : #{new_message.body}"
@@ -119,19 +149,6 @@ module Notifier
       notify(message, options)
     end
 
-    def new_post(post)
-      message = "Nouveau post"
-      options = {
-        channel: "#website",
-        attachments: [
-          { title: "Prénom", text: post.user.first_name },
-          { title: "Nom", text: post.user.last_name },
-          { title: "Titre", text: post.title },
-          { title: "Description", text: post.description }
-        ]
-      }
-      notify(message, options)
-    end
     private
 
     def slack

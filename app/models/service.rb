@@ -31,4 +31,15 @@ class Service < ActiveRecord::Base
 
   validates :title, :category, :description, presence: true
 
+  after_create :notify_users
+
+  # This will notify all users who posted a mission who match the same category of the this service
+  # It will also send an email to the service owner to inform him who need helps
+  def notify_users
+    Mission.where(category: self.category).each do |service|
+      Mailer::UserMailerWorker.perform_in(3.seconds, :new_service_posted, service_id: self.id, user_id: service.user.id)
+    end
+    Mailer::UserMailerWorker.perform_in(3.seconds, :people_who_need_help, service_id: self.id)
+  end
+
 end
