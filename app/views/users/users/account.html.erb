@@ -77,10 +77,7 @@
                 <% end %>
                 <hr>
                 <div class="text-right">
-                  <%= link_to new_item_path, class: "btn btn-sell" do %>
-                    <span class="text">Vendre un bien</span>
-                    <%= embedded_svg "camera.svg" %>
-                  <% end %>
+                  <%= link_to "Vendre un bien", new_item_path, class: "btn btn-secondary"%>
                 </div>
               </div>
               <div class="tab-pane" id="services" role="tabpanel">
@@ -146,6 +143,7 @@
 </div>
 
 <%= render "buildings/templates/new_invitation_modal" %>
+<%= render "channels/new_channel_modal" %>
 
 <%= render layout: "layouts/modal", locals: { modal_name: "notification", modal_size: "", modal_title: "Veuillez sélectionner les conversations pour recevoir les notifications par email" } do %>
   <div class="">

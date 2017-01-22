@@ -44,9 +44,6 @@
               </li>
             <% end %>
           <% end %>
-          <%= link_to items_path do %>
-            <li class="others"><span class="channel-name">#&nbsp;Achats/Ventes</span></li>
-          <% end %>
         </ul>
       </div>
     <% else %>
@@ -64,11 +61,6 @@
               <% end %>
               <span class="channel-name">#&nbsp;<%= channel.name %></span>
               </li>
-            <% end %>
-          <% end %>
-          <% if current_user.building.docks? %>
-            <%= link_to items_path do %>
-              <li class="others"><span class="channel-name">#&nbsp;Achats/Ventes</span></li>
             <% end %>
           <% end %>
         </ul>

@@ -38,7 +38,7 @@
       <div class="link-list">
         <ul class="list-unstyled">
           <li>
-          <%= link_to "Je propose", new_item_path, class: "btn btn-secondary-outline" %>
+          <%= link_to "Je propose", "", data: { toggle: "modal", target: "#i-propose_modal"}, class: "btn btn-secondary-outline" %>
           </li>
         </ul>
       </div>
@@ -46,4 +46,19 @@
     </div>
   </div>
 </header>
+
+<%= render layout: "layouts/modal", locals: { modal_name: "i-propose", modal_title: "Se connecter", modal_size: "modal-xs" } do %>
+  <div class="row space-top-4">
+    <div class="col-md-4 col-xs-12 space-3">
+      <%= link_to "Proposer mes services", new_service_path, class: "btn btn-secondary btn-group" %>
+    </div>
+    <div class="col-md-4 col-xs-12 space-3">
+      <%= link_to "Demander de l'aide", new_mission_path, class: "btn btn-secondary btn-group" %>
+    </div>
+    <div class="col-md-4 col-xs-12 space-3">
+      <%= link_to "Vendre un bien", new_item_path, class: "btn btn-secondary btn-group" %>
+    </div>
+  </div>
+<% end %>
+
 
